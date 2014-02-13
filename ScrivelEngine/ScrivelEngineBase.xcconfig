@@ -1,1 +1,0 @@
-HEADER_SEARCH_PATHS = $(SRCROOT)/External/ParseKit/include

@@ -1,2 +1,0 @@
-#include "../External/xcconfigs/Mac OS X/Mac-StaticLibrary.xcconfig"
-#include "./ScrivelEngineBase.xcconfig"

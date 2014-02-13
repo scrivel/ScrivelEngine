@@ -1,3 +1,6 @@
 [submodule "External/xcconfigs"]
 	path = External/xcconfigs
 	url = https://github.com/jspahrsummers/xcconfigs
+[submodule "External/ParseKit"]
+	path = External/ParseKit
+	url = https://github.com/scrivel/parsekit

@@ -28,6 +28,16 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A63BB5E218AD30D30051FA9F"
+               BuildableName = "ScrivelEngineMacTests.xctest"
+               BlueprintName = "ScrivelEngineMacTests"
+               ReferencedContainer = "container:ScrivelEngine.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

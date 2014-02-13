@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6CDA54D9633F4D3C939D0DD4 /* libPods-ScrivelEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E930232333D456292828A22 /* libPods-ScrivelEngine.a */; };
-		8E5F875E2C754878994DFCE5 /* libPods-ScrivelEngineMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FC15A327596472298329CA1 /* libPods-ScrivelEngineMac.a */; };
 		A60ECBB818AC8523000F7A40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A6127418A7B0DA00CBD988 /* Foundation.framework */; };
 		A60ECBBA18AC8523000F7A40 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECBB918AC8523000F7A40 /* CoreGraphics.framework */; };
 		A60ECBC318AC8523000F7A40 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECBC218AC8523000F7A40 /* main.m */; };
@@ -24,12 +22,20 @@
 		A60ECC2218AC8A46000F7A40 /* SEObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC1C18AC8A46000F7A40 /* SEObject.m */; };
 		A60ECC2318AC8A46000F7A40 /* PKToken+ScrivelEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC1E18AC8A46000F7A40 /* PKToken+ScrivelEngine.m */; };
 		A60ECC2518AC8A5D000F7A40 /* SEScriptTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC2418AC8A5D000F7A40 /* SEScriptTests.m */; };
-		A60ECC4F18AC8C54000F7A40 /* ScrivelEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECBEC18AC864F000F7A40 /* ScrivelEngine.m */; };
 		A60ECC5018AC8C54000F7A40 /* SEMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC1618AC8A46000F7A40 /* SEMethod.m */; };
 		A60ECC5118AC8C54000F7A40 /* SEScript.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC1818AC8A46000F7A40 /* SEScript.m */; };
 		A60ECC5218AC8C54000F7A40 /* SEGlobalObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC1A18AC8A46000F7A40 /* SEGlobalObject.m */; };
 		A60ECC5318AC8C54000F7A40 /* SEObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC1C18AC8A46000F7A40 /* SEObject.m */; };
 		A60ECC5418AC8C54000F7A40 /* PKToken+ScrivelEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC1E18AC8A46000F7A40 /* PKToken+ScrivelEngine.m */; };
+		A63BB5DD18AD2DFD0051FA9F /* libParseKit-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A63BB5DC18AD2DFD0051FA9F /* libParseKit-iOS.a */; };
+		A63BB5DE18AD30310051FA9F /* libScrivelEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECBF318AC86A7000F7A40 /* libScrivelEngine.a */; };
+		A63BB5E418AD30D30051FA9F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A6128218A7B0DA00CBD988 /* XCTest.framework */; };
+		A63BB5EA18AD30D30051FA9F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A63BB5E818AD30D30051FA9F /* InfoPlist.strings */; };
+		A63BB5F318AD30EA0051FA9F /* SEScriptTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC2418AC8A5D000F7A40 /* SEScriptTests.m */; };
+		A63BB5F418AD31960051FA9F /* libScrivelEngineMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECC2A18AC8BE1000F7A40 /* libScrivelEngineMac.a */; };
+		A63BB5F518AD33D70051FA9F /* libScrivelEngineMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECC2A18AC8BE1000F7A40 /* libScrivelEngineMac.a */; };
+		A63BB5F618AD34010051FA9F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6AC928218AC95F700D43025 /* Foundation.framework */; };
+		A63BB5F818AD348A0051FA9F /* libParseKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A63BB5F718AD348A0051FA9F /* libParseKit.a */; };
 		A6AC922018AC921C00D43025 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A6AC921E18AC921C00D43025 /* InfoPlist.strings */; };
 		A6AC922218AC921C00D43025 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6AC922118AC921C00D43025 /* main.m */; };
 		A6AC922618AC921C00D43025 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A6AC922418AC921C00D43025 /* Credits.rtf */; };
@@ -52,6 +58,13 @@
 			remoteGlobalIDString = A60ECBF218AC86A7000F7A40;
 			remoteInfo = ScrivelEngine;
 		};
+		A63BB5EE18AD30D30051FA9F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A6A6126918A7B0DA00CBD988 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A60ECC2918AC8BE1000F7A40;
+			remoteInfo = ScrivelEngineMac;
+		};
 		A6AC921318AC920200D43025 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A6A6126918A7B0DA00CBD988 /* Project object */;
@@ -69,10 +82,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2D9765F1F73244DB9B0DACB5 /* Pods-ScrivelEngine.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScrivelEngine.xcconfig"; path = "Pods/Pods-ScrivelEngine.xcconfig"; sourceTree = "<group>"; };
-		6FC15A327596472298329CA1 /* libPods-ScrivelEngineMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ScrivelEngineMac.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		774DD6653A7A4C7E9BAEAE8C /* Pods-ScrivelEngineMac.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScrivelEngineMac.xcconfig"; path = "Pods/Pods-ScrivelEngineMac.xcconfig"; sourceTree = "<group>"; };
-		8E930232333D456292828A22 /* libPods-ScrivelEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ScrivelEngine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A60ECBB718AC8523000F7A40 /* ScrivelEngineDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrivelEngineDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A60ECBB918AC8523000F7A40 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		A60ECBBE18AC8523000F7A40 /* ScrivelEngineDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ScrivelEngineDemo-Info.plist"; sourceTree = "<group>"; };
@@ -107,6 +116,16 @@
 		A60ECC2E18AC8BE1000F7A40 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A60ECC2F18AC8BE1000F7A40 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A60ECC3018AC8BE1000F7A40 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		A638D2FC18AD1FCC0008635E /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		A638D2FE18AD20010008635E /* ParseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseKit.framework; path = External/ParseKit/build/Debug/ParseKit.framework; sourceTree = "<group>"; };
+		A638D30018AD20150008635E /* ParseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseKit.framework; path = "../../../Library/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug/ParseKit.framework"; sourceTree = "<group>"; };
+		A63BB5DC18AD2DFD0051FA9F /* libParseKit-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libParseKit-iOS.a"; path = "External/ParseKit/build/Debug-iphoneuniversal/libParseKit-iOS.a"; sourceTree = "<group>"; };
+		A63BB5E318AD30D30051FA9F /* ScrivelEngineMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrivelEngineMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A63BB5E718AD30D30051FA9F /* ScrivelEngineMacTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ScrivelEngineMacTests-Info.plist"; sourceTree = "<group>"; };
+		A63BB5E918AD30D30051FA9F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A63BB5EB18AD30D30051FA9F /* ScrivelEngineMacTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrivelEngineMacTests.m; sourceTree = "<group>"; };
+		A63BB5ED18AD30D30051FA9F /* ScrivelEngineMacTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ScrivelEngineMacTests-Prefix.pch"; sourceTree = "<group>"; };
+		A63BB5F718AD348A0051FA9F /* libParseKit.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libParseKit.a; path = External/ParseKit/build/Debug/libParseKit.a; sourceTree = "<group>"; };
 		A6A6127418A7B0DA00CBD988 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A6A6128218A7B0DA00CBD988 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A6AC921918AC921C00D43025 /* ScrivelEngineMacDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrivelEngineMacDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,34 +138,10 @@
 		A6AC922818AC921C00D43025 /* SEDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEDAppDelegate.m; sourceTree = "<group>"; };
 		A6AC922B18AC921C00D43025 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		A6AC922D18AC921C00D43025 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		A6AC926618AC935D00D43025 /* Common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
-		A6AC926818AC935D00D43025 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
-		A6AC926918AC935D00D43025 /* Profile.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Profile.xcconfig; sourceTree = "<group>"; };
-		A6AC926A18AC935D00D43025 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
-		A6AC926B18AC935D00D43025 /* Test.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Test.xcconfig; sourceTree = "<group>"; };
-		A6AC926D18AC935D00D43025 /* Application.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Application.xcconfig; sourceTree = "<group>"; };
-		A6AC926E18AC935D00D43025 /* StaticLibrary.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = StaticLibrary.xcconfig; sourceTree = "<group>"; };
-		A6AC927018AC935D00D43025 /* iOS-Application.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "iOS-Application.xcconfig"; sourceTree = "<group>"; };
-		A6AC927118AC935D00D43025 /* iOS-Base.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "iOS-Base.xcconfig"; sourceTree = "<group>"; };
-		A6AC927218AC935D00D43025 /* iOS-StaticLibrary.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "iOS-StaticLibrary.xcconfig"; sourceTree = "<group>"; };
-		A6AC927418AC935D00D43025 /* Mac-Application.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Mac-Application.xcconfig"; sourceTree = "<group>"; };
-		A6AC927518AC935D00D43025 /* Mac-Base.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Mac-Base.xcconfig"; sourceTree = "<group>"; };
-		A6AC927618AC935D00D43025 /* Mac-DynamicLibrary.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Mac-DynamicLibrary.xcconfig"; sourceTree = "<group>"; };
-		A6AC927718AC935D00D43025 /* Mac-Framework.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Mac-Framework.xcconfig"; sourceTree = "<group>"; };
-		A6AC927818AC935D00D43025 /* Mac-StaticLibrary.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Mac-StaticLibrary.xcconfig"; sourceTree = "<group>"; };
-		A6AC927918AC935D00D43025 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		A6AC927E18AC95DB00D43025 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		A6AC928018AC95F200D43025 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		A6AC928218AC95F700D43025 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		A6AC928518AC960300D43025 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		A6AC928918AC99D900D43025 /* ScrivelEngine.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ScrivelEngine.xcconfig; sourceTree = "<group>"; };
-		A6AC928A18AC99D900D43025 /* ScrivelEngineMac.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ScrivelEngineMac.xcconfig; sourceTree = "<group>"; };
-		A6AC928B18AC99EA00D43025 /* ScrivelEngineBase.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ScrivelEngineBase.xcconfig; sourceTree = "<group>"; };
-		A6AC931118AD042400D43025 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
-		A6AC931318AD042F00D43025 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/libicucore.dylib; sourceTree = DEVELOPER_DIR; };
-		A6AC931A18AD080200D43025 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		A6AC932818AD080200D43025 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		A6AC932B18AD080200D43025 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A63BB5DE18AD30310051FA9F /* libScrivelEngine.a in Frameworks */,
 				A6AC928618AC960300D43025 /* UIKit.framework in Frameworks */,
 				A60ECBBA18AC8523000F7A40 /* CoreGraphics.framework in Frameworks */,
 				A60ECBB818AC8523000F7A40 /* Foundation.framework in Frameworks */,
@@ -164,8 +160,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A63BB5DD18AD2DFD0051FA9F /* libParseKit-iOS.a in Frameworks */,
 				A60ECBF418AC86A7000F7A40 /* Foundation.framework in Frameworks */,
-				6CDA54D9633F4D3C939D0DD4 /* libPods-ScrivelEngine.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,8 +179,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A63BB5F818AD348A0051FA9F /* libParseKit.a in Frameworks */,
 				A6AC927F18AC95DB00D43025 /* Cocoa.framework in Frameworks */,
-				8E5F875E2C754878994DFCE5 /* libPods-ScrivelEngineMac.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A63BB5E018AD30D30051FA9F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A63BB5F418AD31960051FA9F /* libScrivelEngineMac.a in Frameworks */,
+				A63BB5F618AD34010051FA9F /* Foundation.framework in Frameworks */,
+				A63BB5E418AD30D30051FA9F /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,6 +198,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A63BB5F518AD33D70051FA9F /* libScrivelEngineMac.a in Frameworks */,
 				A6AC928418AC95FC00D43025 /* Cocoa.framework in Frameworks */,
 				A6AC928318AC95F700D43025 /* Foundation.framework in Frameworks */,
 				A6AC928118AC95F200D43025 /* AppKit.framework in Frameworks */,
@@ -242,9 +249,6 @@
 				A60ECC1C18AC8A46000F7A40 /* SEObject.m */,
 				A60ECC1D18AC8A46000F7A40 /* PKToken+ScrivelEngine.h */,
 				A60ECC1E18AC8A46000F7A40 /* PKToken+ScrivelEngine.m */,
-				A6AC928B18AC99EA00D43025 /* ScrivelEngineBase.xcconfig */,
-				A6AC928918AC99D900D43025 /* ScrivelEngine.xcconfig */,
-				A6AC928A18AC99D900D43025 /* ScrivelEngineMac.xcconfig */,
 			);
 			path = ScrivelEngine;
 			sourceTree = "<group>";
@@ -277,19 +281,36 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
+		A63BB5E518AD30D30051FA9F /* ScrivelEngineMacTests */ = {
+			isa = PBXGroup;
+			children = (
+				A63BB5EB18AD30D30051FA9F /* ScrivelEngineMacTests.m */,
+				A63BB5E618AD30D30051FA9F /* Supporting Files */,
+			);
+			path = ScrivelEngineMacTests;
+			sourceTree = "<group>";
+		};
+		A63BB5E618AD30D30051FA9F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A63BB5E718AD30D30051FA9F /* ScrivelEngineMacTests-Info.plist */,
+				A63BB5E818AD30D30051FA9F /* InfoPlist.strings */,
+				A63BB5ED18AD30D30051FA9F /* ScrivelEngineMacTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		A6A6126818A7B0DA00CBD988 = {
 			isa = PBXGroup;
 			children = (
-				A6AC92C418ACF91500D43025 /* Frameworks */,
 				A6AC927A18AC936500D43025 /* External */,
 				A60ECBE818AC864F000F7A40 /* ScrivelEngine */,
 				A60ECC0718AC86A7000F7A40 /* ScrivelEngineTests */,
 				A60ECBBC18AC8523000F7A40 /* ScrivelEngineDemo */,
 				A6AC921B18AC921C00D43025 /* ScrivelEngineMacDemo */,
+				A63BB5E518AD30D30051FA9F /* ScrivelEngineMacTests */,
 				A6A6127318A7B0DA00CBD988 /* Frameworks */,
 				A6A6127218A7B0DA00CBD988 /* Products */,
-				2D9765F1F73244DB9B0DACB5 /* Pods-ScrivelEngine.xcconfig */,
-				774DD6653A7A4C7E9BAEAE8C /* Pods-ScrivelEngineMac.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -301,6 +322,7 @@
 				A60ECC0018AC86A7000F7A40 /* ScrivelEngineTests.xctest */,
 				A60ECC2A18AC8BE1000F7A40 /* libScrivelEngineMac.a */,
 				A6AC921918AC921C00D43025 /* ScrivelEngineMacDemo.app */,
+				A63BB5E318AD30D30051FA9F /* ScrivelEngineMacTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -308,6 +330,11 @@
 		A6A6127318A7B0DA00CBD988 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A63BB5F718AD348A0051FA9F /* libParseKit.a */,
+				A63BB5DC18AD2DFD0051FA9F /* libParseKit-iOS.a */,
+				A638D30018AD20150008635E /* ParseKit.framework */,
+				A638D2FE18AD20010008635E /* ParseKit.framework */,
+				A638D2FC18AD1FCC0008635E /* libicucore.dylib */,
 				A6AC928518AC960300D43025 /* UIKit.framework */,
 				A6AC928218AC95F700D43025 /* Foundation.framework */,
 				A6AC928018AC95F200D43025 /* AppKit.framework */,
@@ -344,90 +371,11 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A6AC926418AC935C00D43025 /* xcconfigs */ = {
-			isa = PBXGroup;
-			children = (
-				A6AC926518AC935D00D43025 /* Base */,
-				A6AC926F18AC935D00D43025 /* iOS */,
-				A6AC927318AC935D00D43025 /* Mac OS X */,
-				A6AC927918AC935D00D43025 /* README.md */,
-			);
-			name = xcconfigs;
-			path = External/xcconfigs;
-			sourceTree = "<group>";
-		};
-		A6AC926518AC935D00D43025 /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				A6AC926618AC935D00D43025 /* Common.xcconfig */,
-				A6AC926718AC935D00D43025 /* Configurations */,
-				A6AC926C18AC935D00D43025 /* Targets */,
-			);
-			path = Base;
-			sourceTree = "<group>";
-		};
-		A6AC926718AC935D00D43025 /* Configurations */ = {
-			isa = PBXGroup;
-			children = (
-				A6AC926818AC935D00D43025 /* Debug.xcconfig */,
-				A6AC926918AC935D00D43025 /* Profile.xcconfig */,
-				A6AC926A18AC935D00D43025 /* Release.xcconfig */,
-				A6AC926B18AC935D00D43025 /* Test.xcconfig */,
-			);
-			path = Configurations;
-			sourceTree = "<group>";
-		};
-		A6AC926C18AC935D00D43025 /* Targets */ = {
-			isa = PBXGroup;
-			children = (
-				A6AC926D18AC935D00D43025 /* Application.xcconfig */,
-				A6AC926E18AC935D00D43025 /* StaticLibrary.xcconfig */,
-			);
-			path = Targets;
-			sourceTree = "<group>";
-		};
-		A6AC926F18AC935D00D43025 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				A6AC927018AC935D00D43025 /* iOS-Application.xcconfig */,
-				A6AC927118AC935D00D43025 /* iOS-Base.xcconfig */,
-				A6AC927218AC935D00D43025 /* iOS-StaticLibrary.xcconfig */,
-			);
-			path = iOS;
-			sourceTree = "<group>";
-		};
-		A6AC927318AC935D00D43025 /* Mac OS X */ = {
-			isa = PBXGroup;
-			children = (
-				A6AC927418AC935D00D43025 /* Mac-Application.xcconfig */,
-				A6AC927518AC935D00D43025 /* Mac-Base.xcconfig */,
-				A6AC927618AC935D00D43025 /* Mac-DynamicLibrary.xcconfig */,
-				A6AC927718AC935D00D43025 /* Mac-Framework.xcconfig */,
-				A6AC927818AC935D00D43025 /* Mac-StaticLibrary.xcconfig */,
-			);
-			path = "Mac OS X";
-			sourceTree = "<group>";
-		};
 		A6AC927A18AC936500D43025 /* External */ = {
 			isa = PBXGroup;
 			children = (
-				A6AC926418AC935C00D43025 /* xcconfigs */,
 			);
 			name = External;
-			sourceTree = "<group>";
-		};
-		A6AC92C418ACF91500D43025 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				A6AC931318AD042F00D43025 /* libicucore.dylib */,
-				A6AC931118AD042400D43025 /* libicucore.dylib */,
-				8E930232333D456292828A22 /* libPods-ScrivelEngine.a */,
-				6FC15A327596472298329CA1 /* libPods-ScrivelEngineMac.a */,
-				A6AC931A18AD080200D43025 /* Foundation.framework */,
-				A6AC932818AD080200D43025 /* XCTest.framework */,
-				A6AC932B18AD080200D43025 /* UIKit.framework */,
-			);
-			path = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -465,10 +413,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A60ECC0F18AC86A7000F7A40 /* Build configuration list for PBXNativeTarget "ScrivelEngine" */;
 			buildPhases = (
-				C377F83D801744D6903B07DA /* Check Pods Manifest.lock */,
 				A60ECBEF18AC86A7000F7A40 /* Sources */,
 				A60ECBF018AC86A7000F7A40 /* Frameworks */,
-				4BB9F6BDAB0649468E00D297 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -501,11 +447,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A60ECC4918AC8BE1000F7A40 /* Build configuration list for PBXNativeTarget "ScrivelEngineMac" */;
 			buildPhases = (
-				7485159EEDBA42C7BD144788 /* Check Pods Manifest.lock */,
 				A60ECC2618AC8BE1000F7A40 /* Sources */,
 				A60ECC2718AC8BE1000F7A40 /* Frameworks */,
 				A60ECC2818AC8BE1000F7A40 /* Headers */,
-				8F6B60582BE043F8ACA8209D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -515,6 +459,24 @@
 			productName = ScrivelEngineMac;
 			productReference = A60ECC2A18AC8BE1000F7A40 /* libScrivelEngineMac.a */;
 			productType = "com.apple.product-type.library.static";
+		};
+		A63BB5E218AD30D30051FA9F /* ScrivelEngineMacTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A63BB5F018AD30D30051FA9F /* Build configuration list for PBXNativeTarget "ScrivelEngineMacTests" */;
+			buildPhases = (
+				A63BB5DF18AD30D30051FA9F /* Sources */,
+				A63BB5E018AD30D30051FA9F /* Frameworks */,
+				A63BB5E118AD30D30051FA9F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A63BB5EF18AD30D30051FA9F /* PBXTargetDependency */,
+			);
+			name = ScrivelEngineMacTests;
+			productName = ScrivelEngineMacTests;
+			productReference = A63BB5E318AD30D30051FA9F /* ScrivelEngineMacTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		A6AC921818AC921C00D43025 /* ScrivelEngineMacDemo */ = {
 			isa = PBXNativeTarget;
@@ -544,7 +506,10 @@
 				ORGANIZATIONNAME = scrivel;
 				TargetAttributes = {
 					A60ECBFF18AC86A7000F7A40 = {
-						TestTargetID = A60ECBB618AC8523000F7A40;
+						TestTargetID = A60ECBF218AC86A7000F7A40;
+					};
+					A63BB5E218AD30D30051FA9F = {
+						TestTargetID = A60ECC2918AC8BE1000F7A40;
 					};
 				};
 			};
@@ -564,6 +529,7 @@
 				A60ECBF218AC86A7000F7A40 /* ScrivelEngine */,
 				A60ECC2918AC8BE1000F7A40 /* ScrivelEngineMac */,
 				A60ECBFF18AC86A7000F7A40 /* ScrivelEngineTests */,
+				A63BB5E218AD30D30051FA9F /* ScrivelEngineMacTests */,
 				A60ECBB618AC8523000F7A40 /* ScrivelEngineDemo */,
 				A6AC921818AC921C00D43025 /* ScrivelEngineMacDemo */,
 			);
@@ -576,6 +542,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A60ECC0C18AC86A7000F7A40 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A63BB5E118AD30D30051FA9F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A63BB5EA18AD30D30051FA9F /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,69 +572,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		4BB9F6BDAB0649468E00D297 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-ScrivelEngine-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7485159EEDBA42C7BD144788 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		8F6B60582BE043F8ACA8209D /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-ScrivelEngineMac-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C377F83D801744D6903B07DA /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A60ECBB318AC8523000F7A40 /* Sources */ = {
@@ -697,12 +608,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A60ECC4F18AC8C54000F7A40 /* ScrivelEngine.m in Sources */,
 				A60ECC5018AC8C54000F7A40 /* SEMethod.m in Sources */,
 				A60ECC5118AC8C54000F7A40 /* SEScript.m in Sources */,
 				A60ECC5218AC8C54000F7A40 /* SEGlobalObject.m in Sources */,
 				A60ECC5318AC8C54000F7A40 /* SEObject.m in Sources */,
 				A60ECC5418AC8C54000F7A40 /* PKToken+ScrivelEngine.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A63BB5DF18AD30D30051FA9F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A63BB5F318AD30EA0051FA9F /* SEScriptTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -722,6 +640,11 @@
 			isa = PBXTargetDependency;
 			target = A60ECBF218AC86A7000F7A40 /* ScrivelEngine */;
 			targetProxy = A60ECC0418AC86A7000F7A40 /* PBXContainerItemProxy */;
+		};
+		A63BB5EF18AD30D30051FA9F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A60ECC2918AC8BE1000F7A40 /* ScrivelEngineMac */;
+			targetProxy = A63BB5EE18AD30D30051FA9F /* PBXContainerItemProxy */;
 		};
 		A6AC921418AC920200D43025 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -760,6 +683,14 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
+		A63BB5E818AD30D30051FA9F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A63BB5E918AD30D30051FA9F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		A6AC921E18AC921C00D43025 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -789,7 +720,6 @@
 /* Begin XCBuildConfiguration section */
 		A60ECBE318AC8524000F7A40 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6AC927018AC935D00D43025 /* iOS-Application.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -806,6 +736,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "ScrivelEngineDemo/ScrivelEngineDemo-Info.plist";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-licucore",
@@ -814,13 +745,13 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv6 armv7 armv7s arm64 i386";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		A60ECBE418AC8524000F7A40 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6AC927018AC935D00D43025 /* iOS-Application.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -833,6 +764,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ScrivelEngineDemo/ScrivelEngineDemo-Prefix.pch";
 				INFOPLIST_FILE = "ScrivelEngineDemo/ScrivelEngineDemo-Info.plist";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-licucore",
@@ -841,13 +773,13 @@
 					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv6 armv7 armv7s arm64 i386";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
 		A60ECC1018AC86A7000F7A40 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D9765F1F73244DB9B0DACB5 /* Pods-ScrivelEngine.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DSTROOT = /tmp/ScrivelEngine.dst;
@@ -859,17 +791,20 @@
 					"$(inherited)",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/keroxp/Development/iOS/ScrivelEngine/External/ParseKit/build/Debug-iphoneuniversal",
+				);
 				MACH_O_TYPE = staticlib;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = /usr/local/lib;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
 		A60ECC1118AC86A7000F7A40 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D9765F1F73244DB9B0DACB5 /* Pods-ScrivelEngine.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DSTROOT = /tmp/ScrivelEngine.dst;
@@ -877,19 +812,21 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ScrivelEngine/ScrivelEngine-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/keroxp/Development/iOS/ScrivelEngine/External/ParseKit/build/Debug-iphoneuniversal",
+				);
 				MACH_O_TYPE = staticlib;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = /usr/local/lib;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
 		A60ECC1318AC86A7000F7A40 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6AC928918AC99D900D43025 /* ScrivelEngine.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ScrivelEngineDemo.app/ScrivelEngineDemo";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -904,22 +841,22 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "ScrivelEngineTests/ScrivelEngineTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
 					XCTest,
+					"-ObjC",
+					"-licucore",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
 		};
 		A60ECC1418AC86A7000F7A40 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6AC928918AC99D900D43025 /* ScrivelEngine.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ScrivelEngineDemo.app/ScrivelEngineDemo";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -934,21 +871,21 @@
 					"$(inherited)",
 					"-framework",
 					XCTest,
+					"-ObjC",
+					"-licucore",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
 		A60ECC4A18AC8BE1000F7A40 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 774DD6653A7A4C7E9BAEAE8C /* Pods-ScrivelEngineMac.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					/Users/keroxp/Development/iOS/ScrivelEngine/Frameworks,
+					"$(BUILT_PRODUCTS_DIR)/**",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -961,22 +898,23 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
 		A60ECC4B18AC8BE1000F7A40 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 774DD6653A7A4C7E9BAEAE8C /* Pods-ScrivelEngineMac.xcconfig */;
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					/Users/keroxp/Development/iOS/ScrivelEngine/Frameworks,
+					"$(BUILT_PRODUCTS_DIR)/**",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -985,18 +923,82 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
+			};
+			name = Release;
+		};
+		A63BB5F118AD30D30051FA9F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ScrivelEngineMacTests/ScrivelEngineMacTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
+				INFOPLIST_FILE = "ScrivelEngineMacTests/ScrivelEngineMacTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-licucore",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		A63BB5F218AD30D30051FA9F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ScrivelEngineMacTests/ScrivelEngineMacTests-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				);
+				INFOPLIST_FILE = "ScrivelEngineMacTests/ScrivelEngineMacTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-licucore",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				VALID_ARCHS = x86_64;
+				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
 		A6A6129218A7B0DA00CBD988 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6AC926818AC935D00D43025 /* Debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1032,19 +1034,19 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/usr/lib,
+					"$(BUILT_PRODUCTS_DIR)/**",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
 		A6A6129318A7B0DA00CBD988 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6AC926A18AC935D00D43025 /* Release.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1074,9 +1076,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/usr/lib,
+					"$(BUILT_PRODUCTS_DIR)/**",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1084,7 +1087,6 @@
 		};
 		A6AC924118AC921C00D43025 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6AC927418AC935D00D43025 /* Mac-Application.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1109,7 +1111,6 @@
 		};
 		A6AC924218AC921C00D43025 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6AC927418AC935D00D43025 /* Mac-Application.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1167,6 +1168,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		A63BB5F018AD30D30051FA9F /* Build configuration list for PBXNativeTarget "ScrivelEngineMacTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A63BB5F118AD30D30051FA9F /* Debug */,
+				A63BB5F218AD30D30051FA9F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		A6A6126C18A7B0DA00CBD988 /* Build configuration list for PBXProject "ScrivelEngine" */ = {
 			isa = XCConfigurationList;

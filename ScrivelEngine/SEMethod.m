@@ -7,7 +7,7 @@
 //
 
 #import "SEMethod.h"
-#import "ParseKit.h"
+#import <ParseKit/ParseKit.h>
 #import "PKToken+ScrivelEngine.h"
 
 @implementation SEMethod

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 scrivel. All rights reserved.
 //
 
-#import "PKToken.h"
+#import <ParseKit/PKToken.h>
 
 @interface PKToken (ScrivelEngine)
 

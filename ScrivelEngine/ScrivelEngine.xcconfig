@@ -1,2 +1,0 @@
-#include "../External/xcconfigs/iOS/iOS-StaticLibrary.xcconfig"
-#include "./ScrivelEngineBase.xcconfig"
