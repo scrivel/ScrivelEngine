@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A60ECBF218AC86A7000F7A40"
-               BuildableName = "libScrivelEngine.a"
-               BlueprintName = "ScrivelEngine"
+               BlueprintIdentifier = "A6AC921818AC921C00D43025"
+               BuildableName = "ScrivelEngineMacDemo.app"
+               BlueprintName = "ScrivelEngineMacDemo"
                ReferencedContainer = "container:ScrivelEngine.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,27 +28,16 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A60ECBFF18AC86A7000F7A40"
-               BuildableName = "ScrivelEngineTests.xctest"
-               BlueprintName = "ScrivelEngineTests"
-               ReferencedContainer = "container:ScrivelEngine.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A60ECBD318AC8524000F7A40"
-               BuildableName = "ScrivelEngineDemoTests.xctest"
-               BlueprintName = "ScrivelEngineDemoTests"
-               ReferencedContainer = "container:ScrivelEngine.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "A6AC921818AC921C00D43025"
+            BuildableName = "ScrivelEngineMacDemo.app"
+            BlueprintName = "ScrivelEngineMacDemo"
+            ReferencedContainer = "container:ScrivelEngine.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -59,6 +48,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "A6AC921818AC921C00D43025"
+            BuildableName = "ScrivelEngineMacDemo.app"
+            BlueprintName = "ScrivelEngineMacDemo"
+            ReferencedContainer = "container:ScrivelEngine.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -68,6 +66,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "A6AC921818AC921C00D43025"
+            BuildableName = "ScrivelEngineMacDemo.app"
+            BlueprintName = "ScrivelEngineMacDemo"
+            ReferencedContainer = "container:ScrivelEngine.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

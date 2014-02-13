@@ -1,1 +1,1 @@
-HEADER_SEARCH_PATHS = $(SRCROOT)/External/ParseKit/src
+HEADER_SEARCH_PATHS = $(SRCROOT)/External/ParseKit/include
