@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A6A6127018A7B0DA00CBD988"
+               BlueprintIdentifier = "A60ECBF218AC86A7000F7A40"
                BuildableName = "libScrivelEngine.a"
                BlueprintName = "ScrivelEngine"
                ReferencedContainer = "container:ScrivelEngine.xcodeproj">
@@ -32,9 +32,19 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A6A6128018A7B0DA00CBD988"
+               BlueprintIdentifier = "A60ECBFF18AC86A7000F7A40"
                BuildableName = "ScrivelEngineTests.xctest"
                BlueprintName = "ScrivelEngineTests"
+               ReferencedContainer = "container:ScrivelEngine.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A60ECBD318AC8524000F7A40"
+               BuildableName = "ScrivelEngineDemoTests.xctest"
+               BlueprintName = "ScrivelEngineDemoTests"
                ReferencedContainer = "container:ScrivelEngine.xcodeproj">
             </BuildableReference>
          </TestableReference>

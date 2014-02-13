@@ -7,92 +7,189 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A6A6127518A7B0DA00CBD988 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A6127418A7B0DA00CBD988 /* Foundation.framework */; };
-		A6A6127A18A7B0DA00CBD988 /* ScrivelEngine.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A6A6127918A7B0DA00CBD988 /* ScrivelEngine.h */; };
-		A6A6127C18A7B0DA00CBD988 /* ScrivelEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A6127B18A7B0DA00CBD988 /* ScrivelEngine.m */; };
-		A6A6128318A7B0DA00CBD988 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A6128218A7B0DA00CBD988 /* XCTest.framework */; };
-		A6A6128418A7B0DA00CBD988 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A6127418A7B0DA00CBD988 /* Foundation.framework */; };
-		A6A6128618A7B0DA00CBD988 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A6128518A7B0DA00CBD988 /* UIKit.framework */; };
-		A6A6128918A7B0DA00CBD988 /* libScrivelEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A6127118A7B0DA00CBD988 /* libScrivelEngine.a */; };
-		A6A6128F18A7B0DA00CBD988 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A6A6128D18A7B0DA00CBD988 /* InfoPlist.strings */; };
-		A6A6129118A7B0DA00CBD988 /* ScrivelEngineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A6129018A7B0DA00CBD988 /* ScrivelEngineTests.m */; };
+		2713C335B01343E5BB2CA34A /* libPods-ScrivelEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A624A29B58AE4DD3A64EB6AA /* libPods-ScrivelEngine.a */; };
+		6E8AD38DB21D43ECA84EDD27 /* libPods-ScrivelEngineDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 28B5E84904E24656B04EF0FC /* libPods-ScrivelEngineDemo.a */; };
+		A60ECBB818AC8523000F7A40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A6127418A7B0DA00CBD988 /* Foundation.framework */; };
+		A60ECBBA18AC8523000F7A40 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECBB918AC8523000F7A40 /* CoreGraphics.framework */; };
+		A60ECBBB18AC8523000F7A40 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A6128518A7B0DA00CBD988 /* UIKit.framework */; };
+		A60ECBC118AC8523000F7A40 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A60ECBBF18AC8523000F7A40 /* InfoPlist.strings */; };
+		A60ECBC318AC8523000F7A40 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECBC218AC8523000F7A40 /* main.m */; };
+		A60ECBC718AC8523000F7A40 /* SEDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECBC618AC8523000F7A40 /* SEDAppDelegate.m */; };
+		A60ECBCA18AC8523000F7A40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A60ECBC818AC8523000F7A40 /* Main.storyboard */; };
+		A60ECBCD18AC8523000F7A40 /* SEDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECBCC18AC8523000F7A40 /* SEDViewController.m */; };
+		A60ECBCF18AC8523000F7A40 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A60ECBCE18AC8523000F7A40 /* Images.xcassets */; };
+		A60ECBF418AC86A7000F7A40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A6127418A7B0DA00CBD988 /* Foundation.framework */; };
+		A60ECC0118AC86A7000F7A40 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A6128218A7B0DA00CBD988 /* XCTest.framework */; };
+		A60ECC0218AC86A7000F7A40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A6127418A7B0DA00CBD988 /* Foundation.framework */; };
+		A60ECC0318AC86A7000F7A40 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A6128518A7B0DA00CBD988 /* UIKit.framework */; };
+		A60ECC0618AC86A7000F7A40 /* libScrivelEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECBF318AC86A7000F7A40 /* libScrivelEngine.a */; };
+		A60ECC0C18AC86A7000F7A40 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A60ECC0A18AC86A7000F7A40 /* InfoPlist.strings */; };
+		A60ECC0E18AC86A7000F7A40 /* ScrivelEngineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC0D18AC86A7000F7A40 /* ScrivelEngineTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A6A6128718A7B0DA00CBD988 /* PBXContainerItemProxy */ = {
+		A60ECC0418AC86A7000F7A40 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A6A6126918A7B0DA00CBD988 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = A6A6127018A7B0DA00CBD988;
+			remoteGlobalIDString = A60ECBF218AC86A7000F7A40;
 			remoteInfo = ScrivelEngine;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A6A6126F18A7B0DA00CBD988 /* CopyFiles */ = {
+		A60ECBF118AC86A7000F7A40 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				A6A6127A18A7B0DA00CBD988 /* ScrivelEngine.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A6A6127118A7B0DA00CBD988 /* libScrivelEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libScrivelEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		28B5E84904E24656B04EF0FC /* libPods-ScrivelEngineDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ScrivelEngineDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		35497598D62E46B5B1B3499E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		5F52737873ED45DA8841CED0 /* Pods-ScrivelEngine.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScrivelEngine.xcconfig"; path = "Pods/Pods-ScrivelEngine.xcconfig"; sourceTree = "<group>"; };
+		A60ECBB718AC8523000F7A40 /* ScrivelEngineDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrivelEngineDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A60ECBB918AC8523000F7A40 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A60ECBBE18AC8523000F7A40 /* ScrivelEngineDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ScrivelEngineDemo-Info.plist"; sourceTree = "<group>"; };
+		A60ECBC018AC8523000F7A40 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A60ECBC218AC8523000F7A40 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A60ECBC418AC8523000F7A40 /* ScrivelEngineDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ScrivelEngineDemo-Prefix.pch"; sourceTree = "<group>"; };
+		A60ECBC518AC8523000F7A40 /* SEDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEDAppDelegate.h; sourceTree = "<group>"; };
+		A60ECBC618AC8523000F7A40 /* SEDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEDAppDelegate.m; sourceTree = "<group>"; };
+		A60ECBC918AC8523000F7A40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A60ECBCB18AC8523000F7A40 /* SEDViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEDViewController.h; sourceTree = "<group>"; };
+		A60ECBCC18AC8523000F7A40 /* SEDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEDViewController.m; sourceTree = "<group>"; };
+		A60ECBCE18AC8523000F7A40 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		A60ECBEA18AC864F000F7A40 /* ScrivelEngine-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ScrivelEngine-Prefix.pch"; sourceTree = "<group>"; };
+		A60ECBEB18AC864F000F7A40 /* ScrivelEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrivelEngine.h; sourceTree = "<group>"; };
+		A60ECBEC18AC864F000F7A40 /* ScrivelEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrivelEngine.m; sourceTree = "<group>"; };
+		A60ECBF318AC86A7000F7A40 /* libScrivelEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libScrivelEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A60ECC0018AC86A7000F7A40 /* ScrivelEngineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrivelEngineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A60ECC0918AC86A7000F7A40 /* ScrivelEngineTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ScrivelEngineTests-Info.plist"; sourceTree = "<group>"; };
+		A60ECC0B18AC86A7000F7A40 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A60ECC0D18AC86A7000F7A40 /* ScrivelEngineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrivelEngineTests.m; sourceTree = "<group>"; };
+		A624A29B58AE4DD3A64EB6AA /* libPods-ScrivelEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ScrivelEngine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6A6127418A7B0DA00CBD988 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		A6A6127818A7B0DA00CBD988 /* ScrivelEngine-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ScrivelEngine-Prefix.pch"; sourceTree = "<group>"; };
-		A6A6127918A7B0DA00CBD988 /* ScrivelEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrivelEngine.h; sourceTree = "<group>"; };
-		A6A6127B18A7B0DA00CBD988 /* ScrivelEngine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrivelEngine.m; sourceTree = "<group>"; };
-		A6A6128118A7B0DA00CBD988 /* ScrivelEngineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrivelEngineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6A6128218A7B0DA00CBD988 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A6A6128518A7B0DA00CBD988 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		A6A6128C18A7B0DA00CBD988 /* ScrivelEngineTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ScrivelEngineTests-Info.plist"; sourceTree = "<group>"; };
-		A6A6128E18A7B0DA00CBD988 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		A6A6129018A7B0DA00CBD988 /* ScrivelEngineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrivelEngineTests.m; sourceTree = "<group>"; };
+		A6A6129B18A7B3DF00CBD988 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		D3657BD3617449BD881DBC8F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBFF5D4BF434428A8C528D17 /* Pods-ScrivelEngineDemo.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScrivelEngineDemo.xcconfig"; path = "Pods/Pods-ScrivelEngineDemo.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A6A6126E18A7B0DA00CBD988 /* Frameworks */ = {
+		A60ECBB418AC8523000F7A40 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6A6127518A7B0DA00CBD988 /* Foundation.framework in Frameworks */,
+				A60ECBBA18AC8523000F7A40 /* CoreGraphics.framework in Frameworks */,
+				A60ECBBB18AC8523000F7A40 /* UIKit.framework in Frameworks */,
+				A60ECBB818AC8523000F7A40 /* Foundation.framework in Frameworks */,
+				6E8AD38DB21D43ECA84EDD27 /* libPods-ScrivelEngineDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A6A6127E18A7B0DA00CBD988 /* Frameworks */ = {
+		A60ECBF018AC86A7000F7A40 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6A6128318A7B0DA00CBD988 /* XCTest.framework in Frameworks */,
-				A6A6128618A7B0DA00CBD988 /* UIKit.framework in Frameworks */,
-				A6A6128918A7B0DA00CBD988 /* libScrivelEngine.a in Frameworks */,
-				A6A6128418A7B0DA00CBD988 /* Foundation.framework in Frameworks */,
+				A60ECBF418AC86A7000F7A40 /* Foundation.framework in Frameworks */,
+				2713C335B01343E5BB2CA34A /* libPods-ScrivelEngine.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A60ECBFD18AC86A7000F7A40 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A60ECC0118AC86A7000F7A40 /* XCTest.framework in Frameworks */,
+				A60ECC0318AC86A7000F7A40 /* UIKit.framework in Frameworks */,
+				A60ECC0618AC86A7000F7A40 /* libScrivelEngine.a in Frameworks */,
+				A60ECC0218AC86A7000F7A40 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A60ECBBC18AC8523000F7A40 /* ScrivelEngineDemo */ = {
+			isa = PBXGroup;
+			children = (
+				A60ECBC518AC8523000F7A40 /* SEDAppDelegate.h */,
+				A60ECBC618AC8523000F7A40 /* SEDAppDelegate.m */,
+				A60ECBC818AC8523000F7A40 /* Main.storyboard */,
+				A60ECBCB18AC8523000F7A40 /* SEDViewController.h */,
+				A60ECBCC18AC8523000F7A40 /* SEDViewController.m */,
+				A60ECBCE18AC8523000F7A40 /* Images.xcassets */,
+				A60ECBBD18AC8523000F7A40 /* Supporting Files */,
+			);
+			path = ScrivelEngineDemo;
+			sourceTree = "<group>";
+		};
+		A60ECBBD18AC8523000F7A40 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A60ECBBE18AC8523000F7A40 /* ScrivelEngineDemo-Info.plist */,
+				A60ECBBF18AC8523000F7A40 /* InfoPlist.strings */,
+				A60ECBC218AC8523000F7A40 /* main.m */,
+				A60ECBC418AC8523000F7A40 /* ScrivelEngineDemo-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A60ECBE818AC864F000F7A40 /* ScrivelEngine */ = {
+			isa = PBXGroup;
+			children = (
+				A60ECBEA18AC864F000F7A40 /* ScrivelEngine-Prefix.pch */,
+				A60ECBEB18AC864F000F7A40 /* ScrivelEngine.h */,
+				A60ECBEC18AC864F000F7A40 /* ScrivelEngine.m */,
+			);
+			path = ScrivelEngine;
+			sourceTree = "<group>";
+		};
+		A60ECC0718AC86A7000F7A40 /* ScrivelEngineTests */ = {
+			isa = PBXGroup;
+			children = (
+				A60ECC0D18AC86A7000F7A40 /* ScrivelEngineTests.m */,
+				A60ECC0818AC86A7000F7A40 /* Supporting Files */,
+			);
+			path = ScrivelEngineTests;
+			sourceTree = "<group>";
+		};
+		A60ECC0818AC86A7000F7A40 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A60ECC0918AC86A7000F7A40 /* ScrivelEngineTests-Info.plist */,
+				A60ECC0A18AC86A7000F7A40 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		A6A6126818A7B0DA00CBD988 = {
 			isa = PBXGroup;
 			children = (
-				A6A6127618A7B0DA00CBD988 /* ScrivelEngine */,
-				A6A6128A18A7B0DA00CBD988 /* ScrivelEngineTests */,
+				A60ECBE818AC864F000F7A40 /* ScrivelEngine */,
+				A60ECC0718AC86A7000F7A40 /* ScrivelEngineTests */,
+				A60ECBBC18AC8523000F7A40 /* ScrivelEngineDemo */,
 				A6A6127318A7B0DA00CBD988 /* Frameworks */,
 				A6A6127218A7B0DA00CBD988 /* Products */,
+				5F52737873ED45DA8841CED0 /* Pods-ScrivelEngine.xcconfig */,
+				35497598D62E46B5B1B3499E /* Pods.xcconfig */,
+				EBFF5D4BF434428A8C528D17 /* Pods-ScrivelEngineDemo.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
 		A6A6127218A7B0DA00CBD988 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A6A6127118A7B0DA00CBD988 /* libScrivelEngine.a */,
-				A6A6128118A7B0DA00CBD988 /* ScrivelEngineTests.xctest */,
+				A60ECBB718AC8523000F7A40 /* ScrivelEngineDemo.app */,
+				A60ECBF318AC86A7000F7A40 /* libScrivelEngine.a */,
+				A60ECC0018AC86A7000F7A40 /* ScrivelEngineTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,59 +197,49 @@
 		A6A6127318A7B0DA00CBD988 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A6A6129B18A7B3DF00CBD988 /* libPods.a */,
 				A6A6127418A7B0DA00CBD988 /* Foundation.framework */,
 				A6A6128218A7B0DA00CBD988 /* XCTest.framework */,
 				A6A6128518A7B0DA00CBD988 /* UIKit.framework */,
+				A624A29B58AE4DD3A64EB6AA /* libPods-ScrivelEngine.a */,
+				D3657BD3617449BD881DBC8F /* libPods.a */,
+				A60ECBB918AC8523000F7A40 /* CoreGraphics.framework */,
+				28B5E84904E24656B04EF0FC /* libPods-ScrivelEngineDemo.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		A6A6127618A7B0DA00CBD988 /* ScrivelEngine */ = {
-			isa = PBXGroup;
-			children = (
-				A6A6127918A7B0DA00CBD988 /* ScrivelEngine.h */,
-				A6A6127B18A7B0DA00CBD988 /* ScrivelEngine.m */,
-				A6A6127718A7B0DA00CBD988 /* Supporting Files */,
-			);
-			path = ScrivelEngine;
-			sourceTree = "<group>";
-		};
-		A6A6127718A7B0DA00CBD988 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				A6A6127818A7B0DA00CBD988 /* ScrivelEngine-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		A6A6128A18A7B0DA00CBD988 /* ScrivelEngineTests */ = {
-			isa = PBXGroup;
-			children = (
-				A6A6129018A7B0DA00CBD988 /* ScrivelEngineTests.m */,
-				A6A6128B18A7B0DA00CBD988 /* Supporting Files */,
-			);
-			path = ScrivelEngineTests;
-			sourceTree = "<group>";
-		};
-		A6A6128B18A7B0DA00CBD988 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				A6A6128C18A7B0DA00CBD988 /* ScrivelEngineTests-Info.plist */,
-				A6A6128D18A7B0DA00CBD988 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A6A6127018A7B0DA00CBD988 /* ScrivelEngine */ = {
+		A60ECBB618AC8523000F7A40 /* ScrivelEngineDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A6A6129418A7B0DA00CBD988 /* Build configuration list for PBXNativeTarget "ScrivelEngine" */;
+			buildConfigurationList = A60ECBE218AC8524000F7A40 /* Build configuration list for PBXNativeTarget "ScrivelEngineDemo" */;
 			buildPhases = (
-				A6A6126D18A7B0DA00CBD988 /* Sources */,
-				A6A6126E18A7B0DA00CBD988 /* Frameworks */,
-				A6A6126F18A7B0DA00CBD988 /* CopyFiles */,
+				C5FA5C183A8242E7839DE999 /* Check Pods Manifest.lock */,
+				A60ECBB318AC8523000F7A40 /* Sources */,
+				A60ECBB418AC8523000F7A40 /* Frameworks */,
+				A60ECBB518AC8523000F7A40 /* Resources */,
+				2A4C00F98D3C40FCA2E8B86A /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ScrivelEngineDemo;
+			productName = ScrivelEngineDemo;
+			productReference = A60ECBB718AC8523000F7A40 /* ScrivelEngineDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A60ECBF218AC86A7000F7A40 /* ScrivelEngine */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A60ECC0F18AC86A7000F7A40 /* Build configuration list for PBXNativeTarget "ScrivelEngine" */;
+			buildPhases = (
+				BD3872F6BEF841A098022DBA /* Check Pods Manifest.lock */,
+				A60ECBEF18AC86A7000F7A40 /* Sources */,
+				A60ECBF018AC86A7000F7A40 /* Frameworks */,
+				A60ECBF118AC86A7000F7A40 /* CopyFiles */,
+				D7AAD95FE8E84873A638162A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -160,25 +247,25 @@
 			);
 			name = ScrivelEngine;
 			productName = ScrivelEngine;
-			productReference = A6A6127118A7B0DA00CBD988 /* libScrivelEngine.a */;
+			productReference = A60ECBF318AC86A7000F7A40 /* libScrivelEngine.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		A6A6128018A7B0DA00CBD988 /* ScrivelEngineTests */ = {
+		A60ECBFF18AC86A7000F7A40 /* ScrivelEngineTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A6A6129718A7B0DA00CBD988 /* Build configuration list for PBXNativeTarget "ScrivelEngineTests" */;
+			buildConfigurationList = A60ECC1218AC86A7000F7A40 /* Build configuration list for PBXNativeTarget "ScrivelEngineTests" */;
 			buildPhases = (
-				A6A6127D18A7B0DA00CBD988 /* Sources */,
-				A6A6127E18A7B0DA00CBD988 /* Frameworks */,
-				A6A6127F18A7B0DA00CBD988 /* Resources */,
+				A60ECBFC18AC86A7000F7A40 /* Sources */,
+				A60ECBFD18AC86A7000F7A40 /* Frameworks */,
+				A60ECBFE18AC86A7000F7A40 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				A6A6128818A7B0DA00CBD988 /* PBXTargetDependency */,
+				A60ECC0518AC86A7000F7A40 /* PBXTargetDependency */,
 			);
 			name = ScrivelEngineTests;
 			productName = ScrivelEngineTests;
-			productReference = A6A6128118A7B0DA00CBD988 /* ScrivelEngineTests.xctest */;
+			productReference = A60ECC0018AC86A7000F7A40 /* ScrivelEngineTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -189,6 +276,11 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = scrivel;
+				TargetAttributes = {
+					A60ECBFF18AC86A7000F7A40 = {
+						TestTargetID = A60ECBB618AC8523000F7A40;
+					};
+				};
 			};
 			buildConfigurationList = A6A6126C18A7B0DA00CBD988 /* Build configuration list for PBXProject "ScrivelEngine" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -196,61 +288,161 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = A6A6126818A7B0DA00CBD988;
 			productRefGroup = A6A6127218A7B0DA00CBD988 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A6A6127018A7B0DA00CBD988 /* ScrivelEngine */,
-				A6A6128018A7B0DA00CBD988 /* ScrivelEngineTests */,
+				A60ECBF218AC86A7000F7A40 /* ScrivelEngine */,
+				A60ECBFF18AC86A7000F7A40 /* ScrivelEngineTests */,
+				A60ECBB618AC8523000F7A40 /* ScrivelEngineDemo */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A6A6127F18A7B0DA00CBD988 /* Resources */ = {
+		A60ECBB518AC8523000F7A40 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6A6128F18A7B0DA00CBD988 /* InfoPlist.strings in Resources */,
+				A60ECBCF18AC8523000F7A40 /* Images.xcassets in Resources */,
+				A60ECBC118AC8523000F7A40 /* InfoPlist.strings in Resources */,
+				A60ECBCA18AC8523000F7A40 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A60ECBFE18AC86A7000F7A40 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A60ECC0C18AC86A7000F7A40 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2A4C00F98D3C40FCA2E8B86A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-ScrivelEngineDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BD3872F6BEF841A098022DBA /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C5FA5C183A8242E7839DE999 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D7AAD95FE8E84873A638162A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-ScrivelEngine-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		A6A6126D18A7B0DA00CBD988 /* Sources */ = {
+		A60ECBB318AC8523000F7A40 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6A6127C18A7B0DA00CBD988 /* ScrivelEngine.m in Sources */,
+				A60ECBCD18AC8523000F7A40 /* SEDViewController.m in Sources */,
+				A60ECBC318AC8523000F7A40 /* main.m in Sources */,
+				A60ECBC718AC8523000F7A40 /* SEDAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A6A6127D18A7B0DA00CBD988 /* Sources */ = {
+		A60ECBEF18AC86A7000F7A40 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6A6129118A7B0DA00CBD988 /* ScrivelEngineTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A60ECBFC18AC86A7000F7A40 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A60ECC0E18AC86A7000F7A40 /* ScrivelEngineTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A6A6128818A7B0DA00CBD988 /* PBXTargetDependency */ = {
+		A60ECC0518AC86A7000F7A40 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A6A6127018A7B0DA00CBD988 /* ScrivelEngine */;
-			targetProxy = A6A6128718A7B0DA00CBD988 /* PBXContainerItemProxy */;
+			target = A60ECBF218AC86A7000F7A40 /* ScrivelEngine */;
+			targetProxy = A60ECC0418AC86A7000F7A40 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		A6A6128D18A7B0DA00CBD988 /* InfoPlist.strings */ = {
+		A60ECBBF18AC8523000F7A40 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				A6A6128E18A7B0DA00CBD988 /* en */,
+				A60ECBC018AC8523000F7A40 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A60ECBC818AC8523000F7A40 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A60ECBC918AC8523000F7A40 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A60ECC0A18AC86A7000F7A40 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A60ECC0B18AC86A7000F7A40 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -258,8 +450,141 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		A60ECBE318AC8524000F7A40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EBFF5D4BF434428A8C528D17 /* Pods-ScrivelEngineDemo.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ScrivelEngineDemo/ScrivelEngineDemo-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ScrivelEngineDemo/ScrivelEngineDemo-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-licucore",
+					"-framework",
+					Foundation,
+					"$(inherited)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A60ECBE418AC8524000F7A40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EBFF5D4BF434428A8C528D17 /* Pods-ScrivelEngineDemo.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ScrivelEngineDemo/ScrivelEngineDemo-Prefix.pch";
+				INFOPLIST_FILE = "ScrivelEngineDemo/ScrivelEngineDemo-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-licucore",
+					"-framework",
+					Foundation,
+					"$(inherited)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		A60ECC1018AC86A7000F7A40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F52737873ED45DA8841CED0 /* Pods-ScrivelEngine.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				DSTROOT = /tmp/ScrivelEngine.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ScrivelEngine/ScrivelEngine-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		A60ECC1118AC86A7000F7A40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F52737873ED45DA8841CED0 /* Pods-ScrivelEngine.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				DSTROOT = /tmp/ScrivelEngine.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ScrivelEngine/ScrivelEngine-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		A60ECC1318AC86A7000F7A40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ScrivelEngineDemo.app/ScrivelEngineDemo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ScrivelEngine/ScrivelEngine-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ScrivelEngineTests/ScrivelEngineTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		A60ECC1418AC86A7000F7A40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ScrivelEngineDemo.app/ScrivelEngineDemo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ScrivelEngine/ScrivelEngine-Prefix.pch";
+				INFOPLIST_FILE = "ScrivelEngineTests/ScrivelEngineTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 		A6A6129218A7B0DA00CBD988 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 35497598D62E46B5B1B3499E /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
@@ -298,6 +623,7 @@
 		};
 		A6A6129318A7B0DA00CBD988 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 35497598D62E46B5B1B3499E /* Pods.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
@@ -328,71 +654,36 @@
 			};
 			name = Release;
 		};
-		A6A6129518A7B0DA00CBD988 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DSTROOT = /tmp/ScrivelEngine.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ScrivelEngine/ScrivelEngine-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		A6A6129618A7B0DA00CBD988 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DSTROOT = /tmp/ScrivelEngine.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ScrivelEngine/ScrivelEngine-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		A6A6129818A7B0DA00CBD988 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ScrivelEngine/ScrivelEngine-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "ScrivelEngineTests/ScrivelEngineTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		A6A6129918A7B0DA00CBD988 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ScrivelEngine/ScrivelEngine-Prefix.pch";
-				INFOPLIST_FILE = "ScrivelEngineTests/ScrivelEngineTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A60ECBE218AC8524000F7A40 /* Build configuration list for PBXNativeTarget "ScrivelEngineDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A60ECBE318AC8524000F7A40 /* Debug */,
+				A60ECBE418AC8524000F7A40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A60ECC0F18AC86A7000F7A40 /* Build configuration list for PBXNativeTarget "ScrivelEngine" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A60ECC1018AC86A7000F7A40 /* Debug */,
+				A60ECC1118AC86A7000F7A40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A60ECC1218AC86A7000F7A40 /* Build configuration list for PBXNativeTarget "ScrivelEngineTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A60ECC1318AC86A7000F7A40 /* Debug */,
+				A60ECC1418AC86A7000F7A40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A6A6126C18A7B0DA00CBD988 /* Build configuration list for PBXProject "ScrivelEngine" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -401,22 +692,6 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
-		};
-		A6A6129418A7B0DA00CBD988 /* Build configuration list for PBXNativeTarget "ScrivelEngine" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A6A6129518A7B0DA00CBD988 /* Debug */,
-				A6A6129618A7B0DA00CBD988 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
-		A6A6129718A7B0DA00CBD988 /* Build configuration list for PBXNativeTarget "ScrivelEngineTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A6A6129818A7B0DA00CBD988 /* Debug */,
-				A6A6129918A7B0DA00CBD988 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
