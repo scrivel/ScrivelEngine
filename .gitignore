@@ -17,7 +17,6 @@ Docs/*
 *.perspectivev3
 *.pbxuser
 xcuserdata
-*.xcworkspace
 
 # Build products
 build/

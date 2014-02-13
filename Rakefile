@@ -3,9 +3,8 @@ import "farm.rake"
 # デフォルトのタスクを記述
 task :default => ["clean","build","test"]
 task :setup do
-    system "gitsubmodule init"
-    system "gitsubmodule update"
-    system "pod"
+    system "git submodule init"
+    system "git submodule update"
 end
 
 # 必要があればプロジェクトとワークスペースのパス
