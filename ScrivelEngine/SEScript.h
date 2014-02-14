@@ -15,8 +15,8 @@
 enum{
     SEScriptParseErrorUnknown = 0,
     SEScriptParseErrorNilStringGiven,
-    SEScriptParseErrorObjectNotSpecified,
-    SEScriptParseErrorObjectNotFound,
+//    SEScriptParseErrorObjectNotSpecified,
+//    SEScriptParseErrorObjectNotFound,
     SEScriptParseErrorMethodNotCalled,
     SEScriptParseErrorUnexpectedToken
 };
@@ -28,9 +28,6 @@ typedef NSInteger SEScriptParseError;
 
 + (instancetype)scriptWithString:(NSString*)string error:(NSError**)error;
 
-- (instancetype)initWithTarget:(SEObject*)target;
-
-@property (nonatomic) SEObject *target;
 @property (nonatomic) NSArray *methods;
 
 - (void)addMethod:(SEMethod*)method;

@@ -125,7 +125,7 @@
 		A63BB5E918AD30D30051FA9F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A63BB5EB18AD30D30051FA9F /* ScrivelEngineMacTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrivelEngineMacTests.m; sourceTree = "<group>"; };
 		A63BB5ED18AD30D30051FA9F /* ScrivelEngineMacTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ScrivelEngineMacTests-Prefix.pch"; sourceTree = "<group>"; };
-		A63BB5F718AD348A0051FA9F /* libParseKit.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libParseKit.a; path = External/ParseKit/build/Debug/libParseKit.a; sourceTree = "<group>"; };
+		A63BB5F718AD348A0051FA9F /* libParseKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libParseKit.a; path = External/ParseKit/build/Debug/libParseKit.a; sourceTree = "<group>"; };
 		A6A6127418A7B0DA00CBD988 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A6A6128218A7B0DA00CBD988 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A6AC921918AC921C00D43025 /* ScrivelEngineMacDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrivelEngineMacDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -415,6 +415,7 @@
 			buildPhases = (
 				A60ECBEF18AC86A7000F7A40 /* Sources */,
 				A60ECBF018AC86A7000F7A40 /* Frameworks */,
+				A62FE75D18AD9ED600F12E3A /* Resources */,
 			);
 			buildRules = (
 			);
@@ -542,6 +543,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A60ECC0C18AC86A7000F7A40 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A62FE75D18AD9ED600F12E3A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1176,6 +1184,7 @@
 				A63BB5F218AD30D30051FA9F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A6A6126C18A7B0DA00CBD988 /* Build configuration list for PBXProject "ScrivelEngine" */ = {
 			isa = XCConfigurationList;

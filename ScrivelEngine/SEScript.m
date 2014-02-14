@@ -18,36 +18,13 @@ static NSString *const kSEScriptErrorDomain = @"org.scrive.ScrivelEngine:SEScrip
 {
     PKTokenizer *t = [PKTokenizer tokenizerWithString:string];
     PKToken *eof = [PKToken EOFToken];
-    PKToken *tok = [t nextToken];
-    
-    // スクリプトは - から始まる。
-//    if (![tok isHyphen]) {
-//        return [self raiseError:error type:SEScriptParseErrorUnexpectedToken token:tok];
-//    }
-    
-    // クラスを特定
-    if (tok.tokenType != PKTokenTypeWord){
-        return [self raiseError:error type:SEScriptParseErrorObjectNotSpecified token:tok];
+    PKToken *tok = nil;
+    if (!string || string.length == 0) {
+        // 文字列がない
+        return [self raiseError:error type:SEScriptParseErrorNilStringGiven token:nil];
     }
-    // bg => SEBackground, layer => SELayer ...
-    NSString *targetName = [tok stringValue];
-    SEObject *target = nil;
-    SEScript *script = nil;
-    tok = [t nextToken];
-    if ([tok isStartOfMethod]) {
-        // - hoge()のようなトップレベル関数呼び出しはglobalオブジェクトをターゲットにしてリカーシブコールする
-        return [self scriptWithString:[@"global." stringByAppendingString:string] error:error];
-    }else if([tok isDotChain]){
-        // - bg.transition()のようなオブジェクトへのメソッド呼び出し
-        target = [SEObject staticObjectNamed:targetName];
-        if (!target) {
-            return [self raiseError:error type:SEScriptParseErrorObjectNotFound token:tok];
-        }
-        script = [[SEScript alloc] initWithTarget:target];
-    }else{
-        // "- bg"のようなオブジェクトのみの呼び出し
-        return [self raiseError:error type:SEScriptParseErrorMethodNotCalled token:tok];
-    }
+    SEScript *script = [SEScript new];
+
     // parse開始
     while ((tok = [t nextToken]) != eof) {
         NSLog(@"(%@) (%.1f) : %@", tok.stringValue, tok.floatValue, [tok debugDescription]);
@@ -83,7 +60,6 @@ static NSString *const kSEScriptErrorDomain = @"org.scrive.ScrivelEngine:SEScrip
                 // 次が"."or eofならアクセッサ
                 SEMethod *s = [[SEMethod alloc] initWithName:name type:SEScriptTypeAccessor];
                 [script addMethod:s];
-                continue;
             }else if(tok == eof){
                 // obj.path.to.call().keyのような最終的にメソッドが呼ばれていないパターン
                 return [self raiseError:error type:SEScriptParseErrorMethodNotCalled token:tok];
@@ -105,12 +81,12 @@ static NSString *const kSEScriptErrorDomain = @"org.scrive.ScrivelEngine:SEScrip
         case SEScriptParseErrorUnexpectedToken:
             desc  = @"文法が間違っています";
             break;
-        case SEScriptParseErrorObjectNotSpecified:
-            desc = @"オブジェクトが指定されていません";
-            break;
-        case SEScriptParseErrorObjectNotFound:
-            desc = @"オブジェクトが見つかりません";
-            break;
+//        case SEScriptParseErrorObjectNotSpecified:
+//            desc = @"オブジェクトが指定されていません";
+//            break;
+//        case SEScriptParseErrorObjectNotFound:
+//            desc = @"オブジェクトが見つかりません";
+//            break;
         default:
             desc = @"不明なエラー";
             break;
@@ -120,10 +96,9 @@ static NSString *const kSEScriptErrorDomain = @"org.scrive.ScrivelEngine:SEScrip
     return nil;
 }
 
-- (instancetype)initWithTarget:(SEObject *)target
+- (instancetype)init
 {
     self = [super init];
-    _target = target;
     __methods = [NSMutableArray new];
     return self ?: nil;
 }
