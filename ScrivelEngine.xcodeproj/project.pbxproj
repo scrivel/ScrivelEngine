@@ -48,6 +48,13 @@
 		A6AC928418AC95FC00D43025 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6AC927E18AC95DB00D43025 /* Cocoa.framework */; };
 		A6AC928618AC960300D43025 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6AC928518AC960300D43025 /* UIKit.framework */; };
 		A6AC92C018ACF44400D43025 /* libScrivelEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECBF318AC86A7000F7A40 /* libScrivelEngine.a */; };
+		A6D1760018AE5C4700AB11AF /* PKTokenizerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D175FF18AE5C4700AB11AF /* PKTokenizerTests.m */; };
+		A6D1760118AE5C4700AB11AF /* PKTokenizerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D175FF18AE5C4700AB11AF /* PKTokenizerTests.m */; };
+		A6D1760E18AE628200AB11AF /* SEScriptParser.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D1760C18AE628200AB11AF /* SEScriptParser.h */; };
+		A6D1760F18AE628200AB11AF /* SEScriptParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D1760D18AE628200AB11AF /* SEScriptParser.m */; };
+		A6D1761018AE628200AB11AF /* SEScriptParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D1760D18AE628200AB11AF /* SEScriptParser.m */; };
+		A6D1761218AE635500AB11AF /* SEScriptParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D1761118AE635500AB11AF /* SEScriptParserTests.m */; };
+		A6D1761318AE635500AB11AF /* SEScriptParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D1761118AE635500AB11AF /* SEScriptParserTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +123,8 @@
 		A60ECC2E18AC8BE1000F7A40 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A60ECC2F18AC8BE1000F7A40 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A60ECC3018AC8BE1000F7A40 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		A62FE7A818AE3F4B00F12E3A /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		A62FE7C718AE3FC500F12E3A /* script.grammer */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = script.grammer; sourceTree = "<group>"; };
 		A638D2FC18AD1FCC0008635E /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		A638D2FE18AD20010008635E /* ParseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseKit.framework; path = External/ParseKit/build/Debug/ParseKit.framework; sourceTree = "<group>"; };
 		A638D30018AD20150008635E /* ParseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseKit.framework; path = "../../../Library/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug/ParseKit.framework"; sourceTree = "<group>"; };
@@ -142,6 +151,10 @@
 		A6AC928018AC95F200D43025 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		A6AC928218AC95F700D43025 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		A6AC928518AC960300D43025 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A6D175FF18AE5C4700AB11AF /* PKTokenizerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTokenizerTests.m; sourceTree = "<group>"; };
+		A6D1760C18AE628200AB11AF /* SEScriptParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEScriptParser.h; sourceTree = "<group>"; };
+		A6D1760D18AE628200AB11AF /* SEScriptParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEScriptParser.m; sourceTree = "<group>"; };
+		A6D1761118AE635500AB11AF /* SEScriptParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEScriptParserTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +252,8 @@
 				A60ECBEA18AC864F000F7A40 /* ScrivelEngine-Prefix.pch */,
 				A60ECBEB18AC864F000F7A40 /* ScrivelEngine.h */,
 				A60ECBEC18AC864F000F7A40 /* ScrivelEngine.m */,
+				A6D1760C18AE628200AB11AF /* SEScriptParser.h */,
+				A6D1760D18AE628200AB11AF /* SEScriptParser.m */,
 				A60ECC1518AC8A46000F7A40 /* SEMethod.h */,
 				A60ECC1618AC8A46000F7A40 /* SEMethod.m */,
 				A60ECC1718AC8A46000F7A40 /* SEScript.h */,
@@ -256,8 +271,10 @@
 		A60ECC0718AC86A7000F7A40 /* ScrivelEngineTests */ = {
 			isa = PBXGroup;
 			children = (
-				A60ECC2418AC8A5D000F7A40 /* SEScriptTests.m */,
 				A60ECC0818AC86A7000F7A40 /* Supporting Files */,
+				A60ECC2418AC8A5D000F7A40 /* SEScriptTests.m */,
+				A6D175FF18AE5C4700AB11AF /* PKTokenizerTests.m */,
+				A6D1761118AE635500AB11AF /* SEScriptParserTests.m */,
 			);
 			path = ScrivelEngineTests;
 			sourceTree = "<group>";
@@ -279,6 +296,14 @@
 				A60ECC3018AC8BE1000F7A40 /* AppKit.framework */,
 			);
 			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		A62FE7C418AE3FAB00F12E3A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A62FE7C718AE3FC500F12E3A /* script.grammer */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		A63BB5E518AD30D30051FA9F /* ScrivelEngineMacTests */ = {
@@ -303,7 +328,7 @@
 		A6A6126818A7B0DA00CBD988 = {
 			isa = PBXGroup;
 			children = (
-				A6AC927A18AC936500D43025 /* External */,
+				A62FE7C418AE3FAB00F12E3A /* Resources */,
 				A60ECBE818AC864F000F7A40 /* ScrivelEngine */,
 				A60ECC0718AC86A7000F7A40 /* ScrivelEngineTests */,
 				A60ECBBC18AC8523000F7A40 /* ScrivelEngineDemo */,
@@ -342,6 +367,7 @@
 				A6A6127418A7B0DA00CBD988 /* Foundation.framework */,
 				A6A6128218A7B0DA00CBD988 /* XCTest.framework */,
 				A60ECBB918AC8523000F7A40 /* CoreGraphics.framework */,
+				A62FE7A818AE3F4B00F12E3A /* CoreFoundation.framework */,
 				A60ECC2D18AC8BE1000F7A40 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -371,13 +397,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A6AC927A18AC936500D43025 /* External */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = External;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -385,6 +404,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6D1760E18AE628200AB11AF /* SEScriptParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,6 +621,7 @@
 				A60ECC2318AC8A46000F7A40 /* PKToken+ScrivelEngine.m in Sources */,
 				A60ECC1F18AC8A46000F7A40 /* SEMethod.m in Sources */,
 				A60ECC2118AC8A46000F7A40 /* SEGlobalObject.m in Sources */,
+				A6D1760F18AE628200AB11AF /* SEScriptParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,6 +629,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6D1761218AE635500AB11AF /* SEScriptParserTests.m in Sources */,
+				A6D1760018AE5C4700AB11AF /* PKTokenizerTests.m in Sources */,
 				A60ECC2518AC8A5D000F7A40 /* SEScriptTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -621,6 +644,7 @@
 				A60ECC5218AC8C54000F7A40 /* SEGlobalObject.m in Sources */,
 				A60ECC5318AC8C54000F7A40 /* SEObject.m in Sources */,
 				A60ECC5418AC8C54000F7A40 /* PKToken+ScrivelEngine.m in Sources */,
+				A6D1761018AE628200AB11AF /* SEScriptParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,6 +652,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6D1761318AE635500AB11AF /* SEScriptParserTests.m in Sources */,
+				A6D1760118AE5C4700AB11AF /* PKTokenizerTests.m in Sources */,
 				A63BB5F318AD30EA0051FA9F /* SEScriptTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -835,6 +861,7 @@
 		A60ECC1318AC86A7000F7A40 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -848,8 +875,9 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "ScrivelEngineTests/ScrivelEngineTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
@@ -858,6 +886,7 @@
 					"-licucore",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -865,6 +894,7 @@
 		A60ECC1418AC86A7000F7A40 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -874,7 +904,9 @@
 				GCC_PREFIX_HEADER = "ScrivelEngine/ScrivelEngine-Prefix.pch";
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "ScrivelEngineTests/ScrivelEngineTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
@@ -883,6 +915,7 @@
 					"-licucore",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;

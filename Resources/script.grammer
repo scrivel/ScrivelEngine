@@ -1,0 +1,28 @@
+@start = line;
+
+@reportsCommentTokens = NO;
+@commentState       = '/';
+@singleLineComments = '//';
+@multiLineComments  = '/*' '*/';
+
+@symbols	=	'「' '」';
+openWord	=	'「';
+closeWord	=	'」';
+
+line		=	Comment | method ('.' method)* | words;
+
+words       =   name? openWord text closeWord;
+name        =   Word;
+text        =   ( Word | tag )+;
+tag         =   '<' identifier '>';
+
+method 		=	property | call;
+property 	=	identifier;
+call		=	identifier '(' arguments ')';
+arguments	=	Empty | value (',' value )*;
+value		= 	Number | QuotedString | array | object;
+array		=	'[' value (',' value)* ']';
+object		=	'{' keyValue (',' keyValue)* '}';
+keyValue	= 	key ':' value;
+key			=	identifier | QuotedString;
+identifier	=	Word;

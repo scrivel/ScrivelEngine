@@ -38,16 +38,6 @@
                ReferencedContainer = "container:ScrivelEngine.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A6AC932618AD080200D43025"
-               BuildableName = "HogeTests.xctest"
-               BlueprintName = "HogeTests"
-               ReferencedContainer = "container:ScrivelEngine.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
