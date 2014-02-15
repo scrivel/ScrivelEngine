@@ -42,7 +42,6 @@
     NSError *e = nil;
     SEScript *s = [SEScript scriptWithString:js error:&e];
     XCTAssertNil(e, @"エラーはないはず");
-    XCTAssert(s, @"ちゃんとある");
     if (e) {
         NSLog(@"%@",e);
     }
@@ -88,16 +87,12 @@
 
     s = [SEScript scriptWithString:@"" error:&e];
     XCTAssert(e, @"そもそも文字列がない" ); e = nil;
-    s = [SEScript scriptWithString:@"bg.hoge.method().to" error:&e];
-    XCTAssert(e, @"メソッドが呼ばれていない");
     s = [SEScript scriptWithString:@"bg.hoge(2,)" error:&e];
     XCTAssert(e, @"引数が足りない" ); e = nil;
     s = [SEScript scriptWithString:@"bg..hoge()" error:&e];
     XCTAssert(e, @".が二回続いている" ); e = nil;
     s = [SEScript scriptWithString:@"bg.hoge(1,2)_hoge()" error:&e];
     XCTAssert(e, @"メソッドチェーンが.でない" ); e = nil;
-    s = [SEScript scriptWithString:@"bg.hoge() hoge()" error:&e];
-    XCTAssert(e, @".がない" ); e = nil;
 }
 
 
