@@ -7,6 +7,10 @@ task :setup do
     system "git submodule update"
 end
 
+task :assembler do
+    system "ruby scripts/assembller.rb"
+end
+
 # 必要があればプロジェクトとワークスペースのパス
 # $PROJECT = "Hoge.xcodeproj"
 # $WORKSPACE = "Hoge.workspace"

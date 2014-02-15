@@ -103,7 +103,6 @@
 		A60ECBCE18AC8523000F7A40 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A60ECBEA18AC864F000F7A40 /* ScrivelEngine-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ScrivelEngine-Prefix.pch"; sourceTree = "<group>"; };
 		A60ECBEB18AC864F000F7A40 /* ScrivelEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrivelEngine.h; sourceTree = "<group>"; };
-		A60ECBEC18AC864F000F7A40 /* ScrivelEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrivelEngine.m; sourceTree = "<group>"; };
 		A60ECBF318AC86A7000F7A40 /* libScrivelEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libScrivelEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A60ECC0018AC86A7000F7A40 /* ScrivelEngineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrivelEngineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A60ECC0918AC86A7000F7A40 /* ScrivelEngineTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ScrivelEngineTests-Info.plist"; sourceTree = "<group>"; };
@@ -135,6 +134,7 @@
 		A63BB5EB18AD30D30051FA9F /* ScrivelEngineMacTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrivelEngineMacTests.m; sourceTree = "<group>"; };
 		A63BB5ED18AD30D30051FA9F /* ScrivelEngineMacTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ScrivelEngineMacTests-Prefix.pch"; sourceTree = "<group>"; };
 		A63BB5F718AD348A0051FA9F /* libParseKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libParseKit.a; path = External/ParseKit/build/Debug/libParseKit.a; sourceTree = "<group>"; };
+		A63F885D18AF783E007FBE57 /* SEScriptAssemblerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEScriptAssemblerDelegate.h; sourceTree = "<group>"; };
 		A6A6127418A7B0DA00CBD988 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A6A6128218A7B0DA00CBD988 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A6AC921918AC921C00D43025 /* ScrivelEngineMacDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrivelEngineMacDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -249,15 +249,15 @@
 		A60ECBE818AC864F000F7A40 /* ScrivelEngine */ = {
 			isa = PBXGroup;
 			children = (
+				A63F885D18AF783E007FBE57 /* SEScriptAssemblerDelegate.h */,
 				A60ECBEA18AC864F000F7A40 /* ScrivelEngine-Prefix.pch */,
 				A60ECBEB18AC864F000F7A40 /* ScrivelEngine.h */,
-				A60ECBEC18AC864F000F7A40 /* ScrivelEngine.m */,
 				A6D1760C18AE628200AB11AF /* SEScriptParser.h */,
 				A6D1760D18AE628200AB11AF /* SEScriptParser.m */,
-				A60ECC1518AC8A46000F7A40 /* SEMethod.h */,
-				A60ECC1618AC8A46000F7A40 /* SEMethod.m */,
 				A60ECC1718AC8A46000F7A40 /* SEScript.h */,
 				A60ECC1818AC8A46000F7A40 /* SEScript.m */,
+				A60ECC1518AC8A46000F7A40 /* SEMethod.h */,
+				A60ECC1618AC8A46000F7A40 /* SEMethod.m */,
 				A60ECC1918AC8A46000F7A40 /* SEGlobalObject.h */,
 				A60ECC1A18AC8A46000F7A40 /* SEGlobalObject.m */,
 				A60ECC1B18AC8A46000F7A40 /* SEObject.h */,

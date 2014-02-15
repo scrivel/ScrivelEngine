@@ -51,8 +51,6 @@
 @property (nonatomic, retain) NSMutableDictionary *text_memo;
 @property (nonatomic, retain) NSMutableDictionary *tag_memo;
 @property (nonatomic, retain) NSMutableDictionary *method_memo;
-@property (nonatomic, retain) NSMutableDictionary *property_memo;
-@property (nonatomic, retain) NSMutableDictionary *call_memo;
 @property (nonatomic, retain) NSMutableDictionary *arguments_memo;
 @property (nonatomic, retain) NSMutableDictionary *value_memo;
 @property (nonatomic, retain) NSMutableDictionary *array_memo;
@@ -103,8 +101,6 @@
         self.text_memo = [NSMutableDictionary dictionary];
         self.tag_memo = [NSMutableDictionary dictionary];
         self.method_memo = [NSMutableDictionary dictionary];
-        self.property_memo = [NSMutableDictionary dictionary];
-        self.call_memo = [NSMutableDictionary dictionary];
         self.arguments_memo = [NSMutableDictionary dictionary];
         self.value_memo = [NSMutableDictionary dictionary];
         self.array_memo = [NSMutableDictionary dictionary];
@@ -125,8 +121,6 @@
     [_text_memo removeAllObjects];
     [_tag_memo removeAllObjects];
     [_method_memo removeAllObjects];
-    [_property_memo removeAllObjects];
-    [_call_memo removeAllObjects];
     [_arguments_memo removeAllObjects];
     [_value_memo removeAllObjects];
     [_array_memo removeAllObjects];
@@ -253,12 +247,11 @@
 
 - (void)__method {
     
-    if ([self speculate:^{ [self property]; }]) {
-        [self property]; 
-    } else if ([self speculate:^{ [self call]; }]) {
-        [self call]; 
-    } else {
-        [self raise:@"No viable alternative found in rule 'method'."];
+    [self identifier]; 
+    if ([self speculate:^{ [self match:SESCRIPTPARSER_TOKEN_KIND_OPEN_PAREN discard:NO]; [self arguments]; [self match:SESCRIPTPARSER_TOKEN_KIND_CLOSE_PAREN discard:NO]; }]) {
+        [self match:SESCRIPTPARSER_TOKEN_KIND_OPEN_PAREN discard:NO]; 
+        [self arguments]; 
+        [self match:SESCRIPTPARSER_TOKEN_KIND_CLOSE_PAREN discard:NO]; 
     }
 
     [self fireAssemblerSelector:@selector(parser:didMatchMethod:)];
@@ -266,31 +259,6 @@
 
 - (void)method {
     [self parseRule:@selector(__method) withMemo:_method_memo];
-}
-
-- (void)__property {
-    
-    [self identifier]; 
-
-    [self fireAssemblerSelector:@selector(parser:didMatchProperty:)];
-}
-
-- (void)property {
-    [self parseRule:@selector(__property) withMemo:_property_memo];
-}
-
-- (void)__call {
-    
-    [self identifier]; 
-    [self match:SESCRIPTPARSER_TOKEN_KIND_OPEN_PAREN discard:NO]; 
-    [self arguments]; 
-    [self match:SESCRIPTPARSER_TOKEN_KIND_CLOSE_PAREN discard:NO]; 
-
-    [self fireAssemblerSelector:@selector(parser:didMatchCall:)];
-}
-
-- (void)call {
-    [self parseRule:@selector(__call) withMemo:_call_memo];
 }
 
 - (void)__arguments {
