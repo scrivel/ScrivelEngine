@@ -46,6 +46,7 @@
 @property (nonatomic, retain) NSMutableDictionary *script_memo;
 @property (nonatomic, retain) NSMutableDictionary *element_memo;
 @property (nonatomic, retain) NSMutableDictionary *words_memo;
+@property (nonatomic, retain) NSMutableDictionary *name_memo;
 @property (nonatomic, retain) NSMutableDictionary *text_memo;
 @property (nonatomic, retain) NSMutableDictionary *method_memo;
 @property (nonatomic, retain) NSMutableDictionary *arguments_memo;
@@ -87,6 +88,7 @@
         self.script_memo = [NSMutableDictionary dictionary];
         self.element_memo = [NSMutableDictionary dictionary];
         self.words_memo = [NSMutableDictionary dictionary];
+        self.name_memo = [NSMutableDictionary dictionary];
         self.text_memo = [NSMutableDictionary dictionary];
         self.method_memo = [NSMutableDictionary dictionary];
         self.arguments_memo = [NSMutableDictionary dictionary];
@@ -104,6 +106,7 @@
     [_script_memo removeAllObjects];
     [_element_memo removeAllObjects];
     [_words_memo removeAllObjects];
+    [_name_memo removeAllObjects];
     [_text_memo removeAllObjects];
     [_method_memo removeAllObjects];
     [_arguments_memo removeAllObjects];
@@ -168,7 +171,7 @@
 - (void)__words {
     
     if ([self predicts:TOKEN_KIND_BUILTIN_WORD, 0]) {
-        [self matchWord:NO]; 
+        [self name]; 
     }
     [self match:SESCRIPTPARSER_TOKEN_KIND_OPEN_BRACKET discard:NO]; 
     do {
@@ -181,6 +184,17 @@
 
 - (void)words {
     [self parseRule:@selector(__words) withMemo:_words_memo];
+}
+
+- (void)__name {
+    
+    [self matchWord:NO]; 
+
+    [self fireAssemblerSelector:@selector(parser:didMatchName:)];
+}
+
+- (void)name {
+    [self parseRule:@selector(__name) withMemo:_name_memo];
 }
 
 - (void)__text {

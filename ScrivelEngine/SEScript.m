@@ -41,16 +41,6 @@ static NSString *const kSEScriptErrorDomain = @"org.scrive.ScrivelEngine:SEScrip
 
 #pragma mark - Assembler
 
-- (void)parser:(PKParser *)parser didMatchMethod:(PKAssembly *)assembly
-{
-    // メソッド
-    NSLog(@"%s, %@",__PRETTY_FUNCTION__, assembly);
-}
 
-- (void)parser:(PKParser *)parser didMatchWords:(PKAssembly *)assembly
-{
-    // セリフなど
-    NSLog(@"%s, %@",__PRETTY_FUNCTION__, assembly);
-}
 
 @end

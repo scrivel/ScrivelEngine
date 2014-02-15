@@ -9,7 +9,8 @@
 script      =   element+;
 element		=	Comment | words | method ('.' method)* ';'?;
 
-words       =   Word? '[' text+ ']';
+words       =   name? '[' text+ ']';
+name        =   Word;
 text        =   Word | QuotedString | Number;
 
 method 		=	identifier ('(' arguments ')')?;
