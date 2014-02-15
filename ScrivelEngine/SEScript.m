@@ -7,30 +7,31 @@
 //
 
 #import "SEScript.h"
+#import "SEScriptAssembler.h"
+#import "SEMethod.h"
 
 static NSString *const kSEScriptErrorDomain = @"org.scrive.ScrivelEngine:SEScriptErrorDomain";
 
 @implementation SEScript
 {
-    NSMutableArray *__methods;
+    NSMutableArray *__elements;
 }
 
 + (instancetype)scriptWithString:(NSString *)string error:(NSError *__autoreleasing *)error
 {
-    // 返り値
-    SEScript *__self = nil;
     // パーサーをインスタンス化
     SEScriptParser *parser = [SEScriptParser new];
+    SEScriptAssembler *assembler = [SEScriptAssembler new];
     // パーシング
-    PKAssembly *result = [parser parseString:string assembler:self error:error];
-    
-    return __self;
+    [parser parseString:string assembler:assembler error:error];
+    SEScript *script = [assembler assemble];
+    return script ?: nil;;
 }
 
 - (instancetype)init
 {
     self = [super init];
-    __methods = [NSMutableArray new];
+    __elements = [NSMutableArray new];
     return self ?: nil;
 }
 
@@ -39,8 +40,9 @@ static NSString *const kSEScriptErrorDomain = @"org.scrive.ScrivelEngine:SEScrip
     return nil;
 }
 
-#pragma mark - Assembler
-
-
+- (void)addElement:(SEElement *)element
+{
+    [__elements addObject:element];
+}
 
 @end

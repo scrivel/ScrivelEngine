@@ -48,12 +48,14 @@
 @property (nonatomic, retain) NSMutableDictionary *words_memo;
 @property (nonatomic, retain) NSMutableDictionary *name_memo;
 @property (nonatomic, retain) NSMutableDictionary *text_memo;
+@property (nonatomic, retain) NSMutableDictionary *methodChain_memo;
 @property (nonatomic, retain) NSMutableDictionary *method_memo;
 @property (nonatomic, retain) NSMutableDictionary *arguments_memo;
 @property (nonatomic, retain) NSMutableDictionary *value_memo;
 @property (nonatomic, retain) NSMutableDictionary *array_memo;
 @property (nonatomic, retain) NSMutableDictionary *object_memo;
 @property (nonatomic, retain) NSMutableDictionary *keyValue_memo;
+@property (nonatomic, retain) NSMutableDictionary *key_memo;
 @property (nonatomic, retain) NSMutableDictionary *identifier_memo;
 @end
 
@@ -89,12 +91,14 @@
         self.words_memo = [NSMutableDictionary dictionary];
         self.name_memo = [NSMutableDictionary dictionary];
         self.text_memo = [NSMutableDictionary dictionary];
+        self.methodChain_memo = [NSMutableDictionary dictionary];
         self.method_memo = [NSMutableDictionary dictionary];
         self.arguments_memo = [NSMutableDictionary dictionary];
         self.value_memo = [NSMutableDictionary dictionary];
         self.array_memo = [NSMutableDictionary dictionary];
         self.object_memo = [NSMutableDictionary dictionary];
         self.keyValue_memo = [NSMutableDictionary dictionary];
+        self.key_memo = [NSMutableDictionary dictionary];
         self.identifier_memo = [NSMutableDictionary dictionary];
     }
     return self;
@@ -106,12 +110,14 @@
     [_words_memo removeAllObjects];
     [_name_memo removeAllObjects];
     [_text_memo removeAllObjects];
+    [_methodChain_memo removeAllObjects];
     [_method_memo removeAllObjects];
     [_arguments_memo removeAllObjects];
     [_value_memo removeAllObjects];
     [_array_memo removeAllObjects];
     [_object_memo removeAllObjects];
     [_keyValue_memo removeAllObjects];
+    [_key_memo removeAllObjects];
     [_identifier_memo removeAllObjects];
 }
 
@@ -141,19 +147,8 @@
         [self matchComment:NO]; 
     } else if ([self speculate:^{ [self words]; }]) {
         [self words]; 
-    } else if ([self speculate:^{ [self method]; while ([self predicts:SESCRIPTPARSER_TOKEN_KIND_DOT, 0]) {if ([self speculate:^{ [self match:SESCRIPTPARSER_TOKEN_KIND_DOT discard:NO]; [self method]; }]) {[self match:SESCRIPTPARSER_TOKEN_KIND_DOT discard:NO]; [self method]; } else {break;}}if ([self predicts:SESCRIPTPARSER_TOKEN_KIND_SEMI_COLON, 0]) {[self match:SESCRIPTPARSER_TOKEN_KIND_SEMI_COLON discard:NO]; }}]) {
-        [self method]; 
-        while ([self predicts:SESCRIPTPARSER_TOKEN_KIND_DOT, 0]) {
-            if ([self speculate:^{ [self match:SESCRIPTPARSER_TOKEN_KIND_DOT discard:NO]; [self method]; }]) {
-                [self match:SESCRIPTPARSER_TOKEN_KIND_DOT discard:NO]; 
-                [self method]; 
-            } else {
-                break;
-            }
-        }
-        if ([self predicts:SESCRIPTPARSER_TOKEN_KIND_SEMI_COLON, 0]) {
-            [self match:SESCRIPTPARSER_TOKEN_KIND_SEMI_COLON discard:NO]; 
-        }
+    } else if ([self speculate:^{ [self methodChain]; }]) {
+        [self methodChain]; 
     } else {
         [self raise:@"No viable alternative found in rule 'element'."];
     }
@@ -171,9 +166,7 @@
         [self name]; 
     }
     [self match:SESCRIPTPARSER_TOKEN_KIND_OPEN_BRACKET discard:NO]; 
-    do {
-        [self text]; 
-    } while ([self predicts:TOKEN_KIND_BUILTIN_NUMBER, TOKEN_KIND_BUILTIN_QUOTEDSTRING, TOKEN_KIND_BUILTIN_WORD, 0]);
+    [self text]; 
     [self match:SESCRIPTPARSER_TOKEN_KIND_CLOSE_BRACKET discard:NO]; 
 
     [self fireAssemblerSelector:@selector(parser:didMatchWords:)];
@@ -196,21 +189,45 @@
 
 - (void)__text {
     
-    if ([self predicts:TOKEN_KIND_BUILTIN_WORD, 0]) {
-        [self matchWord:NO]; 
-    } else if ([self predicts:TOKEN_KIND_BUILTIN_QUOTEDSTRING, 0]) {
-        [self matchQuotedString:NO]; 
-    } else if ([self predicts:TOKEN_KIND_BUILTIN_NUMBER, 0]) {
-        [self matchNumber:NO]; 
-    } else {
-        [self raise:@"No viable alternative found in rule 'text'."];
-    }
+    do {
+        if ([self predicts:TOKEN_KIND_BUILTIN_WORD, 0]) {
+            [self matchWord:NO]; 
+        } else if ([self predicts:TOKEN_KIND_BUILTIN_QUOTEDSTRING, 0]) {
+            [self matchQuotedString:NO]; 
+        } else if ([self predicts:TOKEN_KIND_BUILTIN_NUMBER, 0]) {
+            [self matchNumber:NO]; 
+        } else {
+            [self raise:@"No viable alternative found in rule 'text'."];
+        }
+    } while ([self predicts:TOKEN_KIND_BUILTIN_NUMBER, TOKEN_KIND_BUILTIN_QUOTEDSTRING, TOKEN_KIND_BUILTIN_WORD, 0]);
 
     [self fireAssemblerSelector:@selector(parser:didMatchText:)];
 }
 
 - (void)text {
     [self parseRule:@selector(__text) withMemo:_text_memo];
+}
+
+- (void)__methodChain {
+    
+    [self method]; 
+    while ([self predicts:SESCRIPTPARSER_TOKEN_KIND_DOT, 0]) {
+        if ([self speculate:^{ [self match:SESCRIPTPARSER_TOKEN_KIND_DOT discard:NO]; [self method]; }]) {
+            [self match:SESCRIPTPARSER_TOKEN_KIND_DOT discard:NO]; 
+            [self method]; 
+        } else {
+            break;
+        }
+    }
+    if ([self predicts:SESCRIPTPARSER_TOKEN_KIND_SEMI_COLON, 0]) {
+        [self match:SESCRIPTPARSER_TOKEN_KIND_SEMI_COLON discard:NO]; 
+    }
+
+    [self fireAssemblerSelector:@selector(parser:didMatchMethodChain:)];
+}
+
+- (void)methodChain {
+    [self parseRule:@selector(__methodChain) withMemo:_methodChain_memo];
 }
 
 - (void)__method {
@@ -315,7 +332,7 @@
 
 - (void)__keyValue {
     
-    [self matchQuotedString:NO]; 
+    [self key]; 
     [self match:SESCRIPTPARSER_TOKEN_KIND_COLON discard:NO]; 
     [self value]; 
 
@@ -324,6 +341,23 @@
 
 - (void)keyValue {
     [self parseRule:@selector(__keyValue) withMemo:_keyValue_memo];
+}
+
+- (void)__key {
+    
+    if ([self predicts:TOKEN_KIND_BUILTIN_WORD, 0]) {
+        [self matchWord:NO]; 
+    } else if ([self predicts:TOKEN_KIND_BUILTIN_QUOTEDSTRING, 0]) {
+        [self matchQuotedString:NO]; 
+    } else {
+        [self raise:@"No viable alternative found in rule 'key'."];
+    }
+
+    [self fireAssemblerSelector:@selector(parser:didMatchKey:)];
+}
+
+- (void)key {
+    [self parseRule:@selector(__key) withMemo:_key_memo];
 }
 
 - (void)__identifier {

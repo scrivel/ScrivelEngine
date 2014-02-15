@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 scrivel. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "SEElement.h"
 
 @class SEObject;
 
@@ -16,6 +16,9 @@ typedef enum{
 }SEScriptType;
 
 @interface SEMethod : NSObject
+
++ (instancetype)nameMethod;
++ (instancetype)textMethod;
 
 - (instancetype)initWithName:(NSString*)name type:(SEScriptType)type;
 

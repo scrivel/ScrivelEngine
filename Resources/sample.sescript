@@ -14,7 +14,7 @@ layer.at(1).position
 // -> global.wait(100)
 wait(100)
 // メソッドの引数には数字、文字列、配列、オブジェクトを渡すことができる
-layer.at([1,2,3]).move(100,100,1000)
+layer.at([1,2,3]).move(100,100,1000).method({"key" : "value"})
 // グローバルメソッドはチェーンの中に挿入できる
 layer.at(1).fadeOut().move(-100,-100).wait(200).move(0,0,200)
 

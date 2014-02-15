@@ -8,9 +8,21 @@
 
 #import "SEMethod.h"
 #import <ParseKit/ParseKit.h>
-#import "PKToken+ScrivelEngine.h"
+
+#define kNameMethod @"name"
+#define kTextMethod @"text"
 
 @implementation SEMethod
+
++ (instancetype)nameMethod
+{
+    return [[self alloc] initWithName:kNameMethod type:SEScriptTypeMethodCall];
+}
+
++ (instancetype)textMethod
+{
+    return [[self alloc] initWithName:kTextMethod type:SEScriptTypeMethodCall];
+}
 
 - (instancetype)initWithName:(NSString *)name type:(SEScriptType)type
 {
