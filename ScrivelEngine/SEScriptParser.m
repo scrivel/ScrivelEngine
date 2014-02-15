@@ -54,7 +54,6 @@
 @property (nonatomic, retain) NSMutableDictionary *array_memo;
 @property (nonatomic, retain) NSMutableDictionary *object_memo;
 @property (nonatomic, retain) NSMutableDictionary *keyValue_memo;
-@property (nonatomic, retain) NSMutableDictionary *key_memo;
 @property (nonatomic, retain) NSMutableDictionary *identifier_memo;
 @end
 
@@ -96,7 +95,6 @@
         self.array_memo = [NSMutableDictionary dictionary];
         self.object_memo = [NSMutableDictionary dictionary];
         self.keyValue_memo = [NSMutableDictionary dictionary];
-        self.key_memo = [NSMutableDictionary dictionary];
         self.identifier_memo = [NSMutableDictionary dictionary];
     }
     return self;
@@ -114,7 +112,6 @@
     [_array_memo removeAllObjects];
     [_object_memo removeAllObjects];
     [_keyValue_memo removeAllObjects];
-    [_key_memo removeAllObjects];
     [_identifier_memo removeAllObjects];
 }
 
@@ -318,7 +315,7 @@
 
 - (void)__keyValue {
     
-    [self key]; 
+    [self matchQuotedString:NO]; 
     [self match:SESCRIPTPARSER_TOKEN_KIND_COLON discard:NO]; 
     [self value]; 
 
@@ -327,23 +324,6 @@
 
 - (void)keyValue {
     [self parseRule:@selector(__keyValue) withMemo:_keyValue_memo];
-}
-
-- (void)__key {
-    
-    if ([self predicts:TOKEN_KIND_BUILTIN_WORD, 0]) {
-        [self identifier]; 
-    } else if ([self predicts:TOKEN_KIND_BUILTIN_QUOTEDSTRING, 0]) {
-        [self matchQuotedString:NO]; 
-    } else {
-        [self raise:@"No viable alternative found in rule 'key'."];
-    }
-
-    [self fireAssemblerSelector:@selector(parser:didMatchKey:)];
-}
-
-- (void)key {
-    [self parseRule:@selector(__key) withMemo:_key_memo];
 }
 
 - (void)__identifier {
