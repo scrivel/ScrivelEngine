@@ -16,4 +16,4 @@ end
 # $WORKSPACE = "Hoge.workspace"
 
 # デフォルトのビルドスキーム
-$PRIMARY_SCHEME = :ScrivelEngine
+$PRIMARY_SCHEME = "ScrivelEngine"
