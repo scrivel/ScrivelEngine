@@ -16,7 +16,6 @@ head = <<"HEAD"
 #import <ParseKit/ParseKit.h>
 
 @protocol SEScriptAssemblerDelegate <NSObject>
-@optional
 
 HEAD
 

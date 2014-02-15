@@ -11,7 +11,6 @@
 #import <ParseKit/ParseKit.h>
 
 @protocol SEScriptAssemblerDelegate <NSObject>
-@optional
 
 - (void)parser:(PKParser*)parser didMatchScript:(PKAssembly*)assembly;
 - (void)parser:(PKParser*)parser didMatchElement:(PKAssembly*)assembly;
@@ -24,7 +23,6 @@
 - (void)parser:(PKParser*)parser didMatchArray:(PKAssembly*)assembly;
 - (void)parser:(PKParser*)parser didMatchObject:(PKAssembly*)assembly;
 - (void)parser:(PKParser*)parser didMatchKeyValue:(PKAssembly*)assembly;
-- (void)parser:(PKParser*)parser didMatchKey:(PKAssembly*)assembly;
 - (void)parser:(PKParser*)parser didMatchIdentifier:(PKAssembly*)assembly;
 
 @end

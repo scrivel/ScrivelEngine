@@ -18,6 +18,5 @@ arguments	=	Empty | value (',' value )*;
 value		= 	Number | QuotedString | array | object;
 array		=	'[' value (',' value)* ']';
 object		=	'{' keyValue (',' keyValue)* '}';
-keyValue	= 	key ':' value;
-key			=	identifier | QuotedString;
+keyValue	= 	QuotedString ':' value;
 identifier	=	Word;
