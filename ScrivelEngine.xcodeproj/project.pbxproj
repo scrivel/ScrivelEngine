@@ -36,6 +36,8 @@
 		A63BB5F518AD33D70051FA9F /* libScrivelEngineMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECC2A18AC8BE1000F7A40 /* libScrivelEngineMac.a */; };
 		A63BB5F618AD34010051FA9F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6AC928218AC95F700D43025 /* Foundation.framework */; };
 		A63BB5F818AD348A0051FA9F /* libParseKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A63BB5F718AD348A0051FA9F /* libParseKit.a */; };
+		A63F885F18AF82D4007FBE57 /* sample.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A63F885E18AF82D4007FBE57 /* sample.sescript */; };
+		A63F886018AF9DC3007FBE57 /* sample.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A63F885E18AF82D4007FBE57 /* sample.sescript */; };
 		A6AC922018AC921C00D43025 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A6AC921E18AC921C00D43025 /* InfoPlist.strings */; };
 		A6AC922218AC921C00D43025 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6AC922118AC921C00D43025 /* main.m */; };
 		A6AC922618AC921C00D43025 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A6AC922418AC921C00D43025 /* Credits.rtf */; };
@@ -53,8 +55,6 @@
 		A6D1760E18AE628200AB11AF /* SEScriptParser.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D1760C18AE628200AB11AF /* SEScriptParser.h */; };
 		A6D1760F18AE628200AB11AF /* SEScriptParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D1760D18AE628200AB11AF /* SEScriptParser.m */; };
 		A6D1761018AE628200AB11AF /* SEScriptParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D1760D18AE628200AB11AF /* SEScriptParser.m */; };
-		A6D1761218AE635500AB11AF /* SEScriptParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D1761118AE635500AB11AF /* SEScriptParserTests.m */; };
-		A6D1761318AE635500AB11AF /* SEScriptParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D1761118AE635500AB11AF /* SEScriptParserTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +135,7 @@
 		A63BB5ED18AD30D30051FA9F /* ScrivelEngineMacTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ScrivelEngineMacTests-Prefix.pch"; sourceTree = "<group>"; };
 		A63BB5F718AD348A0051FA9F /* libParseKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libParseKit.a; path = External/ParseKit/build/Debug/libParseKit.a; sourceTree = "<group>"; };
 		A63F885D18AF783E007FBE57 /* SEScriptAssemblerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEScriptAssemblerDelegate.h; sourceTree = "<group>"; };
+		A63F885E18AF82D4007FBE57 /* sample.sescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sample.sescript; sourceTree = "<group>"; };
 		A6A6127418A7B0DA00CBD988 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A6A6128218A7B0DA00CBD988 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A6AC921918AC921C00D43025 /* ScrivelEngineMacDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrivelEngineMacDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,7 +155,6 @@
 		A6D175FF18AE5C4700AB11AF /* PKTokenizerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTokenizerTests.m; sourceTree = "<group>"; };
 		A6D1760C18AE628200AB11AF /* SEScriptParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEScriptParser.h; sourceTree = "<group>"; };
 		A6D1760D18AE628200AB11AF /* SEScriptParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEScriptParser.m; sourceTree = "<group>"; };
-		A6D1761118AE635500AB11AF /* SEScriptParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEScriptParserTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,7 +274,6 @@
 				A60ECC0818AC86A7000F7A40 /* Supporting Files */,
 				A60ECC2418AC8A5D000F7A40 /* SEScriptTests.m */,
 				A6D175FF18AE5C4700AB11AF /* PKTokenizerTests.m */,
-				A6D1761118AE635500AB11AF /* SEScriptParserTests.m */,
 			);
 			path = ScrivelEngineTests;
 			sourceTree = "<group>";
@@ -301,6 +300,7 @@
 		A62FE7C418AE3FAB00F12E3A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A63F885E18AF82D4007FBE57 /* sample.sescript */,
 				A62FE7C718AE3FC500F12E3A /* script.grammer */,
 			);
 			path = Resources;
@@ -562,6 +562,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A63F886018AF9DC3007FBE57 /* sample.sescript in Resources */,
 				A60ECC0C18AC86A7000F7A40 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -570,6 +571,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A63F885F18AF82D4007FBE57 /* sample.sescript in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,7 +631,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6D1761218AE635500AB11AF /* SEScriptParserTests.m in Sources */,
 				A6D1760018AE5C4700AB11AF /* PKTokenizerTests.m in Sources */,
 				A60ECC2518AC8A5D000F7A40 /* SEScriptTests.m in Sources */,
 			);
@@ -652,7 +653,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6D1761318AE635500AB11AF /* SEScriptParserTests.m in Sources */,
 				A6D1760118AE5C4700AB11AF /* PKTokenizerTests.m in Sources */,
 				A63BB5F318AD30EA0051FA9F /* SEScriptTests.m in Sources */,
 			);

@@ -14,86 +14,17 @@ static NSString *const kSEScriptErrorDomain = @"org.scrive.ScrivelEngine:SEScrip
 {
     NSMutableArray *__methods;
 }
+
 + (instancetype)scriptWithString:(NSString *)string error:(NSError *__autoreleasing *)error
 {
-    PKTokenizer *t = [PKTokenizer tokenizerWithString:string];
-    PKToken *eof = [PKToken EOFToken];
-    PKToken *tok = nil;
-    if (!string || string.length == 0) {
-        // 文字列がない
-        return [self raiseError:error type:SEScriptParseErrorNilStringGiven token:nil];
-    }
-    SEScript *script = [SEScript new];
-
-    // parse開始
-    while ((tok = [t nextToken]) != eof) {
-        NSLog(@"(%@) (%.1f) : %@", tok.stringValue, tok.floatValue, [tok debugDescription]);
-        // 文字列のはず
-        if (tok.tokenType == PKTokenTypeWord) {
-            // 名前を取得
-            NSString *name = [tok stringValue];
-            // 次のトークンへ
-            tok = [t nextToken];
-            if ([tok isStartOfMethod]){
-                NSMutableArray *args = @[].mutableCopy;
-                PKToken *tok = nil;
-                while (![(tok = [t nextToken]) isEndOfMethod]) {
-                    if ([tok isCommna]) {
-                        tok = [t nextToken];
-                    }
-                    if ([tok isNumber] || [tok isQuotedString]) {
-                        [args addObject:tok.value];
-                    }else{
-                        return [self raiseError:error type:SEScriptParseErrorUnexpectedToken token:tok];
-                    }
-                }
-                SEMethod *s =  [[SEMethod alloc] initWithName:name type:SEScriptTypeMethodCall];
-                [s setArguments:args];
-                [script addMethod:s];
-                // 一つ進める
-                tok = [t nextToken];
-                // )の次がeofか.じゃない場合は落とす
-                if (![tok isDotChain] && tok != eof) {
-                    return [self raiseError:error type:SEScriptParseErrorUnexpectedToken token:tok];
-                }
-            }else if([tok isDotChain]){
-                // 次が"."or eofならアクセッサ
-                SEMethod *s = [[SEMethod alloc] initWithName:name type:SEScriptTypeAccessor];
-                [script addMethod:s];
-            }else if(tok == eof){
-                // obj.path.to.call().keyのような最終的にメソッドが呼ばれていないパターン
-                return [self raiseError:error type:SEScriptParseErrorMethodNotCalled token:tok];
-            }else{
-                return [self raiseError:error type:SEScriptParseErrorUnexpectedToken token:tok];
-            }
-            // スクリプトに追加
-        }else{
-            return [self raiseError:error type:SEScriptParseErrorUnexpectedToken token:tok];
-        }
-    }
-    return script;
-}
-
-+ (id)raiseError:(NSError**)error type:(SEScriptParseError)type token:(PKToken*)token
-{
-    NSString *desc = @"";
-    switch (type) {
-        case SEScriptParseErrorUnexpectedToken:
-            desc  = @"文法が間違っています";
-            break;
-//        case SEScriptParseErrorObjectNotSpecified:
-//            desc = @"オブジェクトが指定されていません";
-//            break;
-//        case SEScriptParseErrorObjectNotFound:
-//            desc = @"オブジェクトが見つかりません";
-//            break;
-        default:
-            desc = @"不明なエラー";
-            break;
-    }
-    NSDictionary *d = @{NSLocalizedDescriptionKey: [desc stringByAppendingFormat:@" -> %@", token.stringValue] };
-    *error = [NSError errorWithDomain:kSEScriptErrorDomain code:type userInfo:d];
-    return nil;
+    // 返り値
+    SEScript *__self = nil;
+    // パーサーをインスタンス化
+    SEScriptParser *parser = [SEScriptParser new];
+    // パーシング
+    PKAssembly *result = [parser parseString:string assembler:self error:error];
+    
+    return __self;
 }
 
 - (instancetype)init
@@ -103,24 +34,23 @@ static NSString *const kSEScriptErrorDomain = @"org.scrive.ScrivelEngine:SEScrip
     return self ?: nil;
 }
 
-- (void)addMethod:(SEMethod *)method
-{
-    [__methods addObject:method];
-}
-
-- (void)removeMethod:(SEMethod *)method
-{
-    [__methods removeObject:method];
-}
-
-- (NSArray *)methods
-{
-    return [NSArray arrayWithArray:__methods];
-}
-
 - (id)run
 {
     return nil;
+}
+
+#pragma mark - Assembler
+
+- (void)parser:(PKParser *)parser didMatchMethod:(PKAssembly *)assembly
+{
+    // メソッド
+    NSLog(@"%s, %@",__PRETTY_FUNCTION__, assembly);
+}
+
+- (void)parser:(PKParser *)parser didMatchWords:(PKAssembly *)assembly
+{
+    // セリフなど
+    NSLog(@"%s, %@",__PRETTY_FUNCTION__, assembly);
 }
 
 @end

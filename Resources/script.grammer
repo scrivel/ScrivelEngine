@@ -1,20 +1,16 @@
-@start = line;
+@start = script;
 
 @reportsCommentTokens = NO;
 @commentState       = '/';
 @singleLineComments = '//';
 @multiLineComments  = '/*' '*/';
+@allowsFloatingPoint = YES;
 
-@symbols	=	'「' '」';
-openWord	=	'「';
-closeWord	=	'」';
+script      =   element+;
+element		=	Comment | words | method ('.' method)* ';'?;
 
-line		=	Comment | method ('.' method)* | words;
-
-words       =   name? openWord text closeWord;
-name        =   Word;
-text        =   ( Word | tag )+;
-tag         =   '<' identifier '>';
+words       =   Word? '[' text+ ']';
+text        =   Word | QuotedString | Number;
 
 method 		=	identifier ('(' arguments ')')?;
 arguments	=	Empty | value (',' value )*;
