@@ -26,10 +26,8 @@
 		A63BB5E418AD30D30051FA9F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A6128218A7B0DA00CBD988 /* XCTest.framework */; };
 		A63BB5EA18AD30D30051FA9F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A63BB5E818AD30D30051FA9F /* InfoPlist.strings */; };
 		A63BB5F318AD30EA0051FA9F /* SEScriptTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC2418AC8A5D000F7A40 /* SEScriptTests.m */; };
-		A63BB5F418AD31960051FA9F /* libScrivelEngineMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECC2A18AC8BE1000F7A40 /* libScrivelEngineMac.a */; };
 		A63BB5F518AD33D70051FA9F /* libScrivelEngineMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECC2A18AC8BE1000F7A40 /* libScrivelEngineMac.a */; };
 		A63BB5F618AD34010051FA9F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6AC928218AC95F700D43025 /* Foundation.framework */; };
-		A63BB5F818AD348A0051FA9F /* libParseKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A63BB5F718AD348A0051FA9F /* libParseKit.a */; };
 		A63F885F18AF82D4007FBE57 /* sample.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A63F885E18AF82D4007FBE57 /* sample.sescript */; };
 		A63F886018AF9DC3007FBE57 /* sample.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A63F885E18AF82D4007FBE57 /* sample.sescript */; };
 		A63F888918AFB994007FBE57 /* SEElement.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F888818AFB994007FBE57 /* SEElement.m */; };
@@ -42,6 +40,14 @@
 		A63F88B118B0F496007FBE57 /* ScrivelEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F88AF18B0F496007FBE57 /* ScrivelEngine.h */; };
 		A63F88B218B0F496007FBE57 /* ScrivelEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F88B018B0F496007FBE57 /* ScrivelEngine.m */; };
 		A63F88B318B0F496007FBE57 /* ScrivelEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F88B018B0F496007FBE57 /* ScrivelEngine.m */; };
+		A63F88BC18B11089007FBE57 /* SEScriptAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889118AFBBBA007FBE57 /* SEScriptAssembler.m */; };
+		A63F88BD18B11089007FBE57 /* SEElement.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F888818AFB994007FBE57 /* SEElement.m */; };
+		A63F88BE18B11089007FBE57 /* SEMethodChain.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889418AFBCC5007FBE57 /* SEMethodChain.m */; };
+		A63F88BF18B11094007FBE57 /* SEObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889D18B0CEE3007FBE57 /* SEObject.m */; };
+		A63F88C018B11094007FBE57 /* SEGlobalObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889818B0A9A4007FBE57 /* SEGlobalObject.m */; };
+		A63F88C118B111BF007FBE57 /* libScrivelEngineMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECC2A18AC8BE1000F7A40 /* libScrivelEngineMac.a */; };
+		A63F88C418B1138E007FBE57 /* sample.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A63F885E18AF82D4007FBE57 /* sample.sescript */; };
+		A63F88C518B11412007FBE57 /* ParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A638D30018AD20150008635E /* ParseKit.framework */; };
 		A6AC922018AC921C00D43025 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A6AC921E18AC921C00D43025 /* InfoPlist.strings */; };
 		A6AC922218AC921C00D43025 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6AC922118AC921C00D43025 /* main.m */; };
 		A6AC922618AC921C00D43025 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A6AC922418AC921C00D43025 /* Credits.rtf */; };
@@ -147,6 +153,8 @@
 		A63F88AC18B0F3A1007FBE57 /* SEClassProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEClassProxy.m; sourceTree = "<group>"; };
 		A63F88AF18B0F496007FBE57 /* ScrivelEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrivelEngine.h; sourceTree = "<group>"; };
 		A63F88B018B0F496007FBE57 /* ScrivelEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrivelEngine.m; sourceTree = "<group>"; };
+		A63F88BA18B10EC0007FBE57 /* ParseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseKit.framework; path = External/ParseKit/build/ParseKit.framework; sourceTree = "<group>"; };
+		A63F88C218B111FE007FBE57 /* libScrivelEngineMac.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libScrivelEngineMac.a; path = "../../../Library/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug/libScrivelEngineMac.a"; sourceTree = "<group>"; };
 		A6A6127418A7B0DA00CBD988 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A6A6128218A7B0DA00CBD988 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A6AC921918AC921C00D43025 /* ScrivelEngineMacDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrivelEngineMacDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -203,7 +211,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A63BB5F818AD348A0051FA9F /* libParseKit.a in Frameworks */,
+				A63F88C518B11412007FBE57 /* ParseKit.framework in Frameworks */,
 				A6AC927F18AC95DB00D43025 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,7 +220,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A63BB5F418AD31960051FA9F /* libScrivelEngineMac.a in Frameworks */,
+				A63F88C118B111BF007FBE57 /* libScrivelEngineMac.a in Frameworks */,
 				A63BB5F618AD34010051FA9F /* Foundation.framework in Frameworks */,
 				A63BB5E418AD30D30051FA9F /* XCTest.framework in Frameworks */,
 			);
@@ -397,6 +405,8 @@
 		A6A6127318A7B0DA00CBD988 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A63F88C218B111FE007FBE57 /* libScrivelEngineMac.a */,
+				A63F88BA18B10EC0007FBE57 /* ParseKit.framework */,
 				A63BB5F718AD348A0051FA9F /* libParseKit.a */,
 				A63BB5DC18AD2DFD0051FA9F /* libParseKit-iOS.a */,
 				A638D30018AD20150008635E /* ParseKit.framework */,
@@ -622,6 +632,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A63F88C418B1138E007FBE57 /* sample.sescript in Resources */,
 				A63BB5EA18AD30D30051FA9F /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -687,6 +698,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A63F88BF18B11094007FBE57 /* SEObject.m in Sources */,
+				A63F88C018B11094007FBE57 /* SEGlobalObject.m in Sources */,
+				A63F88BC18B11089007FBE57 /* SEScriptAssembler.m in Sources */,
+				A63F88BD18B11089007FBE57 /* SEElement.m in Sources */,
+				A63F88BE18B11089007FBE57 /* SEMethodChain.m in Sources */,
 				A60ECC5018AC8C54000F7A40 /* SEMethod.m in Sources */,
 				A63F88B318B0F496007FBE57 /* ScrivelEngine.m in Sources */,
 				A63F88AE18B0F3A4007FBE57 /* SEClassProxy.m in Sources */,
@@ -973,6 +989,8 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(BUILT_PRODUCTS_DIR)/**",
+					"\\\"$(SRCROOT)/External/ParseKit/build\\\"",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1002,6 +1020,8 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(BUILT_PRODUCTS_DIR)/**",
+					"\\\"$(SRCROOT)/External/ParseKit/build\\\"",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1023,6 +1043,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -1040,10 +1061,17 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				INFOPLIST_FILE = "ScrivelEngineMacTests/ScrivelEngineMacTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-licucore",
+					"-framework",
+					ParseKit,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -1056,6 +1084,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1070,10 +1099,17 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				INFOPLIST_FILE = "ScrivelEngineMacTests/ScrivelEngineMacTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-licucore",
+					"-framework",
+					ParseKit,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
