@@ -10,7 +10,7 @@ script      =   element+;
 element		=	Comment | words | methodChain;
 
 words       =   name? '[' text ']';
-name        =   Word;
+name        =   Word | QuotedString;
 text        =   (Word | QuotedString | Number)+;
 
 methodChain =   method ('.' method)* ';'?;

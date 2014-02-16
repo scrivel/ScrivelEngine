@@ -162,7 +162,7 @@
 
 - (void)__words {
     
-    if ([self predicts:TOKEN_KIND_BUILTIN_WORD, 0]) {
+    if ([self predicts:TOKEN_KIND_BUILTIN_QUOTEDSTRING, TOKEN_KIND_BUILTIN_WORD, 0]) {
         [self name]; 
     }
     [self match:SESCRIPTPARSER_TOKEN_KIND_OPEN_BRACKET discard:NO]; 
@@ -178,7 +178,13 @@
 
 - (void)__name {
     
-    [self matchWord:NO]; 
+    if ([self predicts:TOKEN_KIND_BUILTIN_WORD, 0]) {
+        [self matchWord:NO]; 
+    } else if ([self predicts:TOKEN_KIND_BUILTIN_QUOTEDSTRING, 0]) {
+        [self matchQuotedString:NO]; 
+    } else {
+        [self raise:@"No viable alternative found in rule 'name'."];
+    }
 
     [self fireAssemblerSelector:@selector(parser:didMatchName:)];
 }
