@@ -16,15 +16,15 @@
 
 + (instancetype)nameMethod
 {
-    return [[self alloc] initWithName:kNameMethod type:SEScriptTypeMethodCall];
+    return [[self alloc] initWithName:kNameMethod type:SEMethodTypeCall];
 }
 
 + (instancetype)textMethod
 {
-    return [[self alloc] initWithName:kTextMethod type:SEScriptTypeMethodCall];
+    return [[self alloc] initWithName:kTextMethod type:SEMethodTypeCall];
 }
 
-- (instancetype)initWithName:(NSString *)name type:(SEScriptType)type
+- (instancetype)initWithName:(NSString *)name type:(SEMethodType)type
 {
     if (self = [super init] ) {
         _type = type;
@@ -35,8 +35,13 @@
 
 - (NSString *)description
 {
-    NSString *type = _type == SEScriptTypeAccessor ? @"Accessor" : @"MethodCall";
+    NSString *type = _type == SEMethodTypeProperty ? @"Accessor" : @"MethodCall";
     return [NSString stringWithFormat:@"SEMethod \"%@\" type : \"%@\"",_name,type];
+}
+
+- (id)callWithTarget:(id)target
+{
+    return nil;
 }
 
 @end

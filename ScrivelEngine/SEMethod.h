@@ -11,22 +11,25 @@
 @class SEObject;
 
 typedef enum{
-    SEScriptTypeMethodCall = 0,
-    SEScriptTypeAccessor
-}SEScriptType;
+    SEMethodTypeCall = 0,
+    SEMethodTypeProperty
+}SEMethodType;
 
 @interface SEMethod : NSObject
 
 + (instancetype)nameMethod;
 + (instancetype)textMethod;
 
-- (instancetype)initWithName:(NSString*)name type:(SEScriptType)type;
+- (instancetype)initWithName:(NSString*)name type:(SEMethodType)type;
 
 // スクリプトの名前
 @property (nonatomic, readonly) NSString *name;
 // スクリプトのタイプ。メソッド呼び出しか、アクセッサか
-@property (nonatomic, readonly) SEScriptType type;
+@property (nonatomic, readonly) SEMethodType type;
 // スクリプトの引数。typeがaccessorの場合はない
 @property (nonatomic) NSArray *arguments;
+
+// メソッドを呼び出し
+- (id)callWithTarget:(SEObject*)target;
 
 @end

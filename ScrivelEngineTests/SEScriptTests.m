@@ -8,7 +8,6 @@
 
 #import <XCTest/XCTest.h>
 #import "SEScript.h"
-#import "SEGlobalObject.h"
 
 //static inline void _testParseError(NSString *string, SEScriptParseError type) {
 //    NSError *e = nil;
@@ -68,8 +67,14 @@
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"sample" ofType:@"sescript"];
     NSError *e = nil;
     NSString *script = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&e];
-    [SEScript scriptWithString:script error:&e];
+    SEScript *s = [SEScript scriptWithString:script error:&e];
     XCTAssertNil(e,);
+    XCTAssert(s, );
+    NSLog(@"%@",s);
+    for (SEElement *elem in s.elements) {
+        XCTAssert([elem isKindOfClass:[SEElement class]], );
+        
+    }
     NSLog(@"%@",e);
 }
 

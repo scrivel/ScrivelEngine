@@ -18,13 +18,9 @@
 		A60ECC0C18AC86A7000F7A40 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A60ECC0A18AC86A7000F7A40 /* InfoPlist.strings */; };
 		A60ECC1F18AC8A46000F7A40 /* SEMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC1618AC8A46000F7A40 /* SEMethod.m */; };
 		A60ECC2018AC8A46000F7A40 /* SEScript.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC1818AC8A46000F7A40 /* SEScript.m */; };
-		A60ECC2118AC8A46000F7A40 /* SEGlobalObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC1A18AC8A46000F7A40 /* SEGlobalObject.m */; };
-		A60ECC2218AC8A46000F7A40 /* SEObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC1C18AC8A46000F7A40 /* SEObject.m */; };
 		A60ECC2518AC8A5D000F7A40 /* SEScriptTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC2418AC8A5D000F7A40 /* SEScriptTests.m */; };
 		A60ECC5018AC8C54000F7A40 /* SEMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC1618AC8A46000F7A40 /* SEMethod.m */; };
 		A60ECC5118AC8C54000F7A40 /* SEScript.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC1818AC8A46000F7A40 /* SEScript.m */; };
-		A60ECC5218AC8C54000F7A40 /* SEGlobalObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC1A18AC8A46000F7A40 /* SEGlobalObject.m */; };
-		A60ECC5318AC8C54000F7A40 /* SEObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC1C18AC8A46000F7A40 /* SEObject.m */; };
 		A63BB5DD18AD2DFD0051FA9F /* libParseKit-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A63BB5DC18AD2DFD0051FA9F /* libParseKit-iOS.a */; };
 		A63BB5DE18AD30310051FA9F /* libScrivelEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECBF318AC86A7000F7A40 /* libScrivelEngine.a */; };
 		A63BB5E418AD30D30051FA9F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A6128218A7B0DA00CBD988 /* XCTest.framework */; };
@@ -39,6 +35,13 @@
 		A63F888918AFB994007FBE57 /* SEElement.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F888818AFB994007FBE57 /* SEElement.m */; };
 		A63F889218AFBBBA007FBE57 /* SEScriptAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889118AFBBBA007FBE57 /* SEScriptAssembler.m */; };
 		A63F889518AFBCC5007FBE57 /* SEMethodChain.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889418AFBCC5007FBE57 /* SEMethodChain.m */; };
+		A63F889918B0A9A4007FBE57 /* SEGlobalObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889818B0A9A4007FBE57 /* SEGlobalObject.m */; };
+		A63F889E18B0CEE3007FBE57 /* SEObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889D18B0CEE3007FBE57 /* SEObject.m */; };
+		A63F88AD18B0F3A1007FBE57 /* SEClassProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F88AC18B0F3A1007FBE57 /* SEClassProxy.m */; };
+		A63F88AE18B0F3A4007FBE57 /* SEClassProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F88AC18B0F3A1007FBE57 /* SEClassProxy.m */; };
+		A63F88B118B0F496007FBE57 /* ScrivelEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F88AF18B0F496007FBE57 /* ScrivelEngine.h */; };
+		A63F88B218B0F496007FBE57 /* ScrivelEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F88B018B0F496007FBE57 /* ScrivelEngine.m */; };
+		A63F88B318B0F496007FBE57 /* ScrivelEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F88B018B0F496007FBE57 /* ScrivelEngine.m */; };
 		A6AC922018AC921C00D43025 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A6AC921E18AC921C00D43025 /* InfoPlist.strings */; };
 		A6AC922218AC921C00D43025 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6AC922118AC921C00D43025 /* main.m */; };
 		A6AC922618AC921C00D43025 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A6AC922418AC921C00D43025 /* Credits.rtf */; };
@@ -103,7 +106,6 @@
 		A60ECBCC18AC8523000F7A40 /* SEDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEDViewController.m; sourceTree = "<group>"; };
 		A60ECBCE18AC8523000F7A40 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A60ECBEA18AC864F000F7A40 /* ScrivelEngine-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ScrivelEngine-Prefix.pch"; sourceTree = "<group>"; };
-		A60ECBEB18AC864F000F7A40 /* ScrivelEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrivelEngine.h; sourceTree = "<group>"; };
 		A60ECBF318AC86A7000F7A40 /* libScrivelEngine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libScrivelEngine.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A60ECC0018AC86A7000F7A40 /* ScrivelEngineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrivelEngineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A60ECC0918AC86A7000F7A40 /* ScrivelEngineTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ScrivelEngineTests-Info.plist"; sourceTree = "<group>"; };
@@ -112,10 +114,6 @@
 		A60ECC1618AC8A46000F7A40 /* SEMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEMethod.m; sourceTree = "<group>"; };
 		A60ECC1718AC8A46000F7A40 /* SEScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEScript.h; sourceTree = "<group>"; };
 		A60ECC1818AC8A46000F7A40 /* SEScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEScript.m; sourceTree = "<group>"; };
-		A60ECC1918AC8A46000F7A40 /* SEGlobalObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGlobalObject.h; sourceTree = "<group>"; };
-		A60ECC1A18AC8A46000F7A40 /* SEGlobalObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGlobalObject.m; sourceTree = "<group>"; };
-		A60ECC1B18AC8A46000F7A40 /* SEObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEObject.h; sourceTree = "<group>"; };
-		A60ECC1C18AC8A46000F7A40 /* SEObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEObject.m; sourceTree = "<group>"; };
 		A60ECC2418AC8A5D000F7A40 /* SEScriptTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEScriptTests.m; sourceTree = "<group>"; };
 		A60ECC2A18AC8BE1000F7A40 /* libScrivelEngineMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libScrivelEngineMac.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A60ECC2E18AC8BE1000F7A40 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -141,6 +139,14 @@
 		A63F889118AFBBBA007FBE57 /* SEScriptAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEScriptAssembler.m; sourceTree = "<group>"; };
 		A63F889318AFBCC5007FBE57 /* SEMethodChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEMethodChain.h; sourceTree = "<group>"; };
 		A63F889418AFBCC5007FBE57 /* SEMethodChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEMethodChain.m; sourceTree = "<group>"; };
+		A63F889718B0A9A4007FBE57 /* SEGlobalObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGlobalObject.h; sourceTree = "<group>"; };
+		A63F889818B0A9A4007FBE57 /* SEGlobalObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGlobalObject.m; sourceTree = "<group>"; };
+		A63F889C18B0CEE3007FBE57 /* SEObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEObject.h; sourceTree = "<group>"; };
+		A63F889D18B0CEE3007FBE57 /* SEObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEObject.m; sourceTree = "<group>"; };
+		A63F88AB18B0F3A1007FBE57 /* SEClassProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEClassProxy.h; sourceTree = "<group>"; };
+		A63F88AC18B0F3A1007FBE57 /* SEClassProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEClassProxy.m; sourceTree = "<group>"; };
+		A63F88AF18B0F496007FBE57 /* ScrivelEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrivelEngine.h; sourceTree = "<group>"; };
+		A63F88B018B0F496007FBE57 /* ScrivelEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrivelEngine.m; sourceTree = "<group>"; };
 		A6A6127418A7B0DA00CBD988 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A6A6128218A7B0DA00CBD988 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A6AC921918AC921C00D43025 /* ScrivelEngineMacDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrivelEngineMacDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -254,7 +260,8 @@
 		A60ECBE818AC864F000F7A40 /* ScrivelEngine */ = {
 			isa = PBXGroup;
 			children = (
-				A60ECBEB18AC864F000F7A40 /* ScrivelEngine.h */,
+				A63F88AF18B0F496007FBE57 /* ScrivelEngine.h */,
+				A63F88B018B0F496007FBE57 /* ScrivelEngine.m */,
 				A63F888E18AFBAA0007FBE57 /* Script */,
 				A63F888D18AFBA94007FBE57 /* Bridge */,
 				A63F888F18AFBAA8007FBE57 /* Supporting Files */,
@@ -322,10 +329,12 @@
 		A63F888D18AFBA94007FBE57 /* Bridge */ = {
 			isa = PBXGroup;
 			children = (
-				A60ECC1918AC8A46000F7A40 /* SEGlobalObject.h */,
-				A60ECC1A18AC8A46000F7A40 /* SEGlobalObject.m */,
-				A60ECC1B18AC8A46000F7A40 /* SEObject.h */,
-				A60ECC1C18AC8A46000F7A40 /* SEObject.m */,
+				A63F88AB18B0F3A1007FBE57 /* SEClassProxy.h */,
+				A63F88AC18B0F3A1007FBE57 /* SEClassProxy.m */,
+				A63F889C18B0CEE3007FBE57 /* SEObject.h */,
+				A63F889D18B0CEE3007FBE57 /* SEObject.m */,
+				A63F889718B0A9A4007FBE57 /* SEGlobalObject.h */,
+				A63F889818B0A9A4007FBE57 /* SEGlobalObject.m */,
 			);
 			name = Bridge;
 			sourceTree = "<group>";
@@ -438,6 +447,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6D1760E18AE628200AB11AF /* SEScriptParser.h in Headers */,
+				A63F88B118B0F496007FBE57 /* ScrivelEngine.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,12 +661,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A60ECC2218AC8A46000F7A40 /* SEObject.m in Sources */,
 				A63F889218AFBBBA007FBE57 /* SEScriptAssembler.m in Sources */,
+				A63F88B218B0F496007FBE57 /* ScrivelEngine.m in Sources */,
+				A63F88AD18B0F3A1007FBE57 /* SEClassProxy.m in Sources */,
 				A60ECC2018AC8A46000F7A40 /* SEScript.m in Sources */,
 				A60ECC1F18AC8A46000F7A40 /* SEMethod.m in Sources */,
 				A63F889518AFBCC5007FBE57 /* SEMethodChain.m in Sources */,
-				A60ECC2118AC8A46000F7A40 /* SEGlobalObject.m in Sources */,
+				A63F889E18B0CEE3007FBE57 /* SEObject.m in Sources */,
+				A63F889918B0A9A4007FBE57 /* SEGlobalObject.m in Sources */,
 				A6D1760F18AE628200AB11AF /* SEScriptParser.m in Sources */,
 				A63F888918AFB994007FBE57 /* SEElement.m in Sources */,
 			);
@@ -676,9 +688,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A60ECC5018AC8C54000F7A40 /* SEMethod.m in Sources */,
+				A63F88B318B0F496007FBE57 /* ScrivelEngine.m in Sources */,
+				A63F88AE18B0F3A4007FBE57 /* SEClassProxy.m in Sources */,
 				A60ECC5118AC8C54000F7A40 /* SEScript.m in Sources */,
-				A60ECC5218AC8C54000F7A40 /* SEGlobalObject.m in Sources */,
-				A60ECC5318AC8C54000F7A40 /* SEObject.m in Sources */,
 				A6D1761018AE628200AB11AF /* SEScriptParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

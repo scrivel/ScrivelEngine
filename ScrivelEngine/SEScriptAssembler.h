@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol SEScriptClassFactory;
 @class SEScript;
 
 @interface SEScriptAssembler : NSObject

@@ -10,7 +10,6 @@
 #import "SEMethodChain.h"
 #import "SEMethod.h"
 #import "SEScript.h"
-#import <objc/runtime.h>
 
 @interface Stack : NSObject
 
@@ -46,7 +45,7 @@
 
 @end
 
-@interface SEScriptAssembler (Stack)
+@interface SEScriptAssembler ()
 
 // メソッド
 - (void)pushIdentifier:(NSString*)identifier;
@@ -125,192 +124,6 @@
     return _script;
 }
 
-#pragma mark -
-
-// メソッド
-- (void)pushIdentifier:(NSString*)identifier
-{
-    [_identifierStack push:identifier];
-}
-- (void)pushKey:(NSString*)key
-{
-    [_keyStack push:key];
-}
-- (void)pushKeyValue:(NSArray*)keyValue
-{
-    [_keyValueStack push:keyValue];
-}
-- (void)pushValue:(id)value
-{
-    [_valueStack push:value];
-}
-- (void)pushArray:(NSArray*)array
-{
-    [_arrayStack push:array];
-}
-- (void)pushObject:(NSDictionary*)object
-{
-    [_objectStack push:object];
-}
-- (void)pushArguments:(NSArray*)arguments
-{
-    [_argumentsStack push:arguments];
-}
-- (void)pushMethod:(SEMethod*)method
-{
-    [_methodStack push:method];
-}
-- (void)pushMethodChain:(SEMethodChain*)methodChain
-{
-    [_methodChainStack push:methodChain];
-}
-
-- (NSString*)popIdentifier
-{
-    return [_identifierStack pop];
-}
-- (NSString*)popKey
-{
-    return [_keyStack pop];
-}
-- (NSArray*)popKeyValue
-{
-    return [_keyValueStack pop];
-}
-- (id)popValue
-{
-    return [_valueStack pop];
-}
-- (NSArray*)popArray
-{
-    return [_arrayStack pop];
-}
-- (NSDictionary*)popObject
-{
-    return [_objectStack pop];
-}
-- (NSArray*)popArguments
-{
-    return [_argumentsStack pop];
-}
-- (SEMethod*)popMethod
-{
-    return [_methodStack pop];
-}
-- (SEMethodChain*)popMethodChain
-{
-    return [_methodChainStack pop];
-}
-
-// セリフ
-- (void)pushName:(NSString*)name
-{
-    [_nameStack push:name];
-}
-- (void)pushText:(NSString*)text
-{
-    [_textStack push:text];
-}
-- (NSString*)popName
-{
-    return [_nameStack pop];
-}
-- (NSString*)popText
-{
-    return [_textStack pop];
-}
-
-- (void)pushElement:(SEElement*)element
-{
-    [_elementStack push:element];
-}
-- (SEElement*)popElement
-{
-    return [_elementStack pop];
-}
-
-//- (void)forwardInvocation:(NSInvocation *)anInvocation
-//{
-//    NSString *selector = NSStringFromSelector(anInvocation.selector);
-//    // popHoge or pushHoge:
-//    if ([selector hasPrefix:@"pop"]) {
-//        // popHoge -> Hoge
-//        NSRange range = NSMakeRange(3, selector.length-3);
-//        NSString *key = [selector substringWithRange:range];
-//        NSMutableArray *stack = [_stacks objectForKey:key];
-//        id obj = [stack lastObject];
-//        [stack removeLastObject];
-//        [anInvocation setReturnValue:&obj];
-//    }else if ([selector hasPrefix:@"push"]){
-//        // pushHoge: -> Hoge
-//        NSRange range = NSMakeRange(4, selector.length-5);
-//        NSString *key = [selector substringWithRange:range];
-//        NSMutableArray *stack = [_stacks objectForKey:key];
-//        if (!stack) {
-//            stack = [NSMutableArray new];
-//            [_stacks setObject:stack forKey:key];
-//            stack = [_stacks objectForKey:key];
-//        }
-//        id obj = nil;
-//        [anInvocation getArgument:&obj atIndex:2];
-//        [stack addObject:obj];
-//    }
-//}
-
-//- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
-//{
-//    const char * type = [[self class] returnTypeForMissingSelector:aSelector];
-//    if ([NSStringFromSelector(aSelector) hasPrefix:@"push"]) {
-//        NSString *types = [NSString stringWithFormat:@"%s%s%s%s", @encode(void), @encode(id), @encode(SEL), type];
-//        return [NSMethodSignature signatureWithObjCTypes:[types UTF8String]];
-//    }else{
-//        NSString *types = [NSString stringWithFormat:@"%s%s%s", type, @encode(id), @encode(SEL)];
-//        return [NSMethodSignature signatureWithObjCTypes:[types UTF8String]];
-//    }
-//}
-//
-//+ (const char *)returnTypeForMissingSelector:(SEL)aSelector
-//{
-//    if (aSelector == @selector(popElement)
-//        || aSelector == @selector(pushElement:)) {
-//        return @encode(SEElement*);
-//    }else if (aSelector == @selector(popMethodChain)
-//              || aSelector == @selector(pushMethodChain:)){
-//        return @encode(SEMethodChain*);
-//    }else if (aSelector == @selector(popMethod)
-//              || aSelector == @selector(pushMethod:)) {
-//        return @encode(SEMethod*);
-//    }else if (aSelector == @selector(popArguments)
-//              || aSelector == @selector(pushArguments:)){
-//        return @encode(NSArray*);
-//    }else if (aSelector == @selector(popObject)
-//              || aSelector == @selector(pushObject:)){
-//        return @encode(NSDictionary*);
-//    }else if (aSelector == @selector(popArray)
-//              || aSelector == @selector(pushArray:)){
-//        return @encode(NSArray*);
-//    }else if (aSelector == @selector(popValue)
-//              || aSelector == @selector(pushValue:)){
-//        return @encode(id);
-//    }else if (aSelector == @selector(popKeyValue)
-//              || aSelector == @selector(pushKeyValue:)){
-//        return @encode(NSArray*);
-//    }else if (aSelector == @selector(popKey)
-//              || aSelector == @selector(pushKey:)){
-//        return @encode(NSString*);
-//    }else if (aSelector == @selector(popIdentifier)
-//              || aSelector == @selector(pushIdentifier:)){
-//        return @encode(NSString*);
-//    }else if (aSelector == @selector(popName)
-//              || aSelector == @selector(pushName:)) {
-//        return @encode(NSString*);
-//    }else if (aSelector == @selector(popText)
-//              || aSelector == @selector(pushText:)){
-//        return @encode(NSString*);
-//    }
-//    return @encode(void);
-//}
-
 #pragma mark - Assembler
 
 
@@ -324,7 +137,6 @@
 - (void)parser:(PKParser *)parser didMatchElement:(PKAssembly *)assembly{
     // メソッドチェーンかセリフをpush
     id pop = [self popMethodChain];
-//    [self pushElement:pop];
     [_script addElement:pop];
 }
 
@@ -344,10 +156,10 @@
     NSString *identifier = [self popIdentifier];
     SEMethod *method = nil;
     if (args) {
-        method = [[SEMethod alloc] initWithName:identifier type:SEScriptTypeMethodCall];
+        method = [[SEMethod alloc] initWithName:identifier type:SEMethodTypeCall];
         [method setArguments:args];
     }else{
-        method = [[SEMethod alloc] initWithName:identifier type:SEScriptTypeAccessor];
+        method = [[SEMethod alloc] initWithName:identifier type:SEMethodTypeProperty];
     }
     [self pushMethod:method];
 }
@@ -458,5 +270,110 @@
     PKToken *tok = [assembly pop];
     [self pushText:tok.stringValue];
 }
+
+#pragma mark - Stack
+
+// メソッド
+- (void)pushIdentifier:(NSString*)identifier
+{
+    [_identifierStack push:identifier];
+}
+- (void)pushKey:(NSString*)key
+{
+    [_keyStack push:key];
+}
+- (void)pushKeyValue:(NSArray*)keyValue
+{
+    [_keyValueStack push:keyValue];
+}
+- (void)pushValue:(id)value
+{
+    [_valueStack push:value];
+}
+- (void)pushArray:(NSArray*)array
+{
+    [_arrayStack push:array];
+}
+- (void)pushObject:(NSDictionary*)object
+{
+    [_objectStack push:object];
+}
+- (void)pushArguments:(NSArray*)arguments
+{
+    [_argumentsStack push:arguments];
+}
+- (void)pushMethod:(SEMethod*)method
+{
+    [_methodStack push:method];
+}
+- (void)pushMethodChain:(SEMethodChain*)methodChain
+{
+    [_methodChainStack push:methodChain];
+}
+
+- (NSString*)popIdentifier
+{
+    return [_identifierStack pop];
+}
+- (NSString*)popKey
+{
+    return [_keyStack pop];
+}
+- (NSArray*)popKeyValue
+{
+    return [_keyValueStack pop];
+}
+- (id)popValue
+{
+    return [_valueStack pop];
+}
+- (NSArray*)popArray
+{
+    return [_arrayStack pop];
+}
+- (NSDictionary*)popObject
+{
+    return [_objectStack pop];
+}
+- (NSArray*)popArguments
+{
+    return [_argumentsStack pop];
+}
+- (SEMethod*)popMethod
+{
+    return [_methodStack pop];
+}
+- (SEMethodChain*)popMethodChain
+{
+    return [_methodChainStack pop];
+}
+
+// セリフ
+- (void)pushName:(NSString*)name
+{
+    [_nameStack push:name];
+}
+- (void)pushText:(NSString*)text
+{
+    [_textStack push:text];
+}
+- (NSString*)popName
+{
+    return [_nameStack pop];
+}
+- (NSString*)popText
+{
+    return [_textStack pop];
+}
+
+- (void)pushElement:(SEElement*)element
+{
+    [_elementStack push:element];
+}
+- (SEElement*)popElement
+{
+    return [_elementStack pop];
+}
+
 
 @end
