@@ -12,7 +12,7 @@
 
 - (id)proxyClassMethod:(SEMethod *)method
 {
-    NSAssert(NO,@"サブクラスでのオーバーライドが必要!!");
+    @throw @"サブクラスでのオーバーライドが必要!!";
     return nil;
 }
 

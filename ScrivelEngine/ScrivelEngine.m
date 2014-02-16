@@ -21,4 +21,12 @@ static ScrivelEngine *shared;
     return shared;
 }
 
+- (SEClassProxy *)classProxy
+{
+    if (!_classProxy) {
+        _classProxy = [SEClassProxy new];
+    }
+    return _classProxy;
+}
+
 @end
