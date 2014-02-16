@@ -53,6 +53,11 @@ static NSString *const kSEScriptErrorDomain = @"org.scrive.ScrivelEngine:SEScrip
     [__elements addObject:element];
 }
 
+- (NSArray *)elements
+{
+    return __elements;
+}
+
 - (NSUInteger)numberOfLines
 {
     return [[__elements lastObject] lineNumber];
