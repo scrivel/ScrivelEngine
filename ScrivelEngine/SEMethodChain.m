@@ -22,6 +22,7 @@
 {
     self = [super init];
     __methods = [NSMutableArray new];
+    _currentMethodIndex = -1;
     return self ?: nil;
 }
 
@@ -55,9 +56,14 @@
     }
 }
 
-- (void)addMethod:(SEMethod *)method
+- (void)enqueMethod:(SEMethod *)method
 {
     [__methods addObject:method];
+}
+
+- (void)pushMethod:(SEMethod *)method
+{
+    [__methods insertObject:method atIndex:0];
 }
 
 - (NSArray *)methods

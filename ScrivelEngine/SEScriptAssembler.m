@@ -145,7 +145,7 @@
     SEMethodChain *chain = [[SEMethodChain alloc] initWithLineNumber:parser.tokenizer.lineNumber];
     SEMethod *m = nil;
     while ((m = [self popMethod]) != nil) {
-        [chain addMethod:m];
+        [chain pushMethod:m];
     }
     [self pushMethodChain:chain];
 }
@@ -251,11 +251,11 @@
     if (name) {
         SEMethod *name_m = [SEMethod nameMethod];
         [name_m setArguments:@[name]];
-        [chain addMethod:name_m];
+        [chain enqueMethod:name_m];
     }
     SEMethod *text_m = [SEMethod textMethod];
     [text_m setArguments:@[text]];
-    [chain addMethod:text_m];
+    [chain enqueMethod:text_m];
     [self pushMethodChain:chain];
 }
 

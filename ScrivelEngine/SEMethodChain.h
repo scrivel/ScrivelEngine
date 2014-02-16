@@ -14,8 +14,11 @@
 
 // メソッドチェーンを構成するメソッドら
 @property (nonatomic, readonly) NSArray *methods;
-// 現在のチェーンに追加
-- (void)addMethod:(SEMethod*)method;
+// チェーンの最後に追加
+- (void)enqueMethod:(SEMethod*)method;
+// チェーンの先頭に追加
+- (void)pushMethod:(SEMethod*)method;
+
 // メソッドを呼び出し
 - (id)call;
 

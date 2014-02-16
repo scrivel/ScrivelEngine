@@ -71,9 +71,8 @@
     XCTAssertNil(e,);
     XCTAssert(s, );
     NSLog(@"%@",s);
-    for (SEElement *elem in s.elements) {
-        XCTAssert([elem isKindOfClass:[SEElement class]], );
-        
+    for (SEMethodChain *chain in s.elements) {
+        XCTAssert([chain isKindOfClass:[SEMethodChain class]], );
     }
     NSLog(@"%@",e);
 }
