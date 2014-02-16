@@ -1,11 +1,5 @@
 Pods/*
 .DS_Store
-ToDo
-Designs/*
-Archives/*
-Provisionings/*
-Images/*
-Docs/*
 # OS X Finder
 .DS_Store
 .hg/
@@ -34,3 +28,4 @@ output/
 
 Pods/
 External/ParseKit/build/
+docs/out/

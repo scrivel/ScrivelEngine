@@ -11,6 +11,10 @@ task :assembler do
     system "ruby scripts/assembller.rb"
 end
 
+task :doc do
+    system "cd && yuidoc . && cd ../"
+end
+
 # 必要があればプロジェクトとワークスペースのパス
 # $PROJECT = "Hoge.xcodeproj"
 # $WORKSPACE = "Hoge.workspace"

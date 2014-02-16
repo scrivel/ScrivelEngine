@@ -1,0 +1,9 @@
+{
+    "name": "API Document for ScrivelEngine",
+    "description": "Cocoa/CocoaTouch上でのノベルゲームフレームワーク",
+    "version": "0.0.1",
+    "url": "https://github.com/scrivel/ScrivelEngine",
+    "options": {
+        "outdir": "./out"
+    }
+}
