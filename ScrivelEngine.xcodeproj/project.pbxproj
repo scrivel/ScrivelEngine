@@ -48,6 +48,29 @@
 		A63F899118B23A51007FBE57 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63F899018B23A51007FBE57 /* QuartzCore.framework */; };
 		A63F899318B23A5C007FBE57 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63F899218B23A5C007FBE57 /* QuartzCore.framework */; };
 		A63F899418B23D07007FBE57 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6AC928518AC960300D43025 /* UIKit.framework */; };
+		A6A1690918B25A030041BBBA /* SEObject.h in Headers */ = {isa = PBXBuildFile; fileRef = A6A1690318B2506C0041BBBA /* SEObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A6A1690A18B25A040041BBBA /* SEObject.h in Headers */ = {isa = PBXBuildFile; fileRef = A6A1690318B2506C0041BBBA /* SEObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A6A1690B18B25A0E0041BBBA /* SELayer.h in Headers */ = {isa = PBXBuildFile; fileRef = A6A1690518B259E30041BBBA /* SELayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A6A1690C18B25A0E0041BBBA /* SELayer.h in Headers */ = {isa = PBXBuildFile; fileRef = A6A1690518B259E30041BBBA /* SELayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A6A1690D18B25A150041BBBA /* SETextFrame.h in Headers */ = {isa = PBXBuildFile; fileRef = A6A1690618B259E30041BBBA /* SETextFrame.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A6A1690E18B25A160041BBBA /* SETextFrame.h in Headers */ = {isa = PBXBuildFile; fileRef = A6A1690618B259E30041BBBA /* SETextFrame.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A6A1690F18B25A350041BBBA /* SEScriptAssemblerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F885D18AF783E007FBE57 /* SEScriptAssemblerDelegate.h */; };
+		A6A1691018B25A350041BBBA /* SEScriptAssemblerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F885D18AF783E007FBE57 /* SEScriptAssemblerDelegate.h */; };
+		A6A1691118B25A390041BBBA /* SEScriptParser.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D1760C18AE628200AB11AF /* SEScriptParser.h */; };
+		A6A1691218B25A3D0041BBBA /* SEScriptAssembler.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F889018AFBBBA007FBE57 /* SEScriptAssembler.h */; };
+		A6A1691318B25A3E0041BBBA /* SEScriptAssembler.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F889018AFBBBA007FBE57 /* SEScriptAssembler.h */; };
+		A6A1691418B25A400041BBBA /* SEScript.h in Headers */ = {isa = PBXBuildFile; fileRef = A60ECC1718AC8A46000F7A40 /* SEScript.h */; };
+		A6A1691518B25A410041BBBA /* SEScript.h in Headers */ = {isa = PBXBuildFile; fileRef = A60ECC1718AC8A46000F7A40 /* SEScript.h */; };
+		A6A1691618B25A440041BBBA /* SEElement.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F888718AFB994007FBE57 /* SEElement.h */; };
+		A6A1691718B25A440041BBBA /* SEElement.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F888718AFB994007FBE57 /* SEElement.h */; };
+		A6A1691918B25A470041BBBA /* SEMethodChain.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F889318AFBCC5007FBE57 /* SEMethodChain.h */; };
+		A6A1691A18B25A470041BBBA /* SEMethodChain.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F889318AFBCC5007FBE57 /* SEMethodChain.h */; };
+		A6A1691B18B25A4C0041BBBA /* SEMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = A60ECC1518AC8A46000F7A40 /* SEMethod.h */; };
+		A6A1691C18B25A4C0041BBBA /* SEMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = A60ECC1518AC8A46000F7A40 /* SEMethod.h */; };
+		A6A1691D18B25A4F0041BBBA /* SEClassProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F88AB18B0F3A1007FBE57 /* SEClassProxy.h */; };
+		A6A1691E18B25A4F0041BBBA /* SEClassProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F88AB18B0F3A1007FBE57 /* SEClassProxy.h */; };
+		A6A1691F18B25A550041BBBA /* SEGlobalObject.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F889718B0A9A4007FBE57 /* SEGlobalObject.h */; };
+		A6A1692018B25A550041BBBA /* SEGlobalObject.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F889718B0A9A4007FBE57 /* SEGlobalObject.h */; };
 		A6AC922018AC921C00D43025 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A6AC921E18AC921C00D43025 /* InfoPlist.strings */; };
 		A6AC922218AC921C00D43025 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6AC922118AC921C00D43025 /* main.m */; };
 		A6AC922618AC921C00D43025 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A6AC922418AC921C00D43025 /* Credits.rtf */; };
@@ -181,9 +204,9 @@
 		A6A168F018B2496C0041BBBA /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		A6A168F218B2496C0041BBBA /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		A6A168F818B2496C0041BBBA /* yuidoc.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = yuidoc.json; sourceTree = "<group>"; };
-		A6A1690218B2506C0041BBBA /* SELayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SELayer.h; sourceTree = "<group>"; };
 		A6A1690318B2506C0041BBBA /* SEObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEObject.h; sourceTree = "<group>"; };
-		A6A1690418B2506C0041BBBA /* SETextFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SETextFrame.h; sourceTree = "<group>"; };
+		A6A1690518B259E30041BBBA /* SELayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SELayer.h; sourceTree = "<group>"; };
+		A6A1690618B259E30041BBBA /* SETextFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SETextFrame.h; sourceTree = "<group>"; };
 		A6A6127418A7B0DA00CBD988 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A6A6128218A7B0DA00CBD988 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A6AC921918AC921C00D43025 /* ScrivelEngineMacDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrivelEngineMacDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -389,8 +412,8 @@
 			isa = PBXGroup;
 			children = (
 				A6A1690318B2506C0041BBBA /* SEObject.h */,
-				A6A1690218B2506C0041BBBA /* SELayer.h */,
-				A6A1690418B2506C0041BBBA /* SETextFrame.h */,
+				A6A1690518B259E30041BBBA /* SELayer.h */,
+				A6A1690618B259E30041BBBA /* SETextFrame.h */,
 			);
 			name = Private;
 			sourceTree = "<group>";
@@ -597,8 +620,38 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6A1691E18B25A4F0041BBBA /* SEClassProxy.h in Headers */,
+				A6A1690C18B25A0E0041BBBA /* SELayer.h in Headers */,
 				A6D1760E18AE628200AB11AF /* SEScriptParser.h in Headers */,
+				A6A1690A18B25A040041BBBA /* SEObject.h in Headers */,
+				A6A1691918B25A470041BBBA /* SEMethodChain.h in Headers */,
+				A6A1691018B25A350041BBBA /* SEScriptAssemblerDelegate.h in Headers */,
 				A63F88B118B0F496007FBE57 /* ScrivelEngine.h in Headers */,
+				A6A1692018B25A550041BBBA /* SEGlobalObject.h in Headers */,
+				A6A1691C18B25A4C0041BBBA /* SEMethod.h in Headers */,
+				A6A1691518B25A410041BBBA /* SEScript.h in Headers */,
+				A6A1691718B25A440041BBBA /* SEElement.h in Headers */,
+				A6A1690E18B25A160041BBBA /* SETextFrame.h in Headers */,
+				A6A1691318B25A3E0041BBBA /* SEScriptAssembler.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6A1690818B259FB0041BBBA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6A1691418B25A400041BBBA /* SEScript.h in Headers */,
+				A6A1691218B25A3D0041BBBA /* SEScriptAssembler.h in Headers */,
+				A6A1690B18B25A0E0041BBBA /* SELayer.h in Headers */,
+				A6A1691B18B25A4C0041BBBA /* SEMethod.h in Headers */,
+				A6A1691618B25A440041BBBA /* SEElement.h in Headers */,
+				A6A1691118B25A390041BBBA /* SEScriptParser.h in Headers */,
+				A6A1691D18B25A4F0041BBBA /* SEClassProxy.h in Headers */,
+				A6A1691A18B25A470041BBBA /* SEMethodChain.h in Headers */,
+				A6A1690D18B25A150041BBBA /* SETextFrame.h in Headers */,
+				A6A1690918B25A030041BBBA /* SEObject.h in Headers */,
+				A6A1691F18B25A550041BBBA /* SEGlobalObject.h in Headers */,
+				A6A1690F18B25A350041BBBA /* SEScriptAssemblerDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,6 +683,7 @@
 				A60ECBEF18AC86A7000F7A40 /* Sources */,
 				A60ECBF018AC86A7000F7A40 /* Frameworks */,
 				A62FE75D18AD9ED600F12E3A /* Resources */,
+				A6A1690818B259FB0041BBBA /* Headers */,
 			);
 			buildRules = (
 			);

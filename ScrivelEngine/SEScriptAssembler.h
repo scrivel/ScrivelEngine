@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SEScriptAssemblerDelegate.h"
 
 @protocol SEScriptClassFactory;
 @class SEScript;

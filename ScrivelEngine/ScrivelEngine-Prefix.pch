@@ -15,5 +15,4 @@
     #import <Cocoa/Cocoa.h>
 #endif
     #import <QuartzCore/QuartzCore.h>
-    #import "SEScriptAssemblerDelegate.h"
 #endif
