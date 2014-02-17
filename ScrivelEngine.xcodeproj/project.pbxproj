@@ -54,8 +54,6 @@
 		A6A1690C18B25A0E0041BBBA /* SELayer.h in Headers */ = {isa = PBXBuildFile; fileRef = A6A1690518B259E30041BBBA /* SELayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6A1690D18B25A150041BBBA /* SETextFrame.h in Headers */ = {isa = PBXBuildFile; fileRef = A6A1690618B259E30041BBBA /* SETextFrame.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A6A1690E18B25A160041BBBA /* SETextFrame.h in Headers */ = {isa = PBXBuildFile; fileRef = A6A1690618B259E30041BBBA /* SETextFrame.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A6A1690F18B25A350041BBBA /* SEScriptAssemblerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F885D18AF783E007FBE57 /* SEScriptAssemblerDelegate.h */; };
-		A6A1691018B25A350041BBBA /* SEScriptAssemblerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F885D18AF783E007FBE57 /* SEScriptAssemblerDelegate.h */; };
 		A6A1691118B25A390041BBBA /* SEScriptParser.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D1760C18AE628200AB11AF /* SEScriptParser.h */; };
 		A6A1691218B25A3D0041BBBA /* SEScriptAssembler.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F889018AFBBBA007FBE57 /* SEScriptAssembler.h */; };
 		A6A1691318B25A3E0041BBBA /* SEScriptAssembler.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F889018AFBBBA007FBE57 /* SEScriptAssembler.h */; };
@@ -154,7 +152,6 @@
 		A63BB5DC18AD2DFD0051FA9F /* libParseKit-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libParseKit-iOS.a"; path = "External/ParseKit/build/Debug-iphoneuniversal/libParseKit-iOS.a"; sourceTree = "<group>"; };
 		A63BB5E318AD30D30051FA9F /* ScrivelEngineMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrivelEngineMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A63BB5F718AD348A0051FA9F /* libParseKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libParseKit.a; path = External/ParseKit/build/Debug/libParseKit.a; sourceTree = "<group>"; };
-		A63F885D18AF783E007FBE57 /* SEScriptAssemblerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEScriptAssemblerDelegate.h; sourceTree = "<group>"; };
 		A63F885E18AF82D4007FBE57 /* sample.sescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sample.sescript; sourceTree = "<group>"; };
 		A63F888718AFB994007FBE57 /* SEElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEElement.h; sourceTree = "<group>"; };
 		A63F888818AFB994007FBE57 /* SEElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEElement.m; sourceTree = "<group>"; };
@@ -383,7 +380,6 @@
 		A63F888E18AFBAA0007FBE57 /* Script */ = {
 			isa = PBXGroup;
 			children = (
-				A63F885D18AF783E007FBE57 /* SEScriptAssemblerDelegate.h */,
 				A6D1760C18AE628200AB11AF /* SEScriptParser.h */,
 				A6D1760D18AE628200AB11AF /* SEScriptParser.m */,
 				A63F889018AFBBBA007FBE57 /* SEScriptAssembler.h */,
@@ -625,7 +621,6 @@
 				A6D1760E18AE628200AB11AF /* SEScriptParser.h in Headers */,
 				A6A1690A18B25A040041BBBA /* SEObject.h in Headers */,
 				A6A1691918B25A470041BBBA /* SEMethodChain.h in Headers */,
-				A6A1691018B25A350041BBBA /* SEScriptAssemblerDelegate.h in Headers */,
 				A63F88B118B0F496007FBE57 /* ScrivelEngine.h in Headers */,
 				A6A1692018B25A550041BBBA /* SEGlobalObject.h in Headers */,
 				A6A1691C18B25A4C0041BBBA /* SEMethod.h in Headers */,
@@ -651,7 +646,6 @@
 				A6A1690D18B25A150041BBBA /* SETextFrame.h in Headers */,
 				A6A1690918B25A030041BBBA /* SEObject.h in Headers */,
 				A6A1691F18B25A550041BBBA /* SEGlobalObject.h in Headers */,
-				A6A1690F18B25A350041BBBA /* SEScriptAssemblerDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

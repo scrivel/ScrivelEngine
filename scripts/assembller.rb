@@ -4,18 +4,7 @@ parser = File.expand_path(dir+"/../ScrivelEngine/SEScriptParser.m")
 
 head = <<"HEAD"
 
-//
-//  SEScriptAssemblerDelegate.h
-//  ScrivelEngine
-//
-//  Created by 桜井雄介 on 2014/02/15.
-//  Copyright (c) 2014年 scrivel. All rights reserved.
-//
-
-#import <Foundation/Foundation.h>
-#import <ParseKit/ParseKit.h>
-
-@protocol SEScriptAssemblerDelegate <NSObject>
+@protocol SEScriptParserDelegate <NSObject>
 
 HEAD
 
@@ -39,6 +28,6 @@ open(parser){|f|
   # p methods
 }
 
-f = open(File.dirname(parser)+"/SEScriptAssemblerDelegate.h", "w")
+f = open(File.dirname(parser)+"/SEScriptParser.h", "a")
 f.write head + methods.join("\n") + tail
 f.close

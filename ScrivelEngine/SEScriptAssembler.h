@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SEScriptAssemblerDelegate.h"
+#import "SEScriptParser.h"
 
 @protocol SEScriptClassFactory;
 @class SEScript;
 
 @interface SEScriptAssembler : NSObject
-<SEScriptAssemblerDelegate>
+<SEScriptParserDelegate>
 
 - (SEScript*)assemble;
 
