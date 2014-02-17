@@ -4,5 +4,6 @@ before_install:
   - gem install xcodeproj
   - rake setup
 script:
-  - rake build:all
+  - rake build:ScrivelEngine
+  - rake build:ScrivelEngineMac
   - rake testall 
