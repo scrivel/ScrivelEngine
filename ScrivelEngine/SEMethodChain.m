@@ -34,11 +34,11 @@
     SEClassProxy *proxy = [[ScrivelEngine sharedEngine] classProxy];
     if (m.type == SEMethodTypeCall) {
         // グローバルメソッド呼び出し
-        Class<SEObject> class = [proxy classForClassIdentifier:m.name];
-        instance  = [class call:m];
+        instance = [SEGlobalObject call:m];
     }else if(m.type == SEMethodTypeProperty){
         // クラスメソッドコール
-        instance = [proxy proxyClassMethod:m];
+        Class<SEObject> class = [proxy classForClassIdentifier:m.name];
+        instance  = [class call:m];
     }
     // メソッドチェーンを実行
     while ((m = [self nextMethod]) != nil) {

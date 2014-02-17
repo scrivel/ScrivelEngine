@@ -14,7 +14,6 @@
 @class SEMethod;
 @interface SEClassProxy : NSObject
 
-- (id)proxyClassMethod:(SEMethod*)method;
 - (Class)classForClassIdentifier:(NSString*)classIdentifier;
 
 @end

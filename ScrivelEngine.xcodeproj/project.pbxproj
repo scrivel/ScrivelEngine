@@ -370,7 +370,9 @@
 			children = (
 				A63F88AB18B0F3A1007FBE57 /* SEClassProxy.h */,
 				A63F88AC18B0F3A1007FBE57 /* SEClassProxy.m */,
-				A63F898A18B239F3007FBE57 /* Private */,
+				A6A1690318B2506C0041BBBA /* SEObject.h */,
+				A6A1690518B259E30041BBBA /* SELayer.h */,
+				A6A1690618B259E30041BBBA /* SETextFrame.h */,
 				A63F889718B0A9A4007FBE57 /* SEGlobalObject.h */,
 				A63F889818B0A9A4007FBE57 /* SEGlobalObject.m */,
 			);
@@ -402,16 +404,6 @@
 				A60ECBEA18AC864F000F7A40 /* ScrivelEngine-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		A63F898A18B239F3007FBE57 /* Private */ = {
-			isa = PBXGroup;
-			children = (
-				A6A1690318B2506C0041BBBA /* SEObject.h */,
-				A6A1690518B259E30041BBBA /* SELayer.h */,
-				A6A1690618B259E30041BBBA /* SETextFrame.h */,
-			);
-			name = Private;
 			sourceTree = "<group>";
 		};
 		A6A168CA18B2496C0041BBBA /* docs */ = {
