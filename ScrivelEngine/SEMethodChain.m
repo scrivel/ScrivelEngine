@@ -30,18 +30,19 @@
 {
     // 最初のクラスメソッドを実行
     SEMethod *m = [self nextMethod];
-    SEObject *instance = nil;
+    id<SEObject> instance = nil;
     SEClassProxy *proxy = [[ScrivelEngine sharedEngine] classProxy];
     if (m.type == SEMethodTypeCall) {
         // グローバルメソッド呼び出し
-        instance = [[SEGlobalObject sharedObject] callMethod:m];
+        Class<SEObject> class = [proxy classForClassIdentifier:m.name];
+        instance  = [class call:m];
     }else if(m.type == SEMethodTypeProperty){
         // クラスメソッドコール
         instance = [proxy proxyClassMethod:m];
     }
     // メソッドチェーンを実行
     while ((m = [self nextMethod]) != nil) {
-        instance = [instance callMethod:m];
+        [instance call:m];
     }
     return instance;
 }

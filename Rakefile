@@ -24,7 +24,11 @@ task :assembler do
 end
 
 task :doc do
-    system "cd && yuidoc . && cd ../"
+    system "mkdir docs"
+    ["SEObject", "SELayer", "SEBackground", "SETextFrame", "SEBackgroundMusic", "SEUserInterface", "SESoundEffect"].each do |p|
+        system "cp -R ./ScrivelEngine/#{p}.h docs/#{p}.js "
+    end
+    system "cd docs && yuidoc . && cd ../"
 end
 
 # 必要があればプロジェクトとワークスペースのパス

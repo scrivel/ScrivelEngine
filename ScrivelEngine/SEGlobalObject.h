@@ -8,8 +8,7 @@
 
 #import "SEObject.h"
 
-@class SEMethod;
-@interface SEGlobalObject : SEObject
+@interface SEGlobalObject : NSObject <SEObject>
 
 + (instancetype)sharedObject;
 

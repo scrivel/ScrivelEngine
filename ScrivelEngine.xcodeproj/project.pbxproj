@@ -32,7 +32,6 @@
 		A63F889218AFBBBA007FBE57 /* SEScriptAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889118AFBBBA007FBE57 /* SEScriptAssembler.m */; };
 		A63F889518AFBCC5007FBE57 /* SEMethodChain.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889418AFBCC5007FBE57 /* SEMethodChain.m */; };
 		A63F889918B0A9A4007FBE57 /* SEGlobalObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889818B0A9A4007FBE57 /* SEGlobalObject.m */; };
-		A63F889E18B0CEE3007FBE57 /* SEObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889D18B0CEE3007FBE57 /* SEObject.m */; };
 		A63F88AD18B0F3A1007FBE57 /* SEClassProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F88AC18B0F3A1007FBE57 /* SEClassProxy.m */; };
 		A63F88AE18B0F3A4007FBE57 /* SEClassProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F88AC18B0F3A1007FBE57 /* SEClassProxy.m */; };
 		A63F88B118B0F496007FBE57 /* ScrivelEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F88AF18B0F496007FBE57 /* ScrivelEngine.h */; };
@@ -41,12 +40,14 @@
 		A63F88BC18B11089007FBE57 /* SEScriptAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889118AFBBBA007FBE57 /* SEScriptAssembler.m */; };
 		A63F88BD18B11089007FBE57 /* SEElement.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F888818AFB994007FBE57 /* SEElement.m */; };
 		A63F88BE18B11089007FBE57 /* SEMethodChain.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889418AFBCC5007FBE57 /* SEMethodChain.m */; };
-		A63F88BF18B11094007FBE57 /* SEObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889D18B0CEE3007FBE57 /* SEObject.m */; };
 		A63F88C018B11094007FBE57 /* SEGlobalObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889818B0A9A4007FBE57 /* SEGlobalObject.m */; };
 		A63F88C118B111BF007FBE57 /* libScrivelEngineMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECC2A18AC8BE1000F7A40 /* libScrivelEngineMac.a */; };
 		A63F88C418B1138E007FBE57 /* sample.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A63F885E18AF82D4007FBE57 /* sample.sescript */; };
 		A63F88C518B11412007FBE57 /* ParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A638D30018AD20150008635E /* ParseKit.framework */; };
 		A63F898418B2307B007FBE57 /* libParseKitMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A63F898318B2307B007FBE57 /* libParseKitMobile.a */; };
+		A63F899118B23A51007FBE57 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63F899018B23A51007FBE57 /* QuartzCore.framework */; };
+		A63F899318B23A5C007FBE57 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63F899218B23A5C007FBE57 /* QuartzCore.framework */; };
+		A63F899418B23D07007FBE57 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6AC928518AC960300D43025 /* UIKit.framework */; };
 		A6AC922018AC921C00D43025 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A6AC921E18AC921C00D43025 /* InfoPlist.strings */; };
 		A6AC922218AC921C00D43025 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6AC922118AC921C00D43025 /* main.m */; };
 		A6AC922618AC921C00D43025 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A6AC922418AC921C00D43025 /* Credits.rtf */; };
@@ -140,15 +141,49 @@
 		A63F889418AFBCC5007FBE57 /* SEMethodChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEMethodChain.m; sourceTree = "<group>"; };
 		A63F889718B0A9A4007FBE57 /* SEGlobalObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGlobalObject.h; sourceTree = "<group>"; };
 		A63F889818B0A9A4007FBE57 /* SEGlobalObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGlobalObject.m; sourceTree = "<group>"; };
-		A63F889C18B0CEE3007FBE57 /* SEObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEObject.h; sourceTree = "<group>"; };
-		A63F889D18B0CEE3007FBE57 /* SEObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEObject.m; sourceTree = "<group>"; };
 		A63F88AB18B0F3A1007FBE57 /* SEClassProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEClassProxy.h; sourceTree = "<group>"; };
 		A63F88AC18B0F3A1007FBE57 /* SEClassProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEClassProxy.m; sourceTree = "<group>"; };
 		A63F88AF18B0F496007FBE57 /* ScrivelEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrivelEngine.h; sourceTree = "<group>"; };
 		A63F88B018B0F496007FBE57 /* ScrivelEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrivelEngine.m; sourceTree = "<group>"; };
 		A63F88BA18B10EC0007FBE57 /* ParseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseKit.framework; path = External/ParseKit/build/ParseKit.framework; sourceTree = "<group>"; };
 		A63F88C218B111FE007FBE57 /* libScrivelEngineMac.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libScrivelEngineMac.a; path = "../../../Library/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug/libScrivelEngineMac.a"; sourceTree = "<group>"; };
-		A63F898318B2307B007FBE57 /* libParseKitMobile.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libParseKitMobile.a; path = "External/ParseKit/build/Debug-iphoneos/libParseKitMobile.a"; sourceTree = "<group>"; };
+		A63F898318B2307B007FBE57 /* libParseKitMobile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libParseKitMobile.a; path = "External/ParseKit/build/Debug-iphoneos/libParseKitMobile.a"; sourceTree = "<group>"; };
+		A63F899018B23A51007FBE57 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A63F899218B23A5C007FBE57 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		A6A168CC18B2496C0041BBBA /* api.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = api.js; sourceTree = "<group>"; };
+		A6A168CF18B2496C0041BBBA /* external-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "external-small.png"; sourceTree = "<group>"; };
+		A6A168D018B2496C0041BBBA /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		A6A168D118B2496C0041BBBA /* main.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = main.css; sourceTree = "<group>"; };
+		A6A168D218B2496C0041BBBA /* favicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favicon.png; sourceTree = "<group>"; };
+		A6A168D418B2496C0041BBBA /* spinner.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = spinner.gif; sourceTree = "<group>"; };
+		A6A168D518B2496C0041BBBA /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		A6A168D718B2496C0041BBBA /* api-filter.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "api-filter.js"; sourceTree = "<group>"; };
+		A6A168D818B2496C0041BBBA /* api-list.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "api-list.js"; sourceTree = "<group>"; };
+		A6A168D918B2496C0041BBBA /* api-search.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "api-search.js"; sourceTree = "<group>"; };
+		A6A168DA18B2496C0041BBBA /* apidocs.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = apidocs.js; sourceTree = "<group>"; };
+		A6A168DB18B2496C0041BBBA /* yui-prettify.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "yui-prettify.js"; sourceTree = "<group>"; };
+		A6A168DE18B2496C0041BBBA /* CHANGES.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = CHANGES.html; sourceTree = "<group>"; };
+		A6A168DF18B2496C0041BBBA /* COPYING */ = {isa = PBXFileReference; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
+		A6A168E018B2496C0041BBBA /* prettify-min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "prettify-min.css"; sourceTree = "<group>"; };
+		A6A168E118B2496C0041BBBA /* prettify-min.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "prettify-min.js"; sourceTree = "<group>"; };
+		A6A168E218B2496C0041BBBA /* README.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = README.html; sourceTree = "<group>"; };
+		A6A168E418B2496C0041BBBA /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		A6A168E518B2496C0041BBBA /* SEBackground.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SEBackground.html; sourceTree = "<group>"; };
+		A6A168E618B2496C0041BBBA /* SEGlobalObject.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SEGlobalObject.html; sourceTree = "<group>"; };
+		A6A168E718B2496C0041BBBA /* SEObject.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SEObject.html; sourceTree = "<group>"; };
+		A6A168E818B2496C0041BBBA /* SETextFrame.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SETextFrame.html; sourceTree = "<group>"; };
+		A6A168E918B2496C0041BBBA /* data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		A6A168EB18B2496C0041BBBA /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		A6A168EC18B2496C0041BBBA /* SEBackground.js.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SEBackground.js.html; sourceTree = "<group>"; };
+		A6A168ED18B2496C0041BBBA /* SEGlobalObject.js.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SEGlobalObject.js.html; sourceTree = "<group>"; };
+		A6A168EE18B2496C0041BBBA /* SEObject.js.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SEObject.js.html; sourceTree = "<group>"; };
+		A6A168EF18B2496C0041BBBA /* SETextFrame.js.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = SETextFrame.js.html; sourceTree = "<group>"; };
+		A6A168F018B2496C0041BBBA /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		A6A168F218B2496C0041BBBA /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		A6A168F818B2496C0041BBBA /* yuidoc.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = yuidoc.json; sourceTree = "<group>"; };
+		A6A1690218B2506C0041BBBA /* SELayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SELayer.h; sourceTree = "<group>"; };
+		A6A1690318B2506C0041BBBA /* SEObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEObject.h; sourceTree = "<group>"; };
+		A6A1690418B2506C0041BBBA /* SETextFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SETextFrame.h; sourceTree = "<group>"; };
 		A6A6127418A7B0DA00CBD988 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A6A6128218A7B0DA00CBD988 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A6AC921918AC921C00D43025 /* ScrivelEngineMacDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrivelEngineMacDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,6 +221,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A63F898418B2307B007FBE57 /* libParseKitMobile.a in Frameworks */,
+				A63F899418B23D07007FBE57 /* UIKit.framework in Frameworks */,
+				A63F899118B23A51007FBE57 /* QuartzCore.framework in Frameworks */,
 				A60ECBF418AC86A7000F7A40 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A63F88C518B11412007FBE57 /* ParseKit.framework in Frameworks */,
+				A63F899318B23A5C007FBE57 /* QuartzCore.framework in Frameworks */,
 				A6AC927F18AC95DB00D43025 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,8 +350,7 @@
 			children = (
 				A63F88AB18B0F3A1007FBE57 /* SEClassProxy.h */,
 				A63F88AC18B0F3A1007FBE57 /* SEClassProxy.m */,
-				A63F889C18B0CEE3007FBE57 /* SEObject.h */,
-				A63F889D18B0CEE3007FBE57 /* SEObject.m */,
+				A63F898A18B239F3007FBE57 /* Private */,
 				A63F889718B0A9A4007FBE57 /* SEGlobalObject.h */,
 				A63F889818B0A9A4007FBE57 /* SEGlobalObject.m */,
 			);
@@ -348,9 +385,138 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A63F898A18B239F3007FBE57 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				A6A1690318B2506C0041BBBA /* SEObject.h */,
+				A6A1690218B2506C0041BBBA /* SELayer.h */,
+				A6A1690418B2506C0041BBBA /* SETextFrame.h */,
+			);
+			name = Private;
+			sourceTree = "<group>";
+		};
+		A6A168CA18B2496C0041BBBA /* docs */ = {
+			isa = PBXGroup;
+			children = (
+				A6A168CB18B2496C0041BBBA /* out */,
+				A6A168F818B2496C0041BBBA /* yuidoc.json */,
+			);
+			path = docs;
+			sourceTree = "<group>";
+		};
+		A6A168CB18B2496C0041BBBA /* out */ = {
+			isa = PBXGroup;
+			children = (
+				A6A168CC18B2496C0041BBBA /* api.js */,
+				A6A168CD18B2496C0041BBBA /* assets */,
+				A6A168E318B2496C0041BBBA /* classes */,
+				A6A168E918B2496C0041BBBA /* data.json */,
+				A6A168EA18B2496C0041BBBA /* files */,
+				A6A168F018B2496C0041BBBA /* index.html */,
+				A6A168F118B2496C0041BBBA /* modules */,
+			);
+			path = out;
+			sourceTree = "<group>";
+		};
+		A6A168CD18B2496C0041BBBA /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				A6A168CE18B2496C0041BBBA /* css */,
+				A6A168D218B2496C0041BBBA /* favicon.png */,
+				A6A168D318B2496C0041BBBA /* img */,
+				A6A168D518B2496C0041BBBA /* index.html */,
+				A6A168D618B2496C0041BBBA /* js */,
+				A6A168DC18B2496C0041BBBA /* vendor */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		A6A168CE18B2496C0041BBBA /* css */ = {
+			isa = PBXGroup;
+			children = (
+				A6A168CF18B2496C0041BBBA /* external-small.png */,
+				A6A168D018B2496C0041BBBA /* logo.png */,
+				A6A168D118B2496C0041BBBA /* main.css */,
+			);
+			path = css;
+			sourceTree = "<group>";
+		};
+		A6A168D318B2496C0041BBBA /* img */ = {
+			isa = PBXGroup;
+			children = (
+				A6A168D418B2496C0041BBBA /* spinner.gif */,
+			);
+			path = img;
+			sourceTree = "<group>";
+		};
+		A6A168D618B2496C0041BBBA /* js */ = {
+			isa = PBXGroup;
+			children = (
+				A6A168D718B2496C0041BBBA /* api-filter.js */,
+				A6A168D818B2496C0041BBBA /* api-list.js */,
+				A6A168D918B2496C0041BBBA /* api-search.js */,
+				A6A168DA18B2496C0041BBBA /* apidocs.js */,
+				A6A168DB18B2496C0041BBBA /* yui-prettify.js */,
+			);
+			path = js;
+			sourceTree = "<group>";
+		};
+		A6A168DC18B2496C0041BBBA /* vendor */ = {
+			isa = PBXGroup;
+			children = (
+				A6A168DD18B2496C0041BBBA /* prettify */,
+			);
+			path = vendor;
+			sourceTree = "<group>";
+		};
+		A6A168DD18B2496C0041BBBA /* prettify */ = {
+			isa = PBXGroup;
+			children = (
+				A6A168DE18B2496C0041BBBA /* CHANGES.html */,
+				A6A168DF18B2496C0041BBBA /* COPYING */,
+				A6A168E018B2496C0041BBBA /* prettify-min.css */,
+				A6A168E118B2496C0041BBBA /* prettify-min.js */,
+				A6A168E218B2496C0041BBBA /* README.html */,
+			);
+			path = prettify;
+			sourceTree = "<group>";
+		};
+		A6A168E318B2496C0041BBBA /* classes */ = {
+			isa = PBXGroup;
+			children = (
+				A6A168E418B2496C0041BBBA /* index.html */,
+				A6A168E518B2496C0041BBBA /* SEBackground.html */,
+				A6A168E618B2496C0041BBBA /* SEGlobalObject.html */,
+				A6A168E718B2496C0041BBBA /* SEObject.html */,
+				A6A168E818B2496C0041BBBA /* SETextFrame.html */,
+			);
+			path = classes;
+			sourceTree = "<group>";
+		};
+		A6A168EA18B2496C0041BBBA /* files */ = {
+			isa = PBXGroup;
+			children = (
+				A6A168EB18B2496C0041BBBA /* index.html */,
+				A6A168EC18B2496C0041BBBA /* SEBackground.js.html */,
+				A6A168ED18B2496C0041BBBA /* SEGlobalObject.js.html */,
+				A6A168EE18B2496C0041BBBA /* SEObject.js.html */,
+				A6A168EF18B2496C0041BBBA /* SETextFrame.js.html */,
+			);
+			path = files;
+			sourceTree = "<group>";
+		};
+		A6A168F118B2496C0041BBBA /* modules */ = {
+			isa = PBXGroup;
+			children = (
+				A6A168F218B2496C0041BBBA /* index.html */,
+			);
+			path = modules;
+			sourceTree = "<group>";
+		};
 		A6A6126818A7B0DA00CBD988 = {
 			isa = PBXGroup;
 			children = (
+				A6A168CA18B2496C0041BBBA /* docs */,
 				A62FE7C418AE3FAB00F12E3A /* Resources */,
 				A60ECBE818AC864F000F7A40 /* ScrivelEngine */,
 				A60ECC0718AC86A7000F7A40 /* ScrivelEngineTests */,
@@ -377,6 +543,8 @@
 		A6A6127318A7B0DA00CBD988 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A63F899218B23A5C007FBE57 /* QuartzCore.framework */,
+				A63F899018B23A51007FBE57 /* QuartzCore.framework */,
 				A63F898318B2307B007FBE57 /* libParseKitMobile.a */,
 				A63F88C218B111FE007FBE57 /* libScrivelEngineMac.a */,
 				A63F88BA18B10EC0007FBE57 /* ParseKit.framework */,
@@ -650,7 +818,6 @@
 				A60ECC2018AC8A46000F7A40 /* SEScript.m in Sources */,
 				A60ECC1F18AC8A46000F7A40 /* SEMethod.m in Sources */,
 				A63F889518AFBCC5007FBE57 /* SEMethodChain.m in Sources */,
-				A63F889E18B0CEE3007FBE57 /* SEObject.m in Sources */,
 				A63F889918B0A9A4007FBE57 /* SEGlobalObject.m in Sources */,
 				A6D1760F18AE628200AB11AF /* SEScriptParser.m in Sources */,
 				A63F888918AFB994007FBE57 /* SEElement.m in Sources */,
@@ -669,7 +836,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A63F88BF18B11094007FBE57 /* SEObject.m in Sources */,
 				A63F88C018B11094007FBE57 /* SEGlobalObject.m in Sources */,
 				A63F88BC18B11089007FBE57 /* SEScriptAssembler.m in Sources */,
 				A63F88BD18B11089007FBE57 /* SEElement.m in Sources */,
