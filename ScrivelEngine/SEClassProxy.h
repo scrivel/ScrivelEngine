@@ -14,6 +14,9 @@
 @class SEMethod;
 @interface SEClassProxy : NSObject
 
+
+@property (nonatomic, readonly) NSDictionary *methodMap;
+
 - (Class)classForClassIdentifier:(NSString*)classIdentifier;
 
 @end

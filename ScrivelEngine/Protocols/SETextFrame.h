@@ -25,7 +25,7 @@
  @method interval
  @params {Number} interval 秒数。ミリセカンド
  **/
-- (void)interval:(NSTimeInterval)interval;
+- (void)set_interval:(NSTimeInterval)interval;
 
 /**
  
@@ -33,7 +33,7 @@
  @return	{}
  @params	{}
  **/
-
+- (void)set_font:(NSDictionary*)font;
 
 /**
  文字列を表示する。文字列は位置文字ずつintervalの値で表示される。
@@ -42,7 +42,7 @@
  @params {String} text 新規に表示する文字列
  @params {Boolean} [immediately] アニメーションさせずに表示するか否か
  **/
-- (void)text:(NSString*)text immediately:(BOOL)immediately;
+- (void)set_text:(NSString*)text immediately:(BOOL)immediately;
 
 /**
  名前の表示を変更する。
@@ -50,7 +50,7 @@
  @method name
  @params {String} name 名前
  **/
-- (void)name:(NSString*)name;
+- (void)set_name:(NSString*)name;
 
 /**
  現在表示している文字列をクリアする
@@ -70,13 +70,12 @@
  
  @method padding
  @params {Object} insets
+    @params {Number} [insets.top]
+    @params {Number} [insets.left]
+    @params {Number} [insets.bottom]
+    @params {Number} [insets.right]
  **/
-#if TARGET_OS_IPHONE
-#define EdgeInsets UIEdgeInsets
-#elif TARGET_OS_MAC
-#define EdgeInests NSEdgeInsets
-#endif
-- (void)padding:(EdgeInests)insets;
+- (void)set_padding:(NSDictionary*)insets;
 
 /**
  テクストフレームの縦揃えを指定する
@@ -84,12 +83,7 @@
  @method  verticalAlign
  @params  {String} verticalAlign "top", "middle", "bottom"のいずれか
  **/
-typedef enum{
-    SETextFrameVerticalAlignTop = 0,
-    SETextFrameVerticalAlignMiddle,
-    SETextFrameVerticalAlignBottom
-}SETextFrameVerticalAlign;
-- (void)verticalAlign:(SETextFrameVerticalAlign)verticalAlign;
+- (void)set_verticalAlign:(NSString*)verticalAlign;
 
 /**
  テクストフレームの横揃えを指定する。
@@ -98,6 +92,6 @@ typedef enum{
  @params  {String} horizontalAlign "left", "center", "right", "justified", "natulal"のいずれか
  詳細はNSTextAlignmentを参照
  **/
-- (void)horizontalAlign:(NSTextAlignment)horizontalAlign;
+- (void)set_horizontalAlign:(NSTextAlignment)horizontalAlign;
 
 @end

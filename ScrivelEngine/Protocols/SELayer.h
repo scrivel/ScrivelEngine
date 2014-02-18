@@ -21,38 +21,46 @@
  **/
 
 /**
+ コンストラクタ
+ 
+ @method new
+ @static
+ @param {Object} options
+    @param {Number} options.index 作成するレイヤーの番号
+ **/
++ (instancetype)new_options:(NSDictionary*)options;
+
+/**
+ 指定された番号のレイヤーを返す
+ 指定された番号にレイヤーがない場合はnilを返す
  
  @method at
  @static
  @param {Number} index レイヤー番号
  @return SELayer
  **/
-+ (id)layerAtIndex:(NSUInteger)index;
++ (id)at_index:(NSUInteger)index;
+
 
 /**
  レイヤーのアンカーポイントを指定する。
  pointの各値は0~1の間で正規化されている必要がある。
  
- @method anchorPoint
+ @method setAnchorPoint
  @param {Number} x
  @param {Number} y
  **/
-- (void)setAnchorPoint:(CGPoint)anchorPoint;
+- (void)setAnchorPoint_x:(CGFloat)x y:(CGFloat)y;
 
 /**
  レイヤーの位置のタイプを指定する。
  デフォルトは"px"。左上を原点とした座標系。
  "normalized"が指定された場合、左上を原点とした正規化された座標に変換される。
  
- @method positionType
+ @method setPositionType
  @param	{String} type "normalized" or "px"
  **/
-typedef enum{
-    SEPositionTypePX,
-    SEPositionTypeNormalized
-}SEPositionType;
-
-- (void)setPositionType:(SEPositionType)positionType;
+- (void)setPositionType_type:(NSString*)type;
 
 /**
  レイヤーの位置を指定する。
@@ -63,7 +71,7 @@ typedef enum{
  @param	{Number} y
  @param {Number} [duration]
  **/
-- (void)setPosition:(CGPoint)position duration:(NSTimeInterval)duration;
+- (void)position_x:(CGFloat)x y:(CGFloat)y duration:(NSTimeInterval)duration;
 
 /**
  レイヤーのz座標の位置を指定する。
@@ -72,7 +80,7 @@ typedef enum{
  @param	{Number} z px
  @parma {Number} duration
  **/
-- (void)setZPosition:(CGFloat)zPosition duration:(NSTimeInterval)duration;
+- (void)zPosition_z:(CGFloat)z duration:(NSTimeInterval)duration;
 
 /**
  レイヤーのサイズを変更する。
@@ -83,7 +91,7 @@ typedef enum{
  @param	{Number} height
  @param  {Number} [duration]
  **/
-- (void)setSize:(CGSize)size duration:(NSTimeInterval)duration;
+- (void)size_width:(CGSize)size duration:(NSTimeInterval)duration;
 
 /**
  レイヤーを表示する。
@@ -93,7 +101,7 @@ typedef enum{
  @method  show
  @param	{Number} [duration]	秒数はミリセカンド(1/1000秒）
  **/
-- (void)show:(NSTimeInterval)duration;
+- (void)show_duration:(NSTimeInterval)duration;
 
 /**
  レイヤーを非表示にする。
@@ -103,7 +111,7 @@ typedef enum{
  @method  hide
  @param	{Number} [duration]	秒数はミリセカンド(1/1000秒）
  **/
-- (void)hide:(NSTimeInterval)duration;
+- (void)hide_duration:(NSTimeInterval)duration;
 
 /**
  レイヤーの表示/非表示を切り替える。
@@ -111,19 +119,19 @@ typedef enum{
  @method  toggle
  @param	{Number} [duration]	秒数はミリセカンド(1/1000秒）
  **/
-- (void)toggle:(NSTimeInterval)duration;
+- (void)toggle_duration:(NSTimeInterval)duration;
 
 /**
  レイヤーに画像を読み込む。
  sizeが指定されていた場合、
  
- @method  image
+ @method  setImage
  @param	{String} path 読み込む画像のファイル名。[NSBundle mainBundle]からの相対パス。
  @param	{Object} [options]
  @param {Number} [options.duration] クロスフェードさせる場合の秒数
  @param {Object} [options.size] 画像のサイズ。読み込んだ後にレイヤーのsizeを変更する
  **/
-- (void)setImage:(NSString*)imagePath options:(NSDictionary*)options;
+- (void)setImage_path:(NSString*)path options:(NSDictionary*)options;
 
 /**
  レイヤーに読み込んである画像をクリアする。
@@ -142,31 +150,36 @@ typedef enum{
 - (void)clear;
 
 /**
- 後面レイヤーを返す。
- 後面レイヤーは各レイヤーにつき1枚あり、前面レイヤーの後ろ側に存在する。
- このメソッドの返り値はflipメソッドでレイヤーを反転させた場合に入れ替わる。
+ 背景色を指定する
  
- @method backside
- @return SELayer
+ @method bg
+ @param {String} color 色 by hex #ffffff
  **/
-- (instancetype)backside;
+- (void)bg_color:(NSDictionary*)color;
 
 /**
- レイヤーをフリップさせ、以降SELayer.at()で参照するレイヤーオブジェクトが入れ替わる。
- 現在前面のレイヤーはbacksideに格納される。
- backsideメソッドの返り値が変わる。
+ 境界線を指定する
  
- @method  flip
- @params {String} direction	方向。"vertical"か"horizontal"のみ。
- @param	{Number} duration	秒数
+ @method border
+     @params {Number} [width] 境界線の幅 by px
+     @params {String} [color] 境界線の色 by hex #123456
  **/
-typedef enum{
-    SELayerFlipDirectionLeft = 0,
-    SELayerFlipDirectionRight,
-    SELayerFlipDirectionTop,
-    SELayerFlipDirectionBottom
-}SELayerFlipDirection;
-- (void)flip:(SELayerFlipDirection)direction duration:(NSTimeInterval)duration;
+- (void)border_width:(CGFloat)width color:(NSString*)color;
+
+/**
+ 陰を指定する
+ 
+ @method shadow
+ @param {Object} options
+    @param {String} [options.color] 色 by hex #ffffff
+    @param {Object} [options.offset] 方向
+        @param {Number} options.offset.x
+        @param {Number} options.offset.y
+    @param {Number} [options.opacity] 不透明度
+    @param {Number} [options.radius] 拡散
+ **/
+- (void)shadow_options:(NSDictionary*)options;
+
 
 /**
  レイヤーを移動させる。
@@ -176,10 +189,11 @@ typedef enum{
  @method  translate
  @param	{Number} x px or 0~1
  @param	{Number} y px or 0~1
+ @param {Number} z px
  @param	{Number} [duration]	秒数
  **/
 
-- (void)translate:(CGPoint)point duration:(NSTimeInterval)duration;
+- (void)translate_x:(CGFloat)x y:(CGFloat)y z:(CGFloat)z duration:(NSTimeInterval)duration;
 
 /**
  レイヤーを現在のアンカーポイントを中心に拡大/縮小する
@@ -188,7 +202,7 @@ typedef enum{
  @param	{Number} ratio	 	拡大率。1.0=100%
  @param	{Number} [duration]	秒数
  **/
-- (void)scale:(CGFloat)ratio duration:(NSTimeInterval)duration;
+- (void)scale_ratio:(CGFloat)ratio duration:(NSTimeInterval)duration;
 
 /**
  レイヤーをanchorPointを中心に回転させる。
@@ -198,7 +212,7 @@ typedef enum{
  @param	{Number} [duration]	秒数
  正の値で左回転。負の値で右回転。
  **/
-- (void)rotate:(CGFloat)degree duration:(NSTimeInterval)duration;
+- (void)rotate_degree:(CGFloat)degree duration:(NSTimeInterval)duration;
 
 /**
  レイヤーの不透明度を指定する。
@@ -207,7 +221,7 @@ typedef enum{
  @param	{Number} ratio 0~1の値
  @param  {Number} [duration]
  **/
-- (void)opacity:(CGFloat)opacity duration:(NSTimeInterval)duration;
+- (void)opacity_ratio:(CGFloat)ratio duration:(NSTimeInterval)duration;
 
 /**
  レイヤーをアニメーションさせる。
@@ -215,7 +229,7 @@ typedef enum{
  各アニメーションに関してはそれぞれのメソッドを参照のこと。
  
  @method animate
- @param	{Object} transition 遷移アニメーション
+ @param	{Object} animations 遷移アニメーション
     @param {Object} [transition.size] サイズ
         @param {Object} [transition.size.width]
         @param {Object} [transition.size.height]
@@ -223,10 +237,16 @@ typedef enum{
     @param {Object} [transition.position] 位置
         @param {Number} [transition.position.x]
         @param {Number} [transition.position.y]
+    @param {Number} [transition.zPosition] z方向の位置
+    @param {Object} [transition.translate] 移動
+        @param {Number} [transition.translate.x] x
+        @param {Number} [transition.translate.y] y
+        @param {Number} [transition.translate.z] z
     @param {Number} [transition.opacity] 不透明度。0~1
     @param {Number} [transition.rotation] 回転。degree
-    @param	{Number} duration 秒数。ミリセカンド
+    @param {Number] [transition.hidden] 表示
+@param	{Number} duration 秒数。ミリセカンド
  **/
-- (void)animate:(NSDictionary*)animations duration:(NSTimeInterval)duration;
+- (void)animate_animations:(NSDictionary*)animations duration:(NSTimeInterval)duration;
 
 @end

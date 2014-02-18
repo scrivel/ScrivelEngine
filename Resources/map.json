@@ -1,0 +1,41 @@
+{
+  "SELayer": {
+    "new": "new:",
+    "at": "at:",
+    "setAnchorPoint": "setAnchorPoint:",
+    "setPositionType": "setPositionType:",
+    "position": "position:duration:",
+    "zPosition": "zPosition:duration:",
+    "size": "size:duration:",
+    "show": "show:",
+    "hide": "hide:",
+    "toggle": "toggle:",
+    "image": "setImage:options:",
+    "clearImage": "clear",
+    "clear": "clear",
+    "bg": "bg:",
+    "border": "border:color:",
+    "shadow": "shadow:",
+    "translate": "translate:duration:",
+    "scale": "scale:duration:",
+    "rotate": "rotate:duration:",
+    "opacity": "opacity:duration:",
+    "animate": "animate:duration:"
+  },
+  "SEObject": {
+    "new": "new:",
+    "call": "call:",
+    "wait": "wait:"
+  },
+  "SETextFrame": {
+    "interval": "setInterval:",
+    "font": "setFont:",
+    "text": "setText:immediately:",
+    "name": "setName:",
+    "clear": "clear",
+    "skip": "skip",
+    "padding": "setPadding:",
+    "verticalAlign": "setVerticalAlign:",
+    "horizontalAlign": "setHorizontalAlign:"
+  }
+}
