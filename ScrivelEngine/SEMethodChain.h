@@ -7,19 +7,13 @@
 //
 
 #import "SEElement.h"
+#import "Queue.h"
 
 @class SEMethod;
 
 @interface SEMethodChain : SEElement
 
 // メソッドチェーンを構成するメソッドら
-@property (nonatomic, readonly) NSArray *methods;
-// チェーンの最後に追加
-- (void)enqueMethod:(SEMethod*)method;
-// チェーンの先頭に追加
-- (void)pushMethod:(SEMethod*)method;
-
-// メソッドを呼び出し
-- (id)call;
+@property (nonatomic, readonly) NSMutableArray *methods;
 
 @end

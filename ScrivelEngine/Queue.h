@@ -16,5 +16,7 @@
 - (void)clear;
 
 - (NSUInteger)count;
+- (id)head;
+- (id)tail;
 
 @end

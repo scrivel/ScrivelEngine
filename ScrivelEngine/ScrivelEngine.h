@@ -11,8 +11,12 @@
 
 @interface ScrivelEngine : NSObject
 
-+ (instancetype)sharedEngine;
+@property (nonatomic, weak) SEView *rootView;
 
-@property (nonatomic) SEClassProxy *classProxy;
+- (Class)classForClassIdentifier:(NSString*)classIdentifier;
+
+// SEScriptを実行
+- (BOOL)evaluateScript:(NSString*)script error:(NSError**)error;
 
 @end
+

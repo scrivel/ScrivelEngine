@@ -8,6 +8,7 @@
 //
 
 #import "SEBasicLayer.h"
+#import "NSValue+ScrivelEngine.h"
 
 #define kMaxLayer 1000
 #define kGroupedAnimationKey @"GroupedAnimation"

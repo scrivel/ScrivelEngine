@@ -47,4 +47,14 @@
     return _concret.count;
 }
 
+- (id)head
+{
+    return [_concret lastObject];
+}
+
+- (id)tail
+{
+    return (_concret.count > 0) ? [_concret objectAtIndex:0] : nil;
+}
+
 @end

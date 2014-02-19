@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "SEScript.h"
+#import "SEMethodChain.h"
 
 //static inline void _testParseError(NSString *string, SEScriptParseError type) {
 //    NSError *e = nil;
@@ -62,7 +63,21 @@
 //    }
 //}
 
-- (void)testSample
+- (void)testMethodChain
+{
+    NSError *e = nil;
+    SEScript *s = [SEScript scriptWithString:@"layer.at(1).position(100,100)" error:&e];
+    XCTAssertNil(e, );
+    XCTAssert(s.elements.count == 1, );
+    XCTAssert([s.elements[0] isKindOfClass:[SEMethodChain class]], );
+    SEMethodChain *c = [s.elements lastObject];
+    XCTAssert(c.methods.count == 3, );
+    XCTAssert([[c.methods[0] name] isEqualToString:@"layer"], );
+    XCTAssert([[c.methods[1] name] isEqualToString:@"at"], );
+    XCTAssert([[c.methods[2] name] isEqualToString:@"position"], );
+}
+
+- (void)testString
 {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"sample" ofType:@"sescript"];
     NSError *e = nil;

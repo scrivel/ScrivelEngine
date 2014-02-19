@@ -97,14 +97,14 @@
 - (void)parser:(PKParser *)parser didMatchScript:(PKAssembly *)assembly{
     SEElement *element = nil;
     while ((element = [self popElement]) != nil) {
-        [_script addElement:element];
+        [_script.elements insertObject:element atIndex:0];
     }
 }
 
 - (void)parser:(PKParser *)parser didMatchElement:(PKAssembly *)assembly{
     // メソッドチェーンかセリフをpush
     id pop = [self popMethodChain];
-    [_script addElement:pop];
+    [self pushElement:pop];
 }
 
 - (void)parser:(PKParser *)parser didMatchMethodChain:(PKAssembly *)assembly
@@ -112,7 +112,7 @@
     SEMethodChain *chain = [[SEMethodChain alloc] initWithLineNumber:parser.tokenizer.lineNumber];
     SEMethod *m = nil;
     while ((m = [self popMethod]) != nil) {
-        [chain pushMethod:m];
+        [chain.methods insertObject:m atIndex:0];
     }
     [self pushMethodChain:chain];
 }
@@ -218,11 +218,11 @@
     if (name) {
         SEMethod *name_m = [SEMethod nameMethod];
         [name_m setArguments:@[name]];
-        [chain enqueMethod:name_m];
+        [chain.methods addObject:name_m];
     }
     SEMethod *text_m = [SEMethod textMethod];
     [text_m setArguments:@[text]];
-    [chain enqueMethod:text_m];
+    [chain.methods addObject:text_m];
     [self pushMethodChain:chain];
 }
 

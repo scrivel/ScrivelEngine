@@ -27,6 +27,7 @@
  
  @method new
  @static
+ @return instancetype
  @param {Object} options
     @param {Number} options.index 作成するレイヤーの番号
  **/
@@ -40,6 +41,7 @@
  
  @method at
  @static
+ @return id
  @param {Number} index レイヤー番号
  @return SELayer
  **/

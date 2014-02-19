@@ -34,4 +34,10 @@ Pod::Spec.new do |s|
 
   s.dependency 'ParseKit', '~> 0.7'
 
+  s.frameworks = 'QuartzCore'
+
+  s.requires_arc = true
+
+  s.prefix_header_file = "ScrivelEngine/ScrivelEngine-Prefix.pch"
+
 end
