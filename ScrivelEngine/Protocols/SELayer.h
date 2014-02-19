@@ -20,6 +20,8 @@
  @extends SEObject
  **/
 
+#pragma mark - SEObject
+
 /**
  コンストラクタ
  
@@ -29,6 +31,8 @@
     @param {Number} options.index 作成するレイヤーの番号
  **/
 + (instancetype)new_options:(NSDictionary*)options;
+
+#pragma mark - Static
 
 /**
  指定された番号のレイヤーを返す
@@ -42,6 +46,8 @@
 + (id)at_index:(NSUInteger)index;
 
 
+#pragma mark - Property
+
 /**
  レイヤーのアンカーポイントを指定する。
  pointの各値は0~1の間で正規化されている必要がある。
@@ -50,7 +56,7 @@
  @param {Number} x
  @param {Number} y
  **/
-- (void)setAnchorPoint_x:(CGFloat)x y:(CGFloat)y;
+- (void)set_anchorPoint_x:(CGFloat)x y:(CGFloat)y;
 
 /**
  レイヤーの位置のタイプを指定する。
@@ -60,7 +66,99 @@
  @method setPositionType
  @param	{String} type "normalized" or "px"
  **/
-- (void)setPositionType_type:(NSString*)type;
+- (void)set_positionType_type:(NSString*)type;
+
+#pragma mark - Image
+
+/**
+ レイヤーに画像を読み込む。
+ sizeが指定されていた場合、
+ 
+ @method  setImage
+ @param	{String} path 読み込む画像のファイル名。[NSBundle mainBundle]からの相対パス。
+ @param	{Object} [options]
+ @param {Number} [options.duration] クロスフェードさせる場合の秒数
+ @param {Object} [options.size] 画像のサイズ。読み込んだ後にレイヤーのsizeを変更する
+ **/
+- (void)loadImage_path:(NSString*)path options:(NSDictionary*)options;
+
+/**
+ レイヤーに読み込んである画像をクリアする。
+ 画像以外のレイヤー属性はそのまま存在する。
+ 
+ @method  clearImage
+ **/
+- (void)clearImage;
+
+/**
+ レイヤーを破棄する。
+ 読み込まれている画像、設定されているアニメーションは即時に破棄される。
+ 
+ @method  clear
+ **/
+- (void)clear;
+
+#pragma mark - Appearance
+
+/**
+ 背景色を指定する
+ 
+ @method bg
+ @param {String} color 色 by hex #ffffff
+ **/
+- (void)bg_color:(NSDictionary*)color;
+
+/**
+ 境界線を指定する
+ 
+ @method border
+     @params {Number} [width] 境界線の幅 by px
+     @params {String} [color] 境界線の色 by hex #123456
+ **/
+- (void)border_width:(CGFloat)width color:(NSString*)color;
+
+/**
+ 陰を指定する
+ 
+ @method shadow
+ @param {Object} options
+    @param {String} [options.color] 色 by hex #ffffff
+    @param {Object} [options.offset] 方向
+        @param {Number} options.offset.x
+        @param {Number} options.offset.y
+    @param {Number} [options.opacity] 不透明度
+    @param {Number} [options.radius] 拡散
+ **/
+- (void)shadow_options:(NSDictionary*)options;
+
+#pragma mark - Animation
+
+/**
+ アニメーションを生成する
+ commitAnimation()までに呼び出されたアニメーションメソッドは合成される
+ 間で呼び出されたアニメーションメソッドのduration引数は無視される
+ // 1番のレイヤーに、3秒で(100,100)移動、20度回転、拡大率200%のアニメーションを使用する
+ layer.at(1)
+    .beginAnimation(300)
+    .translate(100,100)
+    .rotate(20)
+    .opacity(0.2,100) // 100は無視される
+    .scale(2.0)
+    .commitAnimation()
+ 
+ 
+ @method beginAnimation
+ @param (Number) [duration]
+ **/
+- (void)beginAnimation_duration:(NSTimeInterval)duration;
+
+/**
+ アニメーションを開始する
+ beginAnimation()からここまでに呼び出されたアニメーションメソッドが合成される
+ 
+ @method commitAnimation
+ **/
+- (void)commitAnimation;
 
 /**
  レイヤーの位置を指定する。
@@ -122,66 +220,6 @@
 - (void)toggle_duration:(NSTimeInterval)duration;
 
 /**
- レイヤーに画像を読み込む。
- sizeが指定されていた場合、
- 
- @method  setImage
- @param	{String} path 読み込む画像のファイル名。[NSBundle mainBundle]からの相対パス。
- @param	{Object} [options]
- @param {Number} [options.duration] クロスフェードさせる場合の秒数
- @param {Object} [options.size] 画像のサイズ。読み込んだ後にレイヤーのsizeを変更する
- **/
-- (void)setImage_path:(NSString*)path options:(NSDictionary*)options;
-
-/**
- レイヤーに読み込んである画像をクリアする。
- 画像以外のレイヤー属性はそのまま存在する。
- 
- @method  clearImage
- **/
-- (void)clearImage;
-
-/**
- レイヤーを破棄する。
- 読み込まれている画像、設定されているアニメーションは即時に破棄される。
- 
- @method  clear
- **/
-- (void)clear;
-
-/**
- 背景色を指定する
- 
- @method bg
- @param {String} color 色 by hex #ffffff
- **/
-- (void)bg_color:(NSDictionary*)color;
-
-/**
- 境界線を指定する
- 
- @method border
-     @params {Number} [width] 境界線の幅 by px
-     @params {String} [color] 境界線の色 by hex #123456
- **/
-- (void)border_width:(CGFloat)width color:(NSString*)color;
-
-/**
- 陰を指定する
- 
- @method shadow
- @param {Object} options
-    @param {String} [options.color] 色 by hex #ffffff
-    @param {Object} [options.offset] 方向
-        @param {Number} options.offset.x
-        @param {Number} options.offset.y
-    @param {Number} [options.opacity] 不透明度
-    @param {Number} [options.radius] 拡散
- **/
-- (void)shadow_options:(NSDictionary*)options;
-
-
-/**
  レイヤーを移動させる。
  移動はリニアなものに限られる。
  座標系によってx,yの値が正しくなければいけない。
@@ -223,30 +261,6 @@
  **/
 - (void)opacity_ratio:(CGFloat)ratio duration:(NSTimeInterval)duration;
 
-/**
- レイヤーをアニメーションさせる。
- 複数のアニメーションを合成する。
- 各アニメーションに関してはそれぞれのメソッドを参照のこと。
- 
- @method animate
- @param	{Object} animations 遷移アニメーション
-    @param {Object} [transition.size] サイズ
-        @param {Object} [transition.size.width]
-        @param {Object} [transition.size.height]
-    @param {Number} [transition.scale] 拡大率。0~
-    @param {Object} [transition.position] 位置
-        @param {Number} [transition.position.x]
-        @param {Number} [transition.position.y]
-    @param {Number} [transition.zPosition] z方向の位置
-    @param {Object} [transition.translate] 移動
-        @param {Number} [transition.translate.x] x
-        @param {Number} [transition.translate.y] y
-        @param {Number} [transition.translate.z] z
-    @param {Number} [transition.opacity] 不透明度。0~1
-    @param {Number} [transition.rotation] 回転。degree
-    @param {Number] [transition.hidden] 表示
-@param	{Number} duration 秒数。ミリセカンド
- **/
-- (void)animate_animations:(NSDictionary*)animations duration:(NSTimeInterval)duration;
+
 
 @end

@@ -11,40 +11,6 @@
 #import "SEMethod.h"
 #import "SEScript.h"
 
-@interface Stack : NSObject
-
-- (id)pop;
-- (void)push:(id)obj;
-
-@end
-
-@implementation Stack
-{
-    NSMutableArray *ma;
-}
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        ma = [NSMutableArray new];
-    }
-    return self;
-}
-
-- (id)pop
-{
-    id obj = [ma lastObject];
-    [ma removeLastObject];
-    return obj;
-}
-
-- (void)push:(id)obj
-{
-    [ma addObject:obj];
-}
-
-@end
-
 @interface SEScriptAssembler ()
 
 // メソッド

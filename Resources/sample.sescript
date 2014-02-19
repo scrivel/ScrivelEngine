@@ -18,6 +18,14 @@ layer.at([1,2,3]).move(100,100,1000).method({"key" : "value"})
 // グローバルメソッドはチェーンの中に挿入できる
 layer.at(1).fadeOut().move(-100,-100).wait(200).move(0,0,200)
 
+// 複数行のメソッドチェーン
+layer.at(2)
+    .beginAnimation(200)
+    .position(200)
+    .translate(200,0)
+    .scale(2.0)
+    .commitAnimation()
+
 // 「」でかこまれた部分は台詞になりテクストフレームに表示される
 [セリフは自由に書ける。最後までいくと自動的にタップかクリックを待つ。]
 // 改行

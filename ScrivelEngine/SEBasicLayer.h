@@ -22,7 +22,9 @@ typedef enum{
 @property (nonatomic) CALayer *layer;
 @property (nonatomic) SELayerPositionType positionType;
 
-- (void)enqueuAnimationForKeyPath:(NSString*)keyPath toValue:(id)value duration:(NSTimeInterval)duration ordered:(BOOL)ordered;
+- (void)enqueuAnimationForKeyPath:(NSString*)keyPath toValue:(id)value duration:(NSTimeInterval)duration;
+- (void)addAnimation:(CAAnimation*)animation forKey:(NSString *)key;
+
 
 @end
 
