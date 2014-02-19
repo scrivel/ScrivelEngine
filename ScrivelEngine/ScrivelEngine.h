@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SEClassProxy.h"
 
 @interface ScrivelEngine : NSObject
 
