@@ -10,6 +10,7 @@
 #import "SEMethodChain.h"
 #import "SEMethod.h"
 #import "SEScript.h"
+#import "Stack.h"
 
 @interface SEScriptAssembler ()
 

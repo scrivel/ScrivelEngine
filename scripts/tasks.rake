@@ -35,15 +35,21 @@ end
 def build(scheme,configuration="")
   cmd = "xctool #{project_or_workspace} -scheme #{scheme.shellescape} build"
   cmd += " -configuration #{configuration}" unless configuration.empty?
-  system cmd
+  unless system cmd
+    exit 1;
+  end
 end
 # clean scheme
 def clean (scheme)
-  system "xctool clean #{project_or_workspace} -scheme #{scheme.shellescape}"
+  unless system "xctool clean #{project_or_workspace} -scheme #{scheme.shellescape}"
+    exit 1
+  end
 end
 # create archive
 def archive(scheme)
-  system "xctool #{project_or_workspace} archive -scheme #{scheme.shellescape}"
+  unless system "xctool #{project_or_workspace} archive -scheme #{scheme.shellescape}"
+    exit 1
+  end
 end
 # get project or workspace path
 def project_or_workspace
@@ -55,7 +61,9 @@ def project_or_workspace
 end
 # run tests
 def test(scheme)
-  system "xctool -sdk iphonesimulator #{project_or_workspace} -scheme #{scheme.shellescape} test -parallelize -test-sdk iphonesimulator"
+  unless system "xctool -sdk iphonesimulator #{project_or_workspace} -scheme #{scheme.shellescape} test -parallelize -test-sdk iphonesimulator"
+      exit 1
+  end
 end
 
 # build tasks
