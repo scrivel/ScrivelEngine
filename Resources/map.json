@@ -1,41 +1,42 @@
 {
   "SELayer": {
-    "new": "new:",
-    "at": "at:",
-    "setAnchorPoint": "setAnchorPoint:",
-    "setPositionType": "setPositionType:",
-    "position": "position:duration:",
-    "zPosition": "zPosition:duration:",
-    "size": "size:duration:",
-    "show": "show:",
-    "hide": "hide:",
-    "toggle": "toggle:",
-    "image": "setImage:options:",
+    "new": "new_options:",
+    "at": "at_index:",
+    "setAnchorPoint": "setAnchorPoint_x:y:",
+    "setPositionType": "setPositionType_type:",
+    "position": "position_x:y:duration:",
+    "zPosition": "zPosition_z:duration:",
+    "size": "size_width:duration:",
+    "show": "show_duration:",
+    "hide": "hide_duration:",
+    "toggle": "toggle_duration:",
+    "setImage": "setImage_path:options:",
     "clearImage": "clear",
     "clear": "clear",
-    "bg": "bg:",
-    "border": "border:color:",
-    "shadow": "shadow:",
-    "translate": "translate:duration:",
-    "scale": "scale:duration:",
-    "rotate": "rotate:duration:",
-    "opacity": "opacity:duration:",
-    "animate": "animate:duration:"
+    "bg": "bg_color:",
+    "border": "border_width:color:",
+    "shadow": "shadow_options:",
+    "translate": "translate_x:y:z:duration:",
+    "scale": "scale_ratio:duration:",
+    "rotate": "rotate_degree:duration:",
+    "opacity": "opacity_ratio:duration:",
+    "animate": "animate_animations:duration:"
   },
   "SEObject": {
-    "new": "new:",
-    "call": "call:",
-    "wait": "wait:"
+    "new": "new_opts:",
+    "callStatic": "callStatic_method:",
+    "call": "callInstance_method:",
+    "wait": "wait_duration:"
   },
-  "SETextFrame": {
-    "interval": "setInterval:",
-    "font": "setFont:",
-    "text": "setText:immediately:",
-    "name": "setName:",
+  "SETextLayer": {
+    "interval": "set_interval:",
+    "font": "set_font:",
+    "text": "set_text:immediately:",
+    "name": "set_name:",
     "clear": "clear",
     "skip": "skip",
-    "padding": "setPadding:",
-    "verticalAlign": "setVerticalAlign:",
-    "horizontalAlign": "setHorizontalAlign:"
+    "padding": "set_padding:",
+    "verticalAlign": "set_verticalAlign:",
+    "horizontalAlign": "set_horizontalAlign:"
   }
 }

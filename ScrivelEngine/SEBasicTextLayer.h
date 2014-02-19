@@ -1,6 +1,6 @@
 
 //
-//  _SEConcretObject.h
+//  _SEConcretTextFrame.h
 //  ScrivelEngine
 //
 //  Created by 桜井雄介 on 2014/02/18.
@@ -8,11 +8,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SEObject.h"
+#import "SEBasicLayer.h"
+#import "SETextLayer.h"
 
-@interface SEConcretObject : NSObject <SEObject>
-
-- (instancetype)initWithOpts:(NSDictionary*)options;
+@interface SEBasicTextLayer : SEBasicLayer <SETextLayer>
 
 @end
 

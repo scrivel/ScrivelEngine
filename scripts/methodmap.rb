@@ -25,7 +25,7 @@ Dir.glob("*.h"){|f|
     unless s.match ":"
       _s = s.match(/\(.+\)([a-z]+)/)[1]
     else
-      s.gsub(/[a-z]+:/i){|n|
+      s.gsub(/[a-z_]+:/i){|n|
         _s += n
       }
     end

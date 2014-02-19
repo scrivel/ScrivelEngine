@@ -7,9 +7,9 @@
 //  Copyright (c) 2014年 scrivel. All rights reserved.
 //
 
-#import "SEConcretTextFrame.h"
+#import "SEBasicTextLayer.h"
 
-@implementation SEConcretTextFrame
+@implementation SEBasicTextLayer
 
 - (void)set_interval:(NSTimeInterval)interval
 {

@@ -7,12 +7,12 @@
 //  Copyright (c) 2014年 scrivel. All rights reserved.
 //
 
-#import "SEConcretLayer.h"
+#import "SEBasicLayer.h"
 
 #define kMaxLayer 1000
 static NSMutableArray *layers;
 
-@implementation SEConcretLayer
+@implementation SEBasicLayer
 {
     NSMutableArray *_animationQueue;
 }
@@ -163,7 +163,8 @@ static NSMutableArray *layers;
 - (void)position_x:(CGFloat)x y:(CGFloat)y duration:(NSTimeInterval)duration
 {
     CGPoint position = CGPointMake(x, y);
-    [self enqueuAnimationForKeyPath:@"position" toValue:[NSValue valueWithCGPoint:position] duration:duration ordered:YES];
+    NSValue *v = [NSValue se_valueWithPoint:position];
+    [self enqueuAnimationForKeyPath:@"position" toValue:v duration:duration ordered:YES];
 }
 
 - (void)zPosition_z:(CGFloat)z duration:(NSTimeInterval)duration
@@ -175,7 +176,8 @@ static NSMutableArray *layers;
 {
     CGRect bounds = self.layer.bounds;
     bounds.size = size;
-	[self enqueuAnimationForKeyPath:@"bounds" toValue:[NSValue valueWithCGRect:bounds] duration:duration ordered:YES];
+    NSValue *v = [NSValue se_valueWithRect:bounds];
+	[self enqueuAnimationForKeyPath:@"bounds" toValue:v duration:duration ordered:YES];
 }
 
 - (void)show_duration:(NSTimeInterval)duration

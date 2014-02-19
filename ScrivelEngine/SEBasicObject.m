@@ -7,9 +7,9 @@
 //  Copyright (c) 2014年 scrivel. All rights reserved.
 //
 
-#import "SEConcretObject.h"
+#import "SEBasicObject.h"
 
-@implementation SEConcretObject
+@implementation SEBasicObject
 
 - (instancetype)initWithOpts:(NSDictionary *)options
 {

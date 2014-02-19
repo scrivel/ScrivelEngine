@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "SELayer.h"
 
-@protocol SETextFrame <SELayer>
+@protocol SETextLayer <SELayer>
 
 /**
  ScrivelEngineのテキスト表示エリア。
  基本的にひとつだけ。
  
- @class SETextFrame
+ @class SETextLayer
  @extends SELayer
  **/
 

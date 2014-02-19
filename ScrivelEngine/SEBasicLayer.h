@@ -8,7 +8,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SEConcretObject.h"
+#import "SEBasicObject.h"
 #import "SELayer.h"
 
 typedef enum{
@@ -16,7 +16,7 @@ typedef enum{
     SELayerPositionTypeNormalized
 }SELayerPositionType;
 
-@interface SEConcretLayer : SEConcretObject <SELayer>
+@interface SEBasicLayer : SEBasicObject <SELayer>
 
 @property (nonatomic) NSUInteger index;
 @property (nonatomic) CALayer *layer;
