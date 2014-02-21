@@ -2,8 +2,8 @@
   "SELayer": {
     "new": "new_options:",
     "at": "at_index:",
-    "setAnchorPoint": "setAnchorPoint_x:y:",
-    "setPositionType": "setPositionType_type:",
+    "setAnchorPoint": "set_anchorPoint_x:y:",
+    "setPositionType": "set_positionType_type:",
     "setImage": "loadImage_path:options:",
     "clearImage": "clear",
     "clear": "clear",
@@ -24,9 +24,9 @@
     "opacity": "opacity_ratio:duration:"
   },
   "SEObject": {
-    "new": "new_options:",
-    "callStatic": "callStatic_method:engine:",
-    "call": "callInstance_method:engine:",
+    "new": "new_opts:",
+    "callStatic": "callStatic_method:",
+    "callInstance": "callInstance_method:",
     "wait": "wait_duration:"
   },
   "SETextLayer": {
