@@ -25,7 +25,7 @@ Dir.glob("*.h"){|f|
     s = m.match(selector)[1]
     _s = ""
     unless s.match ":"
-      _s = s.match(/\(.+\)([a-z]+)/)[1]
+      _s = s.match(/\(.+\)([a-z]+)/i)[1]
     else
       s.gsub(/[a-z_]+:/i){|n|
         _s += n
@@ -47,8 +47,8 @@ Dir.glob("*.h"){|f|
     exit 2
   end
 }
-# open(out ,"w"){|f| f.write JSON.pretty_generate hash }
-# p "#{out} generated."
+open(out ,"w"){|f| f.write JSON.pretty_generate hash }
+p "#{out} generated."
 
 
 class_for_class = ""

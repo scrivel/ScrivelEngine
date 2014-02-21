@@ -5,13 +5,13 @@
     "setAnchorPoint": "set_anchorPoint_x:y:",
     "setPositionType": "set_positionType_type:",
     "setImage": "loadImage_path:options:",
-    "clearImage": "clear",
+    "clearImage": "clearImage",
     "clear": "clear",
     "bg": "bg_color:",
     "border": "border_width:color:",
     "shadow": "shadow_options:",
     "beginAnimation": "beginAnimation_duration:",
-    "commitAnimation": "commit",
+    "commitAnimation": "commitAnimation",
     "position": "position_x:y:duration:",
     "zPosition": "zPosition_z:duration:",
     "size": "size_width:duration:",
@@ -26,7 +26,7 @@
   "abstract": {
     "new": "new_options:",
     "callStatic": "callStatic_method:engine:",
-    "call": "callInstance_method:engine:",
+    "callInstance": "callInstance_method:engine:",
     "wait": "wait_duration:"
   },
   "text": {

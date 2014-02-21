@@ -40,13 +40,13 @@
 	SEL_FOR_METHOD(@"setAnchorPoint",set_anchorPoint_x:y:);
 	SEL_FOR_METHOD(@"setPositionType",set_positionType_type:);
 	SEL_FOR_METHOD(@"setImage",loadImage_path:options:);
-	SEL_FOR_METHOD(@"clearImage",clear);
+	SEL_FOR_METHOD(@"clearImage",clearImage);
 	SEL_FOR_METHOD(@"clear",clear);
 	SEL_FOR_METHOD(@"bg",bg_color:);
 	SEL_FOR_METHOD(@"border",border_width:color:);
 	SEL_FOR_METHOD(@"shadow",shadow_options:);
 	SEL_FOR_METHOD(@"beginAnimation",beginAnimation_duration:);
-	SEL_FOR_METHOD(@"commitAnimation",commit);
+	SEL_FOR_METHOD(@"commitAnimation",commitAnimation);
 	SEL_FOR_METHOD(@"position",position_x:y:duration:);
 	SEL_FOR_METHOD(@"zPosition",zPosition_z:duration:);
 	SEL_FOR_METHOD(@"size",size_width:duration:);
@@ -62,7 +62,7 @@
 
 	SEL_FOR_METHOD(@"new",new_options:);
 	SEL_FOR_METHOD(@"callStatic",callStatic_method:engine:);
-	SEL_FOR_METHOD(@"call",callInstance_method:engine:);
+	SEL_FOR_METHOD(@"callInstance",callInstance_method:engine:);
 	SEL_FOR_METHOD(@"wait",wait_duration:);
 
 	// text
