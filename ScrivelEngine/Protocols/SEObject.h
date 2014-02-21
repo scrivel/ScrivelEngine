@@ -13,7 +13,7 @@
 /**
  ScrivelEngineのベースオブジェクト
 
- @class SEObject
+ @class abstract
  **/
 
 /**

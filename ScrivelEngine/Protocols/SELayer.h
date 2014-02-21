@@ -14,10 +14,10 @@
 
 /**
  ScrivelEngineのレイヤーオブジェクト。
- 基本的にはUIView/NSViewのラッパー。
+ 基本的にはCALayerのラッパー。
  
- @class SELayer
- @extends SEObject
+ @class layer
+ @extends abstract
  **/
 
 #pragma mark - SEObject

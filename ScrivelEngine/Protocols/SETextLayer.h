@@ -15,8 +15,8 @@
  ScrivelEngineのテキスト表示エリア。
  基本的にひとつだけ。
  
- @class SETextLayer
- @extends SELayer
+ @class text
+ @extends layer
  **/
 
 /**
@@ -40,9 +40,9 @@
  
  @method text
  @params {String} text 新規に表示する文字列
- @params {Boolean} [immediately] アニメーションさせずに表示するか否か
+ @params {Boolean} [noanimate] アニメーションさせずに表示するか否か
  **/
-- (void)set_text:(NSString*)text immediately:(BOOL)immediately;
+- (void)set_text:(NSString*)text noanimate:(BOOL)noanimate;
 
 /**
  名前の表示を変更する。

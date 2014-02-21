@@ -25,18 +25,10 @@ end
 
 task :doc do
     system "mkdir docs"
-    ["SEObject", "SELayer", "SEBackground", "SETextFrame", "SEBackgroundMusic", "SEUserInterface", "SESoundEffect"].each do |p|
-        system "cp -R ./ScrivelEngine/#{p}.h docs/#{p}.js "
-    end
+    system "rm docs/*.js"
+    Dir.foreach("ScrivelEngine/Protocols"){|p|
+        p p
+        system "cp -R ScrivelEngine/Protocols/#{p} docs/#{File.basename(p,'.h')}.js" unless File.directory?(p)
+    }
     system "cd docs && yuidoc . && cd ../"
 end
-
-task :map do
-    system "ruby ./scripts/methodmap.rb"
-end
-# 必要があればプロジェクトとワークスペースのパス
-# $PROJECT = "Hoge.xcodeproj"
-# $WORKSPACE = "Hoge.workspace"
-
-# デフォルトのビルドスキーム
-$PRIMARY_SCHEME = "ScrivelEngine"
