@@ -11,6 +11,7 @@
 #import "SEMethod.h"
 #import "SEScript.h"
 #import "Stack.h"
+#import "NSArray+Where.h"
 
 @interface SEScriptAssembler ()
 
@@ -46,6 +47,11 @@
 
 @end
 
+static PKToken *commaToken;
+static PKToken *colonToken;
+static PKToken *openBracketToken;
+static PKToken *openCurlyToken;
+
 @implementation SEScriptAssembler
 {
     SEScript *_script;
@@ -66,6 +72,16 @@
     Stack *_textStack;
 }
 
++ (void)load
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        commaToken = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"," floatValue:0];
+        colonToken = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@":" floatValue:0];
+        openBracketToken = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"[" floatValue:0];
+        openCurlyToken = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"{" floatValue:0];
+    });
+}
 
 - (id)init
 {
@@ -183,13 +199,12 @@
 {
     NSMutableArray *ma = [NSMutableArray new];
     id value = nil;
-    // 直前の'['より以前のものを取り出して現在のarrayの範囲を特定する
-    PKToken *arrayFence = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"[" floatValue:0];
+    // 直前の'['より上のvalue導出を数える
 //    NSLog(@"%@",assembly.stack);
-    NSArray *a = [assembly objectsAbove:arrayFence]; //  -> ,+ ']'
+    NSUInteger vallen = [[[assembly objectsAbove:openBracketToken] whereUsingSelector:@selector(isEqual:) value:commaToken] count]; //  -> ,+ ']'
 //    NSLog(@"%@",a);
 //    NSLog(@"%@",assembly.stack);
-    for (NSUInteger i = 0; i < a.count ; i++) {
+    for (NSUInteger i = 0; i < vallen + 1 ; i++) {
         value = [self popValue];
         [ma insertObject:value atIndex:0];
     }
@@ -201,11 +216,18 @@
 {
     NSMutableDictionary *di = [NSMutableDictionary new];
     NSArray *keyValue = nil;
-    while ((keyValue = [self popKeyValue]) != nil   ) {
+    // 直前の'{'よりも上のvalue導出を数える
+//    NSLog(@"%@",assembly.stack);
+    NSUInteger vallen = [[[assembly objectsAbove:openCurlyToken] whereUsingSelector:@selector(isEqual:) value:colonToken] count];
+//    NSLog(@"%@",o);
+//    NSLog(@"%@",assembly.stack);
+    for (int i = 0; i < vallen; i++) {
+        keyValue = [self popKeyValue];
         NSString *key = keyValue[0];
         id obj = keyValue[1];
         [di setObject:obj forKey:key];
     }
+    [assembly pop];
     [self pushObject:[NSDictionary dictionaryWithDictionary:di]];
 }
 

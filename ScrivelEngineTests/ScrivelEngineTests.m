@@ -91,7 +91,23 @@
 - (void)testObject
 {
     NSError *e;
-    NSDictionary *obj = [engine evaluateScript:@"{key : \"value\", numKey : 1, numKey2 : 2.0, arrKey : [\"hoge\", 1, -12, { nestedKey : \"nestedValue\" }]}" error:&e];
+    NSString *json = @"{\
+    key : \"value\",\
+    numKey : 1, \
+    numKey2 : 2.0, \
+    arrKey : [\
+        \"hoge\",\
+        1,\
+        -12,\
+        {\
+            nestedKey : \"nestedValue\" ,\
+            nestedObj : {\
+                deep : 1\
+            }\
+        }\
+    ]\
+    }";
+    NSDictionary *obj = [engine evaluateScript:json error:&e];
     if (e) {
         NSLog(@"%@",e);
     }
@@ -101,6 +117,8 @@
     XCTAssert([[obj objectForKey:@"numKey"] integerValue] == 1,);
     XCTAssert([[obj objectForKey:@"numKey2"] doubleValue] == (double)2.0, );
     XCTAssert([[obj objectForKey:@"arrKey"] isKindOfClass:[NSArray class]],);
+    XCTAssert([obj[@"arrKey"][3][@"nestedKey"] isEqualToString:@"nestedValue"],);
+    XCTAssert([obj[@"arrKey"][3][@"nestedObj"][@"deep"] integerValue] == 1,);
 }
 
 @end

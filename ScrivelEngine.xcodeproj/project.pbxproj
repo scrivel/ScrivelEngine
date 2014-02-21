@@ -107,6 +107,10 @@
 		A6D04D3818B4DFA600977B7A /* ScrivelEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F88AF18B0F496007FBE57 /* ScrivelEngine.h */; };
 		A6D04D3A18B4F76D00977B7A /* ScrivelEngineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D04D3918B4F76D00977B7A /* ScrivelEngineTests.m */; };
 		A6D04D3B18B4F77000977B7A /* ScrivelEngineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D04D3918B4F76D00977B7A /* ScrivelEngineTests.m */; };
+		A6D04D4418B74D4D00977B7A /* NSArray+Where.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D04D4218B74D4D00977B7A /* NSArray+Where.h */; };
+		A6D04D4518B74D4D00977B7A /* NSArray+Where.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D04D4218B74D4D00977B7A /* NSArray+Where.h */; };
+		A6D04D4618B74D4D00977B7A /* NSArray+Where.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D04D4318B74D4D00977B7A /* NSArray+Where.m */; };
+		A6D04D4718B74D4D00977B7A /* NSArray+Where.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D04D4318B74D4D00977B7A /* NSArray+Where.m */; };
 		A6D1760E18AE628200AB11AF /* SEScriptParser.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D1760C18AE628200AB11AF /* SEScriptParser.h */; };
 		A6D1760F18AE628200AB11AF /* SEScriptParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D1760D18AE628200AB11AF /* SEScriptParser.m */; };
 		A6D1761018AE628200AB11AF /* SEScriptParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D1760D18AE628200AB11AF /* SEScriptParser.m */; };
@@ -256,6 +260,8 @@
 		A6AC928218AC95F700D43025 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		A6AC928518AC960300D43025 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A6D04D3918B4F76D00977B7A /* ScrivelEngineTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrivelEngineTests.m; sourceTree = "<group>"; };
+		A6D04D4218B74D4D00977B7A /* NSArray+Where.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Where.h"; sourceTree = "<group>"; };
+		A6D04D4318B74D4D00977B7A /* NSArray+Where.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Where.m"; sourceTree = "<group>"; };
 		A6D1760C18AE628200AB11AF /* SEScriptParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEScriptParser.h; sourceTree = "<group>"; };
 		A6D1760D18AE628200AB11AF /* SEScriptParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEScriptParser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -350,6 +356,8 @@
 				A609F66718B48700000A0EFB /* Queue.m */,
 				A609F66C18B48F74000A0EFB /* Stack.h */,
 				A609F66D18B48F74000A0EFB /* Stack.m */,
+				A6D04D4218B74D4D00977B7A /* NSArray+Where.h */,
+				A6D04D4318B74D4D00977B7A /* NSArray+Where.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -677,6 +685,7 @@
 				A609F66918B48700000A0EFB /* Queue.h in Headers */,
 				A604522D18B3A30B00B85928 /* SETextLayer.h in Headers */,
 				A609F66F18B48F74000A0EFB /* Stack.h in Headers */,
+				A6D04D4518B74D4D00977B7A /* NSArray+Where.h in Headers */,
 				A6D1760E18AE628200AB11AF /* SEScriptParser.h in Headers */,
 				A6A1691918B25A470041BBBA /* SEMethodChain.h in Headers */,
 				A609F66318B47F58000A0EFB /* NSValue+ScrivelEngine.h in Headers */,
@@ -700,6 +709,7 @@
 				A604524918B3C78200B85928 /* SEBasicTextLayer.h in Headers */,
 				A6A1691418B25A400041BBBA /* SEScript.h in Headers */,
 				A609F66818B48700000A0EFB /* Queue.h in Headers */,
+				A6D04D4418B74D4D00977B7A /* NSArray+Where.h in Headers */,
 				A6A1691218B25A3D0041BBBA /* SEScriptAssembler.h in Headers */,
 				A609F66E18B48F74000A0EFB /* Stack.h in Headers */,
 				A6D04D3818B4DFA600977B7A /* ScrivelEngine.h in Headers */,
@@ -942,6 +952,7 @@
 				A63F889518AFBCC5007FBE57 /* SEMethodChain.m in Sources */,
 				A63F889918B0A9A4007FBE57 /* SEGlobalObject.m in Sources */,
 				A604524B18B3C78200B85928 /* SEBasicTextLayer.m in Sources */,
+				A6D04D4618B74D4D00977B7A /* NSArray+Where.m in Sources */,
 				A6D1760F18AE628200AB11AF /* SEScriptParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -971,6 +982,7 @@
 				A63F88B318B0F496007FBE57 /* ScrivelEngine.m in Sources */,
 				A604524C18B3C78200B85928 /* SEBasicTextLayer.m in Sources */,
 				A60ECC5118AC8C54000F7A40 /* SEScript.m in Sources */,
+				A6D04D4718B74D4D00977B7A /* NSArray+Where.m in Sources */,
 				A6D1761018AE628200AB11AF /* SEScriptParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
