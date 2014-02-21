@@ -9,6 +9,7 @@
 
 #import "SEBasicLayer.h"
 #import "NSValue+ScrivelEngine.h"
+#import "SEMethod.h"
 
 #define kMaxLayer 1000
 #define kGroupedAnimationKey @"GroupedAnimation"
@@ -52,6 +53,63 @@ static NSMutableArray *layers;
     @throw @"NEEDS OVERRIDE";
 }
 
+#pragma mark - SEObject
+
++ (id)callStatic_method:(SEMethod *)method engine:(ScrivelEngine *)engine
+{
+    NSString *name = method.name;
+    if ([name isEqualToString:@"new"]) {
+        return [self new_options:method.arguments[0]];
+    }else if ([name isEqualToString:@"at_index"]){
+        return [self at_index:[method.arguments[0] unsignedIntegerValue]];
+    }
+    @throw @"unrecognized selector was sent";
+    return nil;
+}
+
+static inline id se_getarg(NSArray* args, NSUInteger idx)
+{
+    return (idx < args.count) ? args[idx] : nil;
+}
+
+- (id)callInstance_method:(SEMethod *)method engine:(ScrivelEngine *)engine
+{
+    /*
+     "setPositionType": "setPositionType_type:",
+     "setImage": "loadImage_path:options:",
+     "clearImage": "clear",
+     "clear": "clear",
+     "bg": "bg_color:",
+     "border": "border_width:color:",
+     "shadow": "shadow_options:",
+     "beginAnimation": "beginAnimation_duration:",
+     "commitAnimation": "commit",
+     "position": "position_x:y:duration:",
+     "zPosition": "zPosition_z:duration:",
+     "size": "size_width:duration:",
+     "show": "show_duration:",
+     "hide": "hide_duration:",
+     "toggle": "toggle_duration:",
+     "translate": "translate_x:y:z:duration:",
+     "scale": "scale_ratio:duration:",
+     "rotate": "rotate_degree:duration:",
+     "opacity": "opacity_ratio:duration:"
+     */
+    NSString *n = method.name;
+    if ([n isEqualToString:@"setAnchorPoint"]) {
+        CGFloat x = [se_getarg(method.arguments, 0) doubleValue];
+        CGFloat y = [se_getarg(method.arguments, 1) doubleValue];
+        [self setAnchorPoint_x:x y:y];
+    }else if ([n isEqualToString:@"setPositionType"]){
+        [self setPositionType_type:se_getarg(method.arguments, 0)];
+    }else if ([n isEqualToString:@"clearImage"]){
+        [self clearImage];
+    }else if ([n isEqualToString:@"clear"]){
+        [self clear];
+    }
+    @throw [NSString stringWithFormat:@"unrecognized method calloed : %@",method];
+}
+
 #pragma mark - SELayer
 
 #pragma mark - Static
@@ -69,12 +127,12 @@ static NSMutableArray *layers;
 
 #pragma mark - Property
 
-- (void)set_anchorPoint_x:(CGFloat)x y:(CGFloat)y
+- (void)setAnchorPoint_x:(CGFloat)x y:(CGFloat)y
 {
 	self.layer.anchorPoint = CGPointMake(x, y);
 }
 
-- (void)set_positionType_type:(NSString *)type
+- (void)setPositionType_type:(NSString *)type
 {
     if ([type isEqualToString:@"px"]) {
         _positionType = SELayerPositionTypePX;

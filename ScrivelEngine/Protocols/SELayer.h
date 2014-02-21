@@ -58,7 +58,7 @@
  @param {Number} x
  @param {Number} y
  **/
-- (void)set_anchorPoint_x:(CGFloat)x y:(CGFloat)y;
+- (void)setAnchorPoint_x:(CGFloat)x y:(CGFloat)y;
 
 /**
  レイヤーの位置のタイプを指定する。
@@ -68,7 +68,7 @@
  @method setPositionType
  @param	{String} type "normalized" or "px"
  **/
-- (void)set_positionType_type:(NSString*)type;
+- (void)setPositionType_type:(NSString*)type;
 
 #pragma mark - Image
 

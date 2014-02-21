@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class SEMethod;
+@class ScrivelEngine, SEMethod;
 @protocol SEObject
 /**
  ScrivelEngineのベースオブジェクト
@@ -23,7 +23,7 @@
  @static
  @param {Object} options コンストラクタに渡す引数。サブクラスによって違う
 **/
-+ (instancetype)new_opts:(NSDictionary*)opts;
++ (instancetype)new_options:(NSDictionary*)options;
 
 /**
  クラスメソッドを呼び出す
@@ -34,7 +34,8 @@
     @param {String} name
     @param {Array}  [arguments]
  **/
-+ (id)callStatic_method:(SEMethod*)method;
+
++ (id)callStatic_method:(SEMethod*)method engine:(__weak ScrivelEngine*)engine;
 
 /**
  インスタンスメソッドを呼び出す
@@ -43,7 +44,7 @@
  @param {String} name
  @param {Array}  [arguments]
  **/
-- (id)callInstance_method:(SEMethod*)method;
+- (id)callInstance_method:(SEMethod*)method engine:(__weak ScrivelEngine*)engine;
 
 /**
  現在の処理を指定の秒数だけ止める
