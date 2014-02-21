@@ -8,6 +8,9 @@
 
 #import <XCTest/XCTest.h>
 #import "ScrivelEngine.h"
+#import "SEObject.h"
+#import "SELayer.h"
+#import "SEBasicClassProxy.h"
 
 @interface ScrivelEngineTests : XCTestCase
 {
@@ -119,6 +122,15 @@
     XCTAssert([[obj objectForKey:@"arrKey"] isKindOfClass:[NSArray class]],);
     XCTAssert([obj[@"arrKey"][3][@"nestedKey"] isEqualToString:@"nestedValue"],);
     XCTAssert([obj[@"arrKey"][3][@"nestedObj"][@"deep"] integerValue] == 1,);
+}
+
+- (void)testClassProxy
+{
+    Class<SEClassProxy> c = [engine classProxyClass];
+    XCTAssert(c == [SEBasicClassProxy class],);
+    SEL sel;
+    XCTAssertNoThrow(sel = [c selectorForMethodIdentifier:@"at"], );
+    XCTAssert(sel == @selector(at_index:),);
 }
 
 @end

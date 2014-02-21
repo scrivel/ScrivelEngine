@@ -7,12 +7,15 @@
 //
 
 #import "ScrivelEngine.h"
+#import <objc/message.h>
 #import "SEObject.h"
 #import "SEScript.h"
-#import "SEBasicLayer.h"
-#import "SEBasicTextLayer.h"
+#import "SEBasicClassProxy.h"
 
 @implementation ScrivelEngine
+{
+    Class _classProxyClass;
+}
 
 - (id)evaluateScript:(NSString *)script error:(NSError *__autoreleasing *)error
 {
@@ -33,7 +36,7 @@
                 // layer, bgなどのクラスへの参照の場合
                 // 対応するクラスをサブクラスから取得
                 NSString *classID = m.name;
-                Class<SEObject> class = [self classForClassIdentifier:classID];
+                Class<SEObject> class = [_classProxyClass classForClassIdentifier:classID];
                 // 最初は静的メソッド
                 id<SEObject> instance = [class callStatic_method:m engine:self];
                 if (instance) {
@@ -54,36 +57,21 @@
     return returnValue;
 }
 
-- (Class)classForClassIdentifier:(NSString *)classIdentifier
+- (void)registerClassForClassProxy:(Class)proxyClass
 {
-    /*
-     ScrivelEngineがデフォルトでサポートしているクラス
-     layer  =>  SELayer
-     bg     =>  SEBackgroundLayer
-     chara  =>  SECharacterLayer
-     tf     =>  SETextLayer
-     ui     =>  SEUserInterface
-     bgm    =>  SEBackGroundMusic
-     se     =>  SESoundEffect
-     */
-    if ([classIdentifier isEqualToString:@"layer"]) {
-        // レイヤー
-        return [SEBasicLayer class];
-    }else if ([classIdentifier isEqualToString:@"chara"]){
-        // キャラ
-    }else if ([classIdentifier isEqualToString:@"bg"]){
-        // 背景
-    }else if ([classIdentifier isEqualToString:@"text"]){
-        // テクストフレーム
-        return [SEBasicTextLayer class];
-    }else if ([classIdentifier isEqualToString:@"ui"]){
-        // UI
-    }else if ([classIdentifier isEqualToString:@"bgm"]){
-        // BGM
-    }else if ([classIdentifier isEqualToString:@"se"]){
-        // SE
+    if (!objc_msgSend(proxyClass, @selector(conformsToProtocol:), @protocol(SEClassProxy))) {
+        @throw @"このクラスはSEClassProxyプロトコルに準拠していません";
     }
-    return nil;
+    _classProxyClass = proxyClass;
+}
+
+- (Class)classProxyClass
+{
+    if (!_classProxyClass) {
+        // 登録されていなければデフォルトのクラスを返す
+        _classProxyClass = [SEBasicClassProxy class];
+    }
+    return _classProxyClass;
 }
 
 @end

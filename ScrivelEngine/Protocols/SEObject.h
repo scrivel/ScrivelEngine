@@ -39,7 +39,7 @@
 /**
  インスタンスメソッドを呼び出す
 
- @method call
+ @method callInstance
  @param {String} name
  @param {Array}  [arguments]
  **/

@@ -111,6 +111,11 @@
 		A6D04D4518B74D4D00977B7A /* NSArray+Where.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D04D4218B74D4D00977B7A /* NSArray+Where.h */; };
 		A6D04D4618B74D4D00977B7A /* NSArray+Where.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D04D4318B74D4D00977B7A /* NSArray+Where.m */; };
 		A6D04D4718B74D4D00977B7A /* NSArray+Where.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D04D4318B74D4D00977B7A /* NSArray+Where.m */; };
+		A6D04D4A18B7701C00977B7A /* SEBasicClassProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D04D4818B7701C00977B7A /* SEBasicClassProxy.h */; };
+		A6D04D4B18B7701C00977B7A /* SEBasicClassProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D04D4818B7701C00977B7A /* SEBasicClassProxy.h */; };
+		A6D04D4C18B7701C00977B7A /* SEBasicClassProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D04D4918B7701C00977B7A /* SEBasicClassProxy.m */; };
+		A6D04D4D18B7701C00977B7A /* SEBasicClassProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D04D4918B7701C00977B7A /* SEBasicClassProxy.m */; };
+		A6D04D4F18B7779300977B7A /* Rakefile in Resources */ = {isa = PBXBuildFile; fileRef = A6D04D4E18B7779300977B7A /* Rakefile */; };
 		A6D1760E18AE628200AB11AF /* SEScriptParser.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D1760C18AE628200AB11AF /* SEScriptParser.h */; };
 		A6D1760F18AE628200AB11AF /* SEScriptParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D1760D18AE628200AB11AF /* SEScriptParser.m */; };
 		A6D1761018AE628200AB11AF /* SEScriptParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D1760D18AE628200AB11AF /* SEScriptParser.m */; };
@@ -262,6 +267,9 @@
 		A6D04D3918B4F76D00977B7A /* ScrivelEngineTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrivelEngineTests.m; sourceTree = "<group>"; };
 		A6D04D4218B74D4D00977B7A /* NSArray+Where.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Where.h"; sourceTree = "<group>"; };
 		A6D04D4318B74D4D00977B7A /* NSArray+Where.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Where.m"; sourceTree = "<group>"; };
+		A6D04D4818B7701C00977B7A /* SEBasicClassProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEBasicClassProxy.h; sourceTree = "<group>"; };
+		A6D04D4918B7701C00977B7A /* SEBasicClassProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEBasicClassProxy.m; sourceTree = "<group>"; };
+		A6D04D4E18B7779300977B7A /* Rakefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Rakefile; sourceTree = "<group>"; };
 		A6D1760C18AE628200AB11AF /* SEScriptParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEScriptParser.h; sourceTree = "<group>"; };
 		A6D1760D18AE628200AB11AF /* SEScriptParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEScriptParser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -443,6 +451,8 @@
 		A63F888D18AFBA94007FBE57 /* Bridge */ = {
 			isa = PBXGroup;
 			children = (
+				A6D04D4818B7701C00977B7A /* SEBasicClassProxy.h */,
+				A6D04D4918B7701C00977B7A /* SEBasicClassProxy.m */,
 				A604523318B3A58B00B85928 /* SEBasicObject.h */,
 				A604523418B3A58B00B85928 /* SEBasicObject.m */,
 				A604523118B3A58B00B85928 /* SEBasicLayer.h */,
@@ -601,6 +611,7 @@
 		A6A6126818A7B0DA00CBD988 = {
 			isa = PBXGroup;
 			children = (
+				A6D04D4E18B7779300977B7A /* Rakefile */,
 				A6A168CA18B2496C0041BBBA /* docs */,
 				A62FE7C418AE3FAB00F12E3A /* Resources */,
 				A60ECBE818AC864F000F7A40 /* ScrivelEngine */,
@@ -694,6 +705,7 @@
 				A6A1692018B25A550041BBBA /* SEGlobalObject.h in Headers */,
 				A6A1691C18B25A4C0041BBBA /* SEMethod.h in Headers */,
 				A604524A18B3C78200B85928 /* SEBasicTextLayer.h in Headers */,
+				A6D04D4B18B7701C00977B7A /* SEBasicClassProxy.h in Headers */,
 				A604523018B3A35A00B85928 /* SEObject.h in Headers */,
 				A6A1691518B25A410041BBBA /* SEScript.h in Headers */,
 				A604522918B3A30B00B85928 /* SELayer.h in Headers */,
@@ -718,6 +730,7 @@
 				A6A1691118B25A390041BBBA /* SEScriptParser.h in Headers */,
 				A604523718B3A58B00B85928 /* SEBasicLayer.h in Headers */,
 				A604522F18B3A35A00B85928 /* SEObject.h in Headers */,
+				A6D04D4A18B7701C00977B7A /* SEBasicClassProxy.h in Headers */,
 				A604522818B3A30B00B85928 /* SELayer.h in Headers */,
 				A6A1691A18B25A470041BBBA /* SEMethodChain.h in Headers */,
 				A6A1691F18B25A550041BBBA /* SEGlobalObject.h in Headers */,
@@ -891,6 +904,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6D04D4F18B7779300977B7A /* Rakefile in Resources */,
 				A604521C18B399C900B85928 /* map.json in Resources */,
 				A63F885F18AF82D4007FBE57 /* sample.sescript in Resources */,
 			);
@@ -950,6 +964,7 @@
 				A609F66A18B48700000A0EFB /* Queue.m in Sources */,
 				A609F66418B47F58000A0EFB /* NSValue+ScrivelEngine.m in Sources */,
 				A63F889518AFBCC5007FBE57 /* SEMethodChain.m in Sources */,
+				A6D04D4C18B7701C00977B7A /* SEBasicClassProxy.m in Sources */,
 				A63F889918B0A9A4007FBE57 /* SEGlobalObject.m in Sources */,
 				A604524B18B3C78200B85928 /* SEBasicTextLayer.m in Sources */,
 				A6D04D4618B74D4D00977B7A /* NSArray+Where.m in Sources */,
@@ -980,6 +995,7 @@
 				A609F66B18B48700000A0EFB /* Queue.m in Sources */,
 				A609F66518B47F58000A0EFB /* NSValue+ScrivelEngine.m in Sources */,
 				A63F88B318B0F496007FBE57 /* ScrivelEngine.m in Sources */,
+				A6D04D4D18B7701C00977B7A /* SEBasicClassProxy.m in Sources */,
 				A604524C18B3C78200B85928 /* SEBasicTextLayer.m in Sources */,
 				A60ECC5118AC8C54000F7A40 /* SEScript.m in Sources */,
 				A6D04D4718B74D4D00977B7A /* NSArray+Where.m in Sources */,
