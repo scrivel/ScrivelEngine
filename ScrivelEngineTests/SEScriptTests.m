@@ -36,33 +36,6 @@
     [super tearDown];
 }
 
-//- (void)testParse
-//{
-//    NSString *js = @"bg.at(1).position(0,0).transition(\"bg2\", 1, \"cross disolve\");";
-//    NSError *e = nil;
-//    SEScript *s = [SEScript scriptWithString:js error:&e];
-//    XCTAssertNil(e, @"エラーはないはず");
-//    XCTAssert(s, );
-//    if (e) {
-//        NSLog(@"%@",e);
-//    }
-//}
-//
-//- (void)testToknizer
-//{
-//    NSString *s
-//    = @"hoge.\n\
-//    to.ho\n\
-//    ge()\n\
-//    複数行の\n\
-//    コメント";
-//    PKTokenizer *t = [PKTokenizer tokenizerWithString:s];
-//    PKToken *tok = nil;
-//    while ((tok = [t nextToken]) != [PKToken EOFToken]) {
-//        NSLog(@"%@, %@",tok.stringValue,tok.description);
-//    }
-//}
-
 - (void)testMethodChain
 {
     NSError *e = nil;
@@ -91,29 +64,5 @@
     }
     NSLog(@"%@",e);
 }
-
-//- (void)testGlobal
-//{
-//    NSError *e = nil;
-//    SEScript *s =nil;
-//    s = [SEScript scriptWithString:@"hoge()" error:&e];
-//    XCTAssertNil(e, @"トップレベル関数の呼び出し");
-//}
-//
-//- (void)testError
-//{
-//    NSError *e = nil;
-//    SEScript *s = nil;
-//
-//    s = [SEScript scriptWithString:@"" error:&e];
-//    XCTAssert(e, @"そもそも文字列がない" ); e = nil;
-//    s = [SEScript scriptWithString:@"bg.hoge(2,)" error:&e];
-//    XCTAssert(e, @"引数が足りない" ); e = nil;
-//    s = [SEScript scriptWithString:@"bg..hoge()" error:&e];
-//    XCTAssert(e, @".が二回続いている" ); e = nil;
-//    s = [SEScript scriptWithString:@"bg.hoge(1,2)_hoge()" error:&e];
-//    XCTAssert(e, @"メソッドチェーンが.でない" ); e = nil;
-//}
-
 
 @end
