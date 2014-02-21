@@ -32,3 +32,13 @@ task :doc do
     }
     system "cd docs && yuidoc . && cd ../"
 end
+
+task :map do
+    system "ruby ./scripts/methodmap.rb"
+end
+# 必要があればプロジェクトとワークスペースのパス
+# $PROJECT = "Hoge.xcodeproj"
+# $WORKSPACE = "Hoge.workspace"
+
+# デフォルトのビルドスキーム
+$PRIMARY_SCHEME = "ScrivelEngine"
