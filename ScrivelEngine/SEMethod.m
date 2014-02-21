@@ -50,6 +50,11 @@
     return [[self argAtIndex:index] doubleValue];
 }
 
+- (BOOL)boolArgAtIndex:(NSUInteger)index
+{
+    return [[self argAtIndex:index] boolValue];
+}
+
 - (NSString *)description
 {
     NSString *type = _type == SEMethodTypeProperty ? @"Accessor" : @"MethodCall";

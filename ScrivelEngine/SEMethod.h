@@ -32,6 +32,6 @@ typedef enum{
 - (id)argAtIndex:(NSUInteger)index;
 - (double)doubleArgAtIndex:(NSUInteger)index;
 - (NSInteger)integerArgAtIndex:(NSUInteger)index;
-
+- (BOOL)boolArgAtIndex:(NSUInteger)index;
 
 @end

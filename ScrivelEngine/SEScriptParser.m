@@ -64,27 +64,31 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self._tokenKindTab[@"."] = @(SESCRIPTPARSER_TOKEN_KIND_DOT);
         self._tokenKindTab[@":"] = @(SESCRIPTPARSER_TOKEN_KIND_COLON);
-        self._tokenKindTab[@"}"] = @(SESCRIPTPARSER_TOKEN_KIND_CLOSE_CURLY);
-        self._tokenKindTab[@"["] = @(SESCRIPTPARSER_TOKEN_KIND_OPEN_BRACKET);
+        self._tokenKindTab[@"false"] = @(SESCRIPTPARSER_TOKEN_KIND_FALSE);
+        self._tokenKindTab[@";"] = @(SESCRIPTPARSER_TOKEN_KIND_SEMI_COLON);
         self._tokenKindTab[@","] = @(SESCRIPTPARSER_TOKEN_KIND_COMMA);
-        self._tokenKindTab[@"("] = @(SESCRIPTPARSER_TOKEN_KIND_OPEN_PAREN);
+        self._tokenKindTab[@"["] = @(SESCRIPTPARSER_TOKEN_KIND_OPEN_BRACKET);
+        self._tokenKindTab[@"true"] = @(SESCRIPTPARSER_TOKEN_KIND_TRUE);
+        self._tokenKindTab[@"."] = @(SESCRIPTPARSER_TOKEN_KIND_DOT);
         self._tokenKindTab[@"{"] = @(SESCRIPTPARSER_TOKEN_KIND_OPEN_CURLY);
         self._tokenKindTab[@"]"] = @(SESCRIPTPARSER_TOKEN_KIND_CLOSE_BRACKET);
+        self._tokenKindTab[@"("] = @(SESCRIPTPARSER_TOKEN_KIND_OPEN_PAREN);
+        self._tokenKindTab[@"}"] = @(SESCRIPTPARSER_TOKEN_KIND_CLOSE_CURLY);
         self._tokenKindTab[@")"] = @(SESCRIPTPARSER_TOKEN_KIND_CLOSE_PAREN);
-        self._tokenKindTab[@";"] = @(SESCRIPTPARSER_TOKEN_KIND_SEMI_COLON);
 
-        self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_DOT] = @".";
         self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_COLON] = @":";
-        self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_CLOSE_CURLY] = @"}";
-        self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_OPEN_BRACKET] = @"[";
+        self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_FALSE] = @"false";
+        self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_SEMI_COLON] = @";";
         self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_COMMA] = @",";
-        self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_OPEN_PAREN] = @"(";
+        self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_OPEN_BRACKET] = @"[";
+        self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_TRUE] = @"true";
+        self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_DOT] = @".";
         self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_OPEN_CURLY] = @"{";
         self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_CLOSE_BRACKET] = @"]";
+        self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_OPEN_PAREN] = @"(";
+        self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_CLOSE_CURLY] = @"}";
         self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_CLOSE_PAREN] = @")";
-        self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_SEMI_COLON] = @";";
 
         self.script_memo = [NSMutableDictionary dictionary];
         self.element_memo = [NSMutableDictionary dictionary];
@@ -256,7 +260,7 @@
 
 - (void)__arguments {
     
-    if ([self predicts:SESCRIPTPARSER_TOKEN_KIND_OPEN_BRACKET, SESCRIPTPARSER_TOKEN_KIND_OPEN_CURLY, TOKEN_KIND_BUILTIN_NUMBER, TOKEN_KIND_BUILTIN_QUOTEDSTRING, 0]) {
+    if ([self predicts:SESCRIPTPARSER_TOKEN_KIND_FALSE, SESCRIPTPARSER_TOKEN_KIND_OPEN_BRACKET, SESCRIPTPARSER_TOKEN_KIND_OPEN_CURLY, SESCRIPTPARSER_TOKEN_KIND_TRUE, TOKEN_KIND_BUILTIN_NUMBER, TOKEN_KIND_BUILTIN_QUOTEDSTRING, 0]) {
         [self value]; 
         while ([self predicts:SESCRIPTPARSER_TOKEN_KIND_COMMA, 0]) {
             if ([self speculate:^{ [self match:SESCRIPTPARSER_TOKEN_KIND_COMMA discard:NO]; [self value]; }]) {
@@ -285,6 +289,10 @@
         [self array]; 
     } else if ([self predicts:SESCRIPTPARSER_TOKEN_KIND_OPEN_CURLY, 0]) {
         [self object]; 
+    } else if ([self predicts:SESCRIPTPARSER_TOKEN_KIND_TRUE, 0]) {
+        [self match:SESCRIPTPARSER_TOKEN_KIND_TRUE discard:NO]; 
+    } else if ([self predicts:SESCRIPTPARSER_TOKEN_KIND_FALSE, 0]) {
+        [self match:SESCRIPTPARSER_TOKEN_KIND_FALSE discard:NO]; 
     } else {
         [self raise:@"No viable alternative found in rule 'value'."];
     }

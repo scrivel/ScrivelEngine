@@ -192,6 +192,12 @@ static PKToken *openCurlyToken;
         // NSNumber
         NSNumber *num = tok.value;
         [self pushValue:num];
+    }else if (tok.tokenType == PKTokenTypeWord){
+        if (tok.tokenKind == SESCRIPTPARSER_TOKEN_KIND_FALSE) {
+            [self pushValue:@NO];
+        }else if (tok.tokenKind == SESCRIPTPARSER_TOKEN_KIND_TRUE){
+            [self pushValue:@YES];
+        }
     }
 }
 
