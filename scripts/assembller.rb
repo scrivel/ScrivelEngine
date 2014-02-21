@@ -4,6 +4,7 @@ parser = File.expand_path(dir+"/../ScrivelEngine/SEScriptParser.m")
 
 head = <<"HEAD"
 
+@class PKParser, PKAssembly;
 @protocol SEScriptParserDelegate <NSObject>
 
 HEAD
