@@ -33,15 +33,27 @@
     return self;
 }
 
+#pragma mark - Args
+
+- (id)argAtIndex:(NSUInteger)index
+{
+    return (index < self.arguments.count) ? self.arguments[index] : nil;
+}
+
+- (NSInteger)integerArgAtIndex:(NSUInteger)index
+{
+    return [[self argAtIndex:index] integerValue];
+}
+
+- (double)doubleArgAtIndex:(NSUInteger)index
+{
+    return [[self argAtIndex:index] doubleValue];
+}
+
 - (NSString *)description
 {
     NSString *type = _type == SEMethodTypeProperty ? @"Accessor" : @"MethodCall";
     return [NSString stringWithFormat:@"SEMethod \"%@\" type : \"%@\"",_name,type];
-}
-
-- (id)callWithTarget:(id)target
-{
-    return nil;
 }
 
 @end

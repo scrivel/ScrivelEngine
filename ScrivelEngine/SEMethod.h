@@ -29,7 +29,9 @@ typedef enum{
 // スクリプトの引数。typeがaccessorの場合はない
 @property (nonatomic) NSArray *arguments;
 
-// メソッドを呼び出し
-- (id)callWithTarget:(SEObject*)target;
+- (id)argAtIndex:(NSUInteger)index;
+- (double)doubleArgAtIndex:(NSUInteger)index;
+- (NSInteger)integerArgAtIndex:(NSUInteger)index;
+
 
 @end
