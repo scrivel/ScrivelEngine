@@ -55,7 +55,9 @@
     Stack *_methodStack;
     Stack *_argumentsStack;
     Stack *_objectStack;
+    NSUInteger *_objectStackLength;
     Stack *_arrayStack;
+    NSUInteger *_arrayStackLength;
     Stack *_valueStack;
     Stack *_keyValueStack;
     Stack *_keyStack;
@@ -172,7 +174,8 @@
         [self pushValue:s];
     }else if (tok.tokenType == PKTokenTypeNumber) {
         // NSNumber
-        [self pushValue:tok.value];
+        NSNumber *num = tok.value;
+        [self pushValue:num];
     }
 }
 
@@ -180,9 +183,17 @@
 {
     NSMutableArray *ma = [NSMutableArray new];
     id value = nil;
-    while ((value = [self popValue]) != nil) {
+    // 直前の'['より以前のものを取り出して現在のarrayの範囲を特定する
+    PKToken *arrayFence = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"[" floatValue:0];
+//    NSLog(@"%@",assembly.stack);
+    NSArray *a = [assembly objectsAbove:arrayFence]; //  -> ,+ ']'
+//    NSLog(@"%@",a);
+//    NSLog(@"%@",assembly.stack);
+    for (NSUInteger i = 0; i < a.count ; i++) {
+        value = [self popValue];
         [ma insertObject:value atIndex:0];
     }
+    [assembly pop];
     [self pushArray:[NSArray arrayWithArray:ma]];
 }
 

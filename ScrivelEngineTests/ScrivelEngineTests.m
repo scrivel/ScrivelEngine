@@ -80,7 +80,7 @@
 - (void)testArray2
 {
     NSError *e;
-    id obj = [engine evaluateScript:@"[1,2,3.1,[1,2,3]]" error:&e];
+    id obj = [engine evaluateScript:@"[1,2,3,[4,5,6]]" error:&e];
     XCTAssertNil(e, );
     XCTAssert([obj isKindOfClass:[NSArray class]],);
     XCTAssertFalse([obj isKindOfClass:[NSMutableArray class]], @"mutableではない");
