@@ -19,17 +19,17 @@
 
 #pragma mark - SEObject
 
-+ (instancetype)new_opts:(NSDictionary *)opts
++ (instancetype)new_options:(NSDictionary *)options
 {
-	return [[self alloc] initWithOpts:opts];
+	return [[self alloc] initWithOpts:options];
 }
 
-+ (id)callStatic_method:(SEMethod *)method
++ (id)callStatic_method:(SEMethod *)method engine:(ScrivelEngine *)engine
 {
     return nil;
 }
 
-- (id)callInstance_method:(SEMethod *)method
+- (id)callInstance_method:(SEMethod *)method engine:(ScrivelEngine *)engine
 {
 	return nil;
 }

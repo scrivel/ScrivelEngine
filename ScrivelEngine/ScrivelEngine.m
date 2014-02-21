@@ -32,12 +32,12 @@
             NSString *classID = m.name;
             Class<SEObject> class = [self classForClassIdentifier:classID];
             // 最初は静的メソッド
-            id<SEObject> instance = [class callStatic_method:m];
+            id<SEObject> instance = [class callStatic_method:m engine:self];
             if (instance) {
                 // チェーンを実行
                 for (int i = 1; i < chain.methods.count; i++) {
                     m = [chain.methods objectAtIndex:i];
-                    [instance callInstance_method:m];
+                    [instance callInstance_method:m engine:self];
                 }
             }
             
