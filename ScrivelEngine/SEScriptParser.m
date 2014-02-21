@@ -72,6 +72,7 @@
         self._tokenKindTab[@"true"] = @(SESCRIPTPARSER_TOKEN_KIND_TRUE);
         self._tokenKindTab[@"."] = @(SESCRIPTPARSER_TOKEN_KIND_DOT);
         self._tokenKindTab[@"{"] = @(SESCRIPTPARSER_TOKEN_KIND_OPEN_CURLY);
+        self._tokenKindTab[@"null"] = @(SESCRIPTPARSER_TOKEN_KIND_NULL);
         self._tokenKindTab[@"]"] = @(SESCRIPTPARSER_TOKEN_KIND_CLOSE_BRACKET);
         self._tokenKindTab[@"("] = @(SESCRIPTPARSER_TOKEN_KIND_OPEN_PAREN);
         self._tokenKindTab[@"}"] = @(SESCRIPTPARSER_TOKEN_KIND_CLOSE_CURLY);
@@ -85,6 +86,7 @@
         self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_TRUE] = @"true";
         self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_DOT] = @".";
         self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_OPEN_CURLY] = @"{";
+        self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_NULL] = @"null";
         self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_CLOSE_BRACKET] = @"]";
         self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_OPEN_PAREN] = @"(";
         self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_CLOSE_CURLY] = @"}";
@@ -260,7 +262,7 @@
 
 - (void)__arguments {
     
-    if ([self predicts:SESCRIPTPARSER_TOKEN_KIND_FALSE, SESCRIPTPARSER_TOKEN_KIND_OPEN_BRACKET, SESCRIPTPARSER_TOKEN_KIND_OPEN_CURLY, SESCRIPTPARSER_TOKEN_KIND_TRUE, TOKEN_KIND_BUILTIN_NUMBER, TOKEN_KIND_BUILTIN_QUOTEDSTRING, 0]) {
+    if ([self predicts:SESCRIPTPARSER_TOKEN_KIND_FALSE, SESCRIPTPARSER_TOKEN_KIND_NULL, SESCRIPTPARSER_TOKEN_KIND_OPEN_BRACKET, SESCRIPTPARSER_TOKEN_KIND_OPEN_CURLY, SESCRIPTPARSER_TOKEN_KIND_TRUE, TOKEN_KIND_BUILTIN_NUMBER, TOKEN_KIND_BUILTIN_QUOTEDSTRING, 0]) {
         [self value]; 
         while ([self predicts:SESCRIPTPARSER_TOKEN_KIND_COMMA, 0]) {
             if ([self speculate:^{ [self match:SESCRIPTPARSER_TOKEN_KIND_COMMA discard:NO]; [self value]; }]) {
@@ -293,6 +295,8 @@
         [self match:SESCRIPTPARSER_TOKEN_KIND_TRUE discard:NO]; 
     } else if ([self predicts:SESCRIPTPARSER_TOKEN_KIND_FALSE, 0]) {
         [self match:SESCRIPTPARSER_TOKEN_KIND_FALSE discard:NO]; 
+    } else if ([self predicts:SESCRIPTPARSER_TOKEN_KIND_NULL, 0]) {
+        [self match:SESCRIPTPARSER_TOKEN_KIND_NULL discard:NO]; 
     } else {
         [self raise:@"No viable alternative found in rule 'value'."];
     }

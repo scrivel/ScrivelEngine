@@ -197,6 +197,8 @@ static PKToken *openCurlyToken;
             [self pushValue:@NO];
         }else if (tok.tokenKind == SESCRIPTPARSER_TOKEN_KIND_TRUE){
             [self pushValue:@YES];
+        }else if (tok.tokenKind == SESCRIPTPARSER_TOKEN_KIND_NULL){
+            [self pushValue:[NSNull null]];
         }
     }
 }

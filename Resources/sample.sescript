@@ -17,8 +17,9 @@ wait(100)
 layer.at([1,2,3]).move(100,100,1000).method({"key" : "value"})
 // グローバルメソッドはチェーンの中に挿入できる
 layer.at(1).fadeOut().move(-100,-100).wait(200).move(0,0,200)
-// 引数にはNumber, String, Boolean, Array, Objectが送れる
-ui.method(1,0.1,"string", true, false, [1,1,1], { key : "value"})
+// 引数にはNumber, String, Boolean, Array, Object, nullが送れる
+// nullはrequiredな引数に対して現在の値を保持することを意味する
+ui.method(1,0.1,"string", true, false, [1,1,1], { key : "value"}, null)
 
 // 複数行のメソッドチェーン
 layer.at(2)
