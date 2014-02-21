@@ -1,5 +1,6 @@
-#import <ParseKit/ParseKit.h>
+#import <ParseKit/PKSParser.h>
 
+@class PKParser, PKAssembly;
 enum {
     SESCRIPTPARSER_TOKEN_KIND_DOT = 14,
     SESCRIPTPARSER_TOKEN_KIND_COLON,
@@ -16,7 +17,6 @@ enum {
 @interface SEScriptParser : PKSParser
 
 @end
-
 
 @protocol SEScriptParserDelegate <NSObject>
 

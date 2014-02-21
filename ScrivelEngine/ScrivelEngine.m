@@ -14,36 +14,44 @@
 
 @implementation ScrivelEngine
 
-- (BOOL)evaluateScript:(NSString *)script error:(NSError *__autoreleasing *)error
+- (id)evaluateScript:(NSString *)script error:(NSError *__autoreleasing *)error
 {
     SEScript *s = [SEScript scriptWithString:script error:error];
+    id returnValue = nil;
     if (*error) {
         return NO;
     }
-    for (SEMethodChain *chain in s.elements) {
-        //　メソッドチェーンを実行
-        SEMethod *m = [chain.methods objectAtIndex:0];
-        if (m.type == SEMethodTypeCall) {
-            // hoge(), wait()などのグローバルメソッドコールはこのクラスで処理
-            
-        }else if (m.type == SEMethodTypeProperty){
-            // layer, bgなどのクラスへの参照の場合
-            // 対応するクラスをサブクラスから取得
-            NSString *classID = m.name;
-            Class<SEObject> class = [self classForClassIdentifier:classID];
-            // 最初は静的メソッド
-            id<SEObject> instance = [class callStatic_method:m engine:self];
-            if (instance) {
-                // チェーンを実行
-                for (int i = 1; i < chain.methods.count; i++) {
-                    m = [chain.methods objectAtIndex:i];
-                    [instance callInstance_method:m engine:self];
+    for (id element in s.elements) {
+        if ([element isKindOfClass:[SEMethodChain class]]) {
+            //　メソッドチェーンを実行
+            SEMethodChain *chain = (SEMethodChain*)element;
+            SEMethod *m = [chain.methods objectAtIndex:0];
+            if (m.type == SEMethodTypeCall) {
+                // hoge(), wait()などのグローバルメソッドコールはこのクラスで処理
+                
+            }else if (m.type == SEMethodTypeProperty){
+                // layer, bgなどのクラスへの参照の場合
+                // 対応するクラスをサブクラスから取得
+                NSString *classID = m.name;
+                Class<SEObject> class = [self classForClassIdentifier:classID];
+                // 最初は静的メソッド
+                id<SEObject> instance = [class callStatic_method:m engine:self];
+                if (instance) {
+                    // チェーンを実行
+                    returnValue = instance;
+                    for (int i = 1; i < chain.methods.count; i++) {
+                        m = [chain.methods objectAtIndex:i];
+                        returnValue = [instance callInstance_method:m engine:self];
+                    }
                 }
+                
             }
-            
+        }else{
+            // value
+            return element;
         }
     }
-    return YES;
+    return returnValue;
 }
 
 - (Class)classForClassIdentifier:(NSString *)classIdentifier

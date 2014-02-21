@@ -10,7 +10,9 @@
 #import "ScrivelEngine.h"
 
 @interface ScrivelEngineTests : XCTestCase
-
+{
+    ScrivelEngine *engine;
+}
 @end
 
 @implementation ScrivelEngineTests
@@ -19,6 +21,7 @@
 {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
+    engine = [ScrivelEngine new];
 }
 
 - (void)tearDown
@@ -29,12 +32,75 @@
 
 - (void)testScript
 {
-    ScrivelEngine *engine = [ScrivelEngine new];
     XCTAssert(engine, );
-    BOOL b;
+    id ret;
     NSError *e = nil;
-    XCTAssertNoThrow(b = [engine evaluateScript:@"layer.at(1).position(100,100)" error:&e], );
-    XCTAssert(b, );
+    XCTAssertNoThrow(ret = [engine evaluateScript:@"layer.at(1).position(100,100)" error:&e], );
+//    XCTAssert(ret, );
+}
+
+- (void)testString
+{
+    NSError *e;
+    id obj = [engine evaluateScript:@"\"string\"" error:&e];
+    XCTAssert([obj isKindOfClass:[NSString class]], @"文字列が帰ってきている");
+    XCTAssert([obj isEqualToString:@"string"], @"string");
+}
+
+- (void)testNumber
+{
+    NSError *e;
+    id obj = [engine evaluateScript:@"24" error:&e];
+    XCTAssertNil(e, );
+    XCTAssert([obj isKindOfClass:[NSNumber class]], @"NSNumber");
+    XCTAssert([obj integerValue] == 24, @"24");
+    obj = [engine evaluateScript:@"24.14" error:&e];
+    XCTAssertNil(e, );
+    XCTAssert([obj isKindOfClass:[NSNumber class]],);
+    XCTAssert([obj doubleValue] > 24,);
+    obj = [engine evaluateScript:@"-23.3" error:&e];
+    XCTAssert([obj isKindOfClass:[NSNumber class]],);
+    XCTAssert([obj doubleValue] < -23.0,);
+}
+
+- (void)testArray
+{
+    NSError *e;
+    id obj = [engine evaluateScript:@"[1,2,3.1,-0.9]" error:&e];
+    XCTAssertNil(e, );
+    XCTAssert([obj isKindOfClass:[NSArray class]],);
+    XCTAssertFalse([obj isKindOfClass:[NSMutableArray class]], @"mutableではない");
+    XCTAssert([obj count] == 4,);
+    XCTAssert([[obj firstObject] integerValue] == 1,);
+    XCTAssert([[obj lastObject] doubleValue] == (double)-0.9,);
+    for (id num in obj) {
+        XCTAssert([num isKindOfClass:[NSNumber class]],);
+    }
+}
+- (void)testArray2
+{
+    NSError *e;
+    id obj = [engine evaluateScript:@"[1,2,3.1,[1,2,3]]" error:&e];
+    XCTAssertNil(e, );
+    XCTAssert([obj isKindOfClass:[NSArray class]],);
+    XCTAssertFalse([obj isKindOfClass:[NSMutableArray class]], @"mutableではない");
+    XCTAssert([obj count] == 4,);
+    XCTAssert([[obj lastObject] isKindOfClass:[NSArray class]], );
+}
+
+- (void)testObject
+{
+    NSError *e;
+    NSDictionary *obj = [engine evaluateScript:@"{key : \"value\", numKey : 1, numKey2 : 2.0, arrKey : [\"hoge\", 1, -12, { nestedKey : \"nestedValue\" }]}" error:&e];
+    if (e) {
+        NSLog(@"%@",e);
+    }
+    XCTAssert([obj isKindOfClass:[NSDictionary class]],);
+    XCTAssert([[obj allKeys] count] == 4, );
+    XCTAssert([[obj objectForKey:@"key"] isEqualToString:@"value"],);
+    XCTAssert([[obj objectForKey:@"numKey"] integerValue] == 1,);
+    XCTAssert([[obj objectForKey:@"numKey2"] doubleValue] == (double)2.0, );
+    XCTAssert([[obj objectForKey:@"arrKey"] isKindOfClass:[NSArray class]],);
 }
 
 @end

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SEScriptParser.h"
 
-@protocol SEScriptClassFactory;
+@protocol SEScriptParserDelegate;
 @class SEScript;
 
 @interface SEScriptAssembler : NSObject

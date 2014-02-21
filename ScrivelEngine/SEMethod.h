@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 scrivel. All rights reserved.
 //
 
-#import "SEElement.h"
+#import <Foundation/Foundation.h>
 
 @class SEObject;
 

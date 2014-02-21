@@ -6,12 +6,15 @@
 //  Copyright (c) 2014年 scrivel. All rights reserved.
 //
 
-#import "SEElement.h"
 #import "Queue.h"
 
 @class SEMethod;
 
-@interface SEMethodChain : SEElement
+@interface SEMethodChain : NSObject <NSFastEnumeration>
+
+@property (nonatomic, readonly) NSUInteger lineNumber;
+
+- (instancetype)initWithLineNumber:(NSUInteger)lineNumber;
 
 // メソッドチェーンを構成するメソッドら
 @property (nonatomic, readonly) NSMutableArray *methods;

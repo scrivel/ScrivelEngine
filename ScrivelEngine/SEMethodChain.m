@@ -16,9 +16,14 @@
 
 - (instancetype)initWithLineNumber:(NSUInteger)lineNumber
 {
-    self = [super initWithLineNumber:lineNumber];
+    self = [self init];
     _methods = [NSMutableArray new];
     return self ?: nil;
+}
+
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(__unsafe_unretained id [])buffer count:(NSUInteger)len
+{
+    return [_methods countByEnumeratingWithState:state objects:buffer count:len];
 }
 
 @end

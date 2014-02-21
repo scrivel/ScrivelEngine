@@ -7,7 +7,7 @@
 @allowsFloatingPoint = YES;
 
 script      =   element+;
-element		=	Comment | words | methodChain;
+element		=	Comment | words | methodChain | value;
 
 words       =   name? '[' text ']';
 name        =   Word | QuotedString;

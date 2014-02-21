@@ -149,6 +149,8 @@
         [self words]; 
     } else if ([self speculate:^{ [self methodChain]; }]) {
         [self methodChain]; 
+    } else if ([self speculate:^{ [self value]; }]) {
+        [self value]; 
     } else {
         [self raise:@"No viable alternative found in rule 'element'."];
     }

@@ -41,8 +41,8 @@
 - (NSString*)popName;
 - (NSString*)popText;
 
-- (void)pushElement:(SEElement*)element;
-- (SEElement*)popElement;
+- (void)pushElement:(id)element;
+- (id)popElement;
 
 @end
 
@@ -75,6 +75,7 @@
     _methodStack = [Stack new];
     _argumentsStack = [Stack new];
     _objectStack = [Stack new];
+    _arrayStack = [Stack new];
     _argumentsStack = [Stack new];
     _valueStack = [Stack new];
     _keyValueStack = [Stack new];
@@ -95,21 +96,28 @@
 
 
 - (void)parser:(PKParser *)parser didMatchScript:(PKAssembly *)assembly{
-    SEElement *element = nil;
+    id element = nil;
     while ((element = [self popElement]) != nil) {
         [_script.elements insertObject:element atIndex:0];
     }
 }
 
 - (void)parser:(PKParser *)parser didMatchElement:(PKAssembly *)assembly{
-    // メソッドチェーンかセリフをpush
+    // メソッドチェーンがあればpush
     id pop = [self popMethodChain];
-    [self pushElement:pop];
+    if (pop) {
+        [self pushElement:pop];
+    }
+    // json形式のvalueならpush
+    id val = [self popValue];
+    if (val) {
+        [self pushElement:val];
+    }
 }
 
 - (void)parser:(PKParser *)parser didMatchMethodChain:(PKAssembly *)assembly
 {
-    SEMethodChain *chain = [[SEMethodChain alloc] initWithLineNumber:parser.tokenizer.lineNumber];
+    SEMethodChain *chain = [[SEMethodChain alloc] initWithLineNumber:parser.tokenizer.lineNumber];    
     SEMethod *m = nil;
     while ((m = [self popMethod]) != nil) {
         [chain.methods insertObject:m atIndex:0];
@@ -150,14 +158,20 @@
     id obj = [self popObject];
     if (obj) {
         [self pushValue:(NSDictionary*)obj];
+        return;
     }
     obj = [self popArray];
     if (obj) {
         [self pushValue:(NSArray*)obj];
+        return;
     }
     PKToken *tok = [assembly pop];
-    if (tok.tokenType == PKTokenTypeQuotedString
-        || tok.tokenType == PKTokenTypeNumber) {
+    if (tok.tokenType == PKTokenTypeQuotedString){
+        // quoteを外す
+        NSString *s = [tok.stringValue substringWithRange:NSMakeRange(1, tok.stringValue.length-2)];
+        [self pushValue:s];
+    }else if (tok.tokenType == PKTokenTypeNumber) {
+        // NSNumber
         [self pushValue:tok.value];
     }
 }
@@ -167,7 +181,7 @@
     NSMutableArray *ma = [NSMutableArray new];
     id value = nil;
     while ((value = [self popValue]) != nil) {
-        [ma addObject:value];
+        [ma insertObject:value atIndex:0];
     }
     [self pushArray:[NSArray arrayWithArray:ma]];
 }
@@ -333,11 +347,11 @@
     return [_textStack pop];
 }
 
-- (void)pushElement:(SEElement*)element
+- (void)pushElement:(id)element
 {
     [_elementStack push:element];
 }
-- (SEElement*)popElement
+- (id)popElement
 {
     return [_elementStack pop];
 }

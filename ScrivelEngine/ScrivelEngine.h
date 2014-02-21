@@ -15,7 +15,7 @@
 - (Class)classForClassIdentifier:(NSString*)classIdentifier;
 
 // SEScriptを実行
-- (BOOL)evaluateScript:(NSString*)script error:(NSError**)error;
+- (id)evaluateScript:(NSString*)script error:(NSError**)error;
 
 @end
 
