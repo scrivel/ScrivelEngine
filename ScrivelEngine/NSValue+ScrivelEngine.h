@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ScrivelEngine.h"
 
 @interface NSValue (ScrivelEngine)
 

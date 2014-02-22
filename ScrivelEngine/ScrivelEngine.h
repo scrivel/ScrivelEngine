@@ -12,6 +12,18 @@
 @class SEMethod;
 @protocol SEClassProxy;
 
+#if TARGET_OS_IPHONE
+#define SEView UIView
+typedef CGPoint SEPoint;
+typedef CGRect SERect;
+typedef CGSize SESize;
+#elif TARGET_OS_MAC
+#define SEView NSView
+typedef NSPoint SEPoint;
+typedef NSRect SERect;
+typedef NSSize SESize;
+#endif
+
 @interface ScrivelEngine : NSObject
 
 // レイヤーを管理するrootのview
