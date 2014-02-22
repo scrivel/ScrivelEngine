@@ -18,8 +18,17 @@
 #define VALID_DOUBLE(d) (d != SENilDouble)
 #define ROUND_DOUBLE(d) VALID_DOUBLE(d) ? d : 0.0
 #define VALID_INT(i) (i != SENilInteger)
-#define NORMALIZED(d) (0.0 <= d && d <= 1.0)
 
+static inline CGFloat NORMALIZED(CGFloat f)
+{
+    CGFloat _f = ROUND_DOUBLE(f);
+    if (_f < 0) {
+        return 0.0;
+    }else if (_f > 1){
+        return 1.0;
+    }
+    return _f;
+}
 static NSMutableDictionary *layers;
 
 @interface SEBasicLayer()
@@ -59,6 +68,7 @@ static NSMutableDictionary *layers;
     _index = [options[@"index"] unsignedIntValue];
     // 実体はレイヤー
     _layer = [CALayer layer];
+//    _animationGroup = [NSMutableDictionary new];
     return self ?: nil;
 }
 
@@ -141,11 +151,10 @@ static NSMutableDictionary *layers;
         [self hide_duration:[method doubleArgAtIndex:0]];
     }else if (sel == @selector(toggle_duration:)) {
         [self toggle_duration:[method doubleArgAtIndex:0]];
-    }else if (sel == @selector(translate_x:y:z:duration:)) {
-        [self translate_x:[method doubleArgAtIndex:0]
-                        y:[method doubleArgAtIndex:1]
-                        z:[method doubleArgAtIndex:2]
-                 duration:[method doubleArgAtIndex:3]];
+    }else if (sel == @selector(translate_x:y:duration:)){
+        [self translate_x:[method doubleArgAtIndex:0] y:[method doubleArgAtIndex:1] duration:[method doubleArgAtIndex:2]];
+    }else if (sel == @selector(translateZ_z:duration:)){
+        [self translateZ_z:[method doubleArgAtIndex:0] duration:[method doubleArgAtIndex:0]];
     }else if (sel == @selector(scale_ratio:duration:)) {
         [self scale_ratio:[method doubleArgAtIndex:0]
                  duration:[method doubleArgAtIndex:1]];
@@ -237,8 +246,7 @@ static NSMutableDictionary *layers;
 
 - (void)shadowOpcity_opacity:(CGFloat)opacity
 {
-    if (VALID_DOUBLE(opacity) && NORMALIZED(opacity))
-        self.layer.shadowOpacity = opacity;
+    self.layer.shadowOpacity = NORMALIZED(opacity);
 }
 
 - (void)shadowRadius_radius:(CGFloat)radius
@@ -275,7 +283,7 @@ static NSMutableDictionary *layers;
     animation.removedOnCompletion = NO;
     animation.repeatCount = 1;
     animation.fillMode = kCAFillModeForwards;
-    animation.fromValue = val;
+    animation.fromValue = val;    
     animation.toValue = toValue;
     
     if (_animationBegan) {
@@ -305,34 +313,47 @@ static NSMutableDictionary *layers;
     // UIView.layerだとこれを挟まないと正常に動作しないことがある
     [UIView beginAnimations:animationKey context:nil];
 #endif
-    [CATransaction begin];    
+    if ([animation isKindOfClass:[CAAnimationGroup class]]) {
+        for (CABasicAnimation *a in [(CAAnimationGroup*)animation animations]) {
+            NSLog(@"%@ : %@",a.keyPath, [self.layer valueForKeyPath:a.keyPath]);
+            [self.layer setValue:a.toValue forKeyPath:a.keyPath];
+            NSLog(@"%@ : %@",a.keyPath, [self.layer valueForKeyPath:a.keyPath]);
+        }
+    }else if ([animation isKindOfClass:[CABasicAnimation class]]){
+        id val = [(CABasicAnimation*)animation toValue];
+        id key = [(CABasicAnimation*)animation keyPath];
+        [self.layer setValue:val forKeyPath:key];
+    }
+    [CATransaction begin];
     // アニメーションを逐次実行するためにRunLoopでブロックする
-//    CFRunLoopRef rl = CFRunLoopGetCurrent();
-//    CFDateRef distantFuture = (__bridge CFDateRef)[NSDate distantFuture];
-//    CFRunLoopTimerRef timer = CFRunLoopTimerCreate(NULL, CFDateGetAbsoluteTime(distantFuture), 0, 0, 0, NULL, NULL);
-//    CFRunLoopAddTimer(rl, timer, kCFRunLoopDefaultMode);
+    CFRunLoopRef rl = CFRunLoopGetCurrent();
+    CFDateRef distantFuture = (__bridge CFDateRef)[NSDate distantFuture];
+    CFRunLoopTimerRef timer = CFRunLoopTimerCreate(NULL, CFDateGetAbsoluteTime(distantFuture), 0, 0, 0, NULL, NULL);
+    CFRunLoopAddTimer(rl, timer, kCFRunLoopDefaultMode);
     [CATransaction setCompletionBlock:^{
-        // 後片付け
-//        CFRunLoopStop(rl);
-//        CFRunLoopTimerInvalidate(timer);
-//        CFRelease(timer);
+        // アニメーションの終了後にプロパティの値を書き換える
+        CFRunLoopStop(rl);
+        CFRunLoopTimerInvalidate(timer);
+        CFRelease(timer);
     }];
     [self.layer addAnimation:animation forKey:animationKey];
     [CATransaction commit];
 #if TARGET_OS_IPHONE
     [UIView commitAnimations];
 #endif
-//    CFRunLoopRun();
+    CFRunLoopRun();
 }
 
 
 - (void)beginAnimation_duration:(NSTimeInterval)duration
 {
     _animationBegan = YES;
-    NSAssert(duration > 0, @"durationが0以下");
+////    NSAssert(duration > 0, @"durationが0以下");
     CAAnimationGroup *g = [CAAnimationGroup animation];
     g.duration = duration;
     g.repeatCount = 1;
+    g.removedOnCompletion = NO;
+    g.fillMode = kCAFillModeForwards;
     _animationGroup = g;
 }
 
@@ -386,14 +407,24 @@ static NSMutableDictionary *layers;
 	[self enqueuAnimationForKeyPath:@"hidden" toValue:@(!hidden) duration:duration];
 }
 
-- (void)translate_x:(CGFloat)x y:(CGFloat)y z:(CGFloat)z duration:(NSTimeInterval)duration
+- (void)translate_x:(CGFloat)x y:(CGFloat)y duration:(NSTimeInterval)duration
 {
-    NSParameterAssert(VALID_DOUBLE(x) || VALID_DOUBLE(y) || VALID_DOUBLE(z));
     CGFloat _x = VALID_DOUBLE(x) ? x : 0;
     CGFloat _y = VALID_DOUBLE(y) ? y : 0;
+    _x += self.layer.position.x;
+    _y += self.layer.position.y;
+    SESize s = CGSizeZero;
+    s.width = _x;
+    s.height= _y;
+    NSValue *v = [NSValue se_ValueWithSize:s];
+    [self enqueuAnimationForKeyPath:@"transform.translation" toValue:v duration:duration];
+}
+
+- (void)translateZ_z:(CGFloat)z duration:(NSTimeInterval)duration
+{
     CGFloat _z = VALID_DOUBLE(z) ? z : 0;
-    CATransform3D trans = CATransform3DMakeTranslation(_x, _y, _z);
-	[self enqueuAnimationForKeyPath:@"transform.translation" toValue:[NSValue valueWithCATransform3D:trans] duration:duration];
+    _z += self.layer.zPosition;
+    [self enqueuAnimationForKeyPath:@"transform.translation.z" toValue:@(_z) duration:duration];
 }
 
 - (void)scale_ratio:(CGFloat)ratio duration:(NSTimeInterval)duration
@@ -405,13 +436,13 @@ static NSMutableDictionary *layers;
 - (void)rotate_degree:(CGFloat)degree duration:(NSTimeInterval)duration
 {
     NSParameterAssert(VALID_DOUBLE(degree));
-    [self enqueuAnimationForKeyPath:@"transform.rotation.z" toValue:@(degree*180.0f/M_PI) duration:duration];
+    [self enqueuAnimationForKeyPath:@"transform.rotation.z" toValue:@(degree*(M_PI/180.0)) duration:duration];
 }
 
 - (void)opacity_ratio:(CGFloat)ratio duration:(NSTimeInterval)duration
 {
     NSParameterAssert(VALID_DOUBLE(ratio));
-    [self enqueuAnimationForKeyPath:@"opacity" toValue:@(ratio) duration:duration];
+    [self enqueuAnimationForKeyPath:@"opacity" toValue:@(NORMALIZED(ratio)) duration:duration];
 }
 
 
