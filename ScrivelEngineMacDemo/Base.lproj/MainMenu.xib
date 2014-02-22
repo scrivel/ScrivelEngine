@@ -651,7 +651,7 @@
                 <outlet property="editorView" destination="O24-63-xQ2" id="KXt-WU-Iah"/>
                 <outlet property="fontManager" destination="420" id="L2K-R6-aP4"/>
                 <outlet property="panel" destination="Mdr-jw-988" id="veE-aZ-vFN"/>
-                <outlet property="panelView" destination="sE2-RN-yHa" id="NhO-DR-hcE"/>
+                <outlet property="panelView" destination="Fro-XJ-NSf" id="gbT-eI-VLS"/>
                 <outlet property="toolbar" destination="II4-yS-Hm3" id="bgo-Yn-DQz"/>
                 <outlet property="window" destination="ze1-IH-x8Z" id="GHS-B7-tca"/>
             </connections>
@@ -700,6 +700,18 @@
             <view key="contentView" id="sE2-RN-yHa">
                 <rect key="frame" x="0.0" y="0.0" width="276" height="378"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Fro-XJ-NSf">
+                        <rect key="frame" x="0.0" y="0.0" width="276" height="378"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </customView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Fro-XJ-NSf" firstAttribute="top" secondItem="sE2-RN-yHa" secondAttribute="top" id="QPt-yV-oum"/>
+                    <constraint firstAttribute="bottom" secondItem="Fro-XJ-NSf" secondAttribute="bottom" id="dpw-GD-4d1"/>
+                    <constraint firstItem="Fro-XJ-NSf" firstAttribute="leading" secondItem="sE2-RN-yHa" secondAttribute="leading" id="uTC-ou-EAC"/>
+                    <constraint firstAttribute="trailing" secondItem="Fro-XJ-NSf" secondAttribute="trailing" id="xQa-T7-ySI"/>
+                </constraints>
             </view>
         </window>
     </objects>

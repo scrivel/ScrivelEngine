@@ -50,7 +50,9 @@
     [self.toolbar insertItemWithItemIdentifier:_runItem.itemIdentifier atIndex:0];
     // engine
     _engine = [ScrivelEngine new];
+    self.panelView.wantsLayer = YES;
     _engine.rootView = self.panelView;
+    
 }
 
 - (void)run:(id)sender
