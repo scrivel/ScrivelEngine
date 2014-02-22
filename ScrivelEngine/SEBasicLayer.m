@@ -9,17 +9,29 @@
 
 #import "SEBasicLayer.h"
 #import "NSValue+ScrivelEngine.h"
+#import "ScrivelEngine.h"
+#import "SEMethod.h"
+#import "AVHexColor.h"
 
 #define kMaxLayer 1000
 #define kGroupedAnimationKey @"GroupedAnimation"
+#define VALID_DOUBLE(d) (d != SENilDouble)
+#define VALID_INT(i) (i != SENilInteger)
+#define NORMALIZED(d) (0.0 <= d && d <= 1.0)
 
-static NSMutableArray *layers;
+static NSMutableDictionary *layers;
 
-@implementation SEBasicLayer
+@interface SEBasicLayer()
 {
     BOOL _animationBegan;
     CAAnimationGroup *_animationGroup;
 }
+
+@property (nonatomic, weak) ScrivelEngine *engine;
+
+@end
+
+@implementation SEBasicLayer
 
 + (void)load
 {
@@ -27,11 +39,13 @@ static NSMutableArray *layers;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         // レイヤーを初期化
-        layers = [NSMutableArray arrayWithCapacity:kMaxLayer];
-        for (NSUInteger i = 0; i < kMaxLayer; i++) {
-            layers[i] = [NSNull null];
-        }
+        layers = [NSMutableDictionary dictionaryWithCapacity:kMaxLayer];
     });
+}
+
++ (NSDictionary *)layers
+{
+    return layers;
 }
 
 #pragma mark - Private
@@ -41,15 +55,99 @@ static NSMutableArray *layers;
 {
     self = [super initWithOpts:options];
     NSParameterAssert(options[@"index"]);
-    _index = [options[@"index"] unsignedIntegerValue];
-    // レイヤーに追加∫
-    [layers replaceObjectAtIndex:_index withObject:self];
+    _index = [options[@"index"] unsignedIntValue];
+    // 実体はレイヤー
+    _layer = [CALayer layer];
     return self ?: nil;
 }
 
-- (CALayer *)layer
+#pragma mark - SEObject
+
++ (id)callStatic_method:(SEMethod *)method engine:(ScrivelEngine *)engine
 {
-    @throw @"NEEDS OVERRIDE";
+    Class<SEClassProxy> proxy = [engine classProxyClass];
+    SEL sel = [proxy selectorForMethodIdentifier:method.name];
+    if (sel == @selector(new_options:)) {
+        SEBasicLayer *new = [self new_options:[method argAtIndex:0]];
+        CALayer *current = [layers objectForKey:@(new.index)];
+        if (current) {
+            [engine.rootView.layer replaceSublayer:current with:new.layer];
+        }else{
+            [engine.rootView.layer insertSublayer:new.layer atIndex:new.index];
+        }
+        return new;
+    }else if (sel == @selector(at_index:)){
+        return [self at_index:(unsigned int)[method integerArgAtIndex:0]];
+    }
+    @throw [NSString stringWithFormat:@"存在しないメソッド : %@",method];
+    return nil;
+}
+
+- (id)callInstance_method:(SEMethod *)method engine:(ScrivelEngine *)engine
+{
+    self.engine = engine;
+    Class<SEClassProxy> proxy = [engine classProxyClass];
+    SEL sel = [proxy selectorForMethodIdentifier:method.name];
+    if (!sel || ![self respondsToSelector:sel]) {
+        @throw [NSString stringWithFormat:@"存在しないメソッド : %@",method];
+        return nil;
+    }else if (sel == @selector(set_anchorPoint_x:y:)) {
+        [self set_anchorPoint_x:[method doubleArgAtIndex:0] y:[method doubleArgAtIndex:1]];
+    }else if (sel == @selector(set_positionType_type:)) {
+        [self set_positionType_type:[method argAtIndex:0]];
+    }else if (sel == @selector(loadImage_path:options:)) {
+        [self loadImage_path:[method argAtIndex:0] options:[method argAtIndex:1]];
+    }else if (sel == @selector(clearImage)) {
+        [self clearImage];
+    }else if (sel == @selector(clear)) {
+        [self clear];
+    }else if (sel == @selector(bg_color:)) {
+        [self bg_color:[method argAtIndex:0]];
+    }else if (sel == @selector(border_width:color:)) {
+        [self border_width:[method doubleArgAtIndex:0] color:[method argAtIndex:1]];
+    }else if (sel == @selector(shadowOffset_x:y:)) {
+        [self shadowOffset_x:[method doubleArgAtIndex:0] y:[method doubleArgAtIndex:1]];
+    }else if (sel == @selector(shadowColor_color:)) {
+        [self shadowColor_color:[method argAtIndex:0]];
+    }else if (sel == @selector(shadowRadius_radius:)) {
+        [self shadowRadius_radius:[method doubleArgAtIndex:0]];
+    }else if (sel == @selector(shadowOpcity_opacity:)) {
+        [self shadowOpcity_opacity:[method doubleArgAtIndex:0]];
+    }else if (sel == @selector(beginAnimation_duration:)) {
+        [self beginAnimation_duration:[method doubleArgAtIndex:0]];
+    }else if (sel == @selector(commitAnimation)) {
+        [self commitAnimation];
+    }else if (sel == @selector(position_x:y:duration:)) {
+        [self position_x:[method doubleArgAtIndex:0]
+                       y:[method doubleArgAtIndex:1]
+                duration:[method doubleArgAtIndex:2]];
+    }else if (sel == @selector(zPosition_z:duration:)) {
+        [self zPosition_z:[method doubleArgAtIndex:0]
+                 duration:[method doubleArgAtIndex:1]];
+    }else if (sel == @selector(size_width:height:duration:)) {
+        [self size_width:[method doubleArgAtIndex:0]
+                  height:[method doubleArgAtIndex:1]
+                duration:[method doubleArgAtIndex:2]];
+    }else if (sel == @selector(show_duration:)) {
+        [self show_duration:[method doubleArgAtIndex:0]];
+    }else if (sel == @selector(hide_duration:)) {
+        [self hide_duration:[method doubleArgAtIndex:0]];
+    }else if (sel == @selector(toggle_duration:)) {
+        [self toggle_duration:[method doubleArgAtIndex:0]];
+    }else if (sel == @selector(translate_x:y:z:duration:)) {
+        [self translate_x:[method doubleArgAtIndex:0]
+                        y:[method doubleArgAtIndex:1]
+                        z:[method doubleArgAtIndex:2]
+                 duration:[method doubleArgAtIndex:3]];
+    }else if (sel == @selector(scale_ratio:duration:)) {
+        [self scale_ratio:[method doubleArgAtIndex:0]
+                 duration:[method doubleArgAtIndex:1]];
+    }else if (sel == @selector(rotate_degree:duration:)) {
+        [self rotate_degree:[method doubleArgAtIndex:0]
+                   duration:[method doubleArgAtIndex:1]];
+    }
+    self.engine = nil;
+    return self;
 }
 
 #pragma mark - SELayer
@@ -61,9 +159,9 @@ static NSMutableArray *layers;
 	return [[self alloc] initWithOpts:options];
 }
 
-+ (id)at_index:(NSUInteger)index
++ (id)at_index:(unsigned int)index
 {
-    id layer = layers[index];
+    id layer = layers[@(index)];
     return (layer != [NSNull null]) ? layers : nil;
 }
 
@@ -97,24 +195,49 @@ static NSMutableArray *layers;
 
 - (void)clear
 {
-	
+	[self.layer removeFromSuperlayer];
+    [layers removeObjectForKey:@(self.index)];
 }
 
 #pragma mark - Appearence
 
-- (void)bg_color:(NSDictionary *)color
+- (void)bg_color:(NSString *)color
 {
-	
+    AVColor *hex = [AVHexColor colorWithHexString:color];
+    NSAssert(hex, @"色が指定されていない");
+    self.layer.backgroundColor = [hex CGColor];
 }
 
 - (void)border_width:(CGFloat)width color:(NSString *)color
 {
-	
+    if VALID_DOUBLE(width) self.layer.borderWidth = width;
+    AVColor *hex = [AVHexColor colorWithHexString:color];
+    if (hex) self.layer.borderColor = [hex CGColor];
 }
 
-- (void)shadow_options:(NSDictionary *)options
+- (void)shadowColor_color:(NSString *)color
 {
-    // color, offset, opacity, radius,
+    AVColor *hex  = [AVHexColor colorWithHexString:color];
+    if (hex) self.layer.shadowColor = [hex CGColor];
+}
+
+- (void)shadowOffset_x:(CGFloat)x y:(CGFloat)y
+{
+    CGFloat _x = VALID_DOUBLE(x) ? x : self.layer.shadowOffset.width;
+    CGFloat _y = VALID_DOUBLE(y) ? y : self.layer.shadowOffset.height;
+    CGSize s = CGSizeMake(_x, _y);
+    self.layer.shadowOffset = s;
+}
+
+- (void)shadowOpcity_opacity:(CGFloat)opacity
+{
+    if (VALID_DOUBLE(opacity) && NORMALIZED(opacity))
+        self.layer.shadowOpacity = opacity;
+}
+
+- (void)shadowRadius_radius:(CGFloat)radius
+{
+    if VALID_DOUBLE(radius) self.layer.shadowRadius = radius;
 }
 
 #pragma mark - Animations
@@ -160,7 +283,7 @@ static NSMutableArray *layers;
     CFUUIDRef uuidRef = CFUUIDCreate(NULL);
     NSString *uuid = (__bridge_transfer NSString *)CFUUIDCreateString(NULL, uuidRef);
     CFRelease(uuidRef);
-    NSString *animationKey = [NSString stringWithFormat:@"%@-%@",key,uuid];
+    NSString *animationKey = [NSString stringWithFormat:@"%@-%@",key,uuid]; // translate-xxxxx
 #if TARGET_OS_IPHONE
     // UIView.layerだとこれを挟まないと正常に動作しないことがある
     [UIView beginAnimations:animationKey context:nil];
@@ -206,20 +329,24 @@ static NSMutableArray *layers;
 
 - (void)position_x:(CGFloat)x y:(CGFloat)y duration:(NSTimeInterval)duration
 {
-    CGPoint position = CGPointMake(x, y);
+    CGFloat _x = VALID_DOUBLE(x) ? x : self.layer.position.x;
+    CGFloat _y = VALID_DOUBLE(y) ? y : self.layer.position.y;
+    CGPoint position = CGPointMake(_x, _y);
     NSValue *v = [NSValue se_valueWithPoint:position];
     [self enqueuAnimationForKeyPath:@"position" toValue:v duration:duration];
 }
 
 - (void)zPosition_z:(CGFloat)z duration:(NSTimeInterval)duration
 {
-    [self enqueuAnimationForKeyPath:@"zPosition" toValue:@(z) duration:duration];
+    CGFloat _z = VALID_DOUBLE(z) ? z : self.layer.zPosition;
+    [self enqueuAnimationForKeyPath:@"zPosition" toValue:@(_z) duration:duration];
 }
 
-- (void)size_width:(CGSize)size duration:(NSTimeInterval)duration
+- (void)size_width:(CGFloat)width height:(CGFloat)height duration:(NSTimeInterval)duration
 {
     CGRect bounds = self.layer.bounds;
-    bounds.size = size;
+    if VALID_DOUBLE(width) bounds.size.width = width;
+    if VALID_DOUBLE(height) bounds.size.height = height;
     NSValue *v = [NSValue se_valueWithRect:bounds];
 	[self enqueuAnimationForKeyPath:@"bounds" toValue:v duration:duration];
 }
@@ -242,22 +369,29 @@ static NSMutableArray *layers;
 
 - (void)translate_x:(CGFloat)x y:(CGFloat)y z:(CGFloat)z duration:(NSTimeInterval)duration
 {
-    CATransform3D trans = CATransform3DMakeTranslation(x, y, z);
+    NSParameterAssert(VALID_DOUBLE(x) || VALID_DOUBLE(y) || VALID_DOUBLE(z));
+    CGFloat _x = VALID_DOUBLE(x) ? x : [[self.layer valueForKey:@"transform.translate.x"] doubleValue];
+    CGFloat _y = VALID_DOUBLE(y) ? y : [[self.layer valueForKey:@"transform.translate.y"] doubleValue];
+    CGFloat _z = VALID_DOUBLE(z) ? z : [[self.layer valueForKey:@"transform.translate.z"] doubleValue];
+    CATransform3D trans = CATransform3DMakeTranslation(_x, _y, _z);
 	[self enqueuAnimationForKeyPath:@"transform.translate" toValue:[NSValue valueWithCATransform3D:trans] duration:duration];
 }
 
 - (void)scale_ratio:(CGFloat)ratio duration:(NSTimeInterval)duration
 {
+    NSParameterAssert(VALID_DOUBLE(ratio));
 	[self enqueuAnimationForKeyPath:@"transform.scale" toValue:@(ratio) duration:duration];
 }
 
 - (void)rotate_degree:(CGFloat)degree duration:(NSTimeInterval)duration
 {
+    NSParameterAssert(VALID_DOUBLE(degree));
     [self enqueuAnimationForKeyPath:@"transform.rotation.z" toValue:@(degree) duration:duration];
 }
 
 - (void)opacity_ratio:(CGFloat)ratio duration:(NSTimeInterval)duration
 {
+    NSParameterAssert(VALID_DOUBLE(ratio));
     [self enqueuAnimationForKeyPath:@"opacity" toValue:@(ratio) duration:duration];
 }
 

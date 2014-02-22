@@ -45,7 +45,7 @@
  @param {Number} index レイヤー番号
  @return SELayer
  **/
-+ (id)at_index:(NSUInteger)index;
++ (id)at_index:(unsigned int)index;
 
 
 #pragma mark - Property
@@ -108,7 +108,7 @@
  @method bg
  @param {String} color 色 by hex #ffffff
  **/
-- (void)bg_color:(NSDictionary*)color;
+- (void)bg_color:(NSString*)color;
 
 /**
  境界線を指定する
@@ -120,18 +120,35 @@
 - (void)border_width:(CGFloat)width color:(NSString*)color;
 
 /**
- 陰を指定する
+ 影のオフセットを指定する
  
- @method shadow
- @param {Object} options
-    @param {String} [options.color] 色 by hex #ffffff
-    @param {Object} [options.offset] 方向
-        @param {Number} options.offset.x
-        @param {Number} options.offset.y
-    @param {Number} [options.opacity] 不透明度
-    @param {Number} [options.radius] 拡散
+ @method shadowOffset
+ @param {Number} x
+ @param {Number} y
  **/
-- (void)shadow_options:(NSDictionary*)options;
+- (void)shadowOffset_x:(CGFloat)x y:(CGFloat)y;
+/**
+ 影の色を指定する
+ 
+ @method shadowColor
+ @param {String} color hex
+ **/
+- (void)shadowColor_color:(NSString*)color;
+/**
+ 影の不透明度を指定する
+ 
+ @method shadowOpacity
+ @param {Number} opacity
+ **/
+- (void)shadowOpcity_opacity:(CGFloat)opacity;
+
+/**
+ 影の拡散を指定する
+ 
+ @method shadowRadius
+ @param {Number} radius
+ **/
+- (void)shadowRadius_radius:(CGFloat)radius;
 
 #pragma mark - Animation
 
@@ -191,7 +208,7 @@
  @param	{Number} height
  @param  {Number} [duration]
  **/
-- (void)size_width:(CGSize)size duration:(NSTimeInterval)duration;
+- (void)size_width:(CGFloat)width height:(CGFloat)height duration:(NSTimeInterval)duration;
 
 /**
  レイヤーを表示する。

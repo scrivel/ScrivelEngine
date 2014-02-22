@@ -12,6 +12,10 @@
 #define kNameMethod @"name"
 #define kTextMethod @"text"
 
+static inline BOOL VALID(id val){
+    return (val != nil && val != [NSNull null]);
+}
+
 @implementation SEMethod
 
 + (instancetype)nameMethod
@@ -42,17 +46,20 @@
 
 - (NSInteger)integerArgAtIndex:(NSUInteger)index
 {
-    return [[self argAtIndex:index] integerValue];
+    id val = [self argAtIndex:index];
+    return VALID(val) ? [val integerValue] : SENilInteger;
 }
 
 - (double)doubleArgAtIndex:(NSUInteger)index
 {
-    return [[self argAtIndex:index] doubleValue];
+    id val = [self argAtIndex:index];
+    return VALID(val) ? [val doubleValue] : SENilDouble;
 }
 
 - (BOOL)boolArgAtIndex:(NSUInteger)index
 {
-    return [[self argAtIndex:index] boolValue];
+    id val = [self argAtIndex:index];
+    return VALID(val) ? [val boolValue] : NO;
 }
 
 - (NSString *)description

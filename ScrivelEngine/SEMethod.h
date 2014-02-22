@@ -10,6 +10,9 @@
 
 @class SEObject;
 
+#define SENilInteger NSIntegerMin
+#define SENilDouble CGFLOAT_MIN
+
 typedef enum{
     SEMethodTypeCall = 0,
     SEMethodTypeProperty

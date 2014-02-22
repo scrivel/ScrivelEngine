@@ -14,7 +14,7 @@
 
 @implementation ScrivelEngine
 {
-    Class _classProxyClass;
+    __unsafe_unretained Class _classProxyClass;
 }
 
 - (id)evaluateScript:(NSString *)script error:(NSError *__autoreleasing *)error

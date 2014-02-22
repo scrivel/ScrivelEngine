@@ -44,12 +44,15 @@
 	SEL_FOR_METHOD(@"clear",clear);
 	SEL_FOR_METHOD(@"bg",bg_color:);
 	SEL_FOR_METHOD(@"border",border_width:color:);
-	SEL_FOR_METHOD(@"shadow",shadow_options:);
+	SEL_FOR_METHOD(@"shadowOffset",shadowOffset_x:y:);
+	SEL_FOR_METHOD(@"shadowColor",shadowColor_color:);
+	SEL_FOR_METHOD(@"shadowOpacity",shadowOpcity_opacity:);
+	SEL_FOR_METHOD(@"shadowRadius",shadowRadius_radius:);
 	SEL_FOR_METHOD(@"beginAnimation",beginAnimation_duration:);
 	SEL_FOR_METHOD(@"commitAnimation",commitAnimation);
 	SEL_FOR_METHOD(@"position",position_x:y:duration:);
 	SEL_FOR_METHOD(@"zPosition",zPosition_z:duration:);
-	SEL_FOR_METHOD(@"size",size_width:duration:);
+	SEL_FOR_METHOD(@"size",size_width:height:duration:);
 	SEL_FOR_METHOD(@"show",show_duration:);
 	SEL_FOR_METHOD(@"hide",hide_duration:);
 	SEL_FOR_METHOD(@"toggle",toggle_duration:);
