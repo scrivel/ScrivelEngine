@@ -27,11 +27,9 @@
  
  @method new
  @static
- @return instancetype
- @param {Object} options
-    @param {Number} options.index 作成するレイヤーの番号
+ @param {Number} index レイヤーの番号
  **/
-+ (instancetype)new_options:(NSDictionary*)options;
++ (instancetype)new_args:(id)args;
 
 #pragma mark - Static
 
@@ -58,7 +56,7 @@
  @param {Number} x
  @param {Number} y
  **/
-- (void)set_anchorPoint_x:(CGFloat)x y:(CGFloat)y;
+- (void)setAnchorPoint_x:(CGFloat)x y:(CGFloat)y;
 
 /**
  レイヤーの位置のタイプを指定する。
@@ -68,7 +66,15 @@
  @method setPositionType
  @param	{String} type "normalized" or "px"
  **/
-- (void)set_positionType_type:(NSString*)type;
+- (void)setPositionType_type:(NSString*)type;
+
+/**
+ 画像のgravity（表示モード）を指定する。
+ 
+ @method gravity
+ @param {String} type
+ **/
+- (void)setGravity_gravity:(NSString*)gravity;
 
 #pragma mark - Image
 
@@ -87,8 +93,10 @@
  画像以外のレイヤー属性はそのまま存在する。
  
  @method  clearImage
+ 
+ @param {Number} [duration]
  **/
-- (void)clearImage;
+- (void)clearImage_duration:(NSTimeInterval)duration;
 
 /**
  レイヤーを破棄する。
@@ -214,19 +222,16 @@
  durationを指定することでフェードインする。
  
  @method  show
- @param	{Number} [duration]	秒数はミリセカンド(1/1000秒）
  **/
-- (void)show_duration:(NSTimeInterval)duration;
+- (void)show;
 
 /**
  レイヤーを非表示にする。
  すでに非表示の場合は何も起こらない。
- durationを指定することでフェードアウトする。
  
  @method  hide
- @param	{Number} [duration]	秒数はミリセカンド(1/1000秒）
  **/
-- (void)hide_duration:(NSTimeInterval)duration;
+- (void)hide;
 
 /**
  レイヤーの表示/非表示を切り替える。
@@ -234,7 +239,22 @@
  @method  toggle
  @param	{Number} [duration]	秒数はミリセカンド(1/1000秒）
  **/
-- (void)toggle_duration:(NSTimeInterval)duration;
+- (void)toggle;
+
+/**
+ レイヤーをフェードインさせる
+ 
+ @method fadeIn
+ @param {Number} duration
+ **/
+- (void)fadeIn_duration:(NSTimeInterval)duration;
+/**
+ レイヤーをフェードアウトさせる
+ 
+ @method fadeOut
+ @param {Number} duration
+ **/
+- (void)fadeOut_duration:(NSTimeInterval)duration;
 
 /**
  レイヤーを移動させる。

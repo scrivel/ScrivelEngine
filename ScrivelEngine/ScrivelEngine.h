@@ -14,11 +14,13 @@
 
 #if TARGET_OS_IPHONE
 #define SEView UIView
+#define SEImage UIImage
 typedef CGPoint SEPoint;
 typedef CGRect SERect;
 typedef CGSize SESize;
 #elif TARGET_OS_MAC
 #define SEView NSView
+#define SEImage NSImage
 typedef NSPoint SEPoint;
 typedef NSRect SERect;
 typedef NSSize SESize;

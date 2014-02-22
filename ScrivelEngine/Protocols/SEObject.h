@@ -23,7 +23,7 @@
  @static
  @param {Object} options コンストラクタに渡す引数。サブクラスによって違う
 **/
-+ (instancetype)new_options:(NSDictionary*)options;
++ (instancetype)new_args:(id)args;
 
 /**
  クラスメソッドを呼び出す

@@ -35,12 +35,13 @@
 
 	// layer
 
-	SEL_FOR_METHOD(@"new",new_options:);
+	SEL_FOR_METHOD(@"new",new_args:);
 	SEL_FOR_METHOD(@"at",at_index:);
-	SEL_FOR_METHOD(@"setAnchorPoint",set_anchorPoint_x:y:);
-	SEL_FOR_METHOD(@"setPositionType",set_positionType_type:);
+	SEL_FOR_METHOD(@"setAnchorPoint",setAnchorPoint_x:y:);
+	SEL_FOR_METHOD(@"setPositionType",setPositionType_type:);
+	SEL_FOR_METHOD(@"gravity",setGravity_gravity:);
 	SEL_FOR_METHOD(@"loadImage",loadImage_path:duration:);
-	SEL_FOR_METHOD(@"clearImage",clearImage);
+	SEL_FOR_METHOD(@"clearImage",clearImage_duration:);
 	SEL_FOR_METHOD(@"clear",clear);
 	SEL_FOR_METHOD(@"bg",bg_color:);
 	SEL_FOR_METHOD(@"border",border_width:color:);
@@ -53,9 +54,11 @@
 	SEL_FOR_METHOD(@"position",position_x:y:duration:);
 	SEL_FOR_METHOD(@"zPosition",zPosition_z:duration:);
 	SEL_FOR_METHOD(@"size",size_width:height:duration:);
-	SEL_FOR_METHOD(@"show",show_duration:);
-	SEL_FOR_METHOD(@"hide",hide_duration:);
-	SEL_FOR_METHOD(@"toggle",toggle_duration:);
+	SEL_FOR_METHOD(@"show",show);
+	SEL_FOR_METHOD(@"hide",hide);
+	SEL_FOR_METHOD(@"toggle",toggle);
+	SEL_FOR_METHOD(@"fadeIn",fadeIn_duration:);
+	SEL_FOR_METHOD(@"fadeOut",fadeOut_duration:);
 	SEL_FOR_METHOD(@"translate",translate_x:y:duration:);
 	SEL_FOR_METHOD(@"translateZ",translateZ_z:duration:);
 	SEL_FOR_METHOD(@"scale",scale_ratio:duration:);
@@ -64,7 +67,7 @@
 
 	// abstract
 
-	SEL_FOR_METHOD(@"new",new_options:);
+	SEL_FOR_METHOD(@"new",new_args:);
 	SEL_FOR_METHOD(@"callStatic",callStatic_method:engine:);
 	SEL_FOR_METHOD(@"callInstance",callInstance_method:engine:);
 	SEL_FOR_METHOD(@"wait",wait_duration:);
