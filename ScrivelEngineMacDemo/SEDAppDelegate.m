@@ -22,7 +22,7 @@
     // Insert code here to initialize your application
     MGSFragaria *f = [[MGSFragaria alloc] init];
     [f setObject:self forKey:MGSFODelegate];
-    [f setObject:@"Objective-C" forKey:MGSFOSyntaxDefinitionName];
+    [f setObject:@"SEScript" forKey:MGSFOSyntaxDefinitionName];
     [f embedInView:self.editorView];
     NSString *path = [[NSBundle mainBundle] pathForResource:@"sample" ofType:@"sescript"];
     NSString *str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
