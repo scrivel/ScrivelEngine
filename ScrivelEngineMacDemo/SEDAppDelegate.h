@@ -9,8 +9,11 @@
 #import <Cocoa/Cocoa.h>
 #import <MGSFragaria.h>
 
-@interface SEDAppDelegate : NSObject <NSApplicationDelegate>
+@interface SEDAppDelegate : NSObject <NSApplicationDelegate,NSToolbarDelegate>
 
 @property IBOutlet NSWindow *window;
+@property (unsafe_unretained) IBOutlet NSFontManager *fontManager;
+@property (unsafe_unretained) IBOutlet NSPanel *panel;
+@property (weak) IBOutlet NSView *panelView;
 
 @end

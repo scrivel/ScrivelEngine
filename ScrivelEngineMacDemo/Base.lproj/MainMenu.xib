@@ -649,6 +649,10 @@
         <customObject id="494" customClass="SEDAppDelegate">
             <connections>
                 <outlet property="editorView" destination="O24-63-xQ2" id="KXt-WU-Iah"/>
+                <outlet property="fontManager" destination="420" id="L2K-R6-aP4"/>
+                <outlet property="panel" destination="Mdr-jw-988" id="veE-aZ-vFN"/>
+                <outlet property="panelView" destination="sE2-RN-yHa" id="NhO-DR-hcE"/>
+                <outlet property="toolbar" destination="II4-yS-Hm3" id="bgo-Yn-DQz"/>
                 <outlet property="window" destination="ze1-IH-x8Z" id="GHS-B7-tca"/>
             </connections>
         </customObject>
@@ -683,12 +687,20 @@
                     <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="k5a-R9-hyo"/>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
-                    <toolbarItem reference="gse-ts-N9K"/>
                     <toolbarItem reference="Fn3-cF-Xom"/>
                     <toolbarItem reference="k5a-R9-hyo"/>
-                    <toolbarItem reference="olm-zV-zNx"/>
                 </defaultToolbarItems>
             </toolbar>
+        </window>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="Mdr-jw-988" customClass="NSPanel">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="130" y="59" width="276" height="378"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1366" height="746"/>
+            <view key="contentView" id="sE2-RN-yHa">
+                <rect key="frame" x="0.0" y="0.0" width="276" height="378"/>
+                <autoresizingMask key="autoresizingMask"/>
+            </view>
         </window>
     </objects>
 </document>

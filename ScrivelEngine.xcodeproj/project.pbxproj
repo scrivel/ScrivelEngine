@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A604521C18B399C900B85928 /* map.json in Resources */ = {isa = PBXBuildFile; fileRef = A604521B18B399C900B85928 /* map.json */; };
-		A604521D18B399C900B85928 /* map.json in Resources */ = {isa = PBXBuildFile; fileRef = A604521B18B399C900B85928 /* map.json */; };
-		A604521E18B399C900B85928 /* map.json in Resources */ = {isa = PBXBuildFile; fileRef = A604521B18B399C900B85928 /* map.json */; };
 		A604522818B3A30B00B85928 /* SELayer.h in Headers */ = {isa = PBXBuildFile; fileRef = A604522518B3A30B00B85928 /* SELayer.h */; };
 		A604522918B3A30B00B85928 /* SELayer.h in Headers */ = {isa = PBXBuildFile; fileRef = A604522518B3A30B00B85928 /* SELayer.h */; };
 		A604522C18B3A30B00B85928 /* SETextLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = A604522718B3A30B00B85928 /* SETextLayer.h */; };
@@ -63,7 +60,6 @@
 		A63BB5F318AD30EA0051FA9F /* SEScriptTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC2418AC8A5D000F7A40 /* SEScriptTests.m */; };
 		A63BB5F518AD33D70051FA9F /* libScrivelEngineMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECC2A18AC8BE1000F7A40 /* libScrivelEngineMac.a */; };
 		A63BB5F618AD34010051FA9F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6AC928218AC95F700D43025 /* Foundation.framework */; };
-		A63F886018AF9DC3007FBE57 /* sample.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A63F885E18AF82D4007FBE57 /* sample.sescript */; };
 		A63F889218AFBBBA007FBE57 /* SEScriptAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889118AFBBBA007FBE57 /* SEScriptAssembler.m */; };
 		A63F889518AFBCC5007FBE57 /* SEMethodChain.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889418AFBCC5007FBE57 /* SEMethodChain.m */; };
 		A63F889918B0A9A4007FBE57 /* SEGlobalObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889818B0A9A4007FBE57 /* SEGlobalObject.m */; };
@@ -74,7 +70,6 @@
 		A63F88BE18B11089007FBE57 /* SEMethodChain.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889418AFBCC5007FBE57 /* SEMethodChain.m */; };
 		A63F88C018B11094007FBE57 /* SEGlobalObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889818B0A9A4007FBE57 /* SEGlobalObject.m */; };
 		A63F88C118B111BF007FBE57 /* libScrivelEngineMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECC2A18AC8BE1000F7A40 /* libScrivelEngineMac.a */; };
-		A63F88C418B1138E007FBE57 /* sample.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A63F885E18AF82D4007FBE57 /* sample.sescript */; };
 		A63F88C518B11412007FBE57 /* ParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A638D30018AD20150008635E /* ParseKit.framework */; };
 		A63F898418B2307B007FBE57 /* libParseKitMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A63F898318B2307B007FBE57 /* libParseKitMobile.a */; };
 		A63F899118B23A51007FBE57 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63F899018B23A51007FBE57 /* QuartzCore.framework */; };
@@ -104,6 +99,11 @@
 		A6AC928618AC960300D43025 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6AC928518AC960300D43025 /* UIKit.framework */; };
 		A6AC92C018ACF44400D43025 /* libScrivelEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECBF318AC86A7000F7A40 /* libScrivelEngine.a */; };
 		A6B104D918B869E700F0D28D /* MGSFragaria.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B104D818B869E700F0D28D /* MGSFragaria.framework */; };
+		A6B104DB18B877D800F0D28D /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = A6B104DA18B877D800F0D28D /* Resources */; };
+		A6B104DC18B877D800F0D28D /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = A6B104DA18B877D800F0D28D /* Resources */; };
+		A6B104DD18B877D800F0D28D /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = A6B104DA18B877D800F0D28D /* Resources */; };
+		A6B104DE18B877D800F0D28D /* Resources in Resources */ = {isa = PBXBuildFile; fileRef = A6B104DA18B877D800F0D28D /* Resources */; };
+		A6B104DF18B8792500F0D28D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63F899218B23A5C007FBE57 /* QuartzCore.framework */; };
 		A6D04D3818B4DFA600977B7A /* ScrivelEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F88AF18B0F496007FBE57 /* ScrivelEngine.h */; };
 		A6D04D3A18B4F76D00977B7A /* ScrivelEngineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D04D3918B4F76D00977B7A /* ScrivelEngineTests.m */; };
 		A6D04D3B18B4F77000977B7A /* ScrivelEngineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D04D3918B4F76D00977B7A /* ScrivelEngineTests.m */; };
@@ -111,8 +111,6 @@
 		A6D04D4518B74D4D00977B7A /* NSArray+Where.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D04D4218B74D4D00977B7A /* NSArray+Where.h */; };
 		A6D04D4618B74D4D00977B7A /* NSArray+Where.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D04D4318B74D4D00977B7A /* NSArray+Where.m */; };
 		A6D04D4718B74D4D00977B7A /* NSArray+Where.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D04D4318B74D4D00977B7A /* NSArray+Where.m */; };
-		A6D0517318B8555A00977B7A /* sample.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A63F885E18AF82D4007FBE57 /* sample.sescript */; };
-		A6D0517418B8555B00977B7A /* sample.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A63F885E18AF82D4007FBE57 /* sample.sescript */; };
 		A6D0517518B856A300977B7A /* ParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A638D30018AD20150008635E /* ParseKit.framework */; };
 		A6D1760E18AE628200AB11AF /* SEScriptParser.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D1760C18AE628200AB11AF /* SEScriptParser.h */; };
 		A6D1760F18AE628200AB11AF /* SEScriptParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D1760D18AE628200AB11AF /* SEScriptParser.m */; };
@@ -153,7 +151,6 @@
 
 /* Begin PBXFileReference section */
 		4CE535954D37458B9E35A0D4 /* libPods-ScrivelEngineDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ScrivelEngineDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A604521B18B399C900B85928 /* map.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = map.json; sourceTree = "<group>"; };
 		A604522518B3A30B00B85928 /* SELayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELayer.h; sourceTree = "<group>"; };
 		A604522718B3A30B00B85928 /* SETextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SETextLayer.h; sourceTree = "<group>"; };
 		A604522E18B3A35A00B85928 /* SEObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEObject.h; sourceTree = "<group>"; };
@@ -196,14 +193,12 @@
 		A60ECC2F18AC8BE1000F7A40 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A60ECC3018AC8BE1000F7A40 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		A62FE7A818AE3F4B00F12E3A /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		A62FE7C718AE3FC500F12E3A /* script.grammer */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = script.grammer; sourceTree = "<group>"; };
 		A638D2FC18AD1FCC0008635E /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		A638D2FE18AD20010008635E /* ParseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseKit.framework; path = External/ParseKit/build/Debug/ParseKit.framework; sourceTree = "<group>"; };
 		A638D30018AD20150008635E /* ParseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseKit.framework; path = "../../../Library/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug/ParseKit.framework"; sourceTree = "<group>"; };
 		A63BB5DC18AD2DFD0051FA9F /* libParseKit-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libParseKit-iOS.a"; path = "External/ParseKit/build/Debug-iphoneuniversal/libParseKit-iOS.a"; sourceTree = "<group>"; };
 		A63BB5E318AD30D30051FA9F /* ScrivelEngineMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrivelEngineMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A63BB5F718AD348A0051FA9F /* libParseKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libParseKit.a; path = External/ParseKit/build/Debug/libParseKit.a; sourceTree = "<group>"; };
-		A63F885E18AF82D4007FBE57 /* sample.sescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sample.sescript; sourceTree = "<group>"; };
 		A63F889018AFBBBA007FBE57 /* SEScriptAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEScriptAssembler.h; sourceTree = "<group>"; };
 		A63F889118AFBBBA007FBE57 /* SEScriptAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEScriptAssembler.m; sourceTree = "<group>"; };
 		A63F889318AFBCC5007FBE57 /* SEMethodChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEMethodChain.h; sourceTree = "<group>"; };
@@ -264,7 +259,8 @@
 		A6AC928018AC95F200D43025 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		A6AC928218AC95F700D43025 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		A6AC928518AC960300D43025 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		A6B104D818B869E700F0D28D /* MGSFragaria.framework */ = {isa = PBXFileReference; lastKnownFileType = file; name = MGSFragaria.framework; path = External/Fragaria/build/Debug/MGSFragaria.framework; sourceTree = "<group>"; };
+		A6B104D818B869E700F0D28D /* MGSFragaria.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MGSFragaria.framework; path = External/Fragaria/build/Debug/MGSFragaria.framework; sourceTree = "<group>"; };
+		A6B104DA18B877D800F0D28D /* Resources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Resources; sourceTree = "<group>"; };
 		A6D04D3918B4F76D00977B7A /* ScrivelEngineTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrivelEngineTests.m; sourceTree = "<group>"; };
 		A6D04D4218B74D4D00977B7A /* NSArray+Where.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Where.h"; sourceTree = "<group>"; };
 		A6D04D4318B74D4D00977B7A /* NSArray+Where.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Where.m"; sourceTree = "<group>"; };
@@ -335,6 +331,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6B104DF18B8792500F0D28D /* QuartzCore.framework in Frameworks */,
 				A6B104D918B869E700F0D28D /* MGSFragaria.framework in Frameworks */,
 				A6D0517518B856A300977B7A /* ParseKit.framework in Frameworks */,
 				A63BB5F518AD33D70051FA9F /* libScrivelEngineMac.a in Frameworks */,
@@ -438,16 +435,6 @@
 				A60ECC3018AC8BE1000F7A40 /* AppKit.framework */,
 			);
 			name = "Other Frameworks";
-			sourceTree = "<group>";
-		};
-		A62FE7C418AE3FAB00F12E3A /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				A604521B18B399C900B85928 /* map.json */,
-				A63F885E18AF82D4007FBE57 /* sample.sescript */,
-				A62FE7C718AE3FC500F12E3A /* script.grammer */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		A63F888D18AFBA94007FBE57 /* Bridge */ = {
@@ -611,8 +598,8 @@
 		A6A6126818A7B0DA00CBD988 = {
 			isa = PBXGroup;
 			children = (
+				A6B104DA18B877D800F0D28D /* Resources */,
 				A6A168CA18B2496C0041BBBA /* docs */,
-				A62FE7C418AE3FAB00F12E3A /* Resources */,
 				A60ECBE818AC864F000F7A40 /* ScrivelEngine */,
 				A60ECC0718AC86A7000F7A40 /* ScrivelEngineTests */,
 				A60ECBBC18AC8523000F7A40 /* ScrivelEngineDemo */,
@@ -896,9 +883,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A63F886018AF9DC3007FBE57 /* sample.sescript in Resources */,
+				A6B104DB18B877D800F0D28D /* Resources in Resources */,
 				A60ECC0C18AC86A7000F7A40 /* InfoPlist.strings in Resources */,
-				A604521D18B399C900B85928 /* map.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -906,7 +892,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A604521C18B399C900B85928 /* map.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -914,8 +899,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A604521E18B399C900B85928 /* map.json in Resources */,
-				A63F88C418B1138E007FBE57 /* sample.sescript in Resources */,
+				A6B104DC18B877D800F0D28D /* Resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -926,8 +910,8 @@
 				A6AC922018AC921C00D43025 /* InfoPlist.strings in Resources */,
 				A6AC922E18AC921C00D43025 /* Images.xcassets in Resources */,
 				A6AC922618AC921C00D43025 /* Credits.rtf in Resources */,
-				A6D0517418B8555B00977B7A /* sample.sescript in Resources */,
 				A6AC922C18AC921C00D43025 /* MainMenu.xib in Resources */,
+				A6B104DE18B877D800F0D28D /* Resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -935,7 +919,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6D0517318B8555A00977B7A /* sample.sescript in Resources */,
+				A6B104DD18B877D800F0D28D /* Resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1550,6 +1534,7 @@
 				);
 				INFOPLIST_FILE = "ScrivelEngineMacDemo/ScrivelEngineMacDemo-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
@@ -1578,6 +1563,7 @@
 				);
 				INFOPLIST_FILE = "ScrivelEngineMacDemo/ScrivelEngineMacDemo-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
