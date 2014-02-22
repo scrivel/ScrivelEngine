@@ -39,15 +39,19 @@
 - (void)testMethodChain
 {
     NSError *e = nil;
-    SEScript *s = [SEScript scriptWithString:@"layer.at(1).position(100,100)" error:&e];
+    SEScript *s = [SEScript scriptWithString:@"layer.at(1).position(100,100).size(1,2,3)" error:&e];
     XCTAssertNil(e, );
     XCTAssert(s.elements.count == 1, );
     XCTAssert([s.elements[0] isKindOfClass:[SEMethodChain class]], );
     SEMethodChain *c = [s.elements lastObject];
-    XCTAssert(c.methods.count == 3, );
+    XCTAssert(c.methods.count == 4, );
     XCTAssert([[c.methods[0] name] isEqualToString:@"layer"], );
     XCTAssert([[c.methods[1] name] isEqualToString:@"at"], );
     XCTAssert([[c.methods[2] name] isEqualToString:@"position"], );
+    SEMethod *m = c.methods[3];
+    XCTAssert([m integerArgAtIndex:0] == 1,);
+    XCTAssert([m integerArgAtIndex:1] == 2,);
+    XCTAssert([m integerArgAtIndex:2] == 3,);
 }
 
 - (void)testString

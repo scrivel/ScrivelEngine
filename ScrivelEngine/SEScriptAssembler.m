@@ -162,7 +162,7 @@ static PKToken *openCurlyToken;
     id value = nil;
     NSMutableArray *ma = [NSMutableArray new];
     while ((value = [self popValue]) != nil) {
-        [ma addObject:value];
+        [ma insertObject:value atIndex:0];
     }
     if (ma.count > 0) {
         [self pushArguments:[NSArray arrayWithArray:ma]];
