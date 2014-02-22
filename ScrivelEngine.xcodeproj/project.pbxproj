@@ -63,7 +63,6 @@
 		A63BB5F318AD30EA0051FA9F /* SEScriptTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC2418AC8A5D000F7A40 /* SEScriptTests.m */; };
 		A63BB5F518AD33D70051FA9F /* libScrivelEngineMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECC2A18AC8BE1000F7A40 /* libScrivelEngineMac.a */; };
 		A63BB5F618AD34010051FA9F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6AC928218AC95F700D43025 /* Foundation.framework */; };
-		A63F885F18AF82D4007FBE57 /* sample.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A63F885E18AF82D4007FBE57 /* sample.sescript */; };
 		A63F886018AF9DC3007FBE57 /* sample.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A63F885E18AF82D4007FBE57 /* sample.sescript */; };
 		A63F889218AFBBBA007FBE57 /* SEScriptAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889118AFBBBA007FBE57 /* SEScriptAssembler.m */; };
 		A63F889518AFBCC5007FBE57 /* SEMethodChain.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889418AFBCC5007FBE57 /* SEMethodChain.m */; };
@@ -104,6 +103,7 @@
 		A6AC928418AC95FC00D43025 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6AC927E18AC95DB00D43025 /* Cocoa.framework */; };
 		A6AC928618AC960300D43025 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6AC928518AC960300D43025 /* UIKit.framework */; };
 		A6AC92C018ACF44400D43025 /* libScrivelEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECBF318AC86A7000F7A40 /* libScrivelEngine.a */; };
+		A6B104D918B869E700F0D28D /* MGSFragaria.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B104D818B869E700F0D28D /* MGSFragaria.framework */; };
 		A6D04D3818B4DFA600977B7A /* ScrivelEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F88AF18B0F496007FBE57 /* ScrivelEngine.h */; };
 		A6D04D3A18B4F76D00977B7A /* ScrivelEngineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D04D3918B4F76D00977B7A /* ScrivelEngineTests.m */; };
 		A6D04D3B18B4F77000977B7A /* ScrivelEngineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D04D3918B4F76D00977B7A /* ScrivelEngineTests.m */; };
@@ -111,9 +111,13 @@
 		A6D04D4518B74D4D00977B7A /* NSArray+Where.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D04D4218B74D4D00977B7A /* NSArray+Where.h */; };
 		A6D04D4618B74D4D00977B7A /* NSArray+Where.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D04D4318B74D4D00977B7A /* NSArray+Where.m */; };
 		A6D04D4718B74D4D00977B7A /* NSArray+Where.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D04D4318B74D4D00977B7A /* NSArray+Where.m */; };
+		A6D0517318B8555A00977B7A /* sample.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A63F885E18AF82D4007FBE57 /* sample.sescript */; };
+		A6D0517418B8555B00977B7A /* sample.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A63F885E18AF82D4007FBE57 /* sample.sescript */; };
+		A6D0517518B856A300977B7A /* ParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A638D30018AD20150008635E /* ParseKit.framework */; };
 		A6D1760E18AE628200AB11AF /* SEScriptParser.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D1760C18AE628200AB11AF /* SEScriptParser.h */; };
 		A6D1760F18AE628200AB11AF /* SEScriptParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D1760D18AE628200AB11AF /* SEScriptParser.m */; };
 		A6D1761018AE628200AB11AF /* SEScriptParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D1760D18AE628200AB11AF /* SEScriptParser.m */; };
+		D92E42F51F3748AA9A17C0FE /* libPods-ScrivelEngineDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE535954D37458B9E35A0D4 /* libPods-ScrivelEngineDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +152,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4CE535954D37458B9E35A0D4 /* libPods-ScrivelEngineDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ScrivelEngineDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A604521B18B399C900B85928 /* map.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = map.json; sourceTree = "<group>"; };
 		A604522518B3A30B00B85928 /* SELayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELayer.h; sourceTree = "<group>"; };
 		A604522718B3A30B00B85928 /* SETextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SETextLayer.h; sourceTree = "<group>"; };
@@ -259,11 +264,13 @@
 		A6AC928018AC95F200D43025 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		A6AC928218AC95F700D43025 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		A6AC928518AC960300D43025 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A6B104D818B869E700F0D28D /* MGSFragaria.framework */ = {isa = PBXFileReference; lastKnownFileType = file; name = MGSFragaria.framework; path = External/Fragaria/build/Debug/MGSFragaria.framework; sourceTree = "<group>"; };
 		A6D04D3918B4F76D00977B7A /* ScrivelEngineTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrivelEngineTests.m; sourceTree = "<group>"; };
 		A6D04D4218B74D4D00977B7A /* NSArray+Where.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Where.h"; sourceTree = "<group>"; };
 		A6D04D4318B74D4D00977B7A /* NSArray+Where.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Where.m"; sourceTree = "<group>"; };
 		A6D1760C18AE628200AB11AF /* SEScriptParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEScriptParser.h; sourceTree = "<group>"; };
 		A6D1760D18AE628200AB11AF /* SEScriptParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEScriptParser.m; sourceTree = "<group>"; };
+		D9B262D9694048BFA8251D77 /* libPods-ScrivelEngineMacDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ScrivelEngineMacDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +282,7 @@
 				A6AC928618AC960300D43025 /* UIKit.framework in Frameworks */,
 				A60ECBBA18AC8523000F7A40 /* CoreGraphics.framework in Frameworks */,
 				A60ECBB818AC8523000F7A40 /* Foundation.framework in Frameworks */,
+				D92E42F51F3748AA9A17C0FE /* libPods-ScrivelEngineDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +335,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6B104D918B869E700F0D28D /* MGSFragaria.framework in Frameworks */,
+				A6D0517518B856A300977B7A /* ParseKit.framework in Frameworks */,
 				A63BB5F518AD33D70051FA9F /* libScrivelEngineMac.a in Frameworks */,
 				A6AC928418AC95FC00D43025 /* Cocoa.framework in Frameworks */,
 				A6AC928318AC95F700D43025 /* Foundation.framework in Frameworks */,
@@ -628,6 +638,7 @@
 		A6A6127318A7B0DA00CBD988 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A6B104D818B869E700F0D28D /* MGSFragaria.framework */,
 				A63F899218B23A5C007FBE57 /* QuartzCore.framework */,
 				A63F899018B23A51007FBE57 /* QuartzCore.framework */,
 				A63F898318B2307B007FBE57 /* libParseKitMobile.a */,
@@ -647,6 +658,8 @@
 				A60ECBB918AC8523000F7A40 /* CoreGraphics.framework */,
 				A62FE7A818AE3F4B00F12E3A /* CoreFoundation.framework */,
 				A60ECC2D18AC8BE1000F7A40 /* Other Frameworks */,
+				4CE535954D37458B9E35A0D4 /* libPods-ScrivelEngineDemo.a */,
+				D9B262D9694048BFA8251D77 /* libPods-ScrivelEngineMacDemo.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -733,9 +746,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A60ECBE218AC8524000F7A40 /* Build configuration list for PBXNativeTarget "ScrivelEngineDemo" */;
 			buildPhases = (
+				09097ABC60294876AC5FB8A9 /* Check Pods Manifest.lock */,
 				A60ECBB318AC8523000F7A40 /* Sources */,
 				A60ECBB418AC8523000F7A40 /* Frameworks */,
 				A6AC92BD18ACEFBC00D43025 /* Resources */,
+				26C38D6D0A4C45C4884118FA /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -892,7 +907,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A604521C18B399C900B85928 /* map.json in Resources */,
-				A63F885F18AF82D4007FBE57 /* sample.sescript in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -912,6 +926,7 @@
 				A6AC922018AC921C00D43025 /* InfoPlist.strings in Resources */,
 				A6AC922E18AC921C00D43025 /* Images.xcassets in Resources */,
 				A6AC922618AC921C00D43025 /* Credits.rtf in Resources */,
+				A6D0517418B8555B00977B7A /* sample.sescript in Resources */,
 				A6AC922C18AC921C00D43025 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -920,10 +935,44 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6D0517318B8555A00977B7A /* sample.sescript in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		09097ABC60294876AC5FB8A9 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		26C38D6D0A4C45C4884118FA /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-ScrivelEngineDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A60ECBB318AC8523000F7A40 /* Sources */ = {
@@ -1484,6 +1533,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1491,6 +1541,11 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"${SRCROOT}/External/ParseKit/include",
 				);
 				INFOPLIST_FILE = "ScrivelEngineMacDemo/ScrivelEngineMacDemo-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
@@ -1509,10 +1564,16 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ScrivelEngineMacDemo/ScrivelEngineMacDemo-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"${SRCROOT}/External/ParseKit/include",
+				);
 				INFOPLIST_FILE = "ScrivelEngineMacDemo/ScrivelEngineMacDemo-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -7,9 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <MGSFragaria.h>
 
 @interface SEDAppDelegate : NSObject <NSApplicationDelegate>
 
-@property (assign) IBOutlet NSWindow *window;
+@property IBOutlet NSWindow *window;
 
 @end

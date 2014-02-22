@@ -4,3 +4,6 @@
 [submodule "External/ParseKit"]
 	path = External/ParseKit
 	url = https://github.com/scrivel/parsekit
+[submodule "External/Fragaria"]
+	path = External/Fragaria
+	url = https://github.com/mugginsoft/Fragaria
