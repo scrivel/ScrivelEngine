@@ -133,4 +133,13 @@
     XCTAssert(sel == @selector(at_index:),);
 }
 
+- (void)testScriptString
+{
+//    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"sample" ofType:@"sescript"];
+//    NSError *e = nil;
+//    NSString *script = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&e];
+//    id ret;
+//    XCTAssertNoThrow(ret = [engine evaluateScript:script error:&e],);
+}
+
 @end

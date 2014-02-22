@@ -28,7 +28,7 @@
         if ([element isKindOfClass:[SEMethodChain class]]) {
             //　メソッドチェーンを実行
             SEMethodChain *chain = (SEMethodChain*)element;
-            SEMethod *m = [chain.methods objectAtIndex:0];
+            SEMethod *m = [chain dequeueMethod];
             if (m.type == SEMethodTypeCall) {
                 // hoge(), wait()などのグローバルメソッドコールはこのクラスで処理
                 
@@ -36,18 +36,18 @@
                 // layer, bgなどのクラスへの参照の場合
                 // 対応するクラスをサブクラスから取得
                 NSString *classID = m.name;
-                Class<SEObject> class = [_classProxyClass classForClassIdentifier:classID];
+                Class<SEObject> class = [self.classProxyClass classForClassIdentifier:classID];
                 // 最初は静的メソッド
-                id<SEObject> instance = [class callStatic_method:m engine:self];
+                id<SEObject> instance;
+                m = [chain dequeueMethod];
+                instance = [class callStatic_method:m engine:self];
                 if (instance) {
                     // チェーンを実行
                     returnValue = instance;
-                    for (int i = 1; i < chain.methods.count; i++) {
-                        m = [chain.methods objectAtIndex:i];
+                    while ((m = [chain dequeueMethod]) != nil) {
                         returnValue = [instance callInstance_method:m engine:self];
                     }
-                }
-                
+                }                
             }
         }else{
             // value

@@ -161,8 +161,7 @@ static NSMutableDictionary *layers;
 
 + (id)at_index:(unsigned int)index
 {
-    id layer = layers[@(index)];
-    return (layer != [NSNull null]) ? layers : nil;
+    return  layers[@(index)];
 }
 
 #pragma mark - Property

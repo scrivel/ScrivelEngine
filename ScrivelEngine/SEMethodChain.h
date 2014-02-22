@@ -19,4 +19,7 @@
 // メソッドチェーンを構成するメソッドら
 @property (nonatomic, readonly) NSMutableArray *methods;
 
+- (SEMethod*)dequeueMethod;
+- (void)enqueueMethod:(SEMethod*)method;
+
 @end
