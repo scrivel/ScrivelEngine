@@ -130,7 +130,8 @@
 		A6D925D618B8E24600902230 /* NSBundle+ScrivelEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D925D318B8E24600902230 /* NSBundle+ScrivelEngine.h */; };
 		A6D925D718B8E24600902230 /* NSBundle+ScrivelEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D925D418B8E24600902230 /* NSBundle+ScrivelEngine.m */; };
 		A6D925D818B8E24600902230 /* NSBundle+ScrivelEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D925D418B8E24600902230 /* NSBundle+ScrivelEngine.m */; };
-		D92E42F51F3748AA9A17C0FE /* libPods-ScrivelEngineDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE535954D37458B9E35A0D4 /* libPods-ScrivelEngineDemo.a */; };
+		A6D925DC18B914E700902230 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A60ECBC818AC8523000F7A40 /* Main.storyboard */; };
+		A6D925DD18B914E700902230 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A60ECBBF18AC8523000F7A40 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -301,7 +302,6 @@
 				A6AC928618AC960300D43025 /* UIKit.framework in Frameworks */,
 				A60ECBBA18AC8523000F7A40 /* CoreGraphics.framework in Frameworks */,
 				A60ECBB818AC8523000F7A40 /* Foundation.framework in Frameworks */,
-				D92E42F51F3748AA9A17C0FE /* libPods-ScrivelEngineDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -778,11 +778,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A60ECBE218AC8524000F7A40 /* Build configuration list for PBXNativeTarget "ScrivelEngineDemo" */;
 			buildPhases = (
-				09097ABC60294876AC5FB8A9 /* Check Pods Manifest.lock */,
 				A60ECBB318AC8523000F7A40 /* Sources */,
 				A60ECBB418AC8523000F7A40 /* Frameworks */,
 				A6AC92BD18ACEFBC00D43025 /* Resources */,
-				26C38D6D0A4C45C4884118FA /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -966,44 +964,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6D925DC18B914E700902230 /* Main.storyboard in Resources */,
+				A6D925DD18B914E700902230 /* InfoPlist.strings in Resources */,
 				A6B104DD18B877D800F0D28D /* Resources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		09097ABC60294876AC5FB8A9 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		26C38D6D0A4C45C4884118FA /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-ScrivelEngineDemo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A60ECBB318AC8523000F7A40 /* Sources */ = {
