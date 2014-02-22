@@ -239,18 +239,33 @@
 - (void)toggle_duration:(NSTimeInterval)duration;
 
 /**
- レイヤーを移動させる。
- 移動はリニアなものに限られる。
- 座標系によってx,yの値が正しくなければいけない。
+ レイヤーをx方向に移動させる。
+ 移動は現在のpositionに加算される。
  
- @method  translate
- @param	{Number} x px or 0~1
- @param	{Number} y px or 0~1
- @param {Number} z px
- @param	{Number} [duration]	秒数
+ @method translateX
+ @param {Number} x
+ @param {Number} [duration]
  **/
+- (void)translateX_x:(CGFloat)x duration:(NSTimeInterval)duration;
+/**
+ レイヤーをy方向に移動させる。
+ 移動は現在のpositionに加算される。
+ 
+ @method translateY
+ @param {Number} y
+ @param {Number} [duration]
+ **/
+- (void)translateY_y:(CGFloat)y duration:(NSTimeInterval)duration;
+/**
+ レイヤーをz方向に移動させる。
+ 移動は現在のpositionに加算される。
+ 
+ @method translateZ
+ @param {Number} z
+ @param {Number} [duration]
+ **/
+- (void)translateZ_z:(CGFloat)z duration:(NSTimeInterval)duration;
 
-- (void)translate_x:(CGFloat)x y:(CGFloat)y z:(CGFloat)z duration:(NSTimeInterval)duration;
 
 /**
  レイヤーを現在のアンカーポイントを中心に拡大/縮小する

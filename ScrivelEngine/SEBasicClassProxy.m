@@ -56,7 +56,9 @@
 	SEL_FOR_METHOD(@"show",show_duration:);
 	SEL_FOR_METHOD(@"hide",hide_duration:);
 	SEL_FOR_METHOD(@"toggle",toggle_duration:);
-	SEL_FOR_METHOD(@"translate",translate_x:y:z:duration:);
+	SEL_FOR_METHOD(@"translateX",translateX_x:duration:);
+	SEL_FOR_METHOD(@"translateY",translateY_y:duration:);
+	SEL_FOR_METHOD(@"translateZ",translateZ_z:duration:);
 	SEL_FOR_METHOD(@"scale",scale_ratio:duration:);
 	SEL_FOR_METHOD(@"rotate",rotate_degree:duration:);
 	SEL_FOR_METHOD(@"opacity",opacity_ratio:duration:);
