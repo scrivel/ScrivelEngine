@@ -67,4 +67,13 @@
     }
     XCTAssert(b == 1,);
 }
+
+- (void)testPath
+{
+    NSString *path = @"Resources/subdir/file.hoge.png";
+    NSString *ext = [path pathExtension];
+    NSArray *pc = [path pathComponents];
+    
+}
+
 @end

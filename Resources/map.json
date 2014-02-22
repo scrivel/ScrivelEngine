@@ -4,7 +4,7 @@
     "at": "at_index:",
     "setAnchorPoint": "set_anchorPoint_x:y:",
     "setPositionType": "set_positionType_type:",
-    "setImage": "loadImage_path:options:",
+    "loadImage": "loadImage_path:duration:",
     "clearImage": "clearImage",
     "clear": "clear",
     "bg": "bg_color:",

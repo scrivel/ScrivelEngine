@@ -39,7 +39,7 @@
 	SEL_FOR_METHOD(@"at",at_index:);
 	SEL_FOR_METHOD(@"setAnchorPoint",set_anchorPoint_x:y:);
 	SEL_FOR_METHOD(@"setPositionType",set_positionType_type:);
-	SEL_FOR_METHOD(@"setImage",loadImage_path:options:);
+	SEL_FOR_METHOD(@"loadImage",loadImage_path:duration:);
 	SEL_FOR_METHOD(@"clearImage",clearImage);
 	SEL_FOR_METHOD(@"clear",clear);
 	SEL_FOR_METHOD(@"bg",bg_color:);

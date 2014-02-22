@@ -76,13 +76,11 @@
  レイヤーに画像を読み込む。
  sizeが指定されていた場合、
  
- @method  setImage
+ @method  loadImage
  @param	{String} path 読み込む画像のファイル名。[NSBundle mainBundle]からの相対パス。
- @param	{Object} [options]
- @param {Number} [options.duration] クロスフェードさせる場合の秒数
- @param {Object} [options.size] 画像のサイズ。読み込んだ後にレイヤーのsizeを変更する
+ @param {Number} [duration] クロスフェードさせる場合の秒数
  **/
-- (void)loadImage_path:(NSString*)path options:(NSDictionary*)options;
+- (void)loadImage_path:(NSString*)path duration:(NSTimeInterval)duration;
 
 /**
  レイヤーに読み込んである画像をクリアする。
