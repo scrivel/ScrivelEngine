@@ -239,23 +239,16 @@
 - (void)toggle_duration:(NSTimeInterval)duration;
 
 /**
- レイヤーをx方向に移動させる。
+ レイヤーを移動させる。
  移動は現在のpositionに加算される。
  
- @method translateX
+ @method translate
  @param {Number} x
- @param {Number} [duration]
- **/
-- (void)translateX_x:(CGFloat)x duration:(NSTimeInterval)duration;
-/**
- レイヤーをy方向に移動させる。
- 移動は現在のpositionに加算される。
- 
- @method translateY
  @param {Number} y
  @param {Number} [duration]
  **/
-- (void)translateY_y:(CGFloat)y duration:(NSTimeInterval)duration;
+- (void)translate_x:(CGFloat)x y:(CGFloat)y duration:(NSTimeInterval)duration;
+
 /**
  レイヤーをz方向に移動させる。
  移動は現在のpositionに加算される。
