@@ -17,6 +17,7 @@ end
 task :setup do
     system "git submodule init"
     system "git submodule update"
+    system "pod"
 end
 
 task :assembler do
