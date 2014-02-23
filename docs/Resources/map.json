@@ -1,0 +1,50 @@
+{
+  "layer": {
+    "new": "new_args:",
+    "at": "at_index:",
+    "setAnchorPoint": "setAnchorPoint_x:y:",
+    "setPositionType": "setPositionType_type:",
+    "gravity": "setGravity_gravity:",
+    "loadImage": "loadImage_path:duration:",
+    "clearImage": "clearImage_duration:",
+    "clear": "clear",
+    "bg": "bg_color:",
+    "border": "border_width:color:",
+    "shadowOffset": "shadowOffset_x:y:",
+    "shadowColor": "shadowColor_color:",
+    "shadowOpacity": "shadowOpcity_opacity:",
+    "shadowRadius": "shadowRadius_radius:",
+    "beginAnimation": "beginAnimation_duration:",
+    "commitAnimation": "commitAnimation",
+    "position": "position_x:y:duration:",
+    "zPosition": "zPosition_z:duration:",
+    "size": "size_width:height:duration:",
+    "show": "show",
+    "hide": "hide",
+    "toggle": "toggle",
+    "fadeIn": "fadeIn_duration:",
+    "fadeOut": "fadeOut_duration:",
+    "translate": "translate_x:y:duration:",
+    "translateZ": "translateZ_z:duration:",
+    "scale": "scale_ratio:duration:",
+    "rotate": "rotate_degree:duration:",
+    "opacity": "opacity_ratio:duration:"
+  },
+  "abstract": {
+    "new": "new_args:",
+    "callStatic": "callStatic_method:engine:",
+    "callInstance": "callInstance_method:engine:",
+    "wait": "wait_duration:"
+  },
+  "text": {
+    "interval": "set_interval:",
+    "font": "set_font:",
+    "text": "set_text:noanimate:",
+    "name": "set_name:",
+    "clear": "clear",
+    "skip": "skip",
+    "padding": "set_padding:",
+    "verticalAlign": "set_verticalAlign:",
+    "horizontalAlign": "set_horizontalAlign:"
+  }
+}

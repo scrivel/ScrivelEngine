@@ -1,0 +1,24 @@
+@start = script;
+
+@reportsCommentTokens = NO;
+@commentState       = '/';
+@singleLineComments = '//';
+@multiLineComments  = '/*' '*/';
+@allowsFloatingPoint = YES;
+
+script      =   element+;
+element		=	Comment | words | methodChain | value;
+
+words       =   name? '[' text ']';
+name        =   Word | QuotedString;
+text        =   (Word | QuotedString | Number)+;
+
+methodChain =   method ('.' method)* ';'?;
+method 		=	identifier ('(' arguments ')')?;
+arguments	=	Empty | value (',' value )*;
+value		= 	Number | QuotedString | array | object | 'true' | 'false' | 'null';
+array		=	'[' value (',' value)* ']';
+object		=	'{' keyValue (',' keyValue)* '}';
+keyValue	= 	key ':' value;
+key         =   Word | QuotedString;
+identifier	=	Word;

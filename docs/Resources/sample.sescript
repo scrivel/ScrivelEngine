@@ -1,0 +1,40 @@
+// コメント
+
+/*
+ 複数行の
+ コメント
+ */
+
+// スクリプト
+window.shake(100)
+// メソッドチェーン
+layer.at(1).position(100,100)
+// プロパティアクセス
+layer.at(1).position
+// -> global.wait(100)
+wait(100)
+// メソッドの引数には数字、文字列、配列、オブジェクトを渡すことができる
+layer.at([1,2,3]).move(100,100,1000).method({"key" : "value"})
+// グローバルメソッドはチェーンの中に挿入できる
+layer.at(1).fadeOut().move(-100,-100).wait(200).move(0,0,200)
+// 引数にはNumber, String, Boolean, Array, Object, nullが送れる
+// nullはrequiredな引数に対して現在の値を保持することを意味する
+ui.method(1,0.1,"string", true, false, [1,1,1], { key : "value"}, null)
+
+// 複数行のメソッドチェーン
+layer.at(2)
+    .beginAnimation(200)
+    .position(200)
+    .translate(200,0)
+    .scale(2.0)
+    .commitAnimation()
+
+// 「」でかこまれた部分は台詞になりテクストフレームに表示される
+[セリフは自由に書ける。最後までいくと自動的にタップかクリックを待つ。]
+// 改行
+[セリフの途中で改行したくなったら、
+こんな感じで
+表示されるはず。]
+
+// 名前+セリフ
+かえるくん["「"の前に文字をいれると、名前ラベルに文字が表示されるよ。]
