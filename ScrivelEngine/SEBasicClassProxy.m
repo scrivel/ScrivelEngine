@@ -74,15 +74,15 @@
 
 	// text
 
-	SEL_FOR_METHOD(@"interval",set_interval:);
-	SEL_FOR_METHOD(@"font",set_font:);
-	SEL_FOR_METHOD(@"text",set_text:noanimate:);
-	SEL_FOR_METHOD(@"name",set_name:);
+	SEL_FOR_METHOD(@"interval",setInterval_interval:);
+	SEL_FOR_METHOD(@"font",setFont_name:size:);
+	SEL_FOR_METHOD(@"lineSpacing",setLineSpacing_spacing:);
+	SEL_FOR_METHOD(@"text",setText_text:noanimate:);
 	SEL_FOR_METHOD(@"clear",clear);
 	SEL_FOR_METHOD(@"skip",skip);
-	SEL_FOR_METHOD(@"padding",set_padding:);
-	SEL_FOR_METHOD(@"verticalAlign",set_verticalAlign:);
-	SEL_FOR_METHOD(@"horizontalAlign",set_horizontalAlign:);
+	SEL_FOR_METHOD(@"padding",setPadding_top:left:bottom:right:);
+	SEL_FOR_METHOD(@"verticalAlign",setVerticalAlign_direction:);
+	SEL_FOR_METHOD(@"horizontalAlign",setHorizontalAlign_direction:);
 
 
     return nil;

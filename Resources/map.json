@@ -37,14 +37,14 @@
     "wait": "wait_duration:"
   },
   "text": {
-    "interval": "set_interval:",
-    "font": "set_font:",
-    "text": "set_text:noanimate:",
-    "name": "set_name:",
+    "interval": "setInterval_interval:",
+    "font": "setFont_name:size:",
+    "lineSpacing": "setLineSpacing_spacing:",
+    "text": "setText_text:noanimate:",
     "clear": "clear",
     "skip": "skip",
-    "padding": "set_padding:",
-    "verticalAlign": "set_verticalAlign:",
-    "horizontalAlign": "set_horizontalAlign:"
+    "padding": "setPadding_top:left:bottom:right:",
+    "verticalAlign": "setVerticalAlign_direction:",
+    "horizontalAlign": "setHorizontalAlign_direction:"
   }
 }
