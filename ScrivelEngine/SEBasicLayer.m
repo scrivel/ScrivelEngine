@@ -17,7 +17,7 @@
 #define kMaxLayer 1000
 #define kGroupedAnimationKey @"GroupedAnimation"
 #define VALID_DOUBLE(d) (d != SENilDouble)
-#define ROUND_DOUBLE(d) VALID_DOUBLE(d) ? d : 0.0
+#define ROUND_DOUBLE(d) (VALID_DOUBLE(d) ? d : 0.0)
 #define VALID_INT(i) (i != SENilInteger)
 
 static inline CGFloat NORMALIZED(CGFloat f)
@@ -501,17 +501,14 @@ static NSMutableDictionary *layers;
 {
     CGFloat _x = ROUND_DOUBLE(x) + self.layer.position.x;
     CGFloat _y = ROUND_DOUBLE(y) + self.layer.position.y;
-    SESize s = CGSizeZero;
-    s.width = _x;
-    s.height= _y;
-    NSValue *v = [NSValue se_ValueWithSize:s];
-    [self enqueuAnimationForKeyPath:@"transform.translation" toValue:v duration:duration];
+    // transform.translateを使うと面倒なので加算してpositionのアニメーションにする
+    [self position_x:_x y:_y duration:duration];
 }
 
 - (void)translateZ_z:(CGFloat)z duration:(NSTimeInterval)duration
 {
     CGFloat _z = ROUND_DOUBLE(z) + self.layer.zPosition;
-    [self enqueuAnimationForKeyPath:@"transform.translation.z" toValue:@(_z) duration:duration];
+    [self zPosition_z:_z duration:duration];
 }
 
 - (void)scale_ratio:(CGFloat)ratio duration:(NSTimeInterval)duration
