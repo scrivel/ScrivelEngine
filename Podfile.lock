@@ -1,0 +1,20 @@
+PODS:
+  - AVHexColor (1.1.0)
+  - ParseKit (0.7)
+  - ScrivelEngine (0.0.1):
+    - AVHexColor
+    - ParseKit (~> 0.7)
+
+DEPENDENCIES:
+  - ScrivelEngine (from `.`)
+
+EXTERNAL SOURCES:
+  ScrivelEngine:
+    :path: .
+
+SPEC CHECKSUMS:
+  AVHexColor: 544ee59a39c26d2d835e1163db48fc6c82860583
+  ParseKit: 3e29375d37e10b468fa2298ad7304a10f553bcef
+  ScrivelEngine: 9c5ead000ffe69d931502684c7889fcb38ff99df
+
+COCOAPODS: 0.29.0
