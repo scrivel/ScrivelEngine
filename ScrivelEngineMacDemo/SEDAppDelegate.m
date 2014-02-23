@@ -29,7 +29,7 @@
     [f setObject:self forKey:MGSFODelegate];
     [f setObject:@"SEScript" forKey:MGSFOSyntaxDefinitionName];
     [f embedInView:self.editorView];
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"sample" ofType:@"sescript"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"animate" ofType:@"sescript" inDirectory:@"Resources"];
     NSString *str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     [f setString:str];
     fragaria = f;
