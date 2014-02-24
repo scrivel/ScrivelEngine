@@ -247,11 +247,9 @@
 - (void)__method {
     
     [self identifier]; 
-    if ([self speculate:^{ [self match:SESCRIPTPARSER_TOKEN_KIND_OPEN_PAREN discard:NO]; [self arguments]; [self match:SESCRIPTPARSER_TOKEN_KIND_CLOSE_PAREN discard:NO]; }]) {
-        [self match:SESCRIPTPARSER_TOKEN_KIND_OPEN_PAREN discard:NO]; 
-        [self arguments]; 
-        [self match:SESCRIPTPARSER_TOKEN_KIND_CLOSE_PAREN discard:NO]; 
-    }
+    [self match:SESCRIPTPARSER_TOKEN_KIND_OPEN_PAREN discard:NO]; 
+    [self arguments]; 
+    [self match:SESCRIPTPARSER_TOKEN_KIND_CLOSE_PAREN discard:NO]; 
 
     [self fireAssemblerSelector:@selector(parser:didMatchMethod:)];
 }
