@@ -14,37 +14,6 @@
 #import "NSArray+Where.h"
 
 @interface SEScriptAssembler ()
-
-// メソッド
-- (void)pushIdentifier:(NSString*)identifier;
-- (void)pushKey:(NSString*)key;
-- (void)pushKeyValue:(NSArray*)keyValue;
-- (void)pushValue:(id)value;
-- (void)pushArray:(NSArray*)array;
-- (void)pushObject:(NSDictionary*)object;
-- (void)pushArguments:(NSArray*)arguments;
-- (void)pushMethod:(SEMethod*)method;
-- (void)pushMethodChain:(SEMethodChain*)methodChain;
-
-- (NSString*)popIdentifier;
-- (NSString*)popKey;
-- (NSArray*)popKeyValue;
-- (id)popValue;
-- (NSArray*)popArray;
-- (NSDictionary*)popObject;
-- (NSArray*)popArguments;
-- (SEMethod*)popMethod;
-- (SEMethodChain*)popMethodChain;
-
-// セリフ
-- (void)pushName:(NSString*)name;
-- (void)pushText:(NSString*)text;
-- (NSString*)popName;
-- (NSString*)popText;
-
-- (void)pushElement:(id)element;
-- (id)popElement;
-
 @end
 
 static PKToken *commaToken;
@@ -115,38 +84,39 @@ static PKToken *openCurlyToken;
 
 - (void)parser:(PKParser *)parser didMatchScript:(PKAssembly *)assembly{
     id element = nil;
-    while ((element = [self popElement]) != nil) {
+    while ((element = [_elementStack pop]) != nil) {
         [_script.elements insertObject:element atIndex:0];
     }
 }
 
 - (void)parser:(PKParser *)parser didMatchElement:(PKAssembly *)assembly{
     // メソッドチェーンがあればpush
-    id pop = [self popMethodChain];
+    id pop = [_methodChainStack pop];
     if (pop) {
-        [self pushElement:pop];
+        [_elementStack push:pop];
     }
     // json形式のvalueならpush
-    id val = [self popValue];
+    id val = [_valueStack pop];
     if (val) {
-        [self pushElement:val];
+        [_elementStack push:val];
     }
 }
 
 - (void)parser:(PKParser *)parser didMatchMethodChain:(PKAssembly *)assembly
 {
-    SEMethodChain *chain = [[SEMethodChain alloc] initWithLineNumber:parser.tokenizer.lineNumber];    
+    NSString *targetClass = [_identifierStack pop];
+    SEMethodChain *chain = [[SEMethodChain alloc] initWithLineNumber:parser.tokenizer.lineNumber targetClass:targetClass];
     SEMethod *m = nil;
-    while ((m = [self popMethod]) != nil) {
+    while ((m = [_methodStack pop]) != nil) {
         [chain.methods insertObject:m atIndex:0];
     }
-    [self pushMethodChain:chain];
+    [_methodChainStack push:chain];
 }
 
 - (void)parser:(PKParser *)parser didMatchMethod:(PKAssembly *)assembly
 {
-    NSArray *args = [self popArguments];
-    NSString *identifier = [self popIdentifier];
+    NSArray *args = [_argumentsStack pop];
+    NSString *identifier = [_identifierStack pop];
     SEMethod *method = nil;
     if (args) {
         method = [[SEMethod alloc] initWithName:identifier type:SEMethodTypeCall];
@@ -154,51 +124,51 @@ static PKToken *openCurlyToken;
     }else{
         method = [[SEMethod alloc] initWithName:identifier type:SEMethodTypeProperty];
     }
-    [self pushMethod:method];
+    [_methodStack push:method];
 }
 
 - (void)parser:(PKParser *)parser didMatchArguments:(PKAssembly *)assembly
 {
     id value = nil;
     NSMutableArray *ma = [NSMutableArray new];
-    while ((value = [self popValue]) != nil) {
+    while ((value = [_valueStack pop]) != nil) {
         [ma insertObject:value atIndex:0];
     }
     if (ma.count > 0) {
-        [self pushArguments:[NSArray arrayWithArray:ma]];
+        [_argumentsStack push:[NSArray arrayWithArray:ma]];
     }else{
-        [self pushArguments:@[]];
+        [_argumentsStack push:@[]];
     }
 }
 
 - (void)parser:(PKParser *)parser didMatchValue:(PKAssembly *)assembly
 {
-    id obj = [self popObject];
+    id obj = [_objectStack pop];
     if (obj) {
-        [self pushValue:(NSDictionary*)obj];
+        [_valueStack push:obj];
         return;
     }
-    obj = [self popArray];
+    obj = [_arrayStack pop];
     if (obj) {
-        [self pushValue:(NSArray*)obj];
+        [_valueStack push:obj];
         return;
     }
     PKToken *tok = [assembly pop];
     if (tok.tokenType == PKTokenTypeQuotedString){
         // quoteを外す
         NSString *s = [tok.stringValue substringWithRange:NSMakeRange(1, tok.stringValue.length-2)];
-        [self pushValue:s];
+        [_valueStack push:s];
     }else if (tok.tokenType == PKTokenTypeNumber) {
         // NSNumber
         NSNumber *num = tok.value;
-        [self pushValue:num];
+        [_valueStack push:num];
     }else if (tok.tokenType == PKTokenTypeWord){
         if (tok.tokenKind == SESCRIPTPARSER_TOKEN_KIND_FALSE) {
-            [self pushValue:@NO];
+            [_valueStack push:@NO];
         }else if (tok.tokenKind == SESCRIPTPARSER_TOKEN_KIND_TRUE){
-            [self pushValue:@YES];
+            [_valueStack push:@YES];
         }else if (tok.tokenKind == SESCRIPTPARSER_TOKEN_KIND_NULL){
-            [self pushValue:[NSNull null]];
+            [_valueStack push:[NSNull null]];
         }
     }
 }
@@ -213,11 +183,11 @@ static PKToken *openCurlyToken;
 //    NSLog(@"%@",a);
 //    NSLog(@"%@",assembly.stack);
     for (NSUInteger i = 0; i < vallen + 1 ; i++) {
-        value = [self popValue];
+        value = [_valueStack pop];
         [ma insertObject:value atIndex:0];
     }
     [assembly pop];
-    [self pushArray:[NSArray arrayWithArray:ma]];
+    [_arrayStack push:[NSArray arrayWithArray:ma]];
 }
 
 - (void)parser:(PKParser *)parser didMatchObject:(PKAssembly *)assembly
@@ -230,21 +200,21 @@ static PKToken *openCurlyToken;
 //    NSLog(@"%@",o);
 //    NSLog(@"%@",assembly.stack);
     for (int i = 0; i < vallen; i++) {
-        keyValue = [self popKeyValue];
+        keyValue = [_keyValueStack pop];
         NSString *key = keyValue[0];
         id obj = keyValue[1];
         [di setObject:obj forKey:key];
     }
     [assembly pop];
-    [self pushObject:[NSDictionary dictionaryWithDictionary:di]];
+    [_objectStack push:[NSDictionary dictionaryWithDictionary:di]];
 }
 
 - (void)parser:(PKParser *)parser didMatchKeyValue:(PKAssembly *)assembly
 {
-    NSString *key = [self popKey];
-    id value = [self popValue];
+    NSString *key = [_keyStack pop];
+    id value = [_valueStack pop];
     NSArray *keyValue = @[key,value];
-    [self pushKeyValue:keyValue];
+    [_keyValueStack push:keyValue];
 }
 
 - (void)parser:(PKParser *)parser didMatchKey:(PKAssembly *)assembly
@@ -252,14 +222,14 @@ static PKToken *openCurlyToken;
     PKToken *tok = [assembly pop];
     if (tok.tokenType == PKTokenTypeQuotedString
         || tok.tokenType == PKTokenTypeWord) {
-        [self pushKey:tok.stringValue];
+        [_keyStack push:tok.stringValue];
     }
 }
 
 - (void)parser:(PKParser *)parser didMatchIdentifier:(PKAssembly *)assembly
 {
     PKToken *tok = [assembly pop];
-    [self pushIdentifier:tok.stringValue];
+    [_identifierStack push:tok.stringValue];
 }
 
 #pragma mark - Words
@@ -267,9 +237,9 @@ static PKToken *openCurlyToken;
 - (void)parser:(PKParser *)parser didMatchWords:(PKAssembly *)assembly
 {
     // セリフは実際はグローバルコンテクストへのメソッドコール
-    NSString *name = [self popName];
-    NSString *text = [self popText];
-    SEMethodChain *chain = [[SEMethodChain alloc] initWithLineNumber:parser.tokenizer.lineNumber];
+    NSString *name = [_nameStack pop];
+    NSString *text = [_textStack pop];
+    SEMethodChain *chain = [[SEMethodChain alloc] initWithLineNumber:parser.tokenizer.lineNumber targetClass:@"app"];
     if (name) {
         SEMethod *name_m = [SEMethod nameMethod];
         [name_m setArguments:@[name]];
@@ -278,124 +248,19 @@ static PKToken *openCurlyToken;
     SEMethod *text_m = [SEMethod textMethod];
     [text_m setArguments:@[text]];
     [chain.methods addObject:text_m];
-    [self pushMethodChain:chain];
+    [_methodChainStack push:chain];
 }
 
 - (void)parser:(PKParser *)parser didMatchName:(PKAssembly *)assembly
 {
     PKToken *tok = [assembly pop];
-    [self pushName:tok.stringValue];
+    [_nameStack push:tok.stringValue];
 }
 
 - (void)parser:(PKParser *)parser didMatchText:(PKAssembly *)assembly
 {
     PKToken *tok = [assembly pop];
-    [self pushText:tok.stringValue];
+    [_textStack push:tok.stringValue];
 }
-
-#pragma mark - Stack
-
-// メソッド
-- (void)pushIdentifier:(NSString*)identifier
-{
-    [_identifierStack push:identifier];
-}
-- (void)pushKey:(NSString*)key
-{
-    [_keyStack push:key];
-}
-- (void)pushKeyValue:(NSArray*)keyValue
-{
-    [_keyValueStack push:keyValue];
-}
-- (void)pushValue:(id)value
-{
-    [_valueStack push:value];
-}
-- (void)pushArray:(NSArray*)array
-{
-    [_arrayStack push:array];
-}
-- (void)pushObject:(NSDictionary*)object
-{
-    [_objectStack push:object];
-}
-- (void)pushArguments:(NSArray*)arguments
-{
-    [_argumentsStack push:arguments];
-}
-- (void)pushMethod:(SEMethod*)method
-{
-    [_methodStack push:method];
-}
-- (void)pushMethodChain:(SEMethodChain*)methodChain
-{
-    [_methodChainStack push:methodChain];
-}
-
-- (NSString*)popIdentifier
-{
-    return [_identifierStack pop];
-}
-- (NSString*)popKey
-{
-    return [_keyStack pop];
-}
-- (NSArray*)popKeyValue
-{
-    return [_keyValueStack pop];
-}
-- (id)popValue
-{
-    return [_valueStack pop];
-}
-- (NSArray*)popArray
-{
-    return [_arrayStack pop];
-}
-- (NSDictionary*)popObject
-{
-    return [_objectStack pop];
-}
-- (NSArray*)popArguments
-{
-    return [_argumentsStack pop];
-}
-- (SEMethod*)popMethod
-{
-    return [_methodStack pop];
-}
-- (SEMethodChain*)popMethodChain
-{
-    return [_methodChainStack pop];
-}
-
-// セリフ
-- (void)pushName:(NSString*)name
-{
-    [_nameStack push:name];
-}
-- (void)pushText:(NSString*)text
-{
-    [_textStack push:text];
-}
-- (NSString*)popName
-{
-    return [_nameStack pop];
-}
-- (NSString*)popText
-{
-    return [_textStack pop];
-}
-
-- (void)pushElement:(id)element
-{
-    [_elementStack push:element];
-}
-- (id)popElement
-{
-    return [_elementStack pop];
-}
-
 
 @end

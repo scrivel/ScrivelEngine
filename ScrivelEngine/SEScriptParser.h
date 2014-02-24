@@ -23,6 +23,7 @@ enum {
 
 @class PKParser, PKAssembly;
 @protocol SEScriptParserDelegate <NSObject>
+@required
 
 - (void)parser:(PKParser*)parser didMatchScript:(PKAssembly*)assembly;
 - (void)parser:(PKParser*)parser didMatchElement:(PKAssembly*)assembly;

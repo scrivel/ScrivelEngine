@@ -8,16 +8,16 @@
 
 #import "SEMethodChain.h"
 #import "SEObject.h"
-#import "SEGlobalObject.h"
 #import "SEMethod.h"
 #import "ScrivelEngine.h"
 
 @implementation SEMethodChain
 
-- (instancetype)initWithLineNumber:(NSUInteger)lineNumber
+- (instancetype)initWithLineNumber:(NSUInteger)lineNumber targetClass:(NSString *)targetClass
 {
     self = [self init];
     _methods = [NSMutableArray new];
+    _targetClass = targetClass;
     return self ?: nil;
 }
 

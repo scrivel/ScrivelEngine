@@ -224,7 +224,7 @@
 
 - (void)__methodChain {
     
-    [self method]; 
+    [self identifier]; 
     while ([self predicts:SESCRIPTPARSER_TOKEN_KIND_DOT, 0]) {
         if ([self speculate:^{ [self match:SESCRIPTPARSER_TOKEN_KIND_DOT discard:NO]; [self method]; }]) {
             [self match:SESCRIPTPARSER_TOKEN_KIND_DOT discard:NO]; 

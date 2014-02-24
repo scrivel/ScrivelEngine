@@ -7,6 +7,7 @@
 //
 
 #import "Queue.h"
+#import "SEObject.h"
 
 @class SEMethod;
 
@@ -14,8 +15,9 @@
 
 @property (nonatomic, readonly) NSUInteger lineNumber;
 
-- (instancetype)initWithLineNumber:(NSUInteger)lineNumber;
+- (instancetype)initWithLineNumber:(NSUInteger)lineNumber targetClass:(NSString*)targetClass;
 
+@property (nonatomic, readonly) NSString *targetClass;
 // メソッドチェーンを構成するメソッドら
 @property (nonatomic, readonly) NSMutableArray *methods;
 
