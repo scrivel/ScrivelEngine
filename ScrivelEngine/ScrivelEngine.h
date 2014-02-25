@@ -30,20 +30,23 @@ typedef NSSize SESize;
 
 #define SENilInteger NSIntegerMin
 #define SENilUInteger NSUIntegerMax
-#define SENilDouble CGFLOAT_MIN
+#define SENilCGFloat CGFLOAT_MIN
+#define SENilDouble DBL_MIN
 
-#define VALID_DOUBLE(d) (d != SENilDouble)
-#define ROUND_DOUBLE(d) (VALID_DOUBLE(d) ? d : 0.0)
+#define VALID_CGFLOAT(d) ((CGFloat)d != SENilCGFloat)
+#define ROUND_CGFLOAT(d) (VALID_CGFLOAT(d) ? d : (CGFloat)0.0)
+#define VALID_DOUBLE(d) ((double)d != SENilDouble)
+#define ROUND_DOUBLE(d) (VALID_DOUBLE(d) ? d : (double)0.0)
 #define VALID_INT(i) (i != SENilInteger)
 #define VALID_UINT(i) (I != SENilUInteger)
 
 typedef NS_ENUM(NSUInteger, SEPositionType){
-    SEPositionTypePX,
+    SEPositionTypePX = 1,
     SEPositionTypeNormalized
 };
 
 typedef NS_ENUM(NSUInteger, SESizeType){
-    SESizeTypePX,
+    SESizeTypePX = 1,
     SESizeTypeNormalized
 };
 

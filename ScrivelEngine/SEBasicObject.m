@@ -24,6 +24,8 @@ static id callMethod(id target, SEMethod *method, ScrivelEngine *engine)
     [iv setSelector:sel];
     [iv retainArguments];
     for (NSUInteger i = 0; i < sig.numberOfArguments - 2; i++) {
+        // シグネチャのargの型によって安全に引数を渡す
+        // 現状、原則としてint, unsinedなどのCプリミティブ型は引数にはしない
         const char * type = [sig getArgumentTypeAtIndex:i+2];
         if (SAME_TYPE(type, @encode(NSUInteger))) {
             NSUInteger uintarg = (NSUInteger)[method unsignedIntegerArtAtIndex:i];
@@ -32,8 +34,11 @@ static id callMethod(id target, SEMethod *method, ScrivelEngine *engine)
             NSInteger intarg = [method integerArgAtIndex:i];
             [iv setArgument:&intarg atIndex:i+2];
         }else if (SAME_TYPE(type, @encode(CGFloat))){
-            CGFloat doubArg = [method doubleArgAtIndex:i];
-            [iv setArgument:&doubArg atIndex:i+2];
+            CGFloat cgfArg = [method CGFloatArgAtIndex:i];
+            [iv setArgument:&cgfArg atIndex:i+2];
+        }else if (SAME_TYPE(type, @encode(NSTimeInterval))){
+            NSTimeInterval doubleArg = [method doubleArgAtIndex:i];
+            [iv setArgument:&doubleArg atIndex:i+2];
         }else{
             id arg = nil;
             arg = [method argAtIndex:i];
@@ -53,14 +58,14 @@ static id callMethod(id target, SEMethod *method, ScrivelEngine *engine)
 
 @implementation SEBasicObjectClass
 {
-    NSMutableSet *__instances;
+    NSHashTable *__instances;
 }
 
 - (instancetype)initWithEngine:(ScrivelEngine *)engine
 {
     self = [self init];
     _engine = engine;
-    __instances = [NSMutableSet new];
+    __instances = [NSHashTable weakObjectsHashTable];
     _instanceClass = [SEBasicObjectClass class];
     return self ?: nil;
 }
@@ -75,6 +80,7 @@ static id callMethod(id target, SEMethod *method, ScrivelEngine *engine)
     SEBasicObject *new = [[self.instanceClass alloc] initWithOpts:args];
     // インスタンスを保持
     new.holder = self;
+    // インスタンスを弱参照で保持する（必要かな？）
     [__instances addObject:new];
     return new;
 }

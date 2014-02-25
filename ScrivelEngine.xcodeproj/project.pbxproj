@@ -63,6 +63,10 @@
 		A639F08D18BB82F800CF4148 /* SEBasicApp.m in Sources */ = {isa = PBXBuildFile; fileRef = A639F08A18BB82F800CF4148 /* SEBasicApp.m */; };
 		A639F08E18BB82F800CF4148 /* SEBasicApp.m in Sources */ = {isa = PBXBuildFile; fileRef = A639F08A18BB82F800CF4148 /* SEBasicApp.m */; };
 		A639F0A118BB932100CF4148 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECBB918AC8523000F7A40 /* CoreGraphics.framework */; };
+		A639F0A418BCEFFF00CF4148 /* NSNumber+CGFloat.h in Headers */ = {isa = PBXBuildFile; fileRef = A639F0A218BCEFFF00CF4148 /* NSNumber+CGFloat.h */; };
+		A639F0A518BCEFFF00CF4148 /* NSNumber+CGFloat.h in Headers */ = {isa = PBXBuildFile; fileRef = A639F0A218BCEFFF00CF4148 /* NSNumber+CGFloat.h */; };
+		A639F0A618BCEFFF00CF4148 /* NSNumber+CGFloat.m in Sources */ = {isa = PBXBuildFile; fileRef = A639F0A318BCEFFF00CF4148 /* NSNumber+CGFloat.m */; };
+		A639F0A718BCEFFF00CF4148 /* NSNumber+CGFloat.m in Sources */ = {isa = PBXBuildFile; fileRef = A639F0A318BCEFFF00CF4148 /* NSNumber+CGFloat.m */; };
 		A63BB5E418AD30D30051FA9F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A6128218A7B0DA00CBD988 /* XCTest.framework */; };
 		A63BB5F318AD30EA0051FA9F /* SEScriptTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC2418AC8A5D000F7A40 /* SEScriptTests.m */; };
 		A63BB5F518AD33D70051FA9F /* libScrivelEngineMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECC2A18AC8BE1000F7A40 /* libScrivelEngineMac.a */; };
@@ -235,6 +239,8 @@
 		A639F08618BB7A0C00CF4148 /* SEApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEApp.h; sourceTree = "<group>"; };
 		A639F08918BB82F800CF4148 /* SEBasicApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEBasicApp.h; sourceTree = "<group>"; };
 		A639F08A18BB82F800CF4148 /* SEBasicApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEBasicApp.m; sourceTree = "<group>"; };
+		A639F0A218BCEFFF00CF4148 /* NSNumber+CGFloat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+CGFloat.h"; sourceTree = "<group>"; };
+		A639F0A318BCEFFF00CF4148 /* NSNumber+CGFloat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+CGFloat.m"; sourceTree = "<group>"; };
 		A63BB5DC18AD2DFD0051FA9F /* libParseKit-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libParseKit-iOS.a"; path = "External/ParseKit/build/Debug-iphoneuniversal/libParseKit-iOS.a"; sourceTree = "<group>"; };
 		A63BB5E318AD30D30051FA9F /* ScrivelEngineMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrivelEngineMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A63BB5F718AD348A0051FA9F /* libParseKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libParseKit.a; path = External/ParseKit/build/Debug/libParseKit.a; sourceTree = "<group>"; };
@@ -420,6 +426,8 @@
 				A6D04D4318B74D4D00977B7A /* NSArray+Where.m */,
 				A6D925D318B8E24600902230 /* NSBundle+ScrivelEngine.h */,
 				A6D925D418B8E24600902230 /* NSBundle+ScrivelEngine.m */,
+				A639F0A218BCEFFF00CF4148 /* NSNumber+CGFloat.h */,
+				A639F0A318BCEFFF00CF4148 /* NSNumber+CGFloat.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -782,6 +790,7 @@
 				A6D0516518B835FE00977B7A /* AVHexColor.h in Headers */,
 				A6A1691C18B25A4C0041BBBA /* SEMethod.h in Headers */,
 				A604524A18B3C78200B85928 /* SEBasicTextLayer.h in Headers */,
+				A639F0A518BCEFFF00CF4148 /* NSNumber+CGFloat.h in Headers */,
 				A6D04D4B18B7701C00977B7A /* SEBasicClassProxy.h in Headers */,
 				A604523018B3A35A00B85928 /* SEObject.h in Headers */,
 				A6A1691518B25A410041BBBA /* SEScript.h in Headers */,
@@ -810,6 +819,7 @@
 				A6D925D518B8E24600902230 /* NSBundle+ScrivelEngine.h in Headers */,
 				A6D0516418B835FE00977B7A /* AVHexColor.h in Headers */,
 				A604523718B3A58B00B85928 /* SEBasicLayer.h in Headers */,
+				A639F0A418BCEFFF00CF4148 /* NSNumber+CGFloat.h in Headers */,
 				A604522F18B3A35A00B85928 /* SEObject.h in Headers */,
 				A6D04D4A18B7701C00977B7A /* SEBasicClassProxy.h in Headers */,
 				A604522818B3A30B00B85928 /* SELayer.h in Headers */,
@@ -1097,6 +1107,7 @@
 				A63F889218AFBBBA007FBE57 /* SEScriptAssembler.m in Sources */,
 				A6D0516618B835FE00977B7A /* AVHexColor.m in Sources */,
 				A63F88B218B0F496007FBE57 /* ScrivelEngine.m in Sources */,
+				A639F0A618BCEFFF00CF4148 /* NSNumber+CGFloat.m in Sources */,
 				A609F67018B48F74000A0EFB /* Stack.m in Sources */,
 				A60ECC2018AC8A46000F7A40 /* SEScript.m in Sources */,
 				A60ECC1F18AC8A46000F7A40 /* SEMethod.m in Sources */,
@@ -1131,6 +1142,7 @@
 				A6D0516718B835FE00977B7A /* AVHexColor.m in Sources */,
 				A63F88BC18B11089007FBE57 /* SEScriptAssembler.m in Sources */,
 				A609F67118B48F74000A0EFB /* Stack.m in Sources */,
+				A639F0A718BCEFFF00CF4148 /* NSNumber+CGFloat.m in Sources */,
 				A63F88BE18B11089007FBE57 /* SEMethodChain.m in Sources */,
 				A60ECC5018AC8C54000F7A40 /* SEMethod.m in Sources */,
 				A604523E18B3A58B00B85928 /* SEBasicObject.m in Sources */,

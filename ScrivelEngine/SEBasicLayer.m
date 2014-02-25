@@ -19,31 +19,9 @@
 #define kMaxLayer 1000
 #define kGroupedAnimationKey @"GroupedAnimation"
 
-
-#define VH self.holder.engine.rootView.bounds.size.height
-#define VW self.holder.engine.rootView.bounds.size.width
-
-// 正規化された値からpx値でのサイズを返す
-#define SIZE_IN_PX(w,h) CGSizeMake((CGFloat)(w*VW), (CGFloat)(h*VH))
-// 正規化された位置から実際の位置を返す
-#define POINT_IN_PX(x,y) CGPointMake((CGFloat)(x*VW), (CGFloat)(y*VH))
-
-// iOSの左上座標をMacの左下座標に変換する
-#if TARGET_OS_IPHONE
-#define CONVERTED_Y(y) (VH - y)
-#else
-#define CONVERTED_Y(y) y
-#endif
-
-// PositionType, OSの違いを吸収してCALayer上の正しい値を取得する
-#define SESizeMake(w,h) (([self.holder.engine.app positionType] == SEPositionTypeNormalized) ? SIZE_IN_PX(w,h) : CGSizeMake(w,h))
-#define SEPointMake(x,y) (([self.holder.engine.app sizeType] == SESizeTypeNormalized) ? POINT_IN_PX(x, CONVERTED_Y(y)) : CGPointMake(x,CONVERTED_Y(y)))
-#define _SERectMake(p,s) CGRectMake(p.x, p.y, s.width, s.height)
-#define SERectMake(x,y,w,h) _SERectMake(SEPointMake(x,y), SESizeMake(w,h))
-
 static inline CGFloat ZERO_TO_ONE(CGFloat f)
 {
-    CGFloat _f = ROUND_DOUBLE(f);
+    CGFloat _f = ROUND_CGFLOAT(f);
     if (_f < 0) {
         return 0.0;
     }else if (_f > 1){
@@ -72,7 +50,11 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
     }else{
         layer = (SEBasicLayer*)[super new_args:args];
     }
+    // 古いレイヤーを消す
+    [self clear_index:layer.index];
+    // 登録
     [__layers setObject:layer forKey:@(layer.index)];
+    // レイヤーを追加
     [self.engine.rootView.layer addSublayer:layer.layer];
     return layer;
 }
@@ -84,7 +66,7 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 
 - (void)clear_index:(NSUInteger)index
 {
-    [[__layers objectForKey:@(index)] removeFromSuperlayer];
+    [[[__layers objectForKey:@(index)] layer]removeFromSuperlayer];
     [__layers removeObjectForKey:@(index)];
 }
 
@@ -115,100 +97,6 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
     _layer = [CALayer layer];
     return self ?: nil;
 }
-
-//+ (id)callStatic_method:(SEMethod *)method engine:(ScrivelEngine *)engine
-//{
-//    Class<SEClassProxy> proxy = [engine classProxyClass];
-//    SEL sel = [proxy selectorForMethodIdentifier:method.name];
-//    if (sel == @selector(new_args:)) {
-//        SEBasicLayer *new = [self new_args:[method argAtIndex:0]];
-//        CALayer *current = [[layers objectForKey:@(new.index)] layer];
-//        if (current) {
-//            [engine.rootView.layer replaceSublayer:current with:new.layer];
-//        }else{
-//            [engine.rootView.layer insertSublayer:new.layer atIndex:new.index];
-//        }
-//        [layers setObject:new forKey:@(new.index)];
-//        return new;
-//    }else if (sel == @selector(at_index:)){
-//        return [self at_index:(unsigned int)[method integerArgAtIndex:0]];
-//    }
-//    @throw [NSString stringWithFormat:@"存在しないメソッド : %@",method];
-//    return nil;
-//}
-
-//- (id)callInstance_method:(SEMethod *)method engine:(ScrivelEngine *)engine
-//{
-//    self.engine = engine;
-//    Class<SEClassProxy> proxy = [engine classProxyClass];
-//    SEL sel = [proxy selectorForMethodIdentifier:method.name];
-//    if (!sel || ![self respondsToSelector:sel]) {
-//        @throw [NSString stringWithFormat:@"存在しないメソッド : %@",method];
-//        return nil;
-//    }else if (sel == @selector(setAnchorPoint_x:y:)) {
-//        [self setAnchorPoint_x:[method doubleArgAtIndex:0] y:[method doubleArgAtIndex:1]];
-//    }else if (sel == @selector(setPositionType_type:)) {
-//        [self setPositionType_type:[method argAtIndex:0]];
-//    }else if (sel == @selector(loadImage_path:duration:)) {
-//        [self loadImage_path:[method argAtIndex:0] duration:[method doubleArgAtIndex:1]];
-//    }else if (sel == @selector(clearImage_duration:)) {
-//        [self clearImage_duration:[method doubleArgAtIndex:0]];
-//    }else if (sel == @selector(clear)) {
-//        [self clear];
-//    }else if (sel == @selector(bg_color:)) {
-//        [self bg_color:[method argAtIndex:0]];
-//    }else if (sel == @selector(border_width:color:)) {
-//        [self border_width:[method doubleArgAtIndex:0] color:[method argAtIndex:1]];
-//    }else if (sel == @selector(shadowOffset_x:y:)) {
-//        [self shadowOffset_x:[method doubleArgAtIndex:0] y:[method doubleArgAtIndex:1]];
-//    }else if (sel == @selector(shadowColor_color:)) {
-//        [self shadowColor_color:[method argAtIndex:0]];
-//    }else if (sel == @selector(shadowRadius_radius:)) {
-//        [self shadowRadius_radius:[method doubleArgAtIndex:0]];
-//    }else if (sel == @selector(shadowOpcity_opacity:)) {
-//        [self shadowOpcity_opacity:[method doubleArgAtIndex:0]];
-//    }else if (sel == @selector(beginAnimation_duration:)) {
-//        [self beginAnimation_duration:[method doubleArgAtIndex:0]];
-//    }else if (sel == @selector(commitAnimation)) {
-//        [self commitAnimation];
-//    }else if (sel == @selector(position_x:y:duration:)) {
-//        [self position_x:[method doubleArgAtIndex:0]
-//                       y:[method doubleArgAtIndex:1]
-//                duration:[method doubleArgAtIndex:2]];
-//    }else if (sel == @selector(zPosition_z:duration:)) {
-//        [self zPosition_z:[method doubleArgAtIndex:0]
-//                 duration:[method doubleArgAtIndex:1]];
-//    }else if (sel == @selector(size_width:height:duration:)) {
-//        [self size_width:[method doubleArgAtIndex:0]
-//                  height:[method doubleArgAtIndex:1]
-//                duration:[method doubleArgAtIndex:2]];
-//    }else if (sel == @selector(show)) {
-//        [self show];
-//    }else if (sel == @selector(hide)) {
-//        [self hide];
-//    }else if (sel == @selector(toggle)) {
-//        [self toggle];
-//    }else if (sel == @selector(fadeIn_duration:)){
-//        [self fadeIn_duration:[method doubleArgAtIndex:0]];
-//    }else if (sel == @selector(fadeOut_duration:)){
-//        [self fadeOut_duration:[method doubleArgAtIndex:0]];
-//    }else if (sel == @selector(translate_x:y:duration:)){
-//        [self translate_x:[method doubleArgAtIndex:0] y:[method doubleArgAtIndex:1] duration:[method doubleArgAtIndex:2]];
-//    }else if (sel == @selector(translateZ_z:duration:)){
-//        [self translateZ_z:[method doubleArgAtIndex:0] duration:[method doubleArgAtIndex:0]];
-//    }else if (sel == @selector(scale_ratio:duration:)) {
-//        [self scale_ratio:[method doubleArgAtIndex:0]
-//                 duration:[method doubleArgAtIndex:1]];
-//    }else if (sel == @selector(rotate_degree:duration:)) {
-//        [self rotate_degree:[method doubleArgAtIndex:0]
-//                   duration:[method doubleArgAtIndex:1]];
-//    }else if (sel == @selector(opacity_ratio:duration:)){
-//        [self opacity_ratio:[method doubleArgAtIndex:0]
-//                   duration:[method doubleArgAtIndex:1]];
-//    }
-//    self.engine = nil;
-//    return self;
-//}
 
 #pragma mark - Property
 
@@ -293,7 +181,7 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 
 - (void)border_width:(CGFloat)width color:(NSString *)color
 {
-    if VALID_DOUBLE(width) self.layer.borderWidth = width;
+    if VALID_CGFLOAT(width) self.layer.borderWidth = width;
     AVColor *hex = [AVHexColor colorWithHexString:color];
     if (hex) self.layer.borderColor = [hex CGColor];
 }
@@ -306,8 +194,8 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 
 - (void)shadowOffset_x:(CGFloat)x y:(CGFloat)y
 {
-    CGFloat _x = VALID_DOUBLE(x) ? x : self.layer.shadowOffset.width;
-    CGFloat _y = VALID_DOUBLE(y) ? y : self.layer.shadowOffset.height;
+    CGFloat _x = VALID_CGFLOAT(x) ? x : self.layer.shadowOffset.width;
+    CGFloat _y = VALID_CGFLOAT(y) ? y : self.layer.shadowOffset.height;
     CGSize s = SESizeMake(_x, _y);
     self.layer.shadowOffset = s;
 }
@@ -319,7 +207,7 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 
 - (void)shadowRadius_radius:(CGFloat)radius
 {
-    if VALID_DOUBLE(radius) self.layer.shadowRadius = radius;
+    if VALID_CGFLOAT(radius) self.layer.shadowRadius = radius;
 }
 
 #pragma mark - Animations
@@ -449,8 +337,8 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 
 - (void)position_x:(CGFloat)x y:(CGFloat)y duration:(NSTimeInterval)duration
 {
-    CGFloat _x = VALID_DOUBLE(x) ? x : self.layer.position.x;
-    CGFloat _y = VALID_DOUBLE(y) ? y : self.layer.position.y;
+    CGFloat _x = VALID_CGFLOAT(x) ? X(x) : self.layer.position.x;
+    CGFloat _y = VALID_CGFLOAT(y) ? Y(y) : self.layer.position.y;
     CGPoint position = CGPointMake(_x, _y);
     NSValue *v = [NSValue se_valueWithPoint:position];
     [self enqueuAnimationForKeyPath:@"position" toValue:v duration:duration];
@@ -458,15 +346,17 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 
 - (void)zPosition_z:(CGFloat)z duration:(NSTimeInterval)duration
 {
-    CGFloat _z = VALID_DOUBLE(z) ? z : self.layer.zPosition;
+    // z値だけは正規化できないので常にpx値
+    CGFloat _z = VALID_CGFLOAT(z) ? z : self.layer.zPosition;
     [self enqueuAnimationForKeyPath:@"zPosition" toValue:@(_z) duration:duration];
 }
 
 - (void)size_width:(CGFloat)width height:(CGFloat)height duration:(NSTimeInterval)duration
 {
     CGRect bounds = self.layer.bounds;
-    if VALID_DOUBLE(width) bounds.size.width = width;
-    if VALID_DOUBLE(height) bounds.size.height = height;
+    SESize s = SESizeMake(ROUND_CGFLOAT(width), ROUND_CGFLOAT(height));
+    bounds.size.width += s.width;
+    bounds.size.height += s.height;
     NSValue *v = [NSValue se_valueWithRect:bounds];
 	[self enqueuAnimationForKeyPath:@"bounds" toValue:v duration:duration];
 }
@@ -495,35 +385,40 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 
 - (void)fadeOut_duration:(NSTimeInterval)duration
 {
-    [self enqueuAnimationForKeyPath:@"opacity" toValue:@(0) duration:ROUND_DOUBLE(duration) completion:^{
+    [self enqueuAnimationForKeyPath:@"opacity" toValue:@(0) duration:duration completion:^{
         [self hide];
-        NSLog(@"hidden!");
     }];
 }
 
 - (void)translate_x:(CGFloat)x y:(CGFloat)y duration:(NSTimeInterval)duration
 {
-    CGFloat _x = ROUND_DOUBLE(x) + self.layer.position.x;
-    CGFloat _y = ROUND_DOUBLE(y) + self.layer.position.y;
+    SEPoint p = self.layer.position;
+    // 現在の位置系にあわせて修正する
+    if NORM_POSITION {
+        p.x /= VW;
+        p.y /= VH;
+    }
+    p.x += ROUND_CGFLOAT(x);
+    p.y += ROUND_CGFLOAT(y);
     // transform.translateを使うと面倒なので加算してpositionのアニメーションにする
-    [self position_x:_x y:_y duration:duration];
+    [self position_x:p.x y:p.y duration:duration];
 }
 
 - (void)translateZ_z:(CGFloat)z duration:(NSTimeInterval)duration
 {
-    CGFloat _z = ROUND_DOUBLE(z) + self.layer.zPosition;
+    CGFloat _z = ROUND_CGFLOAT(z) + self.layer.zPosition;
     [self zPosition_z:_z duration:duration];
 }
 
 - (void)scale_ratio:(CGFloat)ratio duration:(NSTimeInterval)duration
 {
-    NSParameterAssert(VALID_DOUBLE(ratio));
+    NSParameterAssert(VALID_CGFLOAT(ratio));
 	[self enqueuAnimationForKeyPath:@"transform.scale" toValue:@(ratio) duration:duration];
 }
 
 - (void)rotate_degree:(CGFloat)degree duration:(NSTimeInterval)duration
 {
-    NSParameterAssert(VALID_DOUBLE(degree));
+    NSParameterAssert(VALID_CGFLOAT(degree));
     CGFloat _degree = degree*(M_PI/180.0);
     CGFloat rotationZ = [[self.layer valueForKeyPath:@"transform.rotation.z"] doubleValue];
     [self enqueuAnimationForKeyPath:@"transform.rotation.z" toValue:@(_degree+rotationZ) duration:duration];
@@ -531,7 +426,7 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 
 - (void)opacity_ratio:(CGFloat)ratio duration:(NSTimeInterval)duration
 {
-    NSParameterAssert(VALID_DOUBLE(ratio));
+    NSParameterAssert(VALID_CGFLOAT(ratio));
     [self enqueuAnimationForKeyPath:@"opacity" toValue:@(ZERO_TO_ONE(ratio)) duration:duration];
 }
 

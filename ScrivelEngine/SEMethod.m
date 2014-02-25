@@ -9,6 +9,7 @@
 #import "SEMethod.h"
 #import <ParseKit/ParseKit.h>
 #import "ScrivelEngine.h"
+#import "NSNumber+CGFloat.h"
 
 #define kNameMethod @"name"
 #define kTextMethod @"text"
@@ -60,7 +61,13 @@ static inline BOOL VALID(id val){
 - (double)doubleArgAtIndex:(NSUInteger)index
 {
     id val = [self argAtIndex:index];
-    return VALID(val) ? [val doubleValue] : SENilDouble;
+    return VALID(val) ? [val doubleValue] : DBL_MIN;
+}
+
+- (CGFloat)CGFloatArgAtIndex:(NSUInteger)index
+{
+    id val = [self argAtIndex:index];
+    return VALID(val) ? [val CGFloatValue] : SENilCGFloat;
 }
 
 - (BOOL)boolArgAtIndex:(NSUInteger)index

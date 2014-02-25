@@ -30,9 +30,10 @@ typedef enum{
 @property (nonatomic) NSArray *arguments;
 
 - (id)argAtIndex:(NSUInteger)index;
-- (double)doubleArgAtIndex:(NSUInteger)index;
+- (CGFloat)CGFloatArgAtIndex:(NSUInteger)index;
 - (NSUInteger)unsignedIntegerArtAtIndex:(NSUInteger)index;
 - (NSInteger)integerArgAtIndex:(NSUInteger)index;
+- (double)doubleArgAtIndex:(NSUInteger)index;
 - (BOOL)boolArgAtIndex:(NSUInteger)index;
 
 @end
