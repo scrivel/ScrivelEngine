@@ -14,6 +14,9 @@
     ScrivelEngine *_engine;
     NSString *_str;
 }
+
+@property (weak, nonatomic) IBOutlet UITextView *textView;
+
 @end
 
 @implementation SEDViewController
@@ -29,6 +32,11 @@
     _str = str;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    _textView.text = _str;
+}
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -41,8 +49,11 @@
 }
 - (IBAction)action:(id)sender {
     NSError *e = nil;
-    id ret = [_engine evaluateScript:_str error:&e];
+    id ret = [_engine evaluateScript:self.textView.text error:&e];
     NSLog(@"%@",ret);
+}
+- (IBAction)cloase:(id)sender {
+    [self.textView resignFirstResponder];
 }
 
 @end

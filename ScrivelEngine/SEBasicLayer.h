@@ -31,6 +31,12 @@
 #define W(w) (NORM_SIZE ? (CGFloat)(w*VW) : w)
 #define H(h) (NORM_SIZE ? (CGFloat)(h*VH) : h)
 
+#if TARGET_OS_IPHONE
+#define RADIAN(deg) -(deg*(M_PI/180.0f))
+#elif TARGET_OS_MAC
+#define RADIAN(deg) (deg*(M_PI/180.0f))
+#endif
+
 // PositionType, OSの違いを吸収してCALayer上の正しい値を取得する
 #define SESizeMake(w,h) CGSizeMake(W(w),H(h))
 #define SEPointMake(x,y) CGPointMake(X(x),Y(y))

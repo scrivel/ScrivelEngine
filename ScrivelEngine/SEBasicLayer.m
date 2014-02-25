@@ -14,6 +14,7 @@
 #import "SEApp.h"
 #import "AVHexColor.h"
 #import "NSBundle+ScrivelEngine.h"
+#import "NSNumber+CGFloat.h"
 #import <objc/message.h>
 
 #define kMaxLayer 1000
@@ -393,15 +394,17 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 - (void)translate_x:(CGFloat)x y:(CGFloat)y duration:(NSTimeInterval)duration
 {
     SEPoint p = self.layer.position;
-    // 現在の位置系にあわせて修正する
-    if NORM_POSITION {
-        p.x /= VW;
-        p.y /= VH;
-    }
-    p.x += ROUND_CGFLOAT(x);
-    p.y += ROUND_CGFLOAT(y);
+    CGFloat _x = ROUND_CGFLOAT(x);
+    _x += NORM_POSITION ? p.x/VW : p.x;
+    CGFloat _y = ROUND_CGFLOAT(y);
+    // 座標を補正
+#if TARGET_OS_IPHONE
+    _y += NORM_POSITION ? 1 - p.y/VH : VH - p.y;
+#else
+    _y += NORM_POSITION ? p.y/VH : p.y;
+#endif
     // transform.translateを使うと面倒なので加算してpositionのアニメーションにする
-    [self position_x:p.x y:p.y duration:duration];
+    [self position_x:_x y:_y duration:duration];
 }
 
 - (void)translateZ_z:(CGFloat)z duration:(NSTimeInterval)duration
@@ -419,8 +422,8 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 - (void)rotate_degree:(CGFloat)degree duration:(NSTimeInterval)duration
 {
     NSParameterAssert(VALID_CGFLOAT(degree));
-    CGFloat _degree = degree*(M_PI/180.0);
-    CGFloat rotationZ = [[self.layer valueForKeyPath:@"transform.rotation.z"] doubleValue];
+    CGFloat _degree = RADIAN(degree);
+    CGFloat rotationZ = [[self.layer valueForKeyPath:@"transform.rotation.z"] CGFloatValue];
     [self enqueuAnimationForKeyPath:@"transform.rotation.z" toValue:@(_degree+rotationZ) duration:duration];
 }
 
