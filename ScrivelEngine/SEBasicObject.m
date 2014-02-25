@@ -39,6 +39,9 @@ static id callMethod(id target, SEMethod *method, ScrivelEngine *engine)
         }else if (SAME_TYPE(type, @encode(NSTimeInterval))){
             NSTimeInterval doubleArg = [method doubleArgAtIndex:i];
             [iv setArgument:&doubleArg atIndex:i+2];
+        }else if (SAME_TYPE(type, @encode(BOOL))){
+            BOOL boolArg = [method boolArgAtIndex:i];
+            [iv setArgument:&boolArg atIndex:i+2];
         }else{
             id arg = nil;
             arg = [method argAtIndex:i];
