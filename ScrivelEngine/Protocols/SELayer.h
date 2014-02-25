@@ -9,15 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "SEObject.h"
 
-@protocol SELayer <SEObject>
+@protocol SELayerClass <SEObjectClass>
 @required
 
 /**
  ScrivelEngineのレイヤーオブジェクト。
  基本的にはCALayerのラッパー。
  
- @class layer
- @extends abstract
+ @class Layer
+ @extends Abstract
  **/
 
 #pragma mark - SEObject
@@ -29,7 +29,7 @@
  @static
  @param {Number} index レイヤーの番号
  **/
-+ (instancetype)new_args:(id)args;
+- (id<SEObjectInstance>)new_args:(id)args;
 
 #pragma mark - Static
 
@@ -43,8 +43,21 @@
  @param {Number} index レイヤー番号
  @return SELayer
  **/
-+ (id)at_index:(unsigned int)index;
+- (id)at_index:(NSUInteger)index;
 
+/**
+ レイヤーを破棄する。
+ 読み込まれている画像、設定されているアニメーションは即時に破棄される。
+ 
+ @method  clear
+ @param {Number} index レイヤー番号
+ **/
+- (void)clear_index:(NSUInteger)index;
+
+
+@end
+
+@protocol SELayerInstance <SEObjectInstance>
 
 #pragma mark - Property
 
@@ -57,16 +70,6 @@
  @param {Number} y
  **/
 - (void)setAnchorPoint_x:(CGFloat)x y:(CGFloat)y;
-
-/**
- レイヤーの位置のタイプを指定する。
- デフォルトは"px"。左上を原点とした座標系。
- "normalized"が指定された場合、左上を原点とした正規化された座標に変換される。
- 
- @method setPositionType
- @param	{String} type "normalized" or "px"
- **/
-- (void)setPositionType_type:(NSString*)type;
 
 /**
  画像のgravity（表示モード）を指定する。
@@ -97,14 +100,6 @@
  @param {Number} [duration]
  **/
 - (void)clearImage_duration:(NSTimeInterval)duration;
-
-/**
- レイヤーを破棄する。
- 読み込まれている画像、設定されているアニメーションは即時に破棄される。
- 
- @method  clear
- **/
-- (void)clear;
 
 #pragma mark - Appearance
 

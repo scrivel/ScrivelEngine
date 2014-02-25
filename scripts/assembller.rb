@@ -6,6 +6,7 @@ head = <<"HEAD"
 
 @class PKParser, PKAssembly;
 @protocol SEScriptParserDelegate <NSObject>
+@required
 
 HEAD
 

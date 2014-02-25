@@ -6,7 +6,7 @@
  */
 
 // スクリプト
-window.shake(100)
+app.setPositionType("px")
 // メソッドチェーン
 layer.at(1).position(100,100)
 // プロパティアクセス

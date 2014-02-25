@@ -10,9 +10,6 @@
 
 @class SEObject;
 
-#define SENilInteger NSIntegerMin
-#define SENilDouble CGFLOAT_MIN
-
 typedef enum{
     SEMethodTypeCall = 0,
     SEMethodTypeProperty
@@ -34,6 +31,7 @@ typedef enum{
 
 - (id)argAtIndex:(NSUInteger)index;
 - (double)doubleArgAtIndex:(NSUInteger)index;
+- (NSUInteger)unsignedIntegerArtAtIndex:(NSUInteger)index;
 - (NSInteger)integerArgAtIndex:(NSUInteger)index;
 - (BOOL)boolArgAtIndex:(NSUInteger)index;
 

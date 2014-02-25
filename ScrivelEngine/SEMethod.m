@@ -8,6 +8,7 @@
 
 #import "SEMethod.h"
 #import <ParseKit/ParseKit.h>
+#import "ScrivelEngine.h"
 
 #define kNameMethod @"name"
 #define kTextMethod @"text"
@@ -48,6 +49,12 @@ static inline BOOL VALID(id val){
 {
     id val = [self argAtIndex:index];
     return VALID(val) ? [val integerValue] : SENilInteger;
+}
+
+- (NSUInteger)unsignedIntegerArtAtIndex:(NSUInteger)index
+{
+    id val = [self argAtIndex:index];
+    return VALID(val) ? [val unsignedIntegerValue] : SENilUInteger;
 }
 
 - (double)doubleArgAtIndex:(NSUInteger)index

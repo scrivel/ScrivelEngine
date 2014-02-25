@@ -9,26 +9,72 @@
 
 #import "SEBasicTextLayer.h"
 
+@implementation SEBasicTextLayerClass
+
+
+@end
+
 @implementation SEBasicTextLayer
 
-- (void)set_interval:(NSTimeInterval)interval
+/*
+ NSString *const NSFontAttributeName;
+ NSString *const NSParagraphStyleAttributeName;
+ NSString *const NSForegroundColorAttributeName;
+ NSString *const NSBackgroundColorAttributeName;
+ NSString *const NSLigatureAttributeName;
+ NSString *const NSKernAttributeName;
+ NSString *const NSStrikethroughStyleAttributeName;
+ NSString *const NSUnderlineStyleAttributeName;
+ NSString *const NSStrokeColorAttributeName;
+ NSString *const NSStrokeWidthAttributeName;
+ NSString *const NSShadowAttributeName;
+ NSString *const NSTextEffectAttributeName;
+ NSString *const NSAttachmentAttributeName;
+ NSString *const NSLinkAttributeName;
+ NSString *const NSBaselineOffsetAttributeName;
+ NSString *const NSUnderlineColorAttributeName;
+ NSString *const NSStrikethroughColorAttributeName;
+ NSString *const NSObliquenessAttributeName;
+ NSString *const NSExpansionAttributeName;
+ NSString *const NSWritingDirectionAttributeName;
+ NSString *const NSVerticalGlyphFormAttributeName;
+ */
+
++ (instancetype)new_args:(id)args
+{
+    return [[self alloc] initWithOpts:args];
+}
+
+- (instancetype)initWithOpts:(NSDictionary *)options
+{
+    self = [super initWithOpts:options];
+    _textLayer = [CATextLayer layer];
+    return self ?: nil;
+}
+
+- (void)setInterval_interval:(NSTimeInterval)interval
+{
+    
+}
+
+- (void)setText_text:(NSString *)text noanimate:(BOOL)noanimate
 {
 	
 }
 
-- (void)set_font:(NSDictionary*)font
+- (void)setPadding_top:(CGFloat)top left:(CGFloat)left bottom:(CGFloat)bottom right:(CGFloat)right
 {
-	
+    
 }
 
-- (void)set_text:(NSString*)text immediately:(BOOL)immediately
+- (void)setFont_name:(NSString *)name size:(CGFloat)size
 {
-	
+    
 }
 
-- (void)set_name:(NSString*)name
+- (void)setLineSpacing_spacing:(CGFloat)spacing
 {
-	
+    
 }
 
 - (void)clear
@@ -41,17 +87,13 @@
 	
 }
 
-- (void)set_padding:(NSDictionary*)insets
+
+- (void)setVerticalAlign_direction:(NSString *)direction
 {
 	
 }
 
-- (void)set_verticalAlign:(NSString*)verticalAlign
-{
-	
-}
-
-- (void)set_horizontalAlign:(NSTextAlignment)horizontalAlign
+- (void)setHorizontalAlign_direction:(NSTextAlignment)direction
 {
 	
 }

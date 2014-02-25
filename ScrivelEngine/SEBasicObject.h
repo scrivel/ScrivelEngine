@@ -10,7 +10,19 @@
 #import <Foundation/Foundation.h>
 #import "SEObject.h"
 
-@interface SEBasicObject : NSObject <SEObject>
+@interface SEBasicObjectClass : NSObject <SEObjectClass>
+
+@property (nonatomic, readonly) ScrivelEngine *engine;
+@property (nonatomic, readonly) NSSet *instances;
+@property (nonatomic, weak) Class instanceClass;
+
+- (instancetype)initWithEngine:(ScrivelEngine*)engine;
+
+@end
+
+@interface SEBasicObject : NSObject <SEObjectInstance>
+
+@property (nonatomic, weak) SEBasicObjectClass *holder;
 
 - (instancetype)initWithOpts:(NSDictionary*)options;
 

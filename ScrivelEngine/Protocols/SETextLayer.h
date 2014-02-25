@@ -9,14 +9,18 @@
 #import <Foundation/Foundation.h>
 #import "SELayer.h"
 
-@protocol SETextLayer <SELayer>
+@protocol SETextLayerClass <SELayerClass>
+
+@end
+
+@protocol SETextLayerInstance <SELayerInstance>
 
 /**
  ScrivelEngineのテキスト表示エリア。
  基本的にひとつだけ。
  
- @class text
- @extends layer
+ @class Text
+ @extends Layer
  **/
 
 

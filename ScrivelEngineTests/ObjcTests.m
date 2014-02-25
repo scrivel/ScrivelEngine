@@ -54,7 +54,6 @@
     XCTAssertFalse(i == 5, ); // 0
 }
 
-
 - (void)testIf
 {
     int b = 0;

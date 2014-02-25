@@ -29,7 +29,7 @@
     [f setObject:self forKey:MGSFODelegate];
     [f setObject:@"SEScript" forKey:MGSFOSyntaxDefinitionName];
     [f embedInView:self.editorView];
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"animate" ofType:@"sescript" inDirectory:@"Resources"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"animate" ofType:@"sescript"];
     NSString *str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     [f setString:str];
     fragaria = f;
@@ -44,7 +44,7 @@
     [_runItem setEnabled:YES];
     [_runItem setTarget:self];
     [_runItem setAction:@selector(run:)];
-    NSString *p = [[NSBundle mainBundle] pathForResource:@"runbutton" ofType:@"png" inDirectory:@"Resources"];
+    NSString *p = [[NSBundle mainBundle] pathForResource:@"runbutton" ofType:@"png"];
     NSImage *i = [[NSImage alloc] initWithContentsOfFile:p];
     [_runItem setImage:i];
     [self.toolbar insertItemWithItemIdentifier:_runItem.itemIdentifier atIndex:0];

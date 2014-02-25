@@ -38,7 +38,7 @@ Dir.glob("*.h"){|f|
   # p selectors
 
   # p "#{methods.length} methods, #{selectors.length} selectors"
-  clazz = str.match(/@class ([a-z]+)/)[1]
+  clazz = str.match(/\/\*.*@class ([a-z]+)/im)[1]
   if methods.length == selectors.length
     ary = [methods,selectors].transpose
     hash[clazz] = Hash[*[ary].flatten]
@@ -67,6 +67,7 @@ end
 tmp = <<"EOS"
 
 #import "SEBasicClassProxy.h"
+#import "SEBasicApp.h"
 #import "SEBasicObject.h"
 #import "SEBasicLayer.h"
 #import "SEBasicTextLayer.h"
@@ -75,18 +76,20 @@ tmp = <<"EOS"
 
 #define SEL_FOR_METHOD(_m,_s) if([methodIdentifier isEqualToString:_m]) return @selector(_s)
 
-+ (Class)classForClassIdentifier:(NSString *)classIdentifier
+- (Class)classForClassIdentifier:(NSString *)classIdentifier
 {
-    if ([classIdentifier isEqualToString:@"layer"]) {
+    if ([classIdentifier isEqualToString:@"app"]) {
+        return [SEBasicApp class];
+    }else if ([classIdentifier isEqualToString:@"layer"]) {
         // レイヤー
-        return [SEBasicLayer class];
+        return [SEBasicLayerClass class];
     }else if ([classIdentifier isEqualToString:@"chara"]){
         // キャラ
     }else if ([classIdentifier isEqualToString:@"bg"]){
         // 背景
     }else if ([classIdentifier isEqualToString:@"text"]){
         // テクストフレーム
-        return [SEBasicTextLayer class];
+        return [SEBasicTextLayerClass class];
     }else if ([classIdentifier isEqualToString:@"ui"]){
         // UI
     }else if ([classIdentifier isEqualToString:@"bgm"]){
@@ -97,7 +100,7 @@ tmp = <<"EOS"
     return nil;
 }
 
-+ (SEL)selectorForMethodIdentifier:(NSString *)methodIdentifier
+- (SEL)selectorForMethodIdentifier:(NSString *)methodIdentifier
 {
 #{sel_for_method}
 

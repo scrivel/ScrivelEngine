@@ -126,8 +126,8 @@
 
 - (void)testClassProxy
 {
-    Class<SEClassProxy> c = [engine classProxyClass];
-    XCTAssert(c == [SEBasicClassProxy class],);
+    id c = [engine classProxy];
+    XCTAssert([c isKindOfClass:[SEBasicClassProxy class]],);
     SEL sel;
     XCTAssertNoThrow(sel = [c selectorForMethodIdentifier:@"at"], );
     XCTAssert(sel == @selector(at_index:),);

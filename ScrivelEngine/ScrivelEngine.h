@@ -9,32 +9,57 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 
-@class SEMethod;
-@protocol SEClassProxy;
+@class SEMethod, SEBasicApp;
+@protocol SEClassProxy, SEApp, SELayerClass, SETextLayerClass;
 
 #if TARGET_OS_IPHONE
 #define SEView UIView
 #define SEImage UIImage
+#define SEFont UIFont
 typedef CGPoint SEPoint;
 typedef CGRect SERect;
 typedef CGSize SESize;
 #elif TARGET_OS_MAC
 #define SEView NSView
 #define SEImage NSImage
+#define SEFont NSFont
 typedef NSPoint SEPoint;
 typedef NSRect SERect;
 typedef NSSize SESize;
 #endif
 
+#define SENilInteger NSIntegerMin
+#define SENilUInteger NSUIntegerMax
+#define SENilDouble CGFLOAT_MIN
+
+#define VALID_DOUBLE(d) (d != SENilDouble)
+#define ROUND_DOUBLE(d) (VALID_DOUBLE(d) ? d : 0.0)
+#define VALID_INT(i) (i != SENilInteger)
+#define VALID_UINT(i) (I != SENilUInteger)
+
+typedef NS_ENUM(NSUInteger, SEPositionType){
+    SEPositionTypePX,
+    SEPositionTypeNormalized
+};
+
+typedef NS_ENUM(NSUInteger, SESizeType){
+    SESizeTypePX,
+    SESizeTypeNormalized
+};
+
+
 @interface ScrivelEngine : NSObject
+
++ (instancetype)engineWithRootView:(SEView*)rootView;
 
 // レイヤーを管理するrootのview
 @property (nonatomic, weak) SEView *rootView;
-@property () IMP imp;
+@property (nonatomic) id<SEClassProxy> classProxy;
+// アプリケーション本体
+@property (nonatomic, readonly) id<SEApp> app;
+@property (nonatomic, readonly) id<SELayerClass> layer;
+@property (nonatomic, readonly) id<SETextLayerClass> text;
 
-// sescriptとScrivelEngineの橋渡しをするクラスを登録する
-- (void)registerClassForClassProxy:(Class)proxyClass;
-- (Class)classProxyClass;
 // SEScriptを実行
 - (id)evaluateScript:(NSString*)script error:(NSError**)error;
 
@@ -43,8 +68,8 @@ typedef NSSize SESize;
 @protocol SEClassProxy
 
 // クラス名に対するobjc上でのクラスを返す
-+ (Class)classForClassIdentifier:(NSString*)classIdentifier;
+- (Class)classForClassIdentifier:(NSString*)classIdentifier;
 // クラス名とメソッド名に対するobjc上でのセレクターを返す
-+ (SEL)selectorForMethodIdentifier:(NSString*)methodIdentifier;
+- (SEL)selectorForMethodIdentifier:(NSString*)methodIdentifier;
 
 @end

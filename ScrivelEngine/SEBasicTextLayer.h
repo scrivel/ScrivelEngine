@@ -8,10 +8,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ScrivelEngine.h"
 #import "SEBasicLayer.h"
 #import "SETextLayer.h"
 
-@interface SEBasicTextLayer : SEBasicLayer <SETextLayer>
+@interface SEBasicTextLayerClass : SEBasicLayerClass <SETextLayerClass>
+
+@end
+
+@interface SEBasicTextLayer : SEBasicLayer <SETextLayerInstance>
+
+@property (nonatomic, readonly) CATextLayer *textLayer;
+@property (nonatomic, readonly) NSTimeInterval animationInterval;
+@property (nonatomic, readonly) SEFont *font;
+@property (nonatomic, readonly) NSAttributedString *attributedText;
+@property (nonatomic, readonly) NSTextAlignment *horizontalAlignment;
 
 @end
 

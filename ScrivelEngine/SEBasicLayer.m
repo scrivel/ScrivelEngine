@@ -11,16 +11,37 @@
 #import "NSValue+ScrivelEngine.h"
 #import "ScrivelEngine.h"
 #import "SEMethod.h"
+#import "SEApp.h"
 #import "AVHexColor.h"
 #import "NSBundle+ScrivelEngine.h"
+#import <objc/message.h>
 
 #define kMaxLayer 1000
 #define kGroupedAnimationKey @"GroupedAnimation"
-#define VALID_DOUBLE(d) (d != SENilDouble)
-#define ROUND_DOUBLE(d) (VALID_DOUBLE(d) ? d : 0.0)
-#define VALID_INT(i) (i != SENilInteger)
 
-static inline CGFloat NORMALIZED(CGFloat f)
+
+#define VH self.holder.engine.rootView.bounds.size.height
+#define VW self.holder.engine.rootView.bounds.size.width
+
+// 正規化された値からpx値でのサイズを返す
+#define SIZE_IN_PX(w,h) CGSizeMake((CGFloat)(w*VW), (CGFloat)(h*VH))
+// 正規化された位置から実際の位置を返す
+#define POINT_IN_PX(x,y) CGPointMake((CGFloat)(x*VW), (CGFloat)(y*VH))
+
+// iOSの左上座標をMacの左下座標に変換する
+#if TARGET_OS_IPHONE
+#define CONVERTED_Y(y) (VH - y)
+#else
+#define CONVERTED_Y(y) y
+#endif
+
+// PositionType, OSの違いを吸収してCALayer上の正しい値を取得する
+#define SESizeMake(w,h) (([self.holder.engine.app positionType] == SEPositionTypeNormalized) ? SIZE_IN_PX(w,h) : CGSizeMake(w,h))
+#define SEPointMake(x,y) (([self.holder.engine.app sizeType] == SESizeTypeNormalized) ? POINT_IN_PX(x, CONVERTED_Y(y)) : CGPointMake(x,CONVERTED_Y(y)))
+#define _SERectMake(p,s) CGRectMake(p.x, p.y, s.width, s.height)
+#define SERectMake(x,y,w,h) _SERectMake(SEPointMake(x,y), SESizeMake(w,h))
+
+static inline CGFloat ZERO_TO_ONE(CGFloat f)
 {
     CGFloat _f = ROUND_DOUBLE(f);
     if (_f < 0) {
@@ -30,37 +51,60 @@ static inline CGFloat NORMALIZED(CGFloat f)
     }
     return _f;
 }
-static NSMutableDictionary *layers;
+
+@implementation SEBasicLayerClass
+{
+    NSMutableDictionary *__layers;
+}
+- (instancetype)initWithEngine:(ScrivelEngine *)engine
+{
+    self = [super initWithEngine:engine];
+    __layers = [NSMutableDictionary new];
+    self.instanceClass = [SEBasicLayer class];
+    return self ?: nil;
+}
+
+- (id<SEObjectInstance>)new_args:(id)args
+{
+    SEBasicLayer *layer;
+    if ([args isKindOfClass:[NSNumber class]]) {
+        layer =  (SEBasicLayer*)[super new_args:@{@"index": args}];
+    }else{
+        layer = (SEBasicLayer*)[super new_args:args];
+    }
+    [__layers setObject:layer forKey:@(layer.index)];
+    [self.engine.rootView.layer addSublayer:layer.layer];
+    return layer;
+}
+
+- (id)at_index:(NSUInteger)index
+{
+    return [self.layers objectForKey:@((unsigned int)index)];
+}
+
+- (void)clear_index:(NSUInteger)index
+{
+    [[__layers objectForKey:@(index)] removeFromSuperlayer];
+    [__layers removeObjectForKey:@(index)];
+}
+
+- (NSDictionary *)layers
+{
+    return __layers;
+}
+
+@end
 
 @interface SEBasicLayer()
 {
     BOOL _animationBegan;
     CAAnimationGroup *_animationGroup;
 }
-
-@property (nonatomic, weak) ScrivelEngine *engine;
-
 @end
 
 @implementation SEBasicLayer
 
-+ (void)load
-{
-    [super load];
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        // レイヤーを初期化
-        layers = [NSMutableDictionary dictionaryWithCapacity:kMaxLayer];
-    });
-}
-
-+ (NSDictionary *)layers
-{
-    return layers;
-}
-
 #pragma mark - Private
-
 
 - (instancetype)initWithOpts:(NSDictionary *)options
 {
@@ -72,139 +116,105 @@ static NSMutableDictionary *layers;
     return self ?: nil;
 }
 
-- (NSString *)description
-{
-    return [self.layer description];
-}
+//+ (id)callStatic_method:(SEMethod *)method engine:(ScrivelEngine *)engine
+//{
+//    Class<SEClassProxy> proxy = [engine classProxyClass];
+//    SEL sel = [proxy selectorForMethodIdentifier:method.name];
+//    if (sel == @selector(new_args:)) {
+//        SEBasicLayer *new = [self new_args:[method argAtIndex:0]];
+//        CALayer *current = [[layers objectForKey:@(new.index)] layer];
+//        if (current) {
+//            [engine.rootView.layer replaceSublayer:current with:new.layer];
+//        }else{
+//            [engine.rootView.layer insertSublayer:new.layer atIndex:new.index];
+//        }
+//        [layers setObject:new forKey:@(new.index)];
+//        return new;
+//    }else if (sel == @selector(at_index:)){
+//        return [self at_index:(unsigned int)[method integerArgAtIndex:0]];
+//    }
+//    @throw [NSString stringWithFormat:@"存在しないメソッド : %@",method];
+//    return nil;
+//}
 
-#pragma mark - SEObject
-
-+ (id)callStatic_method:(SEMethod *)method engine:(ScrivelEngine *)engine
-{
-    Class<SEClassProxy> proxy = [engine classProxyClass];
-    SEL sel = [proxy selectorForMethodIdentifier:method.name];
-    if (sel == @selector(new_args:)) {
-        SEBasicLayer *new = [self new_args:[method argAtIndex:0]];
-        CALayer *current = [[layers objectForKey:@(new.index)] layer];
-        if (current) {
-            [engine.rootView.layer replaceSublayer:current with:new.layer];
-        }else{
-            [engine.rootView.layer insertSublayer:new.layer atIndex:new.index];
-        }
-        [layers setObject:new forKey:@(new.index)];
-        return new;
-    }else if (sel == @selector(at_index:)){
-        return [self at_index:(unsigned int)[method integerArgAtIndex:0]];
-    }
-    @throw [NSString stringWithFormat:@"存在しないメソッド : %@",method];
-    return nil;
-}
-
-- (id)callInstance_method:(SEMethod *)method engine:(ScrivelEngine *)engine
-{
-    self.engine = engine;
-    Class<SEClassProxy> proxy = [engine classProxyClass];
-    SEL sel = [proxy selectorForMethodIdentifier:method.name];
-    if (!sel || ![self respondsToSelector:sel]) {
-        @throw [NSString stringWithFormat:@"存在しないメソッド : %@",method];
-        return nil;
-    }else if (sel == @selector(setAnchorPoint_x:y:)) {
-        [self setAnchorPoint_x:[method doubleArgAtIndex:0] y:[method doubleArgAtIndex:1]];
-    }else if (sel == @selector(setPositionType_type:)) {
-        [self setPositionType_type:[method argAtIndex:0]];
-    }else if (sel == @selector(loadImage_path:duration:)) {
-        [self loadImage_path:[method argAtIndex:0] duration:[method doubleArgAtIndex:1]];
-    }else if (sel == @selector(clearImage_duration:)) {
-        [self clearImage_duration:[method doubleArgAtIndex:0]];
-    }else if (sel == @selector(clear)) {
-        [self clear];
-    }else if (sel == @selector(bg_color:)) {
-        [self bg_color:[method argAtIndex:0]];
-    }else if (sel == @selector(border_width:color:)) {
-        [self border_width:[method doubleArgAtIndex:0] color:[method argAtIndex:1]];
-    }else if (sel == @selector(shadowOffset_x:y:)) {
-        [self shadowOffset_x:[method doubleArgAtIndex:0] y:[method doubleArgAtIndex:1]];
-    }else if (sel == @selector(shadowColor_color:)) {
-        [self shadowColor_color:[method argAtIndex:0]];
-    }else if (sel == @selector(shadowRadius_radius:)) {
-        [self shadowRadius_radius:[method doubleArgAtIndex:0]];
-    }else if (sel == @selector(shadowOpcity_opacity:)) {
-        [self shadowOpcity_opacity:[method doubleArgAtIndex:0]];
-    }else if (sel == @selector(beginAnimation_duration:)) {
-        [self beginAnimation_duration:[method doubleArgAtIndex:0]];
-    }else if (sel == @selector(commitAnimation)) {
-        [self commitAnimation];
-    }else if (sel == @selector(position_x:y:duration:)) {
-        [self position_x:[method doubleArgAtIndex:0]
-                       y:[method doubleArgAtIndex:1]
-                duration:[method doubleArgAtIndex:2]];
-    }else if (sel == @selector(zPosition_z:duration:)) {
-        [self zPosition_z:[method doubleArgAtIndex:0]
-                 duration:[method doubleArgAtIndex:1]];
-    }else if (sel == @selector(size_width:height:duration:)) {
-        [self size_width:[method doubleArgAtIndex:0]
-                  height:[method doubleArgAtIndex:1]
-                duration:[method doubleArgAtIndex:2]];
-    }else if (sel == @selector(show)) {
-        [self show];
-    }else if (sel == @selector(hide)) {
-        [self hide];
-    }else if (sel == @selector(toggle)) {
-        [self toggle];
-    }else if (sel == @selector(fadeIn_duration:)){
-        [self fadeIn_duration:[method doubleArgAtIndex:0]];
-    }else if (sel == @selector(fadeOut_duration:)){
-        [self fadeOut_duration:[method doubleArgAtIndex:0]];
-    }else if (sel == @selector(translate_x:y:duration:)){
-        [self translate_x:[method doubleArgAtIndex:0] y:[method doubleArgAtIndex:1] duration:[method doubleArgAtIndex:2]];
-    }else if (sel == @selector(translateZ_z:duration:)){
-        [self translateZ_z:[method doubleArgAtIndex:0] duration:[method doubleArgAtIndex:0]];
-    }else if (sel == @selector(scale_ratio:duration:)) {
-        [self scale_ratio:[method doubleArgAtIndex:0]
-                 duration:[method doubleArgAtIndex:1]];
-    }else if (sel == @selector(rotate_degree:duration:)) {
-        [self rotate_degree:[method doubleArgAtIndex:0]
-                   duration:[method doubleArgAtIndex:1]];
-    }else if (sel == @selector(opacity_ratio:duration:)){
-        [self opacity_ratio:[method doubleArgAtIndex:0]
-                   duration:[method doubleArgAtIndex:1]];
-    }
-    self.engine = nil;
-    return self;
-}
-
-#pragma mark - SELayer
-
-#pragma mark - Static
-
-+ (instancetype)new_args:(id)args
-{
-    if ([args isKindOfClass:[NSNumber class]]) {
-        // layer.new(1)のような形式
-        return [[self alloc] initWithOpts:@{@"index": args}];
-    }
-    return [[self alloc] initWithOpts:args];
-}
-
-+ (id)at_index:(unsigned int)index
-{
-    return  layers[@(index)];
-}
+//- (id)callInstance_method:(SEMethod *)method engine:(ScrivelEngine *)engine
+//{
+//    self.engine = engine;
+//    Class<SEClassProxy> proxy = [engine classProxyClass];
+//    SEL sel = [proxy selectorForMethodIdentifier:method.name];
+//    if (!sel || ![self respondsToSelector:sel]) {
+//        @throw [NSString stringWithFormat:@"存在しないメソッド : %@",method];
+//        return nil;
+//    }else if (sel == @selector(setAnchorPoint_x:y:)) {
+//        [self setAnchorPoint_x:[method doubleArgAtIndex:0] y:[method doubleArgAtIndex:1]];
+//    }else if (sel == @selector(setPositionType_type:)) {
+//        [self setPositionType_type:[method argAtIndex:0]];
+//    }else if (sel == @selector(loadImage_path:duration:)) {
+//        [self loadImage_path:[method argAtIndex:0] duration:[method doubleArgAtIndex:1]];
+//    }else if (sel == @selector(clearImage_duration:)) {
+//        [self clearImage_duration:[method doubleArgAtIndex:0]];
+//    }else if (sel == @selector(clear)) {
+//        [self clear];
+//    }else if (sel == @selector(bg_color:)) {
+//        [self bg_color:[method argAtIndex:0]];
+//    }else if (sel == @selector(border_width:color:)) {
+//        [self border_width:[method doubleArgAtIndex:0] color:[method argAtIndex:1]];
+//    }else if (sel == @selector(shadowOffset_x:y:)) {
+//        [self shadowOffset_x:[method doubleArgAtIndex:0] y:[method doubleArgAtIndex:1]];
+//    }else if (sel == @selector(shadowColor_color:)) {
+//        [self shadowColor_color:[method argAtIndex:0]];
+//    }else if (sel == @selector(shadowRadius_radius:)) {
+//        [self shadowRadius_radius:[method doubleArgAtIndex:0]];
+//    }else if (sel == @selector(shadowOpcity_opacity:)) {
+//        [self shadowOpcity_opacity:[method doubleArgAtIndex:0]];
+//    }else if (sel == @selector(beginAnimation_duration:)) {
+//        [self beginAnimation_duration:[method doubleArgAtIndex:0]];
+//    }else if (sel == @selector(commitAnimation)) {
+//        [self commitAnimation];
+//    }else if (sel == @selector(position_x:y:duration:)) {
+//        [self position_x:[method doubleArgAtIndex:0]
+//                       y:[method doubleArgAtIndex:1]
+//                duration:[method doubleArgAtIndex:2]];
+//    }else if (sel == @selector(zPosition_z:duration:)) {
+//        [self zPosition_z:[method doubleArgAtIndex:0]
+//                 duration:[method doubleArgAtIndex:1]];
+//    }else if (sel == @selector(size_width:height:duration:)) {
+//        [self size_width:[method doubleArgAtIndex:0]
+//                  height:[method doubleArgAtIndex:1]
+//                duration:[method doubleArgAtIndex:2]];
+//    }else if (sel == @selector(show)) {
+//        [self show];
+//    }else if (sel == @selector(hide)) {
+//        [self hide];
+//    }else if (sel == @selector(toggle)) {
+//        [self toggle];
+//    }else if (sel == @selector(fadeIn_duration:)){
+//        [self fadeIn_duration:[method doubleArgAtIndex:0]];
+//    }else if (sel == @selector(fadeOut_duration:)){
+//        [self fadeOut_duration:[method doubleArgAtIndex:0]];
+//    }else if (sel == @selector(translate_x:y:duration:)){
+//        [self translate_x:[method doubleArgAtIndex:0] y:[method doubleArgAtIndex:1] duration:[method doubleArgAtIndex:2]];
+//    }else if (sel == @selector(translateZ_z:duration:)){
+//        [self translateZ_z:[method doubleArgAtIndex:0] duration:[method doubleArgAtIndex:0]];
+//    }else if (sel == @selector(scale_ratio:duration:)) {
+//        [self scale_ratio:[method doubleArgAtIndex:0]
+//                 duration:[method doubleArgAtIndex:1]];
+//    }else if (sel == @selector(rotate_degree:duration:)) {
+//        [self rotate_degree:[method doubleArgAtIndex:0]
+//                   duration:[method doubleArgAtIndex:1]];
+//    }else if (sel == @selector(opacity_ratio:duration:)){
+//        [self opacity_ratio:[method doubleArgAtIndex:0]
+//                   duration:[method doubleArgAtIndex:1]];
+//    }
+//    self.engine = nil;
+//    return self;
+//}
 
 #pragma mark - Property
 
 - (void)setAnchorPoint_x:(CGFloat)x y:(CGFloat)y
 {
 	self.layer.anchorPoint = CGPointMake(x, y);
-}
-
-- (void)setPositionType_type:(NSString *)type
-{
-    if ([type isEqualToString:@"px"]) {
-        _positionType = SELayerPositionTypePX;
-    }else if ([type isEqualToString:@"normalized"]){
-        _positionType = SELayerPositionTypeNormalized;
-    }
 }
 
 - (void)setGravity_gravity:(NSString *)gravity
@@ -272,12 +282,6 @@ static NSMutableDictionary *layers;
     [CATransaction commit];
 }
 
-- (void)clear
-{
-	[self.layer removeFromSuperlayer];
-    [layers removeObjectForKey:@(self.index)];
-}
-
 #pragma mark - Appearence
 
 - (void)bg_color:(NSString *)color
@@ -304,13 +308,13 @@ static NSMutableDictionary *layers;
 {
     CGFloat _x = VALID_DOUBLE(x) ? x : self.layer.shadowOffset.width;
     CGFloat _y = VALID_DOUBLE(y) ? y : self.layer.shadowOffset.height;
-    CGSize s = CGSizeMake(_x, _y);
+    CGSize s = SESizeMake(_x, _y);
     self.layer.shadowOffset = s;
 }
 
 - (void)shadowOpcity_opacity:(CGFloat)opacity
 {
-    self.layer.shadowOpacity = NORMALIZED(opacity);
+    self.layer.shadowOpacity = ZERO_TO_ONE(opacity);
 }
 
 - (void)shadowRadius_radius:(CGFloat)radius
@@ -528,7 +532,7 @@ static NSMutableDictionary *layers;
 - (void)opacity_ratio:(CGFloat)ratio duration:(NSTimeInterval)duration
 {
     NSParameterAssert(VALID_DOUBLE(ratio));
-    [self enqueuAnimationForKeyPath:@"opacity" toValue:@(NORMALIZED(ratio)) duration:duration];
+    [self enqueuAnimationForKeyPath:@"opacity" toValue:@(ZERO_TO_ONE(ratio)) duration:duration];
 }
 
 

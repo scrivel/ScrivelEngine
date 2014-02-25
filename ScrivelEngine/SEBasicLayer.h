@@ -12,18 +12,16 @@
 #import "SELayer.h"
 #import <objc/runtime.h>
 
-typedef enum{
-    SELayerPositionTypePX,
-    SELayerPositionTypeNormalized
-}SELayerPositionType;
+@interface SEBasicLayerClass : SEBasicObjectClass <SELayerClass>
 
-@interface SEBasicLayer : SEBasicObject <SELayer>
+@property (nonatomic, readonly) NSDictionary *layers;
 
-+ (NSDictionary*)layers;
+@end
+
+@interface SEBasicLayer : SEBasicObject <SELayerInstance>
 
 @property (nonatomic) unsigned int index;
 @property (nonatomic) CALayer *layer;
-@property (nonatomic) SELayerPositionType positionType;
 
 - (void)enqueuAnimationForKeyPath:(NSString*)keyPath
                           toValue:(id)value
@@ -32,7 +30,6 @@ typedef enum{
 - (void)addAnimation:(CAAnimation*)animation
               forKey:(NSString *)key
           completion:(void(^)())completion;
-- (instancetype)initWithOpts:(NSDictionary *)options;
 
 @end
 

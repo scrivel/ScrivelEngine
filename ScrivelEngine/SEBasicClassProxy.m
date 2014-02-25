@@ -1,5 +1,6 @@
 
 #import "SEBasicClassProxy.h"
+#import "SEBasicApp.h"
 #import "SEBasicObject.h"
 #import "SEBasicLayer.h"
 #import "SEBasicTextLayer.h"
@@ -8,18 +9,20 @@
 
 #define SEL_FOR_METHOD(_m,_s) if([methodIdentifier isEqualToString:_m]) return @selector(_s)
 
-+ (Class)classForClassIdentifier:(NSString *)classIdentifier
+- (Class)classForClassIdentifier:(NSString *)classIdentifier
 {
-    if ([classIdentifier isEqualToString:@"layer"]) {
+    if ([classIdentifier isEqualToString:@"app"]) {
+        return [SEBasicApp class];
+    }else if ([classIdentifier isEqualToString:@"layer"]) {
         // レイヤー
-        return [SEBasicLayer class];
+        return [SEBasicLayerClass class];
     }else if ([classIdentifier isEqualToString:@"chara"]){
         // キャラ
     }else if ([classIdentifier isEqualToString:@"bg"]){
         // 背景
     }else if ([classIdentifier isEqualToString:@"text"]){
         // テクストフレーム
-        return [SEBasicTextLayer class];
+        return [SEBasicTextLayerClass class];
     }else if ([classIdentifier isEqualToString:@"ui"]){
         // UI
     }else if ([classIdentifier isEqualToString:@"bgm"]){
@@ -30,19 +33,25 @@
     return nil;
 }
 
-+ (SEL)selectorForMethodIdentifier:(NSString *)methodIdentifier
+- (SEL)selectorForMethodIdentifier:(NSString *)methodIdentifier
 {
 
-	// layer
+	// App
+
+	SEL_FOR_METHOD(@"setPositionType",setPositionType_type:);
+	SEL_FOR_METHOD(@"positioinType",positionType);
+	SEL_FOR_METHOD(@"setSizeType",setSizeType_type:);
+	SEL_FOR_METHOD(@"sizeType",sizeType);
+
+	// Layer
 
 	SEL_FOR_METHOD(@"new",new_args:);
 	SEL_FOR_METHOD(@"at",at_index:);
+	SEL_FOR_METHOD(@"clear",clear_index:);
 	SEL_FOR_METHOD(@"setAnchorPoint",setAnchorPoint_x:y:);
-	SEL_FOR_METHOD(@"setPositionType",setPositionType_type:);
 	SEL_FOR_METHOD(@"gravity",setGravity_gravity:);
 	SEL_FOR_METHOD(@"loadImage",loadImage_path:duration:);
 	SEL_FOR_METHOD(@"clearImage",clearImage_duration:);
-	SEL_FOR_METHOD(@"clear",clear);
 	SEL_FOR_METHOD(@"bg",bg_color:);
 	SEL_FOR_METHOD(@"border",border_width:color:);
 	SEL_FOR_METHOD(@"shadowOffset",shadowOffset_x:y:);
@@ -65,14 +74,13 @@
 	SEL_FOR_METHOD(@"rotate",rotate_degree:duration:);
 	SEL_FOR_METHOD(@"opacity",opacity_ratio:duration:);
 
-	// abstract
+	// Abstract
 
 	SEL_FOR_METHOD(@"new",new_args:);
-	SEL_FOR_METHOD(@"callStatic",callStatic_method:engine:);
-	SEL_FOR_METHOD(@"callInstance",callInstance_method:engine:);
-	SEL_FOR_METHOD(@"wait",wait_duration:);
+	SEL_FOR_METHOD(@"callStatic",callStatic_method:);
+	SEL_FOR_METHOD(@"callInstance",callInstance_method:);
 
-	// text
+	// Text
 
 	SEL_FOR_METHOD(@"interval",setInterval_interval:);
 	SEL_FOR_METHOD(@"font",setFont_name:size:);
