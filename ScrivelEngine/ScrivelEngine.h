@@ -16,6 +16,9 @@
 #define SEView UIView
 #define SEImage UIImage
 #define SEFont UIFont
+#define SEColor UIColor
+#define SEEdgeInsetsMake(t,l,b,r) UIEdgeInsetsMake(t,l,b,r)
+typedef UIEdgeInsets SEEdgeInsets;
 typedef CGPoint SEPoint;
 typedef CGRect SERect;
 typedef CGSize SESize;
@@ -23,6 +26,9 @@ typedef CGSize SESize;
 #define SEView NSView
 #define SEImage NSImage
 #define SEFont NSFont
+#define SEColor NSColor
+#define SEEdgeInsetsMake(t,l,b,r) NSEdgeInsetsMake(t,l,b,r)
+typedef NSEdgeInsets SEEdgeInsets;
 typedef NSPoint SEPoint;
 typedef NSRect SERect;
 typedef NSSize SESize;

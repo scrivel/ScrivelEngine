@@ -50,13 +50,35 @@
 - (void)setLineSpacing_spacing:(CGFloat)spacing;
 
 /**
- 文字列を表示する。文字列は位置文字ずつintervalの値で表示される。
+ 文字列を表示する。文字列は一文字ずつintervalの値で表示される。
+ noanimateをtrueに設定した場合、startが呼ばれるまで表示はしない。
  
  @method text
  @param {String} text 新規に表示する文字列
  @param {Boolean} [noanimate] アニメーションさせずに表示するか否か
  **/
-- (void)setText_text:(NSString*)text noanimate:(BOOL)noanimate;
+- (void)text_text:(NSString*)text noanimate:(BOOL)noanimate;
+
+/**
+ 文字列の表示を開始する
+ 
+ @method start
+ **/
+- (void)start;
+
+/**
+ 文字列の表示を一時停止する
+ 
+ @method pause
+ **/
+- (void)pause;
+
+/**
+ 一時停止中のアニメーションを再開する
+ 
+ @method resume
+ **/
+- (void)resume;
 
 /**
  現在表示している文字列をクリアする
@@ -81,15 +103,6 @@
  @param {Number} right
  **/
 - (void)setPadding_top:(CGFloat)top left:(CGFloat)left bottom:(CGFloat)bottom right:(CGFloat)right;
-
-/**
- テクストフレームの縦揃えを指定する
- 
- @method  verticalAlign
- @param  {String} verticalAlign "top", "middle", "bottom"のいずれか
- **/
-
-- (void)setVerticalAlign_direction:(NSString*)direction;
 
 /**
  テクストフレームの横揃えを指定する。

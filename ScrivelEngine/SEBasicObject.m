@@ -80,9 +80,7 @@ static id callMethod(id target, SEMethod *method, ScrivelEngine *engine)
 
 - (id)new_args:(id)args
 {
-    SEBasicObject *new = [[self.instanceClass alloc] initWithOpts:args];
-    // インスタンスを保持
-    new.holder = self;
+    SEBasicObject *new = [[self.instanceClass alloc] initWithOpts:args holder:self];
     // インスタンスを弱参照で保持する（必要かな？）
     [__instances addObject:new];
     return new;
@@ -92,9 +90,10 @@ static id callMethod(id target, SEMethod *method, ScrivelEngine *engine)
 
 @implementation SEBasicObject
 
-- (instancetype)initWithOpts:(NSDictionary *)options
+- (instancetype)initWithOpts:(NSDictionary *)options holder:(SEBasicObjectClass *)holder
 {
     self = [self init];
+    _holder = holder;
     return self ?: nil;
 }
 

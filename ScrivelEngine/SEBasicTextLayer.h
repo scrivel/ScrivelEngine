@@ -11,6 +11,10 @@
 #import "ScrivelEngine.h"
 #import "SEBasicLayer.h"
 #import "SETextLayer.h"
+#if TARGET_OS_IPHONE
+#else
+#import "SEResponderProxy.h"
+#endif
 
 @interface SEBasicTextLayerClass : SEBasicLayerClass <SETextLayerClass>
 
@@ -18,11 +22,13 @@
 
 @interface SEBasicTextLayer : SEBasicLayer <SETextLayerInstance>
 
-@property (nonatomic, readonly) CATextLayer *textLayer;
+@property (nonatomic) CATextLayer *textLayer;
 @property (nonatomic, readonly) NSTimeInterval animationInterval;
+@property (nonatomic, readonly) SEEdgeInsets padding;
 @property (nonatomic, readonly) SEFont *font;
-@property (nonatomic, readonly) NSAttributedString *attributedText;
+// 現在表示している文字列。NSString or NSAttributedString
+@property (nonatomic, readonly) id text;
 @property (nonatomic, readonly) NSTextAlignment *horizontalAlignment;
+@property (nonatomic, readonly) BOOL isAnimating;
 
 @end
-

@@ -85,11 +85,13 @@
 	SEL_FOR_METHOD(@"interval",setInterval_interval:);
 	SEL_FOR_METHOD(@"font",setFont_name:size:);
 	SEL_FOR_METHOD(@"lineSpacing",setLineSpacing_spacing:);
-	SEL_FOR_METHOD(@"text",setText_text:noanimate:);
+	SEL_FOR_METHOD(@"text",text_text:noanimate:);
+	SEL_FOR_METHOD(@"start",start);
+	SEL_FOR_METHOD(@"pause",pause);
+	SEL_FOR_METHOD(@"resume",resume);
 	SEL_FOR_METHOD(@"clear",clear);
 	SEL_FOR_METHOD(@"skip",skip);
 	SEL_FOR_METHOD(@"padding",setPadding_top:left:bottom:right:);
-	SEL_FOR_METHOD(@"verticalAlign",setVerticalAlign_direction:);
 	SEL_FOR_METHOD(@"horizontalAlign",setHorizontalAlign_direction:);
 
 

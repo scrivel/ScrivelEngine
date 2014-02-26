@@ -89,9 +89,9 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 
 #pragma mark - Private
 
-- (instancetype)initWithOpts:(NSDictionary *)options
+- (instancetype)initWithOpts:(NSDictionary *)options holder:(SEBasicObjectClass *)holder
 {
-    self = [super initWithOpts:options];
+    self = [super initWithOpts:options holder:holder];
     NSParameterAssert(options[@"index"]);
     _index = [options[@"index"] unsignedIntValue];
     // 実体はレイヤー
@@ -238,20 +238,20 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
         [CATransaction commit];
         return;
     }
-    // 対応するキーはちゃんとあるか？
-    id val = [self.layer valueForKeyPath:keyPath];
-//    NSAssert(val, @"keyPathが間違ってる");
     // アニメーションを作成
+    id val = [self.layer valueForKeyPath:keyPath];
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:keyPath];
     // アニメーションの合成中は個別の間隔は無視
     if (!_animationBegan) {
         animation.duration = duration;
     }
     // 元に戻さない
-    animation.removedOnCompletion = NO;
     animation.repeatCount = 1;
-    animation.fillMode = kCAFillModeForwards;
-    animation.fromValue = val;    
+    // アニメーションを開始する前にプロパティを書き換えるから終わったら消しても構わない
+    // ...というか消さないと色々と面倒になる気がする
+//    animation.removedOnCompletion = NO;
+//    animation.fillMode = kCAFillModeForwards;
+    animation.fromValue = val;
     animation.toValue = toValue;
     
     if (_animationBegan) {
@@ -283,9 +283,9 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 #endif
     if ([animation isKindOfClass:[CAAnimationGroup class]]) {
         for (CABasicAnimation *a in [(CAAnimationGroup*)animation animations]) {
-            NSLog(@"%@ : %@",a.keyPath, [self.layer valueForKeyPath:a.keyPath]);
+//            NSLog(@"%@ : %@",a.keyPath, [self.layer valueForKeyPath:a.keyPath]);
             [self.layer setValue:a.toValue forKeyPath:a.keyPath];
-            NSLog(@"%@ : %@",a.keyPath, [self.layer valueForKeyPath:a.keyPath]);
+//            NSLog(@"%@ : %@",a.keyPath, [self.layer valueForKeyPath:a.keyPath]);
         }
     }else if ([animation isKindOfClass:[CABasicAnimation class]]){
         id val = [(CABasicAnimation*)animation toValue];

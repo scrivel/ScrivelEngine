@@ -24,7 +24,7 @@
 
 @property (nonatomic, weak) SEBasicObjectClass *holder;
 
-- (instancetype)initWithOpts:(NSDictionary*)options;
+- (instancetype)initWithOpts:(NSDictionary*)options holder:(SEBasicObjectClass*)holder;
 
 @end
 

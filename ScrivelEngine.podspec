@@ -27,6 +27,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/scrivel/ScrivelEngine.git", :tag => "0.0.1" }
 
   s.source_files  = 'ScrivelEngine', 'ScrivelEngine/**/*.{h,m}'
+  s.ios.exclude_files = 'ScrivelEngine/OSX/**/*'
 
   s.public_header_files = 'ScrivelEngine/**/*.h'
 
