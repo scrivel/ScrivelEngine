@@ -55,7 +55,7 @@
     }else if([self.text isKindOfClass:[NSAttributedString class]]){
         text = [(NSAttributedString*)self.text attributedSubstringFromRange:r];
     }
-    self.textLayer.contents = text;
+    self.textLayer.string = text;
 }
 
 - (void)finishAnimation
@@ -78,8 +78,11 @@
     CATextLayer *tl = [CATextLayer layer];
     self.layer = tl;
     self.textLayer = tl;
+    self.textLayer.wrapped = YES;
+    self.textLayer.fontSize = 14.0f;
+    
     _animationInterval = 0.1f;
-    _font = [SEFont systemFontOfSize:14.0];
+    _font = [SEFont systemFontOfSize:14.0f];
     _padding = SEEdgeInsetsMake(0, 0, 0, 0);
 #if TARGET_OS_IPHONE
     _horizontalAlignment = NSTextAlignmentLeft;
@@ -100,19 +103,29 @@
 }
 
 #if TARGET_OS_IPHONE
-
 - (void)handlePan:(UIPanGestureRecognizer*)sender
 {
-    NSLog(@"%@",sender);
+//    NSLog(@"%@",sender);
+    [self handleClickOrTapInPoint:[sender locationInView:self.holder.engine.rootView]];
 }
 
 #elif TARGET_OS_MAC
 - (void)handleNSEvent:(NSEvent*)event
 {
-    NSLog(@"%@",event);
+//    NSLog(@"%@",event);
+    [self handleClickOrTapInPoint:[event locationInWindow]];
 }
-
 #endif
+
+- (void)handleClickOrTapInPoint:(SEPoint)point
+{
+    NSLog(@"%@",NSStringFromSEPoint(point));
+    CGPoint p = [self.layer convertPoint:point fromLayer:self.holder.engine.rootView.layer];
+    if (CGRectContainsPoint(self.holder.engine.rootView.layer.bounds, p)) {
+        NSLog(@"contains!");
+        // タップ処理をここでやる
+    }
+}
 
 #pragma mark - CALayerDelegate
 
@@ -123,11 +136,17 @@
 
 - (void)text_text:(NSString *)text noanimate:(BOOL)noanimate
 {
+    NSString *__text = [text copy];
 	// text
     if ([text isKindOfClass:[NSAttributedString class]]) {
         // 装飾文字の場合もある
     }else if ([text isKindOfClass:[NSString class]]){
         
+    }
+    // パースしたものをセット
+    [self setText:__text];
+    if (!noanimate) {
+        [self start];
     }
 }
 
@@ -194,9 +213,6 @@
 {
     
 }
-
-#pragma mark - SELayer
-
 
 /*
  NSString *const NSFontAttributeName;

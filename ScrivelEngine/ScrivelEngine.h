@@ -18,6 +18,7 @@
 #define SEFont UIFont
 #define SEColor UIColor
 #define SEEdgeInsetsMake(t,l,b,r) UIEdgeInsetsMake(t,l,b,r)
+#define NSStringFromSEPoint(p) NSStringFromCGPoint(p)
 typedef UIEdgeInsets SEEdgeInsets;
 typedef CGPoint SEPoint;
 typedef CGRect SERect;
@@ -28,6 +29,7 @@ typedef CGSize SESize;
 #define SEFont NSFont
 #define SEColor NSColor
 #define SEEdgeInsetsMake(t,l,b,r) NSEdgeInsetsMake(t,l,b,r)
+#define NSStringFromSEPoint(p) NSStringFromPoint(p)
 typedef NSEdgeInsets SEEdgeInsets;
 typedef NSPoint SEPoint;
 typedef NSRect SERect;
