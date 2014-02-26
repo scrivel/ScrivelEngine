@@ -1,18 +1,13 @@
 {
-  "App": {
-    "setPositionType": "setPositionType_type:",
-    "positioinType": "positionType",
-    "setSizeType": "setSizeType_type:",
-    "sizeType": "sizeType"
-  },
-  "Layer": {
+  "layer": {
     "new": "new_args:",
     "at": "at_index:",
-    "clear": "clear_index:",
     "setAnchorPoint": "setAnchorPoint_x:y:",
+    "setPositionType": "setPositionType_type:",
     "gravity": "setGravity_gravity:",
     "loadImage": "loadImage_path:duration:",
     "clearImage": "clearImage_duration:",
+    "clear": "clear",
     "bg": "bg_color:",
     "border": "border_width:color:",
     "shadowOffset": "shadowOffset_x:y:",
@@ -35,20 +30,21 @@
     "rotate": "rotate_degree:duration:",
     "opacity": "opacity_ratio:duration:"
   },
-  "Abstract": {
+  "abstract": {
     "new": "new_args:",
-    "callStatic": "callStatic_method:",
-    "callInstance": "callInstance_method:"
+    "callStatic": "callStatic_method:engine:",
+    "callInstance": "callInstance_method:engine:",
+    "wait": "wait_duration:"
   },
-  "Text": {
-    "interval": "setInterval_interval:",
-    "font": "setFont_name:size:",
-    "lineSpacing": "setLineSpacing_spacing:",
-    "text": "setText_text:noanimate:",
+  "text": {
+    "interval": "set_interval:",
+    "font": "set_font:",
+    "text": "set_text:noanimate:",
+    "name": "set_name:",
     "clear": "clear",
     "skip": "skip",
-    "padding": "setPadding_top:left:bottom:right:",
-    "verticalAlign": "setVerticalAlign_direction:",
-    "horizontalAlign": "setHorizontalAlign_direction:"
+    "padding": "set_padding:",
+    "verticalAlign": "set_verticalAlign:",
+    "horizontalAlign": "set_horizontalAlign:"
   }
 }
