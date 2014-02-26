@@ -96,6 +96,7 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
     _index = [options[@"index"] unsignedIntValue];
     // 実体はレイヤー
     _layer = [CALayer layer];
+    _layer.position = SEPointMake(0.5, 0.5);
     return self ?: nil;
 }
 
