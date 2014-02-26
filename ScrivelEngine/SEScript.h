@@ -12,7 +12,7 @@
 #import "SEMethod.h"
 #import "Queue.h"
 
-@interface SEScript : NSObject
+@interface SEScript : NSObject <NSFastEnumeration>
 
 + (instancetype)scriptWithString:(NSString*)string error:(NSError**)error;
 

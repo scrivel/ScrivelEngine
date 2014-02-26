@@ -32,4 +32,9 @@ static NSString *const kSEScriptErrorDomain = @"org.scrivel.ScrivelEngine:SEScri
     return self ?: nil;
 }
 
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(__unsafe_unretained id [])buffer count:(NSUInteger)len
+{
+    return [_elements countByEnumeratingWithState:state objects:buffer count:len];
+}
+
 @end

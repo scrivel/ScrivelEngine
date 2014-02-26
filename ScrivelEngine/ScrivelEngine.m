@@ -15,6 +15,7 @@
 #import "SEBasicLayer.h"
 #import "SEBasicTextLayer.h"
 #import "SEMethod.h"
+#import "SEMethodChain.h"
 
 static NSArray *engineClassses;
 
@@ -80,6 +81,46 @@ static NSArray *engineClassses;
         }
     }
     return returnValue;
+}
+
+- (BOOL)validateScript:(NSString *)script error:(NSError *__autoreleasing *)error
+{
+    /*
+     チェック項目
+     - そもそもparseに失敗してないか
+     - 未定義なクラスが使われていないか
+     - 未定義なメソッドが使われていないか
+     - 引数の数、型が間違っていないか
+     */
+    SEScript *s = [SEScript scriptWithString:script error:error];
+    if (*error) {
+        return NO;
+    }
+    for (SEMethodChain *chain in s.elements) {
+        if (![_classProxy classForClassIdentifier:chain.targetClass]) {
+            NSMutableString *ms = [NSMutableString stringWithString:@"!!存在しないクラスです!!\n"];
+            [ms appendFormat:@"line\t\t:\t%lu\n",chain.lineNumber];
+            [ms appendFormat:@"class\t:\t%@\n",chain.targetClass];
+            NSDictionary *ui = @{ NSLocalizedDescriptionKey : ms};
+            *error = [NSError errorWithDomain:@"" code:0 userInfo:ui];
+            return NO;
+        }
+        for (SEMethod *method in chain) {
+            if (![_classProxy selectorForMethodIdentifier:method.name]) {
+                NSString *type = (method == [chain.methods firstObject]) ? @"static" : @"instance";
+                NSMutableString *ms = [NSMutableString stringWithString:@"!!存在しないメソッドの呼び出しです!!\n"];
+                [ms appendFormat:@"line\t\t:\t%lu\n",chain.lineNumber];
+                [ms appendFormat:@"class\t:\t%@\n",chain.targetClass];
+                [ms appendFormat:@"type\t:\t%@\n",type];
+                [ms appendFormat:@"name\t:\t%@",method.name];
+                NSDictionary *ui = @{ NSLocalizedDescriptionKey: ms };
+                *error = [NSError errorWithDomain:@"" code:0 userInfo:ui];
+                return NO;
+            }
+            // 本当はここで引数の数と型のチェックをしたいけどあとでやる
+        }
+    }
+    return YES;
 }
 
 - (void)setClassProxy:(id<SEClassProxy>)classProxy
