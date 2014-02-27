@@ -152,16 +152,22 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 - (void)loadImage_path:(NSString *)path duration:(NSTimeInterval)duration
 {
     NSString *_path = [[NSBundle mainBundle] se_pathForResource:path];
-    NSAssert(_path, @"パスに画像がありません");
+//    NSAssert(_path, @"パスに画像がありません");
     SEImage *image = [[SEImage alloc] initWithContentsOfFile:_path];
-    NSAssert(image, @"画像がありません");
+//    NSAssert(image, @"画像がありません");
     id val;
 #if TARGET_OS_IPHONE
     val = (id)[image CGImage];
 #elif TARGET_OS_MAC
     val = image;
 #endif
-    [self enqueuAnimationForKeyPath:@"contents" toValue:val duration:duration];
+    if (val) {
+        // レイヤのサイズが設定されていなかったら画像サイズにレイヤーの大きさを調整
+        if (CGSizeEqualToSize(self.layer.bounds.size, CGSizeZero)) {
+            [self enqueuAnimationForKeyPath:@"bounds.size" toValue:[NSValue se_ValueWithSize:image.size] duration:0];
+        }
+        [self enqueuAnimationForKeyPath:@"contents" toValue:val duration:duration];
+    }
 }
 
 - (void)clearImage_duration:(NSTimeInterval)duration
