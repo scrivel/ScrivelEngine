@@ -26,16 +26,6 @@
 {
     self = [super initWithEngine:engine classIdentifier:classIdentifier];
     self.instanceClass = [SEBasicTextLayer class];
-    // プライマリテキストレイヤだけはタップイベントをキャプチャ出来るようにする
-    // LayerInstanceがResponderProxyをもつとなぜかクラッシュすることがあるので
-    // プライマリレイヤのindexによってdelegate先を変えるようにする
-#if !TARGET_OS_IPHONE
-    // mousedownイベントをハンドリングするためにrootviewのレスポンダチェーンをproxyする
-    _responderProxy = [[SEResponderProxy alloc] initWithDelegate:nil selector:@selector(handleNSEvent:)];
-    NSResponder *r = self.engine.rootView.nextResponder;
-    [self.engine.rootView setNextResponder:_responderProxy];
-    [_responderProxy setNextResponder:r];
-#endif
     return self ?: nil;
 }
 
@@ -68,6 +58,16 @@
         _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:l action:@selector(handleTap:)];
         [self.engine.rootView addGestureRecognizer:_tapGestureRecognizer];
 #elif TARGET_OS_MAC
+        // プライマリテキストレイヤだけはタップイベントをキャプチャ出来るようにする
+        // LayerInstanceがResponderProxyをもつとなぜかクラッシュすることがあるので
+        // プライマリレイヤのindexによってdelegate先を変えるようにする
+        // mousedownイベントをハンドリングするためにrootviewのレスポンダチェーンをproxyする
+        if (!_responderProxy) {
+            _responderProxy = [[SEResponderProxy alloc] initWithDelegate:nil selector:@selector(handleNSEvent:)];
+            NSResponder *r = self.engine.rootView.nextResponder;
+            [self.engine.rootView setNextResponder:_responderProxy];
+            [_responderProxy setNextResponder:r];
+        }
         _responderProxy.delegate = l;
 #endif
         _primaryTextLayer = l;
@@ -195,6 +195,12 @@
     _text = __text;
     if (!noanimate) {
         [self start];
+        // テキストの表示が終わるまでブロックする
+//        NSTimeInterval i = self.animationInterval;
+//        while (self.isAnimating) {
+//            [[NSRunLoop currentRunLoop]
+//             runUntilDate:[NSDate dateWithTimeIntervalSinceNow:i]];
+//        }
     }else{
         self.textLayer.string = __text;
     }
