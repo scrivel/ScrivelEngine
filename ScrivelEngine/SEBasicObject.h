@@ -15,8 +15,9 @@
 @property (nonatomic, readonly) ScrivelEngine *engine;
 @property (nonatomic, readonly) NSSet *instances;
 @property (nonatomic, weak) Class instanceClass;
+@property (nonatomic, readonly) NSString *classIdentifier;
 
-- (instancetype)initWithEngine:(ScrivelEngine*)engine;
+- (instancetype)initWithEngine:(ScrivelEngine*)engine classIdentifier:(NSString*)classIdentifier;;
 
 @end
 

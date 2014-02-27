@@ -16,40 +16,29 @@
  アプリケーションオブジェクト
  グローバルな設定など扱う
  
- @class App
- @extends Abstract
+ @class app
+ @extends abstract
  **/
 
 @required
 
 /**
- エンジンの中での位置のタイプを指定する。
- デフォルトは"norm"。0~1のrootViewに対する正規化された値。
+ 対応するKeyの値を設定する
  
- @method setPositionType
- @param	{String} type "norm" or "px"
+ @method set
+ @param {String} key
+ @param {Value} value
  **/
-- (void)setPositionType_type:(NSString*)type;
+- (void)set_key:(NSString*)key value:(id)value;
 
 /**
+ 対応する値をenable/disableする
  
- @method positioinType
+ @method enable
+ @param {String} key
+ @param {Boolean} enable
  **/
-- (SEPositionType)positionType;
+- (void)enable_key:(NSString*)key enable:(BOOL)enable;
 
-/**
- エンジンの中でのサイズタイプを指定する。
- デフォルトは"px"。
- 
- @method setSizeType
- @param {String} type "norm" or "px"
-  **/
-- (void)setSizeType_type:(NSString*)type;
-
-/**
- 
- @method sizeType
- **/
-- (SESizeType)sizeType;
 
 @end

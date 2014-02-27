@@ -129,7 +129,7 @@
     id c = [engine classProxy];
     XCTAssert([c isKindOfClass:[SEBasicClassProxy class]],);
     SEL sel;
-    XCTAssertNoThrow(sel = [c selectorForMethodIdentifier:@"at"], );
+    XCTAssertNoThrow(sel = [c selectorForMethodIdentifier:@"at" classIdentifier:@"layer"], );
     XCTAssert(sel == @selector(at_index:),);
 }
 

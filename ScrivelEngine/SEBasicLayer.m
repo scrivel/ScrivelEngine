@@ -35,9 +35,9 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 {
     NSMutableDictionary *__layers;
 }
-- (instancetype)initWithEngine:(ScrivelEngine *)engine
+- (instancetype)initWithEngine:(ScrivelEngine *)engine classIdentifier:(NSString *)classIdentifier
 {
-    self = [super initWithEngine:engine];
+    self = [super initWithEngine:engine classIdentifier:classIdentifier];
     __layers = [NSMutableDictionary new];
     self.instanceClass = [SEBasicLayer class];
     return self ?: nil;

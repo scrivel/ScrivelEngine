@@ -19,8 +19,8 @@
  ScrivelEngineのテキスト表示エリア。
  基本的にひとつだけ。
  
- @class Text
- @extends Layer
+ @class text
+ @extends layer
  **/
 
 

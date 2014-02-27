@@ -13,6 +13,6 @@
 // クラス名に対するobjc上でのクラスを返す
 - (Class)classForClassIdentifier:(NSString*)classIdentifier;
 // クラス名とメソッド名に対するobjc上でのセレクターを返す
-- (SEL)selectorForMethodIdentifier:(NSString*)methodIdentifier;
+- (SEL)selectorForMethodIdentifier:(NSString *)methodIdentifier classIdentifier:(NSString *)classIdentifier;
 
 @end

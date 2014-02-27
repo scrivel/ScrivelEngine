@@ -1,56 +1,66 @@
 {
-  "App": {
-    "setPositionType": "setPositionType_type:",
-    "positioinType": "positionType",
-    "setSizeType": "setSizeType_type:",
-    "sizeType": "sizeType"
+  "abstract": {
+    "methods": {
+      "new": "new_args:",
+      "callStatic": "callStatic_method:",
+      "callInstance": "callInstance_method:"
+    },
+    "extends": ""
   },
-  "Layer": {
-    "new": "new_args:",
-    "at": "at_index:",
-    "clear": "clear_index:",
-    "setAnchorPoint": "setAnchorPoint_x:y:",
-    "gravity": "setGravity_gravity:",
-    "loadImage": "loadImage_path:duration:",
-    "clearImage": "clearImage_duration:",
-    "bg": "bg_color:",
-    "border": "border_width:color:",
-    "shadowOffset": "shadowOffset_x:y:",
-    "shadowColor": "shadowColor_color:",
-    "shadowOpacity": "shadowOpcity_opacity:",
-    "shadowRadius": "shadowRadius_radius:",
-    "beginAnimation": "beginAnimation_duration:",
-    "commitAnimation": "commitAnimation",
-    "position": "position_x:y:duration:",
-    "zPosition": "zPosition_z:duration:",
-    "size": "size_width:height:duration:",
-    "show": "show",
-    "hide": "hide",
-    "toggle": "toggle",
-    "fadeIn": "fadeIn_duration:",
-    "fadeOut": "fadeOut_duration:",
-    "translate": "translate_x:y:duration:",
-    "translateZ": "translateZ_z:duration:",
-    "scale": "scale_ratio:duration:",
-    "rotate": "rotate_degree:duration:",
-    "opacity": "opacity_ratio:duration:"
+  "app": {
+    "methods": {
+      "set": "set_key:value:",
+      "enable": "enable_key:enable:"
+    },
+    "extends": "abstract"
   },
-  "Abstract": {
-    "new": "new_args:",
-    "callStatic": "callStatic_method:",
-    "callInstance": "callInstance_method:"
+  "layer": {
+    "methods": {
+      "new": "new_args:",
+      "at": "at_index:",
+      "clear": "clear_index:",
+      "setAnchorPoint": "setAnchorPoint_x:y:",
+      "gravity": "setGravity_gravity:",
+      "loadImage": "loadImage_path:duration:",
+      "clearImage": "clearImage_duration:",
+      "bg": "bg_color:",
+      "border": "border_width:color:",
+      "shadowOffset": "shadowOffset_x:y:",
+      "shadowColor": "shadowColor_color:",
+      "shadowOpacity": "shadowOpcity_opacity:",
+      "shadowRadius": "shadowRadius_radius:",
+      "beginAnimation": "beginAnimation_duration:",
+      "commitAnimation": "commitAnimation",
+      "position": "position_x:y:duration:",
+      "zPosition": "zPosition_z:duration:",
+      "size": "size_width:height:duration:",
+      "show": "show",
+      "hide": "hide",
+      "toggle": "toggle",
+      "fadeIn": "fadeIn_duration:",
+      "fadeOut": "fadeOut_duration:",
+      "translate": "translate_x:y:duration:",
+      "translateZ": "translateZ_z:duration:",
+      "scale": "scale_ratio:duration:",
+      "rotate": "rotate_degree:duration:",
+      "opacity": "opacity_ratio:duration:"
+    },
+    "extends": "abstract"
   },
-  "Text": {
-    "interval": "setInterval_interval:",
-    "font": "setFont_name:size:",
-    "lineSpacing": "setLineSpacing_spacing:",
-    "text": "text_text:noanimate:",
-    "start": "start",
-    "pause": "pause",
-    "resume": "resume",
-    "clear": "clear",
-    "skip": "skip",
-    "padding": "setPadding_top:left:bottom:right:",
-    "horizontalAlign": "setHorizontalAlign_direction:"
+  "text": {
+    "methods": {
+      "interval": "setInterval_interval:",
+      "font": "setFont_name:size:",
+      "lineSpacing": "setLineSpacing_spacing:",
+      "text": "text_text:noanimate:",
+      "start": "start",
+      "pause": "pause",
+      "resume": "resume",
+      "clear": "clear",
+      "skip": "skip",
+      "padding": "setPadding_top:left:bottom:right:",
+      "horizontalAlign": "setHorizontalAlign_direction:"
+    },
+    "extends": "layer"
   }
 }

@@ -15,10 +15,10 @@
 
 #define SAME_TYPE(s1,s2) ((strcmp(s1,s2) == 0) ? YES : NO)
 
-static id callMethod(id target, SEMethod *method, ScrivelEngine *engine)
+static id callMethod(id target, NSString *class, SEMethod *method, ScrivelEngine *engine)
 {
     // SEMethodを動的に呼び出す
-    SEL sel = [engine.classProxy selectorForMethodIdentifier:method.name];
+    SEL sel = [engine.classProxy selectorForMethodIdentifier:method.name classIdentifier:class];
     NSMethodSignature *sig = [target methodSignatureForSelector:sel];
     NSInvocation *iv = [NSInvocation invocationWithMethodSignature:sig];
     [iv setTarget:target];
@@ -65,10 +65,11 @@ static id callMethod(id target, SEMethod *method, ScrivelEngine *engine)
     NSHashTable *__instances;
 }
 
-- (instancetype)initWithEngine:(ScrivelEngine *)engine
+- (instancetype)initWithEngine:(ScrivelEngine *)engine classIdentifier:(NSString *)classIdentifier
 {
     self = [self init];
     _engine = engine;
+    _classIdentifier = classIdentifier;
     __instances = [NSHashTable weakObjectsHashTable];
     _instanceClass = [SEBasicObjectClass class];
     return self ?: nil;
@@ -76,7 +77,7 @@ static id callMethod(id target, SEMethod *method, ScrivelEngine *engine)
 
 - (id)callStatic_method:(SEMethod *)method
 {
-    return callMethod(self, method, self.engine);
+    return callMethod(self, self.classIdentifier, method, self.engine);
 }
 
 - (id)new_args:(id)args
@@ -103,7 +104,7 @@ static id callMethod(id target, SEMethod *method, ScrivelEngine *engine)
 
 - (id)callInstance_method:(SEMethod *)method
 {
-    return callMethod(self, method, self.holder.engine);
+    return callMethod(self, self.holder.classIdentifier, method, self.holder.engine);
 }
 
 

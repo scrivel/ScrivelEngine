@@ -13,9 +13,9 @@
 
 @implementation SEBasicTextLayerClass
 
-- (instancetype)initWithEngine:(ScrivelEngine *)engine
+- (instancetype)initWithEngine:(ScrivelEngine *)engine classIdentifier:(NSString *)classIdentifier
 {
-    self = [super initWithEngine:engine];
+    self = [super initWithEngine:engine classIdentifier:classIdentifier];
     self.instanceClass = [SEBasicTextLayer class];
     return self ?: nil;
 }

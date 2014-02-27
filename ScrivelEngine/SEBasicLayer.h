@@ -10,14 +10,15 @@
 #import <Foundation/Foundation.h>
 #import "SEBasicObject.h"
 #import "SELayer.h"
+#import "SEBasicApp.h"
 #import <objc/runtime.h>
 
 
 #define VH self.holder.engine.rootView.bounds.size.height
 #define VW self.holder.engine.rootView.bounds.size.width
 
-#define NORM_POSITION (self.holder.engine.app.positionType == SEPositionTypeNormalized)
-#define NORM_SIZE (self.holder.engine.app.sizeType == SESizeTypeNormalized)
+#define NORM_POSITION ([(SEBasicApp*)self.holder.engine.app positionType] == SEPositionTypeNormalized)
+#define NORM_SIZE ([(SEBasicApp*)self.holder.engine.app sizeType] == SESizeTypeNormalized)
 
 #define X(x) (NORM_POSITION ? (CGFloat)(x*VW) : x)
 

@@ -107,7 +107,7 @@ static NSArray *engineClassses;
             return NO;
         }
         for (SEMethod *method in chain) {
-            if (![_classProxy selectorForMethodIdentifier:method.name]) {
+            if (![_classProxy selectorForMethodIdentifier:method.name classIdentifier:chain.targetClass]) {
                 NSString *type = (method == [chain.methods firstObject]) ? @"static" : @"instance";
                 NSMutableString *ms = [NSMutableString stringWithString:@"!!存在しないメソッドの呼び出しです!!\n"];
                 [ms appendFormat:@"line\t\t:\t%lu\n",(unsigned long)chain.lineNumber];
@@ -131,7 +131,7 @@ static NSArray *engineClassses;
         // classProxyに対して内部のクラスオブジェクトを作成
         for (NSString *className in engineClassses) {
             Class<NSObject,SEObjectClass> class = [classProxy classForClassIdentifier:className];
-            id<SEObjectClass> c = [objc_msgSend(class, @selector(alloc)) initWithEngine:self];
+            id<SEObjectClass> c = [objc_msgSend(class, @selector(alloc)) initWithEngine:self classIdentifier:className];
             // layer -> _layer
             if (c) {
                 [self setValue:c forKey:[NSString stringWithFormat:@"_%@",className]];

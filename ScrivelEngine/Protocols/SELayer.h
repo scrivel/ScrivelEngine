@@ -16,8 +16,8 @@
  ScrivelEngineのレイヤーオブジェクト。
  基本的にはCALayerのラッパー。
  
- @class Layer
- @extends Abstract
+ @class layer
+ @extends abstract
  **/
 
 #pragma mark - SEObject

@@ -1,18 +1,23 @@
 require "json"
 
-out = File.expand_path(File.dirname(__FILE__)+"/../Resources/map.json")
-path = File.expand_path(File.dirname(__FILE__)+"/../ScrivelEngine/Protocols")
-proxy_path = File.expand_path("./ScrivelEngine/SEBasicClassProxy.m")
+out = File.expand_path("Resources/map.json")
+path = File.expand_path("ScrivelEngine/Protocols")
+proxy_path = File.expand_path("ScrivelEngine/SEBasicClassProxy.m")
 
 # p path
 hash = {}
-Dir.chdir path
-Dir.glob("*.h"){|f|
+hierarchy = {}
+
+["SEObject.h","SEApp.h","SELayer.h","SETextLayer.h"].each{|h|
+  f = File.expand_path(path+"/"+h)
   name = File.basename f, ".h"
-  p f
+  str = open(f).read
+
+  clazz = str.match(/\/\*.*@class ([a-z]+)/im)[1]
+  extends = str.match(/@extends[^a-z]*([a-z]+)\n/i)
+  extends = extends[1] if extends
   method = /@method[^a-z]*([a-z]+)\n/i
   selector = /[+-] ?(.+);/
-  str = open(f).read
 
   methods = []
   selectors = []
@@ -38,15 +43,17 @@ Dir.glob("*.h"){|f|
   # p selectors
 
   # p "#{methods.length} methods, #{selectors.length} selectors"
-  clazz = str.match(/\/\*.*@class ([a-z]+)/im)[1]
   if methods.length == selectors.length
     ary = [methods,selectors].transpose
-    hash[clazz] = Hash[*[ary].flatten]
+    hash[clazz] = {}
+    hash[clazz]["methods"] = Hash[*[ary].flatten]
+    hash[clazz]["extends"] = extends ? extends : ""
   else
     $stderr << "syntax error"
     exit 2
   end
 }
+
 open(out ,"w"){|f| f.write JSON.pretty_generate hash }
 p "#{out} generated."
 
@@ -54,13 +61,21 @@ p "#{out} generated."
 class_for_class = ""
 sel_for_method = ""
 
-hash.each do |cls, methods|
-  # sel_for_method += "if ([classIdentifier isEqualToString:@\"#{cls}\"]) {\n\n"
-  sel_for_method += "\n\t// #{cls}\n\n"
-  methods.each do |key, val|
-    sel_for_method += "\tSEL_FOR_METHOD(@\"#{key}\",#{val});\n"
+hash.each do |cls, obj|
+  sel_for_method += "\tif ([classIdentifier isEqualToString:@\"#{cls}\"]) {\n"
+  sel_for_method += "\t\t// #{cls}\n\n"
+  # 継承先を追加
+  ext = obj
+  ce = cls
+  while ext
+    sel_for_method += "\t\t// inherited from #{ce}\n"
+    ext["methods"].each do |key, val|
+      sel_for_method += "\t\tSEL_FOR_METHOD(@\"#{key}\",#{val});\n"
+    end
+    ce = ext["extends"]
+    ext = hash[ce]
   end
-  # sel_for_method += "\n}\n"
+  sel_for_method += "\n\t}\n"
 end
 
 
@@ -100,7 +115,7 @@ tmp = <<"EOS"
     return nil;
 }
 
-- (SEL)selectorForMethodIdentifier:(NSString *)methodIdentifier
+- (SEL)selectorForMethodIdentifier:(NSString *)methodIdentifier classIdentifier:(NSString *)classIdentifier
 {
 #{sel_for_method}
 
