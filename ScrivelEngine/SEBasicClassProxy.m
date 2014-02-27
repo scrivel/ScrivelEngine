@@ -64,7 +64,7 @@
 		SEL_FOR_METHOD(@"at",at_index:);
 		SEL_FOR_METHOD(@"clear",clear_index:);
 		SEL_FOR_METHOD(@"setAnchorPoint",setAnchorPoint_x:y:);
-		SEL_FOR_METHOD(@"gravity",setGravity_gravity:);
+		SEL_FOR_METHOD(@"setGravity",setGravity_gravity:);
 		SEL_FOR_METHOD(@"loadImage",loadImage_path:duration:);
 		SEL_FOR_METHOD(@"clearImage",clearImage_duration:);
 		SEL_FOR_METHOD(@"bg",bg_color:);
@@ -98,10 +98,14 @@
 		// text
 
 		// inherited from text
-		SEL_FOR_METHOD(@"interval",setInterval_interval:);
-		SEL_FOR_METHOD(@"font",setFont_name:size:);
-		SEL_FOR_METHOD(@"lineSpacing",setLineSpacing_spacing:);
-		SEL_FOR_METHOD(@"text",text_text:noanimate:);
+		SEL_FOR_METHOD(@"setPrimary",setPrimary_index:);
+		SEL_FOR_METHOD(@"setNameLayer",setNameLayer_index:);
+		SEL_FOR_METHOD(@"setName",setName_name:);
+		SEL_FOR_METHOD(@"setInterval",setInterval_interval:);
+		SEL_FOR_METHOD(@"setFont",setFont_name:size:);
+		SEL_FOR_METHOD(@"setCcolor",setColor_color:);
+		SEL_FOR_METHOD(@"setLineSpacing",setLineSpacing_spacing:);
+		SEL_FOR_METHOD(@"setText",setText_text:noanimate:);
 		SEL_FOR_METHOD(@"start",start);
 		SEL_FOR_METHOD(@"pause",pause);
 		SEL_FOR_METHOD(@"resume",resume);
@@ -114,7 +118,7 @@
 		SEL_FOR_METHOD(@"at",at_index:);
 		SEL_FOR_METHOD(@"clear",clear_index:);
 		SEL_FOR_METHOD(@"setAnchorPoint",setAnchorPoint_x:y:);
-		SEL_FOR_METHOD(@"gravity",setGravity_gravity:);
+		SEL_FOR_METHOD(@"setGravity",setGravity_gravity:);
 		SEL_FOR_METHOD(@"loadImage",loadImage_path:duration:);
 		SEL_FOR_METHOD(@"clearImage",clearImage_duration:);
 		SEL_FOR_METHOD(@"bg",bg_color:);

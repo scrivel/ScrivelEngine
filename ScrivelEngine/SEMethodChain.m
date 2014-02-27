@@ -13,11 +13,11 @@
 
 @implementation SEMethodChain
 
-- (instancetype)initWithLineNumber:(NSUInteger)lineNumber targetClass:(NSString *)targetClass
+- (instancetype)initWithTargetClass:(NSString *)targetClass
 {
     self = [self init];
-    _methods = [NSMutableArray new];
     _targetClass = targetClass;
+    _methods = [NSMutableArray new];    
     return self ?: nil;
 }
 

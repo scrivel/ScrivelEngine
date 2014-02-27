@@ -1,8 +1,6 @@
 PODS:
-  - AVHexColor (1.1.0)
   - ParseKit (0.7)
   - ScrivelEngine (0.0.1):
-    - AVHexColor
     - ParseKit (~> 0.7)
 
 DEPENDENCIES:
@@ -13,8 +11,7 @@ EXTERNAL SOURCES:
     :path: .
 
 SPEC CHECKSUMS:
-  AVHexColor: 544ee59a39c26d2d835e1163db48fc6c82860583
   ParseKit: 3e29375d37e10b468fa2298ad7304a10f553bcef
-  ScrivelEngine: f973fc84e471dc0cfdd696149f84b7492a0814fb
+  ScrivelEngine: 7cec8e5fc36227444f2f00448cb447fc54f25254
 
 COCOAPODS: 0.29.0

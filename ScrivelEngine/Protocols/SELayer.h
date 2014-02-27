@@ -54,7 +54,6 @@
  **/
 - (void)clear_index:(NSUInteger)index;
 
-
 @end
 
 @protocol SELayerInstance <SEObjectInstance>
@@ -74,7 +73,7 @@
 /**
  画像のgravity（表示モード）を指定する。
  
- @method gravity
+ @method setGravity
  @param {String} type
  **/
 - (void)setGravity_gravity:(NSString*)gravity;

@@ -167,6 +167,18 @@
 		A6FBB3D818BF4CFF008DDF22 /* SEColorUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FBB3D518BF4CFF008DDF22 /* SEColorUtil.h */; };
 		A6FBB3D918BF4CFF008DDF22 /* SEColorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FBB3D618BF4CFF008DDF22 /* SEColorUtil.m */; };
 		A6FBB3DA18BF4CFF008DDF22 /* SEColorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FBB3D618BF4CFF008DDF22 /* SEColorUtil.m */; };
+		A6FBB3DC18BF6F49008DDF22 /* text.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3DB18BF6F49008DDF22 /* text.sescript */; };
+		A6FBB3DD18BF6F49008DDF22 /* text.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3DB18BF6F49008DDF22 /* text.sescript */; };
+		A6FBB3DE18BF6F49008DDF22 /* text.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3DB18BF6F49008DDF22 /* text.sescript */; };
+		A6FBB3DF18BF6F49008DDF22 /* text.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3DB18BF6F49008DDF22 /* text.sescript */; };
+		A6FBB3E218BF706F008DDF22 /* SEElement.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FBB3E018BF706F008DDF22 /* SEElement.h */; };
+		A6FBB3E318BF706F008DDF22 /* SEElement.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FBB3E018BF706F008DDF22 /* SEElement.h */; };
+		A6FBB3E418BF706F008DDF22 /* SEElement.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FBB3E118BF706F008DDF22 /* SEElement.m */; };
+		A6FBB3E518BF706F008DDF22 /* SEElement.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FBB3E118BF706F008DDF22 /* SEElement.m */; };
+		A6FBB3E818BF707B008DDF22 /* SEWords.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FBB3E618BF707B008DDF22 /* SEWords.h */; };
+		A6FBB3E918BF707B008DDF22 /* SEWords.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FBB3E618BF707B008DDF22 /* SEWords.h */; };
+		A6FBB3EA18BF707B008DDF22 /* SEWords.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FBB3E718BF707B008DDF22 /* SEWords.m */; };
+		A6FBB3EB18BF707B008DDF22 /* SEWords.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FBB3E718BF707B008DDF22 /* SEWords.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -299,6 +311,11 @@
 		A6FBB3AC18BF2C25008DDF22 /* stopbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stopbutton.png; sourceTree = "<group>"; };
 		A6FBB3D518BF4CFF008DDF22 /* SEColorUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEColorUtil.h; sourceTree = "<group>"; };
 		A6FBB3D618BF4CFF008DDF22 /* SEColorUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEColorUtil.m; sourceTree = "<group>"; };
+		A6FBB3DB18BF6F49008DDF22 /* text.sescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = text.sescript; sourceTree = "<group>"; };
+		A6FBB3E018BF706F008DDF22 /* SEElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEElement.h; sourceTree = "<group>"; };
+		A6FBB3E118BF706F008DDF22 /* SEElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEElement.m; sourceTree = "<group>"; };
+		A6FBB3E618BF707B008DDF22 /* SEWords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEWords.h; sourceTree = "<group>"; };
+		A6FBB3E718BF707B008DDF22 /* SEWords.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEWords.m; sourceTree = "<group>"; };
 		C4B2227A2DAB4A94B8A28A3B /* Pods-ScrivelEngineDemo.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScrivelEngineDemo.xcconfig"; path = "Pods/Pods-ScrivelEngineDemo.xcconfig"; sourceTree = "<group>"; };
 		D9B262D9694048BFA8251D77 /* libPods-ScrivelEngineMacDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ScrivelEngineMacDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -508,6 +525,10 @@
 				A63F889118AFBBBA007FBE57 /* SEScriptAssembler.m */,
 				A60ECC1718AC8A46000F7A40 /* SEScript.h */,
 				A60ECC1818AC8A46000F7A40 /* SEScript.m */,
+				A6FBB3E018BF706F008DDF22 /* SEElement.h */,
+				A6FBB3E118BF706F008DDF22 /* SEElement.m */,
+				A6FBB3E618BF707B008DDF22 /* SEWords.h */,
+				A6FBB3E718BF707B008DDF22 /* SEWords.m */,
 				A63F889318AFBCC5007FBE57 /* SEMethodChain.h */,
 				A63F889418AFBCC5007FBE57 /* SEMethodChain.m */,
 				A60ECC1518AC8A46000F7A40 /* SEMethod.h */,
@@ -623,6 +644,7 @@
 				A6FBB3AA18BF2C25008DDF22 /* sample.sescript */,
 				A6FBB3AB18BF2C25008DDF22 /* script.grammer */,
 				A6FBB3AC18BF2C25008DDF22 /* stopbutton.png */,
+				A6FBB3DB18BF6F49008DDF22 /* text.sescript */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -640,7 +662,9 @@
 				A639F08C18BB82F800CF4148 /* SEBasicApp.h in Headers */,
 				A6D04D4518B74D4D00977B7A /* NSArray+Where.h in Headers */,
 				A6D1760E18AE628200AB11AF /* SEScriptParser.h in Headers */,
+				A6FBB3E918BF707B008DDF22 /* SEWords.h in Headers */,
 				A6A1691918B25A470041BBBA /* SEMethodChain.h in Headers */,
+				A6FBB3E318BF706F008DDF22 /* SEElement.h in Headers */,
 				A609F66318B47F58000A0EFB /* NSValue+ScrivelEngine.h in Headers */,
 				A604523C18B3A58B00B85928 /* SEBasicObject.h in Headers */,
 				A63F88B118B0F496007FBE57 /* ScrivelEngine.h in Headers */,
@@ -665,9 +689,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6FBB3E818BF707B008DDF22 /* SEWords.h in Headers */,
 				A604524918B3C78200B85928 /* SEBasicTextLayer.h in Headers */,
 				A6A1691418B25A400041BBBA /* SEScript.h in Headers */,
 				A609F66818B48700000A0EFB /* Queue.h in Headers */,
+				A6FBB3E218BF706F008DDF22 /* SEElement.h in Headers */,
 				A639F08B18BB82F800CF4148 /* SEBasicApp.h in Headers */,
 				A6D04D4418B74D4D00977B7A /* NSArray+Where.h in Headers */,
 				A6A1691218B25A3D0041BBBA /* SEScriptAssembler.h in Headers */,
@@ -854,6 +880,7 @@
 				A6FBB3C518BF2C25008DDF22 /* stopbutton.png in Resources */,
 				A6FBB3B118BF2C25008DDF22 /* keroxp.jpg in Resources */,
 				A6FBB3AD18BF2C25008DDF22 /* animate.sescript in Resources */,
+				A6FBB3DC18BF6F49008DDF22 /* text.sescript in Resources */,
 				A6FBB3B518BF2C25008DDF22 /* map.json in Resources */,
 				A60ECC0C18AC86A7000F7A40 /* InfoPlist.strings in Resources */,
 			);
@@ -875,6 +902,7 @@
 				A6FBB3B218BF2C25008DDF22 /* keroxp.jpg in Resources */,
 				A6FBB3BA18BF2C25008DDF22 /* runbutton.png in Resources */,
 				A6FBB3AE18BF2C25008DDF22 /* animate.sescript in Resources */,
+				A6FBB3DD18BF6F49008DDF22 /* text.sescript in Resources */,
 				A6FBB3BE18BF2C25008DDF22 /* sample.sescript in Resources */,
 				A6FBB3B618BF2C25008DDF22 /* map.json in Resources */,
 			);
@@ -893,6 +921,7 @@
 				A6FBB3C818BF2C25008DDF22 /* stopbutton.png in Resources */,
 				A6AC922618AC921C00D43025 /* Credits.rtf in Resources */,
 				A6AC922C18AC921C00D43025 /* MainMenu.xib in Resources */,
+				A6FBB3DF18BF6F49008DDF22 /* text.sescript in Resources */,
 				A6FBB3C418BF2C25008DDF22 /* script.grammer in Resources */,
 				A6FBB3B818BF2C25008DDF22 /* map.json in Resources */,
 			);
@@ -912,6 +941,7 @@
 				A6FBB3C718BF2C25008DDF22 /* stopbutton.png in Resources */,
 				A6FBB3AF18BF2C25008DDF22 /* animate.sescript in Resources */,
 				A6D925DD18B914E700902230 /* InfoPlist.strings in Resources */,
+				A6FBB3DE18BF6F49008DDF22 /* text.sescript in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -977,8 +1007,10 @@
 				A609F66A18B48700000A0EFB /* Queue.m in Sources */,
 				A639F08D18BB82F800CF4148 /* SEBasicApp.m in Sources */,
 				A609F66418B47F58000A0EFB /* NSValue+ScrivelEngine.m in Sources */,
+				A6FBB3E418BF706F008DDF22 /* SEElement.m in Sources */,
 				A63F889518AFBCC5007FBE57 /* SEMethodChain.m in Sources */,
 				A6D04D4C18B7701C00977B7A /* SEBasicClassProxy.m in Sources */,
+				A6FBB3EA18BF707B008DDF22 /* SEWords.m in Sources */,
 				A604524B18B3C78200B85928 /* SEBasicTextLayer.m in Sources */,
 				A6D925D718B8E24600902230 /* NSBundle+ScrivelEngine.m in Sources */,
 				A6D04D4618B74D4D00977B7A /* NSArray+Where.m in Sources */,
@@ -1009,9 +1041,11 @@
 				A60ECC5018AC8C54000F7A40 /* SEMethod.m in Sources */,
 				A604523E18B3A58B00B85928 /* SEBasicObject.m in Sources */,
 				A609F66B18B48700000A0EFB /* Queue.m in Sources */,
+				A6FBB3EB18BF707B008DDF22 /* SEWords.m in Sources */,
 				A609F66518B47F58000A0EFB /* NSValue+ScrivelEngine.m in Sources */,
 				A639F08E18BB82F800CF4148 /* SEBasicApp.m in Sources */,
 				A6FBB3DA18BF4CFF008DDF22 /* SEColorUtil.m in Sources */,
+				A6FBB3E518BF706F008DDF22 /* SEElement.m in Sources */,
 				A63F88B318B0F496007FBE57 /* ScrivelEngine.m in Sources */,
 				A6D04D4D18B7701C00977B7A /* SEBasicClassProxy.m in Sources */,
 				A604524C18B3C78200B85928 /* SEBasicTextLayer.m in Sources */,

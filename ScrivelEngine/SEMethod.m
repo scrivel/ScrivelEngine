@@ -11,30 +11,18 @@
 #import "ScrivelEngine.h"
 #import "NSNumber+CGFloat.h"
 
-#define kNameMethod @"name"
-#define kTextMethod @"text"
-
 static inline BOOL VALID(id val){
     return (val != nil && val != [NSNull null]);
 }
 
 @implementation SEMethod
 
-+ (instancetype)nameMethod
-{
-    return [[self alloc] initWithName:kNameMethod type:SEMethodTypeCall];
-}
-
-+ (instancetype)textMethod
-{
-    return [[self alloc] initWithName:kTextMethod type:SEMethodTypeCall];
-}
-
-- (instancetype)initWithName:(NSString *)name type:(SEMethodType)type
+- (instancetype)initWithName:(NSString *)name type:(SEMethodType)type lineNumer:(NSUInteger)lineNumber
 {
     if (self = [super init] ) {
         _type = type;
         _name = name;
+        _lineNumber = lineNumber;
     }
     return self;
 }

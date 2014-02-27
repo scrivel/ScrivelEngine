@@ -6,21 +6,17 @@
 //  Copyright (c) 2014年 scrivel. All rights reserved.
 //
 
-#import "Queue.h"
-#import "SEObject.h"
+#import "SEElement.h"
 
 @class SEMethod;
 
-@interface SEMethodChain : NSObject <NSFastEnumeration>
-
-@property (nonatomic, readonly) NSUInteger lineNumber;
-
-- (instancetype)initWithLineNumber:(NSUInteger)lineNumber targetClass:(NSString*)targetClass;
+@interface SEMethodChain : SEElement <NSFastEnumeration>
 
 @property (nonatomic, readonly) NSString *targetClass;
-// メソッドチェーンを構成するメソッドら
 @property (nonatomic, readonly) NSMutableArray *methods;
+@property (nonatomic) NSRange rangeOfLines;
 
+- (instancetype)initWithTargetClass:(NSString*)targetClass;
 - (SEMethod*)dequeueMethod;
 - (void)enqueueMethod:(SEMethod*)method;
 

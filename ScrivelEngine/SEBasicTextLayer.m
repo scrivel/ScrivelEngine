@@ -9,21 +9,82 @@
 
 #import "SEBasicTextLayer.h"
 #import "SEApp.h"
-#import "MethodSwizzling.h"
+#import "SEClassProxy.h"
+#import "SEMethod.h"
+#import "SEColorUtil.h"
 
 @implementation SEBasicTextLayerClass
+{
+#if TARGET_OS_IPHONE
+    UITapGestureRecognizer *_tapGestureRecognizer;
+#elif TARGET_OS_MAC
+    SEResponderProxy *_responderProxy;
+#endif
+}
 
 - (instancetype)initWithEngine:(ScrivelEngine *)engine classIdentifier:(NSString *)classIdentifier
 {
     self = [super initWithEngine:engine classIdentifier:classIdentifier];
     self.instanceClass = [SEBasicTextLayer class];
+    // プライマリテキストレイヤだけはタップイベントをキャプチャ出来るようにする
+    // LayerInstanceがResponderProxyをもつとなぜかクラッシュすることがあるので
+    // プライマリレイヤのindexによってdelegate先を変えるようにする
+#if !TARGET_OS_IPHONE
+    // mousedownイベントをハンドリングするためにrootviewのレスポンダチェーンをproxyする
+    _responderProxy = [[SEResponderProxy alloc] initWithDelegate:nil selector:@selector(handleNSEvent:)];
+    NSResponder *r = self.engine.rootView.nextResponder;
+    [self.engine.rootView setNextResponder:_responderProxy];
+    [_responderProxy setNextResponder:r];
+#endif
     return self ?: nil;
 }
 
 - (id<SEObjectInstance>)new_args:(id)args
 {
     SEBasicTextLayer *new = (SEBasicTextLayer*)[super new_args:args];
+    // まだレイヤーがない場合はそのレイヤーをprimaryに設定する
+    if (self.layers.count == 1) {
+        [self setPrimary_index:new.index];
+    }
     return new;
+}
+
+- (id)callStatic_method:(SEMethod *)method
+{
+    SEL s =[self.engine.classProxy selectorForMethodIdentifier:method.name classIdentifier:self.classIdentifier];
+    // セレクタがマッピングされているが、クラスメソッドでないものはPrimaryにProxyする
+    if (s && ![self respondsToSelector:s]) {
+        return [self.primaryTextLayer callInstance_method:method];
+    }
+    return [super callStatic_method:method];
+}
+
+- (void)setPrimary_index:(NSUInteger)index
+{
+    SEBasicTextLayer *l = [self at_index:index];
+    if (l) {
+#if TARGET_OS_IPHONE
+        [self.engine.rootView removeGestureRecognizer:_tapGestureRecognizer];
+        _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:l action:@selector(handleTap:)];
+        [self.engine.rootView addGestureRecognizer:_tapGestureRecognizer];
+#elif TARGET_OS_MAC
+        _responderProxy.delegate = l;
+#endif
+        _primaryTextLayer = l;
+    }
+}
+
+- (void)setNameLayer_index:(NSUInteger)index
+{
+    SEBasicTextLayer *l = [self at_index:index];
+    if (l) {
+        _primaryNameLayer = l;
+    }
+}
+
+- (void)setName_name:(NSString *)name
+{
+    [self.primaryNameLayer setText_text:name noanimate:YES];
 }
 
 @end
@@ -32,11 +93,6 @@
 {
     NSTimer *_timer;
     NSUInteger _currentCharacterIndex;
-#if TARGET_OS_IPHONE
-    UITapGestureRecognizer *_tapGestureRecognizer;
-#elif TARGET_OS_MAC
-    SEResponderProxy *_responderProxy;
-#endif
 }
 
 #pragma mark -
@@ -44,11 +100,12 @@
 - (instancetype)initWithOpts:(NSDictionary *)options holder:(SEBasicObjectClass *)holder
 {
     self = [super initWithOpts:options holder:holder];
-    CATextLayer *tl = [[CATextLayer alloc] initWithLayer:self.layer];
+    CATextLayer *tl = [CATextLayer layer];
     self.layer = tl;
     self.textLayer = tl;
     self.textLayer.wrapped = YES;
     self.textLayer.fontSize = 14.0f;
+    self.textLayer.foregroundColor = [[SEColor blackColor] CGColor];
     
     _animationInterval = 0.1f;
     _font = [SEFont systemFontOfSize:14.0f];
@@ -58,21 +115,11 @@
 #elif TARGET_OS_MAC
     _horizontalAlignment = NSLeftTextAlignment;
 #endif
-#if TARGET_OS_IPHONE
-    _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
-    [self.holder.engine.rootView addGestureRecognizer:_tapGestureRecognizer];
-#elif TARGET_OS_MAC
-    // mousedownイベントをハンドリングするためにrootviewのレスポンダチェーンをproxyする
-    _responderProxy = [[SEResponderProxy alloc] initWithDelegate:self selector:@selector(handleNSEvent:)];
-    NSResponder *r = self.holder.engine.rootView.nextResponder;
-    [self.holder.engine.rootView setNextResponder:_responderProxy];
-    [_responderProxy setNextResponder:r];
-#endif
     return self ?: nil;
 }
 
 #if TARGET_OS_IPHONE
-- (void)handlePan:(UIPanGestureRecognizer*)sender
+- (void)handleTap:(UIPanGestureRecognizer*)sender
 {
     [self handleClickOrTapInPoint:[sender locationInView:self.holder.engine.rootView]];
 }
@@ -86,8 +133,9 @@
 
 - (void)handleClickOrTapInPoint:(SEPoint)point
 {
-    CGPoint p = [self.layer convertPoint:point fromLayer:self.holder.engine.rootView.layer];
-    if (CGRectContainsPoint(self.holder.engine.rootView.layer.bounds, p)) {
+    CGRect r = self.layer.bounds;
+    r = [self.layer convertRect:r toLayer:self.holder.engine.rootView.layer];
+    if (CGRectContainsPoint(r, point)) {
         if (self.isAnimating) {
             [self skip];
         }else{
@@ -121,7 +169,6 @@
     [self.holder.engine.textLayerDelegate textLayer:self didFinishDisplayText:self.text];
 }
 
-
 #pragma mark - CALayer
 
 - (void)setInterval_interval:(NSTimeInterval)interval
@@ -129,7 +176,13 @@
     if VALID_DOUBLE(interval) _animationInterval = interval;
 }
 
-- (void)text_text:(NSString *)text noanimate:(BOOL)noanimate
+- (void)setColor_color:(NSString *)color
+{
+    SEColor *c = [SEColorUtil colorWithHEXString:color];
+    if (c) self.textLayer.foregroundColor = [c CGColor];
+}
+
+- (void)setText_text:(NSString *)text noanimate:(BOOL)noanimate
 {
     NSString *__text = [text copy];
 	// text
@@ -142,6 +195,8 @@
     _text = __text;
     if (!noanimate) {
         [self start];
+    }else{
+        self.textLayer.string = __text;
     }
 }
 
@@ -165,7 +220,7 @@
 - (void)clear
 {
 	_text = nil;
-    [self text_text:nil noanimate:NO];
+    [self setText_text:nil noanimate:NO];
     [self finishAnimation];
 }
 

@@ -16,7 +16,11 @@
 #import "SEResponderProxy.h"
 #endif
 
+@class SEBasicTextLayer;
 @interface SEBasicTextLayerClass : SEBasicLayerClass <SETextLayerClass>
+
+@property (nonatomic, readonly) SEBasicTextLayer *primaryTextLayer;
+@property (nonatomic, readonly) SEBasicTextLayer *primaryNameLayer;
 
 @end
 
@@ -30,5 +34,11 @@
 @property (nonatomic, readonly) id text;
 @property (nonatomic, readonly) NSTextAlignment *horizontalAlignment;
 @property (nonatomic, readonly) BOOL isAnimating;
+
+#if TARGET_OS_IPHONE
+- (void)handleTap:(UIPanGestureRecognizer*)sender;
+#elif TARGET_OS_MAC
+- (void)handleNSEvent:(NSEvent*)event;
+#endif
 
 @end

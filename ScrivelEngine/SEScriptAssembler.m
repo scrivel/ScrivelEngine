@@ -8,6 +8,7 @@
 
 #import "SEScriptAssembler.h"
 #import "SEMethodChain.h"
+#import "SEWords.h"
 #import "SEMethod.h"
 #import "SEScript.h"
 #import "Stack.h"
@@ -27,6 +28,7 @@ static PKToken *openCurlyToken;
 
     Stack *_elementStack;
     Stack *_methodChainStack;
+    Stack *_wordsStack;
     Stack *_methodStack;
     Stack *_argumentsStack;
     Stack *_objectStack;
@@ -38,7 +40,10 @@ static PKToken *openCurlyToken;
     Stack *_keyStack;
     Stack *_identifierStack;
     Stack *_nameStack;
+    NSUInteger _nameLineNumber;
     Stack *_textStack;
+    NSUInteger _textBeginLineNumber;
+    NSUInteger _textEndLineNumber;
 }
 
 + (void)load
@@ -59,6 +64,7 @@ static PKToken *openCurlyToken;
     
     _elementStack = [Stack new];
     _methodChainStack = [Stack new];
+    _wordsStack = [Stack new];
     _methodStack = [Stack new];
     _argumentsStack = [Stack new];
     _objectStack = [Stack new];
@@ -94,22 +100,34 @@ static PKToken *openCurlyToken;
     id pop = [_methodChainStack pop];
     if (pop) {
         [_elementStack push:pop];
+        return;
+    }
+    // 文字表示？
+    pop = [_wordsStack pop];
+    if (pop){
+        [_elementStack push:pop];
+        return;
     }
     // json形式のvalueならpush
     id val = [_valueStack pop];
     if (val) {
         [_elementStack push:val];
+        return;
     }
 }
 
 - (void)parser:(PKParser *)parser didMatchMethodChain:(PKAssembly *)assembly
 {
     NSString *targetClass = [_identifierStack pop];
-    SEMethodChain *chain = [[SEMethodChain alloc] initWithLineNumber:parser.tokenizer.lineNumber targetClass:targetClass];
+    SEMethodChain *chain = [[SEMethodChain alloc] initWithTargetClass:targetClass];
     SEMethod *m = nil;
     while ((m = [_methodStack pop]) != nil) {
         [chain.methods insertObject:m atIndex:0];
     }
+    NSUInteger first = [[chain.methods firstObject] lineNumber];
+    NSUInteger last = [[chain.methods lastObject] lineNumber];
+    NSRange range = NSMakeRange(first, last-first+1);
+    chain.rangeOfLines = range;
     [_methodChainStack push:chain];
 }
 
@@ -119,10 +137,10 @@ static PKToken *openCurlyToken;
     NSString *identifier = [_identifierStack pop];
     SEMethod *method = nil;
     if (args) {
-        method = [[SEMethod alloc] initWithName:identifier type:SEMethodTypeCall];
+        method = [[SEMethod alloc] initWithName:identifier type:SEMethodTypeCall lineNumer:parser.tokenizer.lineNumber];
         [method setArguments:args];
     }else{
-        method = [[SEMethod alloc] initWithName:identifier type:SEMethodTypeProperty];
+        method = [[SEMethod alloc] initWithName:identifier type:SEMethodTypeProperty lineNumer:parser.tokenizer.lineNumber];
     }
     [_methodStack push:method];
 }
@@ -236,30 +254,32 @@ static PKToken *openCurlyToken;
 
 - (void)parser:(PKParser *)parser didMatchWords:(PKAssembly *)assembly
 {
-    // セリフは実際はグローバルコンテクストへのメソッドコール
     NSString *name = [_nameStack pop];
     NSString *text = [_textStack pop];
-    SEMethodChain *chain = [[SEMethodChain alloc] initWithLineNumber:parser.tokenizer.lineNumber targetClass:@"app"];
-    if (name) {
-        SEMethod *name_m = [SEMethod nameMethod];
-        [name_m setArguments:@[name]];
-        [chain.methods addObject:name_m];
+    SEWords *words = [[SEWords alloc] initWithName:name text:text];
+    if (_textBeginLineNumber != NSUIntegerMax) {
+        NSRange range = NSMakeRange(_textBeginLineNumber, _textEndLineNumber-_textBeginLineNumber+1);
+        words.rangeOfLines = range;
+        _textBeginLineNumber = NSUIntegerMax;
     }
-    SEMethod *text_m = [SEMethod textMethod];
-    [text_m setArguments:@[text]];
-    [chain.methods addObject:text_m];
-    [_methodChainStack push:chain];
+    [_wordsStack push:words];
 }
 
 - (void)parser:(PKParser *)parser didMatchName:(PKAssembly *)assembly
 {
     PKToken *tok = [assembly pop];
+    _nameLineNumber = parser.tokenizer.lineNumber;
     [_nameStack push:tok.stringValue];
 }
 
 - (void)parser:(PKParser *)parser didMatchText:(PKAssembly *)assembly
 {
     PKToken *tok = [assembly pop];
+    // テクストの行範囲を調べる
+    if (_textBeginLineNumber == NSUIntegerMax) {
+        _textBeginLineNumber = parser.tokenizer.lineNumber;
+    }
+    _textEndLineNumber = parser.tokenizer.lineNumber;
     [_textStack push:tok.stringValue];
 }
 

@@ -16,6 +16,7 @@
 #import "SEBasicTextLayer.h"
 #import "SEMethod.h"
 #import "SEMethodChain.h"
+#import "SEWords.h"
 #import "SEClassProxy.h"
 
 static NSArray *engineClassses;
@@ -76,6 +77,18 @@ static NSArray *engineClassses;
                     returnValue = [instance callInstance_method:m];
                 }
             }
+        }else if([element isKindOfClass:[SEWords class]]){
+            SEWords *words = (SEWords*)element;
+            if (words.name) {
+                SEMethod *name_m = [[SEMethod alloc] initWithName:@"setName" type:SEMethodTypeCall lineNumer:words.rangeOfLines.location];
+                name_m.arguments = @[words.name];
+                returnValue = [self.text callStatic_method:name_m];
+            }
+            if (words.text) {
+                SEMethod *text_m = [[SEMethod alloc] initWithName:@"setText" type:SEMethodTypeCall lineNumer:words.rangeOfLines.location+1];
+                text_m.arguments = @[words.text];
+                returnValue = [self.text callStatic_method:text_m];
+            }
         }else{
             // value
             return element;
@@ -97,28 +110,31 @@ static NSArray *engineClassses;
     if (*error) {
         return NO;
     }
-    for (SEMethodChain *chain in s.elements) {
-        if (![_classProxy classForClassIdentifier:chain.targetClass]) {
-            NSMutableString *ms = [NSMutableString stringWithString:@"!!存在しないクラスです!!\n"];
-            [ms appendFormat:@"line\t\t:\t%lu\n",(unsigned long)chain.lineNumber];
-            [ms appendFormat:@"class\t:\t%@\n",chain.targetClass];
-            NSDictionary *ui = @{ NSLocalizedDescriptionKey : ms};
-            *error = [NSError errorWithDomain:@"" code:0 userInfo:ui];
-            return NO;
-        }
-        for (SEMethod *method in chain) {
-            if (![_classProxy selectorForMethodIdentifier:method.name classIdentifier:chain.targetClass]) {
-                NSString *type = (method == [chain.methods firstObject]) ? @"static" : @"instance";
-                NSMutableString *ms = [NSMutableString stringWithString:@"!!存在しないメソッドの呼び出しです!!\n"];
-                [ms appendFormat:@"line\t\t:\t%lu\n",(unsigned long)chain.lineNumber];
+    for (SEElement *element in s.elements) {
+        if ([element isKindOfClass:[SEMethodChain class]]) {
+            SEMethodChain *chain = (SEMethodChain*)element;
+            if (![_classProxy classForClassIdentifier:chain.targetClass]) {
+                NSMutableString *ms = [NSMutableString stringWithString:@"!!存在しないクラスです!!\n"];
+                [ms appendFormat:@"line\t\t:\t%@\n",NSStringFromRange(chain.rangeOfLines)];
                 [ms appendFormat:@"class\t:\t%@\n",chain.targetClass];
-                [ms appendFormat:@"type\t:\t%@\n",type];
-                [ms appendFormat:@"name\t:\t%@",method.name];
-                NSDictionary *ui = @{ NSLocalizedDescriptionKey: ms };
+                NSDictionary *ui = @{ NSLocalizedDescriptionKey : ms};
                 *error = [NSError errorWithDomain:@"" code:0 userInfo:ui];
                 return NO;
             }
-            // 本当はここで引数の数と型のチェックをしたいけどあとでやる
+            for (SEMethod *method in chain) {
+                if (![_classProxy selectorForMethodIdentifier:method.name classIdentifier:chain.targetClass]) {
+                    NSString *type = (method == [chain.methods firstObject]) ? @"static" : @"instance";
+                    NSMutableString *ms = [NSMutableString stringWithString:@"!!存在しないメソッドの呼び出しです!!\n"];
+                    [ms appendFormat:@"line\t\t:\t%@\n",NSStringFromRange(chain.rangeOfLines)];
+                    [ms appendFormat:@"class\t:\t%@\n",chain.targetClass];
+                    [ms appendFormat:@"type\t:\t%@\n",type];
+                    [ms appendFormat:@"name\t:\t%@",method.name];
+                    NSDictionary *ui = @{ NSLocalizedDescriptionKey: ms };
+                    *error = [NSError errorWithDomain:@"" code:0 userInfo:ui];
+                    return NO;
+                }
+                // 本当はここで引数の数と型のチェックをしたいけどあとでやる
+            }
         }
     }
     return YES;

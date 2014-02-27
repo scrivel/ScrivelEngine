@@ -1,0 +1,21 @@
+// サイズをnormalizedに
+app.set("sizeType","norm");
+// テキストレイヤーを作る
+text.new(999)
+	.size(1,0.4)
+	.bg("#999")
+	.setAnchorPoint(0,0)
+	.position(0,0);
+// ↑のテクストレイヤーをプライマリとして登録	
+text.setPrimary(999)
+// 戻す
+app.set("sizeType","px");
+text.new(1000)
+	.size(100,44)
+	.setAnchorPoint(0,0.5)
+	.position(0,0.5)
+	.bg("#00ff00")
+// ↑を名前レイヤーとして登録
+text.setNameLayer(1000)
+	
+かえるくん[あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。]

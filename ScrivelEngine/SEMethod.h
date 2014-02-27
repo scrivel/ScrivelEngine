@@ -17,15 +17,14 @@ typedef enum{
 
 @interface SEMethod : NSObject
 
-+ (instancetype)nameMethod;
-+ (instancetype)textMethod;
-
-- (instancetype)initWithName:(NSString*)name type:(SEMethodType)type;
+- (instancetype)initWithName:(NSString*)name type:(SEMethodType)type lineNumer:(NSUInteger)lineNumber;
 
 // スクリプトの名前
 @property (nonatomic, readonly) NSString *name;
 // スクリプトのタイプ。メソッド呼び出しか、アクセッサか
 @property (nonatomic, readonly) SEMethodType type;
+// 行番号
+@property (nonatomic, readonly) NSUInteger lineNumber;
 // スクリプトの引数。typeがaccessorの場合はない
 @property (nonatomic) NSArray *arguments;
 

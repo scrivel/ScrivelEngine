@@ -110,7 +110,12 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 
 - (void)setAnchorPoint_x:(CGFloat)x y:(CGFloat)y
 {
-	self.layer.anchorPoint = CGPointMake(x, y);
+#if TARGET_OS_IPHONE
+    CGFloat _y = 1 - y;
+#else
+    CGFloat _y = y;
+#endif
+	self.layer.anchorPoint = CGPointMake(x, _y);
 }
 
 - (void)setGravity_gravity:(NSString *)gravity
