@@ -34,7 +34,6 @@ Pod::Spec.new do |s|
   s.resources = "Resources/*.png"
 
   s.dependency 'ParseKit', '~> 0.7'
-  s.dependency 'AVHexColor'
 
   s.frameworks = 'QuartzCore'
 

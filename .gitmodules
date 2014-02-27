@@ -4,9 +4,6 @@
 [submodule "External/ParseKit"]
 	path = External/ParseKit
 	url = https://github.com/scrivel/parsekit
-[submodule "External/AVHexColor"]
-	path = External/AVHexColor
-	url = https://github.com/anjerodesu/AVHexColor
 [submodule "External/Fragaria"]
 	path = External/Fragaria
 	url = https://github.com/scrivel/Fragaria

@@ -12,10 +12,11 @@
 #import "ScrivelEngine.h"
 #import "SEMethod.h"
 #import "SEApp.h"
-#import "AVHexColor.h"
 #import "NSBundle+ScrivelEngine.h"
 #import "NSNumber+CGFloat.h"
 #import <objc/message.h>
+#import "SEClassProxy.h"
+#import "SEColorUtil.h"
 
 #define kMaxLayer 1000
 #define kGroupedAnimationKey @"GroupedAnimation"
@@ -35,6 +36,9 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 {
     NSMutableDictionary *__layers;
 }
+
+#pragma makr - SEObjectClass
+
 - (instancetype)initWithEngine:(ScrivelEngine *)engine classIdentifier:(NSString *)classIdentifier
 {
     self = [super initWithEngine:engine classIdentifier:classIdentifier];
@@ -59,6 +63,8 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
     [self.engine.rootView.layer addSublayer:layer.layer];
     return layer;
 }
+
+#pragma mark - SELayerClass
 
 - (id)at_index:(NSUInteger)index
 {
@@ -182,21 +188,20 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 
 - (void)bg_color:(NSString *)color
 {
-    AVColor *hex = [AVHexColor colorWithHexString:color];
-    NSAssert(hex, @"色が指定されていない");
-    self.layer.backgroundColor = [hex CGColor];
+    SEColor *hex = [SEColorUtil colorWithHEXString:color];
+    if (hex) self.layer.backgroundColor = [hex CGColor];
 }
 
 - (void)border_width:(CGFloat)width color:(NSString *)color
 {
     if VALID_CGFLOAT(width) self.layer.borderWidth = width;
-    AVColor *hex = [AVHexColor colorWithHexString:color];
+    SEColor *hex = [SEColorUtil colorWithHEXString:color];
     if (hex) self.layer.borderColor = [hex CGColor];
 }
 
 - (void)shadowColor_color:(NSString *)color
 {
-    AVColor *hex  = [AVHexColor colorWithHexString:color];
+    SEColor *hex  = [SEColorUtil colorWithHEXString:color];
     if (hex) self.layer.shadowColor = [hex CGColor];
 }
 
