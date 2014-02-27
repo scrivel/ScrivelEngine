@@ -7,10 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <objc/runtime.h>
 
 @class SEMethod, SEBasicApp;
-@protocol SEClassProxy, SEApp, SELayerClass, SETextLayerClass;
+@protocol SEClassProxy, SEApp, SELayerClass, SETextLayerClass, SETextLayerDelegate;
 
 #if TARGET_OS_IPHONE
 #define SEView UIView
@@ -71,18 +70,11 @@ typedef NS_ENUM(NSUInteger, SESizeType){
 @property (nonatomic, readonly) id<SELayerClass> layer;
 @property (nonatomic, readonly) id<SETextLayerClass> text;
 
+@property (nonatomic, weak) id <SETextLayerDelegate> textLayerDelegate;
+
 // SEScriptを実行
 - (id)evaluateScript:(NSString*)script error:(NSError**)error;
 // スクリプトをlint
 - (BOOL)validateScript:(NSString*)script error:(NSError**)error;
-
-@end
-
-@protocol SEClassProxy
-
-// クラス名に対するobjc上でのクラスを返す
-- (Class)classForClassIdentifier:(NSString*)classIdentifier;
-// クラス名とメソッド名に対するobjc上でのセレクターを返す
-- (SEL)selectorForMethodIdentifier:(NSString*)methodIdentifier;
 
 @end

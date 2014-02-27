@@ -10,6 +10,7 @@
 #import "SEBasicObject.h"
 #import "ScrivelEngine.h"
 #import "SEMethod.h"
+#import "SEClassProxy.h"
 #import <objc/message.h>
 
 #define SAME_TYPE(s1,s2) ((strcmp(s1,s2) == 0) ? YES : NO)

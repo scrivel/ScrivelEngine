@@ -11,8 +11,8 @@
 #import "ScrivelEngine.h"
 #import "SEBasicLayer.h"
 #import "SETextLayer.h"
-#if TARGET_OS_IPHONE
-#else
+#import "SETextLayerDelegate.h"
+#if !TARGET_OS_IPHONE
 #import "SEResponderProxy.h"
 #endif
 

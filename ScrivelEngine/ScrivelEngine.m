@@ -16,6 +16,7 @@
 #import "SEBasicTextLayer.h"
 #import "SEMethod.h"
 #import "SEMethodChain.h"
+#import "SEClassProxy.h"
 
 static NSArray *engineClassses;
 
@@ -99,7 +100,7 @@ static NSArray *engineClassses;
     for (SEMethodChain *chain in s.elements) {
         if (![_classProxy classForClassIdentifier:chain.targetClass]) {
             NSMutableString *ms = [NSMutableString stringWithString:@"!!存在しないクラスです!!\n"];
-            [ms appendFormat:@"line\t\t:\t%lu\n",chain.lineNumber];
+            [ms appendFormat:@"line\t\t:\t%lu\n",(unsigned long)chain.lineNumber];
             [ms appendFormat:@"class\t:\t%@\n",chain.targetClass];
             NSDictionary *ui = @{ NSLocalizedDescriptionKey : ms};
             *error = [NSError errorWithDomain:@"" code:0 userInfo:ui];
@@ -109,7 +110,7 @@ static NSArray *engineClassses;
             if (![_classProxy selectorForMethodIdentifier:method.name]) {
                 NSString *type = (method == [chain.methods firstObject]) ? @"static" : @"instance";
                 NSMutableString *ms = [NSMutableString stringWithString:@"!!存在しないメソッドの呼び出しです!!\n"];
-                [ms appendFormat:@"line\t\t:\t%lu\n",chain.lineNumber];
+                [ms appendFormat:@"line\t\t:\t%lu\n",(unsigned long)chain.lineNumber];
                 [ms appendFormat:@"class\t:\t%@\n",chain.targetClass];
                 [ms appendFormat:@"type\t:\t%@\n",type];
                 [ms appendFormat:@"name\t:\t%@",method.name];

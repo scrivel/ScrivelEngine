@@ -165,6 +165,8 @@
 		A6FBB36718BE0791008DDF22 /* stopbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB34B18BE0791008DDF22 /* stopbutton.png */; };
 		A6FBB37518BE2A5C008DDF22 /* SEResponderProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FBB37318BE2A5C008DDF22 /* SEResponderProxy.m */; };
 		A6FBB37618BE2B67008DDF22 /* SEResponderProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FBB37218BE2A5C008DDF22 /* SEResponderProxy.h */; };
+		A6FBB38418BF210C008DDF22 /* SEClassProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FBB38318BF210C008DDF22 /* SEClassProxy.h */; };
+		A6FBB38518BF210C008DDF22 /* SEClassProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FBB38318BF210C008DDF22 /* SEClassProxy.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -327,6 +329,8 @@
 		A6FBB34B18BE0791008DDF22 /* stopbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stopbutton.png; sourceTree = "<group>"; };
 		A6FBB37218BE2A5C008DDF22 /* SEResponderProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEResponderProxy.h; path = OSX/SEResponderProxy.h; sourceTree = "<group>"; };
 		A6FBB37318BE2A5C008DDF22 /* SEResponderProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEResponderProxy.m; path = OSX/SEResponderProxy.m; sourceTree = "<group>"; };
+		A6FBB38318BF210C008DDF22 /* SEClassProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEClassProxy.h; sourceTree = "<group>"; };
+		A6FBB38618BF2118008DDF22 /* SETextLayerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SETextLayerDelegate.h; sourceTree = "<group>"; };
 		C4B2227A2DAB4A94B8A28A3B /* Pods-ScrivelEngineDemo.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScrivelEngineDemo.xcconfig"; path = "Pods/Pods-ScrivelEngineDemo.xcconfig"; sourceTree = "<group>"; };
 		D9B262D9694048BFA8251D77 /* libPods-ScrivelEngineMacDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ScrivelEngineMacDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -409,10 +413,12 @@
 		A604521118B3967E00B85928 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				A6FBB38318BF210C008DDF22 /* SEClassProxy.h */,
 				A604522E18B3A35A00B85928 /* SEObject.h */,
 				A639F08618BB7A0C00CF4148 /* SEApp.h */,
 				A604522518B3A30B00B85928 /* SELayer.h */,
 				A604522718B3A30B00B85928 /* SETextLayer.h */,
+				A6FBB38618BF2118008DDF22 /* SETextLayerDelegate.h */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -801,6 +807,7 @@
 				A63F88B118B0F496007FBE57 /* ScrivelEngine.h in Headers */,
 				A6D925D618B8E24600902230 /* NSBundle+ScrivelEngine.h in Headers */,
 				A639F08818BB7A0C00CF4148 /* SEApp.h in Headers */,
+				A6FBB38518BF210C008DDF22 /* SEClassProxy.h in Headers */,
 				A6D0516518B835FE00977B7A /* AVHexColor.h in Headers */,
 				A6A1691C18B25A4C0041BBBA /* SEMethod.h in Headers */,
 				A604524A18B3C78200B85928 /* SEBasicTextLayer.h in Headers */,
@@ -834,6 +841,7 @@
 				A6D925D518B8E24600902230 /* NSBundle+ScrivelEngine.h in Headers */,
 				A6D0516418B835FE00977B7A /* AVHexColor.h in Headers */,
 				A604523718B3A58B00B85928 /* SEBasicLayer.h in Headers */,
+				A6FBB38418BF210C008DDF22 /* SEClassProxy.h in Headers */,
 				A639F0A418BCEFFF00CF4148 /* NSNumber+CGFloat.h in Headers */,
 				A604522F18B3A35A00B85928 /* SEObject.h in Headers */,
 				A6D04D4A18B7701C00977B7A /* SEBasicClassProxy.h in Headers */,

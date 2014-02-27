@@ -39,43 +39,12 @@
 #endif
 }
 
-#pragma mark - Private
-
-- (void)addCharacter
-{
-    _currentCharacterIndex++;
-    if (_currentCharacterIndex > [self.text length]) {
-        [self finishAnimation];
-        return;
-    }
-    NSRange r = NSMakeRange(0, _currentCharacterIndex);
-    id text;
-    if ([self.text isKindOfClass:[NSString class]]) {
-        text = [(NSString*)self.text substringWithRange:r];
-    }else if([self.text isKindOfClass:[NSAttributedString class]]){
-        text = [(NSAttributedString*)self.text attributedSubstringFromRange:r];
-    }
-    self.textLayer.string = text;
-}
-
-- (void)finishAnimation
-{
-    [_timer invalidate];
-    _isAnimating = NO;
-    _currentCharacterIndex = 0;
-}
-
-- (void)setText:(id)text
-{
-    _text = text;
-}
-
 #pragma mark -
 
 - (instancetype)initWithOpts:(NSDictionary *)options holder:(SEBasicObjectClass *)holder
 {
     self = [super initWithOpts:options holder:holder];
-    CATextLayer *tl = [CATextLayer layer];
+    CATextLayer *tl = [[CATextLayer alloc] initWithLayer:self.layer];
     self.layer = tl;
     self.textLayer = tl;
     self.textLayer.wrapped = YES;
@@ -105,29 +74,55 @@
 #if TARGET_OS_IPHONE
 - (void)handlePan:(UIPanGestureRecognizer*)sender
 {
-//    NSLog(@"%@",sender);
     [self handleClickOrTapInPoint:[sender locationInView:self.holder.engine.rootView]];
 }
 
 #elif TARGET_OS_MAC
 - (void)handleNSEvent:(NSEvent*)event
 {
-//    NSLog(@"%@",event);
     [self handleClickOrTapInPoint:[event locationInWindow]];
 }
 #endif
 
 - (void)handleClickOrTapInPoint:(SEPoint)point
 {
-    NSLog(@"%@",NSStringFromSEPoint(point));
     CGPoint p = [self.layer convertPoint:point fromLayer:self.holder.engine.rootView.layer];
     if (CGRectContainsPoint(self.holder.engine.rootView.layer.bounds, p)) {
-        NSLog(@"contains!");
-        // タップ処理をここでやる
+        if (self.isAnimating) {
+            [self skip];
+        }else{
+            [self.holder.engine.textLayerDelegate textLayerDidRecognizeTapTwice:self];
+        }
     }
 }
 
-#pragma mark - CALayerDelegate
+- (void)addCharacter
+{
+    _currentCharacterIndex++;
+    if (_currentCharacterIndex > [self.text length]) {
+        [self finishAnimation];
+        return;
+    }
+    NSRange r = NSMakeRange(0, _currentCharacterIndex);
+    id text;
+    if ([self.text isKindOfClass:[NSString class]]) {
+        text = [(NSString*)self.text substringWithRange:r];
+    }else if([self.text isKindOfClass:[NSAttributedString class]]){
+        text = [(NSAttributedString*)self.text attributedSubstringFromRange:r];
+    }
+    self.textLayer.string = text;
+}
+
+- (void)finishAnimation
+{
+    [_timer invalidate];
+    _isAnimating = NO;
+    _currentCharacterIndex = 0;
+    [self.holder.engine.textLayerDelegate textLayer:self didFinishDisplayText:self.text];
+}
+
+
+#pragma mark - CALayer
 
 - (void)setInterval_interval:(NSTimeInterval)interval
 {
@@ -144,7 +139,7 @@
         
     }
     // パースしたものをセット
-    [self setText:__text];
+    _text = __text;
     if (!noanimate) {
         [self start];
     }
@@ -152,12 +147,10 @@
 
 - (void)start
 {
-    _timer = [NSTimer scheduledTimerWithTimeInterval:self.animationInterval
-                                              target:self
-                                            selector:@selector(addCharacter)
-                                            userInfo:nil
-                                             repeats:YES];
-    [_timer fire];}
+    _isAnimating = YES;
+    _timer = [NSTimer scheduledTimerWithTimeInterval:self.animationInterval target:self selector:@selector(addCharacter) userInfo:nil repeats:YES];
+    [_timer fire];
+}
 
 - (void)pause
 {
@@ -178,8 +171,8 @@
 
 - (void)skip
 {
+    self.textLayer.string = self.text;
 	[self finishAnimation];
-//    [self setfu]
 }
 
 - (void)setPadding_top:(CGFloat)top left:(CGFloat)left bottom:(CGFloat)bottom right:(CGFloat)right
@@ -206,6 +199,11 @@
         SEFont *f = [SEFont systemFontOfSize:self.font.pointSize];
         NSDictionary *attr = @{NSParagraphStyleAttributeName: ps,
                                NSFontAttributeName : f};
+        NSAttributedString *as;
+        if ([self.text isKindOfClass:[NSString class]]) {
+            as= [[NSAttributedString alloc] initWithString:self.text attributes:attr];
+        }else if ([self.text isKindOfClass:[NSAttributedString class]]){
+        }
     }
 }
 
