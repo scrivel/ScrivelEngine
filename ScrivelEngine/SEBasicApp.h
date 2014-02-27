@@ -11,7 +11,10 @@
 
 @interface SEBasicApp : SEBasicObjectClass <SEApp>
 
-@property (nonatomic) SEPositionType positionType;
-@property (nonatomic) SESizeType sizeType;
+@property (nonatomic, readonly) NSDictionary *keyValueStore;
+@property (nonatomic, readonly) NSDictionary *enabledStore;
+
+@property (nonatomic, readonly) SEPositionType positionType;
+@property (nonatomic, readonly) SESizeType sizeType;
 
 @end

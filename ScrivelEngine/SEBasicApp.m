@@ -8,33 +8,61 @@
 
 #import "SEBasicApp.h"
 
+#define kPositionTypeKey @"positionType"
+#define kSizeTypeKey @"sizeType"
+
 @implementation SEBasicApp
+{
+    NSMutableDictionary *__keyValueStore;
+    NSMutableDictionary *__enabledStore;
+}
 
 - (id)init
 {
     self = [super init];
-    _positionType = SEPositionTypeNormalized;
-    _sizeType = SESizeTypePX;
+    __keyValueStore = [NSMutableDictionary new];
+    __enabledStore = [NSMutableDictionary new];
+    [self set_key:kPositionTypeKey value:@"norm"];
+    [self set_key:kSizeTypeKey value:@"px"];
     return self ?: nil;
 }
 
-- (void)setPositionType_type:(NSString *)type
+- (void)set_key:(NSString *)key value:(id)value
 {
-    NSLog(@"%@",type);
-    if ([type isEqualToString:@"norm"]) {
-        _positionType = SEPositionTypeNormalized;
-    }else if ([type isEqualToString:@"px"]){
-        _positionType = SEPositionTypePX;
+    if (key && value != nil && value != [NSNull null]) {
+        [__keyValueStore setObject:value forKey:key];
     }
 }
 
-- (void)setSizeType_type:(NSString *)type
+- (void)enable_key:(NSString *)key enable:(BOOL)enable
 {
-    if ([type isEqualToString:@"norm"]) {
-        _positionType = SEPositionTypeNormalized;
-    }else if ([type isEqualToString:@"px"]){
-        _positionType = SEPositionTypePX;
+    if (key) {
+        [__enabledStore setObject:@(enable) forKey:key];
     }
+}
+
+#pragma mark - Accessor
+
+- (SEPositionType)positionType
+{
+    NSString *t = [__keyValueStore objectForKey:kPositionTypeKey];
+    if ([t isEqualToString:@"norm"]) {
+        return SEPositionTypeNormalized;
+    }else if ([t isEqualToString:@"px"]){
+        return SEPositionTypePX;
+    }
+    return SEPositionTypeNormalized;
+}
+
+- (SESizeType)sizeType
+{
+    NSString *t = [__keyValueStore objectForKey:kSizeTypeKey];
+    if ([t isEqualToString:@"norm"]) {
+        return SESizeTypeNormalized;
+    }else if ([t isEqualToString:@"px"]){
+        return SESizeTypePX;
+    }
+    return SESizeTypePX;
 }
 
 @end
