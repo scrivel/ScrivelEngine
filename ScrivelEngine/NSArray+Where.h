@@ -2,7 +2,7 @@
 //  NSArray+Where.h
 //  ScrivelEngine
 //
-//  Created by 桜井雄介 on 2014/02/21.
+//  Created by keroxp on 2014/02/21.
 //  Copyright (c) 2014年 scrivel. All rights reserved.
 //
 
