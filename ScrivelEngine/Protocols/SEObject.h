@@ -50,5 +50,4 @@
  **/
 - (id)callInstance_method:(SEMethod*)method;
 
-
 @end

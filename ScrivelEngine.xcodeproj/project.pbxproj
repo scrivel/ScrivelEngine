@@ -84,6 +84,10 @@
 		A63F899118B23A51007FBE57 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63F899018B23A51007FBE57 /* QuartzCore.framework */; };
 		A63F899318B23A5C007FBE57 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63F899218B23A5C007FBE57 /* QuartzCore.framework */; };
 		A63F899418B23D07007FBE57 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6AC928518AC960300D43025 /* UIKit.framework */; };
+		A6786E2618BFB6B200114C0B /* SEAnimationOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = A6786E2418BFB6B200114C0B /* SEAnimationOperation.h */; };
+		A6786E2718BFB6B200114C0B /* SEAnimationOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = A6786E2418BFB6B200114C0B /* SEAnimationOperation.h */; };
+		A6786E2818BFB6B200114C0B /* SEAnimationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A6786E2518BFB6B200114C0B /* SEAnimationOperation.m */; };
+		A6786E2918BFB6B200114C0B /* SEAnimationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A6786E2518BFB6B200114C0B /* SEAnimationOperation.m */; };
 		A6A1691118B25A390041BBBA /* SEScriptParser.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D1760C18AE628200AB11AF /* SEScriptParser.h */; };
 		A6A1691218B25A3D0041BBBA /* SEScriptAssembler.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F889018AFBBBA007FBE57 /* SEScriptAssembler.h */; };
 		A6A1691318B25A3E0041BBBA /* SEScriptAssembler.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F889018AFBBBA007FBE57 /* SEScriptAssembler.h */; };
@@ -271,6 +275,8 @@
 		A63F898318B2307B007FBE57 /* libParseKitMobile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libParseKitMobile.a; path = "External/ParseKit/build/Debug-iphoneos/libParseKitMobile.a"; sourceTree = "<group>"; };
 		A63F899018B23A51007FBE57 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A63F899218B23A5C007FBE57 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		A6786E2418BFB6B200114C0B /* SEAnimationOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEAnimationOperation.h; sourceTree = "<group>"; };
+		A6786E2518BFB6B200114C0B /* SEAnimationOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEAnimationOperation.m; sourceTree = "<group>"; };
 		A6A6127418A7B0DA00CBD988 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A6A6128218A7B0DA00CBD988 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A6AC921918AC921C00D43025 /* ScrivelEngineMacDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrivelEngineMacDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -411,6 +417,8 @@
 		A609F65918B47F14000A0EFB /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				A6786E2418BFB6B200114C0B /* SEAnimationOperation.h */,
+				A6786E2518BFB6B200114C0B /* SEAnimationOperation.m */,
 				A609F66018B47F58000A0EFB /* NSValue+ScrivelEngine.h */,
 				A609F66118B47F58000A0EFB /* NSValue+ScrivelEngine.m */,
 				A609F66618B48700000A0EFB /* Queue.h */,
@@ -672,6 +680,7 @@
 				A639F08818BB7A0C00CF4148 /* SEApp.h in Headers */,
 				A6FBB38518BF210C008DDF22 /* SEClassProxy.h in Headers */,
 				A6A1691C18B25A4C0041BBBA /* SEMethod.h in Headers */,
+				A6786E2718BFB6B200114C0B /* SEAnimationOperation.h in Headers */,
 				A604524A18B3C78200B85928 /* SEBasicTextLayer.h in Headers */,
 				A639F0A518BCEFFF00CF4148 /* NSNumber+CGFloat.h in Headers */,
 				A6FBB3D818BF4CFF008DDF22 /* SEColorUtil.h in Headers */,
@@ -690,6 +699,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6FBB3E818BF707B008DDF22 /* SEWords.h in Headers */,
+				A6786E2618BFB6B200114C0B /* SEAnimationOperation.h in Headers */,
 				A604524918B3C78200B85928 /* SEBasicTextLayer.h in Headers */,
 				A6A1691418B25A400041BBBA /* SEScript.h in Headers */,
 				A609F66818B48700000A0EFB /* Queue.h in Headers */,
@@ -1015,6 +1025,7 @@
 				A6D925D718B8E24600902230 /* NSBundle+ScrivelEngine.m in Sources */,
 				A6D04D4618B74D4D00977B7A /* NSArray+Where.m in Sources */,
 				A6D1760F18AE628200AB11AF /* SEScriptParser.m in Sources */,
+				A6786E2818BFB6B200114C0B /* SEAnimationOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1048,6 +1059,7 @@
 				A6FBB3E518BF706F008DDF22 /* SEElement.m in Sources */,
 				A63F88B318B0F496007FBE57 /* ScrivelEngine.m in Sources */,
 				A6D04D4D18B7701C00977B7A /* SEBasicClassProxy.m in Sources */,
+				A6786E2918BFB6B200114C0B /* SEAnimationOperation.m in Sources */,
 				A604524C18B3C78200B85928 /* SEBasicTextLayer.m in Sources */,
 				A60ECC5118AC8C54000F7A40 /* SEScript.m in Sources */,
 				A6D925D818B8E24600902230 /* NSBundle+ScrivelEngine.m in Sources */,

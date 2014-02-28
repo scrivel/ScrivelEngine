@@ -19,6 +19,8 @@
 @property (weak) IBOutlet NSView *editorView;
 
 @property (weak) IBOutlet NSToolbar *toolbar;
+@property (weak) IBOutlet NSView *panelView;
+
 @end
 @implementation SEDAppDelegate
 
@@ -49,8 +51,9 @@
     [_runItem setImage:i];
     [self.toolbar insertItemWithItemIdentifier:_runItem.itemIdentifier atIndex:0];
     // engine
+    _engine = [ScrivelEngine new];
     self.panelView.wantsLayer = YES;
-    _engine = [ScrivelEngine engineWithRootView:self.panelView];
+    _engine.rootView = self.panelView;
     _engine.textLayerDelegate = self;
     
 }

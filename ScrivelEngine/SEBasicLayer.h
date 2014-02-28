@@ -1,6 +1,6 @@
 
 //
-//  _SEConcretLayer.h
+//  SEbasicLayer.h
 //  ScrivelEngine
 //
 //  Created by 桜井雄介 on 2014/02/18.
@@ -43,6 +43,23 @@
 #define SEPointMake(x,y) CGPointMake(X(x),Y(y))
 #define SERectMake(x,y,w,h) CGRectMake(X(x), Y(y), W(w), H(h))
 
+// CAAnimationを同期的に実行するためのinline関数
+static inline void se_animate_synch(void(^block)(),void(^completion)()){
+    [CATransaction begin];
+    CFRunLoopRef rl = CFRunLoopGetCurrent();
+    CFDateRef distantFuture = (__bridge CFDateRef)[NSDate distantFuture];
+    CFRunLoopTimerRef timer = CFRunLoopTimerCreate(NULL, CFDateGetAbsoluteTime(distantFuture), 0, 0, 0, NULL, NULL);
+    CFRunLoopAddTimer(rl, timer, kCFRunLoopDefaultMode);
+    [CATransaction setCompletionBlock:^{
+        CFRunLoopStop(rl);
+        if (completion) completion();
+    }];
+    if (block) block();
+    [CATransaction commit];
+    CFRunLoopRun();
+    CFRunLoopTimerInvalidate(timer);
+    CFRelease(timer);
+}
 
 @interface SEBasicLayerClass : SEBasicObjectClass <SELayerClass>
 

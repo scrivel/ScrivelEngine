@@ -17,6 +17,7 @@
 #import <objc/message.h>
 #import "SEClassProxy.h"
 #import "SEColorUtil.h"
+#import "SEAnimationOperation.h"
 
 #define kMaxLayer 1000
 #define kGroupedAnimationKey @"GroupedAnimation"
@@ -32,6 +33,13 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
     return _f;
 }
 
+@interface SEBasicLayerClass ()
+
+@property NSOperationQueue *animationQueue;
+@property SEAnimationOperation *previousOperation;
+
+@end
+
 @implementation SEBasicLayerClass
 {
     NSMutableDictionary *__layers;
@@ -43,6 +51,7 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 {
     self = [super initWithEngine:engine classIdentifier:classIdentifier];
     __layers = [NSMutableDictionary new];
+    _animationQueue = [NSOperationQueue new];
     self.instanceClass = [SEBasicLayer class];
     return self ?: nil;
 }
@@ -294,40 +303,26 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
     NSString *uuid = (__bridge_transfer NSString *)CFUUIDCreateString(NULL, uuidRef);
         CFRelease(uuidRef);
     NSString *animationKey = [NSString stringWithFormat:@"%@-%@",key,uuid]; // translate-xxxxx
-#if TARGET_OS_IPHONE
-    // UIView.layerだとこれを挟まないと正常に動作しないことがある
-    [UIView beginAnimations:animationKey context:nil];
-#endif
+    [CATransaction begin];
+    // 終わったあとにアニメーションを剥がすため、先にプロパティを設定しておく
     if ([animation isKindOfClass:[CAAnimationGroup class]]) {
         for (CABasicAnimation *a in [(CAAnimationGroup*)animation animations]) {
-//            NSLog(@"%@ : %@",a.keyPath, [self.layer valueForKeyPath:a.keyPath]);
             [self.layer setValue:a.toValue forKeyPath:a.keyPath];
-//            NSLog(@"%@ : %@",a.keyPath, [self.layer valueForKeyPath:a.keyPath]);
         }
     }else if ([animation isKindOfClass:[CABasicAnimation class]]){
         id val = [(CABasicAnimation*)animation toValue];
         id key = [(CABasicAnimation*)animation keyPath];
         [self.layer setValue:val forKeyPath:key];
     }
-    [CATransaction begin];
-    // アニメーションを逐次実行するためにRunLoopでブロックする
-    CFRunLoopRef rl = CFRunLoopGetCurrent();
-    CFDateRef distantFuture = (__bridge CFDateRef)[NSDate distantFuture];
-    CFRunLoopTimerRef timer = CFRunLoopTimerCreate(NULL, CFDateGetAbsoluteTime(distantFuture), 0, 0, 0, NULL, NULL);
-    CFRunLoopAddTimer(rl, timer, kCFRunLoopDefaultMode);
-    [CATransaction setCompletionBlock:^{
-        // アニメーションの終了後にプロパティの値を書き換える
-        CFRunLoopStop(rl);
-        CFRunLoopTimerInvalidate(timer);
-        CFRelease(timer);
-        if (completion) completion();
-    }];
-    [self.layer addAnimation:animation forKey:animationKey];
-    [CATransaction commit];
-#if TARGET_OS_IPHONE
-    [UIView commitAnimations];
-#endif
-    CFRunLoopRun();
+    [CATransaction commit];  
+    SEAnimationOperation *op = [SEAnimationOperation animationOperationWithTarget:self.layer animation:animation];
+    op.animationKey = animationKey;
+    SEAnimationOperation *dep = [(SEBasicLayerClass*)self.holder previousOperation];
+    if (dep) {
+        [op addDependency:dep];
+    }
+    [(SEBasicLayerClass*)self.holder setPreviousOperation:op];
+    [[NSOperationQueue mainQueue] addOperations:@[op] waitUntilFinished:NO];
 }
 
 
@@ -338,8 +333,8 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
     CAAnimationGroup *g = [CAAnimationGroup animation];
     g.duration = duration;
     g.repeatCount = 1;
-    g.removedOnCompletion = NO;
-    g.fillMode = kCAFillModeForwards;
+//    g.removedOnCompletion = NO;
+//    g.fillMode = kCAFillModeForwards;
     _animationGroup = g;
 }
 

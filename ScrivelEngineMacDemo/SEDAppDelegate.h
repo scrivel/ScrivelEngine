@@ -15,7 +15,5 @@
 
 @property IBOutlet NSWindow *window;
 @property (unsafe_unretained) IBOutlet NSFontManager *fontManager;
-@property (unsafe_unretained) IBOutlet NSPanel *panel;
-@property (weak) IBOutlet NSView *panelView;
 
 @end
