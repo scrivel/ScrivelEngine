@@ -13,6 +13,7 @@
 
 - (id)dequeue;
 - (void)enqueue:(id)obj;
+- (void)enqueueObjects:(NSArray*)objcts;
 - (void)clear;
 
 - (NSUInteger)count;

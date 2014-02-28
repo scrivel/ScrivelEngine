@@ -25,6 +25,13 @@
     [_concret insertObject:obj atIndex:0];
 }
 
+- (void)enqueueObjects:(NSArray *)objcts
+{
+    for (id obj in objcts) {
+        [self enqueue:obj];
+    }
+}
+
 - (id)dequeue
 {
     id obj = [_concret lastObject];
