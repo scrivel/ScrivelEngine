@@ -44,9 +44,9 @@
     SEL s =[self.engine.classProxy selectorForMethodIdentifier:method.name classIdentifier:self.classIdentifier];
     // セレクタがマッピングされているが、クラスメソッドでないものはPrimaryにProxyする
     if (s && ![self respondsToSelector:s]) {
-        return [self.primaryTextLayer callInstance_method:method];
+        return [self.primaryTextLayer callMethod_method:method];
     }
-    return [super callStatic_method:method];
+    return [super callMethod_method:method];
 }
 
 - (void)setPrimary_index:(NSUInteger)index
@@ -196,11 +196,6 @@
     if (!noanimate) {
         [self start];
         // テキストの表示が終わるまでブロックする
-//        NSTimeInterval i = self.animationInterval;
-//        while (self.isAnimating) {
-//            [[NSRunLoop currentRunLoop]
-//             runUntilDate:[NSDate dateWithTimeIntervalSinceNow:i]];
-//        }
     }else{
         self.textLayer.string = __text;
     }
