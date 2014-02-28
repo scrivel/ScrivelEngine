@@ -40,6 +40,10 @@
 
 		// inherited from abstract
 		SEL_FOR_METHOD(@"callMethod",callMethod_method:);
+		SEL_FOR_METHOD(@"wait",wait_duration:);
+		SEL_FOR_METHOD(@"waitTap",waitTap);
+		SEL_FOR_METHOD(@"waitText",waitText);
+		SEL_FOR_METHOD(@"waitAnimation",waitAnimation);
 		SEL_FOR_METHOD(@"new",new_args:);
 
 	}
@@ -51,6 +55,10 @@
 		SEL_FOR_METHOD(@"enable",enable_key:enable:);
 		// inherited from abstract
 		SEL_FOR_METHOD(@"callMethod",callMethod_method:);
+		SEL_FOR_METHOD(@"wait",wait_duration:);
+		SEL_FOR_METHOD(@"waitTap",waitTap);
+		SEL_FOR_METHOD(@"waitText",waitText);
+		SEL_FOR_METHOD(@"waitAnimation",waitAnimation);
 		SEL_FOR_METHOD(@"new",new_args:);
 
 	}
@@ -88,6 +96,10 @@
 		SEL_FOR_METHOD(@"opacity",opacity_ratio:duration:);
 		// inherited from abstract
 		SEL_FOR_METHOD(@"callMethod",callMethod_method:);
+		SEL_FOR_METHOD(@"wait",wait_duration:);
+		SEL_FOR_METHOD(@"waitTap",waitTap);
+		SEL_FOR_METHOD(@"waitText",waitText);
+		SEL_FOR_METHOD(@"waitAnimation",waitAnimation);
 		SEL_FOR_METHOD(@"new",new_args:);
 
 	}
@@ -141,6 +153,10 @@
 		SEL_FOR_METHOD(@"opacity",opacity_ratio:duration:);
 		// inherited from abstract
 		SEL_FOR_METHOD(@"callMethod",callMethod_method:);
+		SEL_FOR_METHOD(@"wait",wait_duration:);
+		SEL_FOR_METHOD(@"waitTap",waitTap);
+		SEL_FOR_METHOD(@"waitText",waitText);
+		SEL_FOR_METHOD(@"waitAnimation",waitAnimation);
 		SEL_FOR_METHOD(@"new",new_args:);
 
 	}

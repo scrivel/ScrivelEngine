@@ -40,5 +40,4 @@
  **/
 - (void)enable_key:(NSString*)key enable:(BOOL)enable;
 
-
 @end

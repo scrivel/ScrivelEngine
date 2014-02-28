@@ -7,6 +7,10 @@
 //
 
 #import "SEBasicApp.h"
+#import "EventEmitter.h"
+#import "ScrivelEngine.h"
+#import "SEResponderProxy.h"
+#import <objc/runtime.h>
 
 #define kPositionTypeKey @"positionType"
 #define kSizeTypeKey @"sizeType"
@@ -15,6 +19,12 @@
 {
     NSMutableDictionary *__keyValueStore;
     NSMutableDictionary *__enabledStore;
+#if TARGET_OS_IPHONE
+    UITapGestureRecognizer *_tapGestureRecognizer;
+#else
+    SEResponderProxy *_responderProxy;
+#endif
+    
 }
 
 - (id)init
@@ -39,6 +49,52 @@
     if (key) {
         [__enabledStore setObject:@(enable) forKey:key];
     }
+}
+
+#pragma mark - wait
+
+- (void)completeWait:(id)sender
+{
+#if TARGET_OS_IPHONE
+    if ([sender isKindOfClass:[UITapGestureRecognizer class]]) {
+        [self.engine.rootView removeGestureRecognizer:sender];
+    }
+#else
+    if ([sender isKindOfClass:[SEResponderProxy class]]) {
+        _responderProxy.delegate = nil;
+    }
+#endif
+    [[NSNotificationCenter defaultCenter] postNotificationName:SEWaitCompletionEvent object:sender userInfo:nil];
+}
+
+- (void)wait_duration:(NSTimeInterval)duration
+{
+    [self performSelector:@selector(completeWait:) withObject:self afterDelay:duration];
+}
+
+- (void)waitTap
+{
+#if TARGET_OS_IPHONE
+    UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(completeWait:)];
+    [self.engine.rootView addGestureRecognizer:tgr];
+#else
+    if (!_responderProxy) {
+        _responderProxy = [[SEResponderProxy alloc] initWithDelegate:self selector:@selector(completeWait:)];
+        NSResponder *r = self.engine.rootView.nextResponder;
+        [self.engine.rootView setNextResponder:_responderProxy];
+        [_responderProxy setNextResponder:r];
+    }
+#endif
+}
+
+- (void)waitAnimation
+{
+    
+}
+
+- (void)waitText
+{
+    
 }
 
 #pragma mark - Accessor

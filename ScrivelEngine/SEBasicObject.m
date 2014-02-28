@@ -19,6 +19,11 @@ static id callMethod(id target, NSString *class, SEMethod *method, ScrivelEngine
 {
     // SEMethodを動的に呼び出す
     SEL sel = [engine.classProxy selectorForMethodIdentifier:method.name classIdentifier:class];
+    // wait系メソッドをappにフォワーディングする
+    if ([method.name hasPrefix:@"wait"]) {
+        target = engine.app;
+        sel = [engine.classProxy selectorForMethodIdentifier:method.name classIdentifier:@"app"];
+    }
     NSMethodSignature *sig = [target methodSignatureForSelector:sel];
     NSInvocation *iv = [NSInvocation invocationWithMethodSignature:sig];
     [iv setTarget:target];

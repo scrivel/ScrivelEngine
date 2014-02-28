@@ -10,19 +10,12 @@
 
 @class SEObject;
 
-typedef enum{
-    SEMethodTypeCall = 0,
-    SEMethodTypeProperty
-}SEMethodType;
-
 @interface SEMethod : NSObject
 
-- (instancetype)initWithName:(NSString*)name type:(SEMethodType)type lineNumer:(NSUInteger)lineNumber;
+- (instancetype)initWithName:(NSString*)name lineNumer:(NSUInteger)lineNumber;
 
 // スクリプトの名前
 @property (nonatomic, readonly) NSString *name;
-// スクリプトのタイプ。メソッド呼び出しか、アクセッサか
-@property (nonatomic, readonly) SEMethodType type;
 // 行番号
 @property (nonatomic, readonly) NSUInteger lineNumber;
 // スクリプトの引数。typeがaccessorの場合はない

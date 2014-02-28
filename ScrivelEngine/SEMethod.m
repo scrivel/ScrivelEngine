@@ -17,10 +17,9 @@ static inline BOOL VALID(id val){
 
 @implementation SEMethod
 
-- (instancetype)initWithName:(NSString *)name type:(SEMethodType)type lineNumer:(NSUInteger)lineNumber
+- (instancetype)initWithName:(NSString *)name lineNumer:(NSUInteger)lineNumber
 {
     if (self = [super init] ) {
-        _type = type;
         _name = name;
         _lineNumber = lineNumber;
     }
@@ -66,8 +65,7 @@ static inline BOOL VALID(id val){
 
 - (NSString *)description
 {
-    NSString *type = _type == SEMethodTypeProperty ? @"Accessor" : @"MethodCall";
-    return [NSString stringWithFormat:@"SEMethod \"%@\" type : \"%@\"",_name,type];
+    return [NSString stringWithFormat:@"SEMethod \"%@\" args : \"%@\"",_name,_arguments];
 }
 
 @end
