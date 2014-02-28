@@ -16,7 +16,19 @@
  @class abstract
  **/
 
-@protocol SEObjectClass
+@protocol SEObject <NSObject>
+
+/**
+ メソッドを呼び出す
+ 
+ @method callMethod
+ @param {String} name
+ **/
+- (id)callMethod_method:(SEMethod*)method;
+
+@end
+
+@protocol SEObjectClass <SEObject>
 
 /**
  オブジェクトをインスタンス化する
@@ -27,27 +39,8 @@
 **/
 - (id<SEObjectInstance>)new_args:(id)args;
 
-/**
- クラスメソッドを呼び出す
-
- @method callStatic
- @static
- @param {Object} method
-    @param {String} name
-    @param {Array}  [arguments]
- **/
-- (id)callStatic_method:(SEMethod*)method;
-
 @end
 
-@protocol SEObjectInstance
-/**
- インスタンスメソッドを呼び出す
-
- @method callInstance
- @param {String} name
- @param {Array}  [arguments]
- **/
-- (id)callInstance_method:(SEMethod*)method;
+@protocol SEObjectInstance <SEObject>
 
 @end

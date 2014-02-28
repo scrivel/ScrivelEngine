@@ -69,12 +69,12 @@ static NSArray *engineClassses;
             id<SEObjectClass> class = [self valueForKey:[NSString stringWithFormat:@"_%@",classID]];
             // 最初は静的メソッド
             SEMethod *m = [chain dequeueMethod];
-            id<SEObjectInstance> instance = [class callStatic_method:m];
+            id<SEObjectInstance> instance = [class callMethod_method:m];
             if (instance) {
                 // チェーンを実行
                 returnValue = instance;
                 while ((m = [chain dequeueMethod]) != nil) {
-                    returnValue = [instance callInstance_method:m];
+                    returnValue = [instance callMethod_method:m];
                 }
             }
         }else if([element isKindOfClass:[SEWords class]]){
@@ -82,12 +82,12 @@ static NSArray *engineClassses;
             if (words.name) {
                 SEMethod *name_m = [[SEMethod alloc] initWithName:@"setName" type:SEMethodTypeCall lineNumer:words.rangeOfLines.location];
                 name_m.arguments = @[words.name];
-                returnValue = [self.text callStatic_method:name_m];
+                returnValue = [self.text callMethod_method:name_m];
             }
             if (words.text) {
                 SEMethod *text_m = [[SEMethod alloc] initWithName:@"setText" type:SEMethodTypeCall lineNumer:words.rangeOfLines.location+1];
                 text_m.arguments = @[words.text];
-                returnValue = [self.text callStatic_method:text_m];
+                returnValue = [self.text callMethod_method:text_m];
             }
         }else{
             // value

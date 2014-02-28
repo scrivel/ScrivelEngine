@@ -98,6 +98,10 @@
 		A6A1691B18B25A4C0041BBBA /* SEMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = A60ECC1518AC8A46000F7A40 /* SEMethod.h */; };
 		A6A1691C18B25A4C0041BBBA /* SEMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = A60ECC1518AC8A46000F7A40 /* SEMethod.h */; };
 		A6A6ED7718B9A62B00A64483 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A60ECBCE18AC8523000F7A40 /* Images.xcassets */; };
+		A6AB554218C088AE0083760F /* SEMethodOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = A6AB554018C088AE0083760F /* SEMethodOperation.h */; };
+		A6AB554318C088AE0083760F /* SEMethodOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = A6AB554018C088AE0083760F /* SEMethodOperation.h */; };
+		A6AB554418C088AE0083760F /* SEMethodOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A6AB554118C088AE0083760F /* SEMethodOperation.m */; };
+		A6AB554518C088AE0083760F /* SEMethodOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A6AB554118C088AE0083760F /* SEMethodOperation.m */; };
 		A6AC922018AC921C00D43025 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A6AC921E18AC921C00D43025 /* InfoPlist.strings */; };
 		A6AC922218AC921C00D43025 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6AC922118AC921C00D43025 /* main.m */; };
 		A6AC922618AC921C00D43025 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A6AC922418AC921C00D43025 /* Credits.rtf */; };
@@ -279,6 +283,8 @@
 		A6786E2518BFB6B200114C0B /* SEAnimationOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEAnimationOperation.m; sourceTree = "<group>"; };
 		A6A6127418A7B0DA00CBD988 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A6A6128218A7B0DA00CBD988 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		A6AB554018C088AE0083760F /* SEMethodOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEMethodOperation.h; sourceTree = "<group>"; };
+		A6AB554118C088AE0083760F /* SEMethodOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEMethodOperation.m; sourceTree = "<group>"; };
 		A6AC921918AC921C00D43025 /* ScrivelEngineMacDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrivelEngineMacDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6AC921D18AC921C00D43025 /* ScrivelEngineMacDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ScrivelEngineMacDemo-Info.plist"; sourceTree = "<group>"; };
 		A6AC921F18AC921C00D43025 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -467,6 +473,8 @@
 			children = (
 				A63F88AF18B0F496007FBE57 /* ScrivelEngine.h */,
 				A63F88B018B0F496007FBE57 /* ScrivelEngine.m */,
+				A6AB554018C088AE0083760F /* SEMethodOperation.h */,
+				A6AB554118C088AE0083760F /* SEMethodOperation.m */,
 				A6FBB37118BE2A50008DDF22 /* OSX */,
 				A604521118B3967E00B85928 /* Protocols */,
 				A63F888E18AFBAA0007FBE57 /* Script */,
@@ -691,6 +699,7 @@
 				A604522918B3A30B00B85928 /* SELayer.h in Headers */,
 				A604523818B3A58B00B85928 /* SEBasicLayer.h in Headers */,
 				A6A1691318B25A3E0041BBBA /* SEScriptAssembler.h in Headers */,
+				A6AB554318C088AE0083760F /* SEMethodOperation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -709,6 +718,7 @@
 				A6A1691218B25A3D0041BBBA /* SEScriptAssembler.h in Headers */,
 				A609F66E18B48F74000A0EFB /* Stack.h in Headers */,
 				A6D04D3818B4DFA600977B7A /* ScrivelEngine.h in Headers */,
+				A6AB554218C088AE0083760F /* SEMethodOperation.h in Headers */,
 				A6A1691B18B25A4C0041BBBA /* SEMethod.h in Headers */,
 				A604523B18B3A58B00B85928 /* SEBasicObject.h in Headers */,
 				A6A1691118B25A390041BBBA /* SEScriptParser.h in Headers */,
@@ -1005,6 +1015,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6AB554418C088AE0083760F /* SEMethodOperation.m in Sources */,
 				A604523918B3A58B00B85928 /* SEBasicLayer.m in Sources */,
 				A63F889218AFBBBA007FBE57 /* SEScriptAssembler.m in Sources */,
 				A63F88B218B0F496007FBE57 /* ScrivelEngine.m in Sources */,
@@ -1048,6 +1059,7 @@
 				A63F88BC18B11089007FBE57 /* SEScriptAssembler.m in Sources */,
 				A609F67118B48F74000A0EFB /* Stack.m in Sources */,
 				A639F0A718BCEFFF00CF4148 /* NSNumber+CGFloat.m in Sources */,
+				A6AB554518C088AE0083760F /* SEMethodOperation.m in Sources */,
 				A63F88BE18B11089007FBE57 /* SEMethodChain.m in Sources */,
 				A60ECC5018AC8C54000F7A40 /* SEMethod.m in Sources */,
 				A604523E18B3A58B00B85928 /* SEBasicObject.m in Sources */,

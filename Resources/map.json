@@ -1,9 +1,8 @@
 {
   "abstract": {
     "methods": {
-      "new": "new_args:",
-      "callStatic": "callStatic_method:",
-      "callInstance": "callInstance_method:"
+      "callMethod": "callMethod_method:",
+      "new": "new_args:"
     },
     "extends": ""
   },

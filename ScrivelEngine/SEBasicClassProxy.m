@@ -39,9 +39,8 @@
 		// abstract
 
 		// inherited from abstract
+		SEL_FOR_METHOD(@"callMethod",callMethod_method:);
 		SEL_FOR_METHOD(@"new",new_args:);
-		SEL_FOR_METHOD(@"callStatic",callStatic_method:);
-		SEL_FOR_METHOD(@"callInstance",callInstance_method:);
 
 	}
 	if ([classIdentifier isEqualToString:@"app"]) {
@@ -51,9 +50,8 @@
 		SEL_FOR_METHOD(@"set",set_key:value:);
 		SEL_FOR_METHOD(@"enable",enable_key:enable:);
 		// inherited from abstract
+		SEL_FOR_METHOD(@"callMethod",callMethod_method:);
 		SEL_FOR_METHOD(@"new",new_args:);
-		SEL_FOR_METHOD(@"callStatic",callStatic_method:);
-		SEL_FOR_METHOD(@"callInstance",callInstance_method:);
 
 	}
 	if ([classIdentifier isEqualToString:@"layer"]) {
@@ -89,9 +87,8 @@
 		SEL_FOR_METHOD(@"rotate",rotate_degree:duration:);
 		SEL_FOR_METHOD(@"opacity",opacity_ratio:duration:);
 		// inherited from abstract
+		SEL_FOR_METHOD(@"callMethod",callMethod_method:);
 		SEL_FOR_METHOD(@"new",new_args:);
-		SEL_FOR_METHOD(@"callStatic",callStatic_method:);
-		SEL_FOR_METHOD(@"callInstance",callInstance_method:);
 
 	}
 	if ([classIdentifier isEqualToString:@"text"]) {
@@ -143,9 +140,8 @@
 		SEL_FOR_METHOD(@"rotate",rotate_degree:duration:);
 		SEL_FOR_METHOD(@"opacity",opacity_ratio:duration:);
 		// inherited from abstract
+		SEL_FOR_METHOD(@"callMethod",callMethod_method:);
 		SEL_FOR_METHOD(@"new",new_args:);
-		SEL_FOR_METHOD(@"callStatic",callStatic_method:);
-		SEL_FOR_METHOD(@"callInstance",callInstance_method:);
 
 	}
 

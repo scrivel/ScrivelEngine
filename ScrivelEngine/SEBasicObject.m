@@ -75,7 +75,7 @@ static id callMethod(id target, NSString *class, SEMethod *method, ScrivelEngine
     return self ?: nil;
 }
 
-- (id)callStatic_method:(SEMethod *)method
+- (id)callMethod_method:(SEMethod *)method
 {
     return callMethod(self, self.classIdentifier, method, self.engine);
 }
@@ -102,7 +102,7 @@ static id callMethod(id target, NSString *class, SEMethod *method, ScrivelEngine
 #pragma mark - SEObject
 
 
-- (id)callInstance_method:(SEMethod *)method
+- (id)callMethod_method:(SEMethod *)method
 {
     return callMethod(self, self.holder.classIdentifier, method, self.holder.engine);
 }
