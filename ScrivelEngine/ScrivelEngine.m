@@ -20,25 +20,6 @@
 #import "SEClassProxy.h"
 #import "NSObject+KXEventEmitter.h"
 
-@interface SEMethodInvocation : NSObject
-
-@property (nonatomic) id<SEObject> target;
-@property (nonatomic) SEMethod *method;
-
-- (id)invoke;
-
-@end
-
-@implementation SEMethodInvocation
-
-- (id)invoke
-{
-    return [self.target callMethod_method:self.method];
-}
-
-@end
-
-
 static NSArray *engineClassses;
 NSString *const SEWaitBeganEvent = @"org.scrivel.ScrivelEngine:SEWaitBeganEvent";
 NSString *const SEWaitCompletionEvent = @"org.scrivel.ScrivelEngine:SEWaitCompleteEvent";
@@ -48,7 +29,7 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
 @implementation ScrivelEngine
 {
     Queue *_elementQueue;
-    Queue *_methodInvocationQueue;
+    Queue *_methodQueue;
 }
 
 @synthesize classProxy = _classProxy;
@@ -71,7 +52,7 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
 {
     self = [super init];
     [self setClassProxy:[SEBasicClassProxy new]];
-    _methodInvocationQueue = [Queue new];
+    _methodQueue = [Queue new];
     _elementQueue = [Queue new];
     return self ?: nil;
 }
@@ -108,9 +89,9 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
         [_elementQueue enqueueObjects:[(SEScript*)sender elements]];
     }
     // 前回のイベントループで途中だったメソッドを実行する
-    SEMethodInvocation *invocation;
-    while (!self.isWaiting && (invocation = [_methodInvocationQueue dequeue]) != nil) {
-        returnValue = [invocation invoke];
+    SEMethod *method;
+    while (!self.isWaiting && (method = [_methodQueue dequeue]) != nil) {
+        returnValue = [method call];
     }
     // 溜まっているエレメントを順番に処理していく
     SEElement *element;
@@ -130,10 +111,8 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
                     returnValue = [instance callMethod_method:m];
                 }else{
                     // 次回のイベントループにキューイングする
-                    SEMethodInvocation *iv = [SEMethodInvocation new];
-                    iv.target = instance;
-                    iv.method = m;
-                    [_methodInvocationQueue enqueue:iv];
+                    m.target = instance;
+                    [_methodQueue enqueue:m];
                 }
             }
         }else if([element isKindOfClass:[SEWords class]]){

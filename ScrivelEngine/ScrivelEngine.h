@@ -76,8 +76,6 @@ typedef NS_ENUM(NSUInteger, SESizeType){
 @property (nonatomic, readonly) id<SELayerClass> layer;
 @property (nonatomic, readonly) id<SETextLayerClass> text;
 
-@property (nonatomic, weak) id <SETextLayerDelegate> textLayerDelegate;
-
 // SEScriptを実行
 - (id)evaluateScript:(NSString*)script error:(NSError**)error;
 // スクリプトをキューイング

@@ -68,5 +68,15 @@ static inline BOOL VALID(id val){
     return [NSString stringWithFormat:@"SEMethod \"%@\" args : \"%@\"",_name,_arguments];
 }
 
+- (id)call
+{
+    return [self.target callMethod_method:self];
+}
+
+- (id)callWithTarget:(id<SEObject>)target
+{
+    return [target callMethod_method:self];
+}
+
 @end
 

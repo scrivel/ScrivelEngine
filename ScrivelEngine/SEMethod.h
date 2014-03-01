@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SEObject.h"
 
 @class SEObject;
 
@@ -14,6 +15,7 @@
 
 - (instancetype)initWithName:(NSString*)name lineNumer:(NSUInteger)lineNumber;
 
+@property (nonatomic) id<SEObject> target;
 // スクリプトの名前
 @property (nonatomic, readonly) NSString *name;
 // 行番号
@@ -27,5 +29,8 @@
 - (NSInteger)integerArgAtIndex:(NSUInteger)index;
 - (double)doubleArgAtIndex:(NSUInteger)index;
 - (BOOL)boolArgAtIndex:(NSUInteger)index;
+
+- (id)call;
+- (id)callWithTarget:(id<SEObject>)target;
 
 @end
