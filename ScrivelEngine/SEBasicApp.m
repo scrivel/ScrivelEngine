@@ -100,7 +100,7 @@
 
 - (void)waitText
 {
-    
+
 }
 
 #pragma mark - Accessor

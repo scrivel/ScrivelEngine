@@ -40,9 +40,10 @@
 
 
 static NSArray *engineClassses;
-NSString *const SEWaitBeganEvent = @"org.scrive.ScrivelEngine:SEWaitBeganEvent";
-NSString *const SEWaitCompletionEvent = @"org.scrive.ScrivelEngine:SEWaitCompleteEvent";
-NSString *const SEAnimationCompletionEvent = @"org.scrive.ScrivelEngine:SEAnimationCompleteEvent";
+NSString *const SEWaitBeganEvent = @"org.scrivel.ScrivelEngine:SEWaitBeganEvent";
+NSString *const SEWaitCompletionEvent = @"org.scrivel.ScrivelEngine:SEWaitCompleteEvent";
+NSString *const SEAnimationCompletionEvent = @"org.scrivel.ScrivelEngine:SEAnimationCompleteEvent";
+NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETextDisplayCompletionEvent";
 
 @implementation ScrivelEngine
 {
@@ -147,7 +148,13 @@ NSString *const SEAnimationCompletionEvent = @"org.scrive.ScrivelEngine:SEAnimat
                 text_m.arguments = @[words.text];
                 returnValue = [self.text callMethod_method:text_m];
             }
-            // テキストの表示が終わるまで待つ
+            // タップを待つ処理をキューイングする
+            [self kx_once:SEWaitCompletionEvent handler:^(NSNotification *n) {
+                [__self.app waitText];
+                [__self kx_once:SEWaitCompletionEvent handler:^(NSNotification *n) {
+                    [__self enqueueScript:nil];
+                }];
+            }];
         }else{
             // value
             return element;

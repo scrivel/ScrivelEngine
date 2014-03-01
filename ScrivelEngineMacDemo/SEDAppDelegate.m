@@ -54,7 +54,6 @@
     _engine = [ScrivelEngine new];
     self.panelView.wantsLayer = YES;
     _engine.rootView = self.panelView;
-    _engine.textLayerDelegate = self;
     
 }
 
@@ -87,16 +86,6 @@
         return _runItem;
     }
     return nil;
-}
-
-- (void)textLayer:(id<SETextLayerInstance>)textLayer didFinishDisplayText:(id)text
-{
-    NSLog(@"dinish dis txt : %@",text);
-}
-
-- (void)textLayerDidRecognizeTapTwice:(id<SETextLayerInstance>)textLayer
-{
-    NSLog(@"tap twice");
 }
 
 @end

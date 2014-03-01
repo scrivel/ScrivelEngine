@@ -313,7 +313,6 @@
 		A6FBB37218BE2A5C008DDF22 /* SEResponderProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEResponderProxy.h; path = OSX/SEResponderProxy.h; sourceTree = "<group>"; };
 		A6FBB37318BE2A5C008DDF22 /* SEResponderProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEResponderProxy.m; path = OSX/SEResponderProxy.m; sourceTree = "<group>"; };
 		A6FBB38318BF210C008DDF22 /* SEClassProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEClassProxy.h; sourceTree = "<group>"; };
-		A6FBB38618BF2118008DDF22 /* SETextLayerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SETextLayerDelegate.h; sourceTree = "<group>"; };
 		A6FBB3A618BF2C25008DDF22 /* animate.sescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = animate.sescript; sourceTree = "<group>"; };
 		A6FBB3A718BF2C25008DDF22 /* keroxp.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = keroxp.jpg; sourceTree = "<group>"; };
 		A6FBB3A818BF2C25008DDF22 /* map.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = map.json; sourceTree = "<group>"; };
@@ -415,7 +414,6 @@
 				A639F08618BB7A0C00CF4148 /* SEApp.h */,
 				A604522518B3A30B00B85928 /* SELayer.h */,
 				A604522718B3A30B00B85928 /* SETextLayer.h */,
-				A6FBB38618BF2118008DDF22 /* SETextLayerDelegate.h */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";

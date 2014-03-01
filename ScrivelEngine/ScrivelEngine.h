@@ -11,6 +11,7 @@
 extern NSString *const SEWaitBeganEvent;
 extern NSString *const SEWaitCompletionEvent;
 extern NSString *const SEAnimationCompletionEvent;
+extern NSString *const SETextDisplayCompletionEvent;
 
 @class SEScript, SEMethod, SEBasicApp;
 @protocol SEClassProxy, SEApp, SELayerClass, SETextLayerClass, SETextLayerDelegate;

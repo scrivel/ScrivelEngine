@@ -112,6 +112,12 @@ static id callMethod(id target, NSString *class, SEMethod *method, ScrivelEngine
     return callMethod(self, self.holder.classIdentifier, method, self.holder.engine);
 }
 
+- (id)forwardingTargetForSelector:(SEL)aSelector
+{
+    // ダメそうだったらappにフォワーディングする
+    return self.holder.engine.app;
+}
+
 
 @end
 
