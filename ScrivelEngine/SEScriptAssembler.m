@@ -136,12 +136,8 @@ static PKToken *openCurlyToken;
     NSArray *args = [_argumentsStack pop];
     NSString *identifier = [_identifierStack pop];
     SEMethod *method = nil;
-    if (args) {
-        method = [[SEMethod alloc] initWithName:identifier type:SEMethodTypeCall lineNumer:parser.tokenizer.lineNumber];
-        [method setArguments:args];
-    }else{
-        method = [[SEMethod alloc] initWithName:identifier type:SEMethodTypeProperty lineNumer:parser.tokenizer.lineNumber];
-    }
+    method = [[SEMethod alloc] initWithName:identifier lineNumer:parser.tokenizer.lineNumber];
+    [method setArguments:args];
     [_methodStack push:method];
 }
 

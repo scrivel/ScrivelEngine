@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 scrivel. All rights reserved.
 //
 
-
+#if !TARGET_OS_IPHONE
 #import <Cocoa/Cocoa.h>
 
 // レスポンダチェーンをプロクシするクラス
@@ -23,3 +23,4 @@ typedef void (^SEBasicTextLayerResponderHandler)(NSEvent *e);
 @property (nonatomic, copy) SEBasicTextLayerResponderHandler eventandler;
 
 @end
+#endif

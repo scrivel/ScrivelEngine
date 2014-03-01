@@ -17,7 +17,5 @@
 @property (nonatomic) NSRange rangeOfLines;
 
 - (instancetype)initWithTargetClass:(NSString*)targetClass;
-- (SEMethod*)dequeueMethod;
-- (void)enqueueMethod:(SEMethod*)method;
 
 @end

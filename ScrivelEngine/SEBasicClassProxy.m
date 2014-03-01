@@ -40,6 +40,10 @@
 
 		// inherited from abstract
 		SEL_FOR_METHOD(@"callMethod",callMethod_method:);
+		SEL_FOR_METHOD(@"wait",wait_duration:);
+		SEL_FOR_METHOD(@"waitTap",waitTap);
+		SEL_FOR_METHOD(@"waitText",waitText);
+		SEL_FOR_METHOD(@"waitAnimation",waitAnimation);
 		SEL_FOR_METHOD(@"new",new_args:);
 
 	}
@@ -51,6 +55,10 @@
 		SEL_FOR_METHOD(@"enable",enable_key:enable:);
 		// inherited from abstract
 		SEL_FOR_METHOD(@"callMethod",callMethod_method:);
+		SEL_FOR_METHOD(@"wait",wait_duration:);
+		SEL_FOR_METHOD(@"waitTap",waitTap);
+		SEL_FOR_METHOD(@"waitText",waitText);
+		SEL_FOR_METHOD(@"waitAnimation",waitAnimation);
 		SEL_FOR_METHOD(@"new",new_args:);
 
 	}
@@ -72,6 +80,7 @@
 		SEL_FOR_METHOD(@"shadowOpacity",shadowOpcity_opacity:);
 		SEL_FOR_METHOD(@"shadowRadius",shadowRadius_radius:);
 		SEL_FOR_METHOD(@"beginAnimation",beginAnimation_duration:);
+		SEL_FOR_METHOD(@"chainAnimations",chainAnimations);
 		SEL_FOR_METHOD(@"commitAnimation",commitAnimation);
 		SEL_FOR_METHOD(@"position",position_x:y:duration:);
 		SEL_FOR_METHOD(@"zPosition",zPosition_z:duration:);
@@ -88,6 +97,10 @@
 		SEL_FOR_METHOD(@"opacity",opacity_ratio:duration:);
 		// inherited from abstract
 		SEL_FOR_METHOD(@"callMethod",callMethod_method:);
+		SEL_FOR_METHOD(@"wait",wait_duration:);
+		SEL_FOR_METHOD(@"waitTap",waitTap);
+		SEL_FOR_METHOD(@"waitText",waitText);
+		SEL_FOR_METHOD(@"waitAnimation",waitAnimation);
 		SEL_FOR_METHOD(@"new",new_args:);
 
 	}
@@ -125,6 +138,7 @@
 		SEL_FOR_METHOD(@"shadowOpacity",shadowOpcity_opacity:);
 		SEL_FOR_METHOD(@"shadowRadius",shadowRadius_radius:);
 		SEL_FOR_METHOD(@"beginAnimation",beginAnimation_duration:);
+		SEL_FOR_METHOD(@"chainAnimations",chainAnimations);
 		SEL_FOR_METHOD(@"commitAnimation",commitAnimation);
 		SEL_FOR_METHOD(@"position",position_x:y:duration:);
 		SEL_FOR_METHOD(@"zPosition",zPosition_z:duration:);
@@ -141,6 +155,10 @@
 		SEL_FOR_METHOD(@"opacity",opacity_ratio:duration:);
 		// inherited from abstract
 		SEL_FOR_METHOD(@"callMethod",callMethod_method:);
+		SEL_FOR_METHOD(@"wait",wait_duration:);
+		SEL_FOR_METHOD(@"waitTap",waitTap);
+		SEL_FOR_METHOD(@"waitText",waitText);
+		SEL_FOR_METHOD(@"waitAnimation",waitAnimation);
 		SEL_FOR_METHOD(@"new",new_args:);
 
 	}

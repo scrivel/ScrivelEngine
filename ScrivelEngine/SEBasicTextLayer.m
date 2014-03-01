@@ -12,6 +12,7 @@
 #import "SEClassProxy.h"
 #import "SEMethod.h"
 #import "SEColorUtil.h"
+#import "NSObject+KXEventEmitter.h"
 
 @implementation SEBasicTextLayerClass
 {
@@ -39,7 +40,7 @@
     return new;
 }
 
-- (id)callStatic_method:(SEMethod *)method
+- (id)callMethod_method:(SEMethod *)method
 {
     SEL s =[self.engine.classProxy selectorForMethodIdentifier:method.name classIdentifier:self.classIdentifier];
     // セレクタがマッピングされているが、クラスメソッドでないものはPrimaryにProxyする
@@ -137,9 +138,8 @@
     r = [self.layer convertRect:r toLayer:self.holder.engine.rootView.layer];
     if (CGRectContainsPoint(r, point)) {
         if (self.isAnimating) {
-            [self skip];
-        }else{
-            [self.holder.engine.textLayerDelegate textLayerDidRecognizeTapTwice:self];
+            // 一度目のタップでアニメーションをスキップ
+            [self skip];                
         }
     }
 }
@@ -164,9 +164,10 @@
 - (void)finishAnimation
 {
     [_timer invalidate];
+    _timer = nil;
     _isAnimating = NO;
     _currentCharacterIndex = 0;
-    [self.holder.engine.textLayerDelegate textLayer:self didFinishDisplayText:self.text];
+    [self kx_emit:SETextDisplayCompletionEvent];
 }
 
 #pragma mark - CALayer
@@ -203,9 +204,15 @@
 
 - (void)start
 {
+    // waitさせる
+    [self kx_emit:SEWaitBeganEvent];
+    __weak typeof (self) __self = self;
+    [self kx_once:SETextDisplayCompletionEvent handler:^(NSNotification *n) {
+        [__self kx_emit:SEWaitCompletionEvent];
+    }];
     _isAnimating = YES;
-    _timer = [NSTimer scheduledTimerWithTimeInterval:self.animationInterval target:self selector:@selector(addCharacter) userInfo:nil repeats:YES];
-    [_timer fire];
+    _timer = [NSTimer timerWithTimeInterval:self.animationInterval target:self selector:@selector(addCharacter) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSDefaultRunLoopMode];
 }
 
 - (void)pause

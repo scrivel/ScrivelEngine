@@ -2,6 +2,10 @@
   "abstract": {
     "methods": {
       "callMethod": "callMethod_method:",
+      "wait": "wait_duration:",
+      "waitTap": "waitTap",
+      "waitText": "waitText",
+      "waitAnimation": "waitAnimation",
       "new": "new_args:"
     },
     "extends": ""
@@ -29,6 +33,7 @@
       "shadowOpacity": "shadowOpcity_opacity:",
       "shadowRadius": "shadowRadius_radius:",
       "beginAnimation": "beginAnimation_duration:",
+      "chainAnimations": "chainAnimations",
       "commitAnimation": "commitAnimation",
       "position": "position_x:y:duration:",
       "zPosition": "zPosition_z:duration:",

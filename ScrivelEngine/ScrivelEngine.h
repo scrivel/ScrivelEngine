@@ -8,7 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@class SEMethod, SEBasicApp;
+extern NSString *const SEWaitBeganEvent;
+extern NSString *const SEWaitCompletionEvent;
+extern NSString *const SEAnimationCompletionEvent;
+extern NSString *const SETextDisplayCompletionEvent;
+
+@class SEScript, SEMethod, SEBasicApp;
 @protocol SEClassProxy, SEApp, SELayerClass, SETextLayerClass, SETextLayerDelegate;
 
 #if TARGET_OS_IPHONE
@@ -65,6 +70,7 @@ typedef NS_ENUM(NSUInteger, SESizeType){
 // レイヤーを管理するrootのview
 @property (nonatomic, weak) SEView *rootView;
 @property (nonatomic) id<SEClassProxy> classProxy;
+@property (nonatomic, readonly) BOOL isWaiting;
 // アプリケーション本体
 @property (nonatomic, readonly) id<SEApp> app;
 @property (nonatomic, readonly) id<SELayerClass> layer;
@@ -74,6 +80,8 @@ typedef NS_ENUM(NSUInteger, SESizeType){
 
 // SEScriptを実行
 - (id)evaluateScript:(NSString*)script error:(NSError**)error;
+// スクリプトをキューイング
+- (id)enqueueScript:(SEScript*)script;
 // スクリプトをlint
 - (BOOL)validateScript:(NSString*)script error:(NSError**)error;
 

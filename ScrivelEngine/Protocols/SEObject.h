@@ -18,6 +18,7 @@
 
 @protocol SEObject <NSObject>
 
+@required
 /**
  メソッドを呼び出す
  
@@ -25,6 +26,41 @@
  @param {String} name
  **/
 - (id)callMethod_method:(SEMethod*)method;
+
+@optional
+/**
+ スクリプトの処理を規定の秒数だけストップさせる
+ このメソッドはScrielEngineのscript evaluationをサスペンドするメソッドです
+ CFRunLoopやNSRunLoopでメインスレッドをブロックする処理は避けてください
+ 
+ @method wait
+ @param {Number} duration
+ **/
+- (void)wait_duration:(NSTimeInterval)duration;
+
+/**
+ 画面へのタップを待ちます
+ タップorクリックされるまでスクリプトのevaluationはサスペンドされます
+ 
+ @method waitTap
+ **/
+- (void)waitTap;
+
+/**
+ 次のテクストを表示するためにタップを待ちます
+ 
+ @method waitText
+ **/
+- (void)waitText;
+
+/**
+ 現在実行中のすべてアニメーションの終了を待ちます
+ repeatアニメーションは除外されます
+ 
+ @method waitAnimation
+ **/
+- (void)waitAnimation;
+
 
 @end
 

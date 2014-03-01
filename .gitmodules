@@ -7,3 +7,6 @@
 [submodule "External/Fragaria"]
 	path = External/Fragaria
 	url = https://github.com/scrivel/Fragaria
+[submodule "External/KXEventEmitter"]
+	path = External/KXEventEmitter
+	url = https://github.com/keroxp/KXEventEmitter

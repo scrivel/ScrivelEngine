@@ -9,9 +9,8 @@
 #import <Cocoa/Cocoa.h>
 #import <MGSFragaria.h>
 #import "ScrivelEngine.h"
-#import "SETextLayerDelegate.h"
 
-@interface SEDAppDelegate : NSObject <NSApplicationDelegate,NSToolbarDelegate, SETextLayerDelegate>
+@interface SEDAppDelegate : NSObject <NSApplicationDelegate,NSToolbarDelegate>
 
 @property IBOutlet NSWindow *window;
 @property (unsafe_unretained) IBOutlet NSFontManager *fontManager;

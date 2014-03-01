@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <objc/message.h>
 
 @protocol HogeProtocol
 
@@ -74,5 +75,11 @@
     NSArray *pc = [path pathComponents];
     
 }
+
+- (void)handler:(NSNotification*)not
+{
+    XCTAssert([[not name] isEqualToString:@"hoge"], );
+}
+
 
 @end

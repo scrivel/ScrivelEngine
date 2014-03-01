@@ -6,7 +6,7 @@
 //  Copyright (c) 2014年 scrivel. All rights reserved.
 //
 
-
+#if !TARGET_OS_IPHONE
 #import "SEResponderProxy.h"
 #import <objc/message.h>
 
@@ -39,3 +39,4 @@
 }
 
 @end
+#endif

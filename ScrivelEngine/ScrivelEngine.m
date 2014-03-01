@@ -18,12 +18,41 @@
 #import "SEMethodChain.h"
 #import "SEWords.h"
 #import "SEClassProxy.h"
+#import "NSObject+KXEventEmitter.h"
+
+@interface SEMethodInvocation : NSObject
+
+@property (nonatomic) id<SEObject> target;
+@property (nonatomic) SEMethod *method;
+
+- (id)invoke;
+
+@end
+
+@implementation SEMethodInvocation
+
+- (id)invoke
+{
+    return [self.target callMethod_method:self.method];
+}
+
+@end
+
 
 static NSArray *engineClassses;
+NSString *const SEWaitBeganEvent = @"org.scrivel.ScrivelEngine:SEWaitBeganEvent";
+NSString *const SEWaitCompletionEvent = @"org.scrivel.ScrivelEngine:SEWaitCompleteEvent";
+NSString *const SEAnimationCompletionEvent = @"org.scrivel.ScrivelEngine:SEAnimationCompleteEvent";
+NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETextDisplayCompletionEvent";
 
 @implementation ScrivelEngine
+{
+    Queue *_elementQueue;
+    Queue *_methodInvocationQueue;
+}
 
 @synthesize classProxy = _classProxy;
+@synthesize isWaiting = _isWaiting;
 
 + (void)load
 {
@@ -42,6 +71,8 @@ static NSArray *engineClassses;
 {
     self = [super init];
     [self setClassProxy:[SEBasicClassProxy new]];
+    _methodInvocationQueue = [Queue new];
+    _elementQueue = [Queue new];
     return self ?: nil;
 }
 
@@ -55,40 +86,75 @@ static NSArray *engineClassses;
 - (id)evaluateScript:(NSString *)script error:(NSError *__autoreleasing *)error
 {
     SEScript *s = [SEScript scriptWithString:script error:error];
-    id returnValue = nil;
     if (*error) {
         return NO;
     }
-    for (id element in s.elements) {
+    return [self enqueueScript:s];
+}
+
+- (id)enqueueScript:(id)sender
+{
+    _isWaiting = NO;
+    id returnValue = nil;
+    __weak typeof(self) __self = self;
+    [self kx_once:SEWaitBeganEvent handler:^(NSNotification *n) {
+        [__self setValue:@YES forKey:@"_isWaiting"];
+        [__self kx_once:SEWaitCompletionEvent handler:^(NSNotification *n) {
+            [__self enqueueScript:nil];
+        }];
+    }];
+    if ([sender isKindOfClass:[SEScript class]]){
+        // エレメントをキューイング
+        [_elementQueue enqueueObjects:[(SEScript*)sender elements]];
+    }
+    // 前回のイベントループで途中だったメソッドを実行する
+    SEMethodInvocation *invocation;
+    while (!self.isWaiting && (invocation = [_methodInvocationQueue dequeue]) != nil) {
+        returnValue = [invocation invoke];
+    }
+    // 溜まっているエレメントを順番に処理していく
+    SEElement *element;
+    while (!self.isWaiting && (element = [_elementQueue dequeue]) != nil) {
         if ([element isKindOfClass:[SEMethodChain class]]) {
-            //　メソッドチェーンを実行
             SEMethodChain *chain = (SEMethodChain*)element;
-            // layer, bgなどのクラスへの参照の場合
-            // 対応するクラスオブジェクトを取得
+            // staticメソッドを実行
             NSString *classID = chain.targetClass;
             id<SEObjectClass> class = [self valueForKey:[NSString stringWithFormat:@"_%@",classID]];
-            // 最初は静的メソッド
-            SEMethod *m = [chain dequeueMethod];
+            SEMethod *m = [chain.methods objectAtIndex:0];
             id<SEObjectInstance> instance = [class callMethod_method:m];
-            if (instance) {
-                // チェーンを実行
-                returnValue = instance;
-                while ((m = [chain dequeueMethod]) != nil) {
+            // インスタンスのメソッドチェーンを実行
+            for (NSUInteger i = 1; i < chain.methods.count; i++) {
+                m = [chain.methods objectAtIndex:i];
+                // wait中でなければ実行
+                if (!self.isWaiting) {
                     returnValue = [instance callMethod_method:m];
+                }else{
+                    // 次回のイベントループにキューイングする
+                    SEMethodInvocation *iv = [SEMethodInvocation new];
+                    iv.target = instance;
+                    iv.method = m;
+                    [_methodInvocationQueue enqueue:iv];
                 }
             }
         }else if([element isKindOfClass:[SEWords class]]){
             SEWords *words = (SEWords*)element;
             if (words.name) {
-                SEMethod *name_m = [[SEMethod alloc] initWithName:@"setName" type:SEMethodTypeCall lineNumer:words.rangeOfLines.location];
+                SEMethod *name_m = [[SEMethod alloc] initWithName:@"setName" lineNumer:words.rangeOfLines.location];
                 name_m.arguments = @[words.name];
                 returnValue = [self.text callMethod_method:name_m];
             }
             if (words.text) {
-                SEMethod *text_m = [[SEMethod alloc] initWithName:@"setText" type:SEMethodTypeCall lineNumer:words.rangeOfLines.location+1];
+                SEMethod *text_m = [[SEMethod alloc] initWithName:@"setText" lineNumer:words.rangeOfLines.location+1];
                 text_m.arguments = @[words.text];
                 returnValue = [self.text callMethod_method:text_m];
             }
+            // タップを待つ処理をキューイングする
+            [self kx_once:SEWaitCompletionEvent handler:^(NSNotification *n) {
+                [__self.app waitTap];
+                [__self kx_once:SEWaitCompletionEvent handler:^(NSNotification *n) {
+                    [__self enqueueScript:nil];
+                }];
+            }];
         }else{
             // value
             return element;
