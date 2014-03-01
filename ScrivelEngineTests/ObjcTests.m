@@ -76,6 +76,10 @@
     
 }
 
+- (void)handler:(NSNotification*)not
+{
+    XCTAssert([[not name] isEqualToString:@"hoge"], );
+}
 
 
 @end

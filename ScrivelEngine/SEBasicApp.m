@@ -7,7 +7,6 @@
 //
 
 #import "SEBasicApp.h"
-#import "EventEmitter.h"
 #import "ScrivelEngine.h"
 #import "SEResponderProxy.h"
 #import <objc/runtime.h>
@@ -64,6 +63,10 @@
         _responderProxy.delegate = nil;
     }
 #endif
+    if ([sender isKindOfClass:[NSNotification class]]) {
+        if ([[(NSNotification*)sender name] isEqualToString:SEAnimationCompletionEvent]) {
+        }
+    }
     [[NSNotificationCenter defaultCenter] postNotificationName:SEWaitCompletionEvent object:sender userInfo:nil];
 }
 
@@ -89,7 +92,7 @@
 
 - (void)waitAnimation
 {
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(completeWait:) name:SEAnimationCompletionEvent object:nil];
 }
 
 - (void)waitText

@@ -18,7 +18,6 @@
 #import "SEMethodChain.h"
 #import "SEWords.h"
 #import "SEClassProxy.h"
-#import "EventEmitter.h"
 
 #define REGISTER_NEXT_EVENT_LOOP_IF_NEEDED(m) \
 if ([m.name hasPrefix:@"wait"]) {\
@@ -54,6 +53,7 @@ iv.method = m;\
 
 static NSArray *engineClassses;
 NSString *const SEWaitCompletionEvent = @"org.scrive.ScrivelEngine:SEWaitCompleteEvent";
+NSString *const SEAnimationCompletionEvent = @"org.scrive.ScrivelEngine:SEAnimationCompleteEvent";
 
 @implementation ScrivelEngine
 {

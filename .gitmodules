@@ -7,6 +7,3 @@
 [submodule "External/Fragaria"]
 	path = External/Fragaria
 	url = https://github.com/scrivel/Fragaria
-[submodule "External/EventEmitter"]
-	path = External/EventEmitter
-	url = git@github.com:jerolimov/EventEmitter.git

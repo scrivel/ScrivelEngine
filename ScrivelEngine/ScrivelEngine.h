@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 extern NSString *const SEWaitCompletionEvent;
+extern NSString *const SEAnimationCompletionEvent;
 
 @class SEScript, SEMethod, SEBasicApp;
 @protocol SEClassProxy, SEApp, SELayerClass, SETextLayerClass, SETextLayerDelegate;
