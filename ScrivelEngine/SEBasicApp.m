@@ -80,11 +80,12 @@
     [self.engine.rootView addGestureRecognizer:tgr];
 #else
     if (!_responderProxy) {
-        _responderProxy = [[SEResponderProxy alloc] initWithDelegate:self selector:@selector(completeWait:)];
+        _responderProxy = [[SEResponderProxy alloc] initWithDelegate:nil selector:@selector(completeWait:)];
         NSResponder *r = self.engine.rootView.nextResponder;
         [self.engine.rootView setNextResponder:_responderProxy];
         [_responderProxy setNextResponder:r];
     }
+    _responderProxy.delegate = self;
 #endif
     [self kx_emit:SEWaitBeganEvent];
 }
