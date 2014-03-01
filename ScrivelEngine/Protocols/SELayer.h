@@ -172,6 +172,14 @@
 - (void)beginAnimation_duration:(NSTimeInterval)duration;
 
 /**
+ アニメーションチェインを開始する。
+ ~ commiAnimation()までに呼び出されたアニメーションメソッドは逐次実行される
+ 
+ @method chainAnimations
+ **/
+- (void)chainAnimations;
+
+/**
  アニメーションを開始する
  beginAnimation()からここまでに呼び出されたアニメーションメソッドが合成される
  

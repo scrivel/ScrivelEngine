@@ -35,9 +35,6 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 
 @interface SEBasicLayerClass ()
 
-@property NSOperationQueue *animationQueue;
-@property SEAnimationOperation *previousOperation;
-
 @end
 
 @implementation SEBasicLayerClass
@@ -51,9 +48,17 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 {
     self = [super initWithEngine:engine classIdentifier:classIdentifier];
     __layers = [NSMutableDictionary new];
-    _animationQueue = [NSOperationQueue new];
     self.instanceClass = [SEBasicLayer class];
     return self ?: nil;
+}
+
+- (void)setActiveAnimationCount:(NSUInteger)activeAnimationCount
+{
+    _activeAnimationCount = activeAnimationCount;
+    // 実行中のアニメーションがすべて終了したら通知を出す
+    if (activeAnimationCount == 0) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:SEAnimationCompletionEvent object:self];
+    }
 }
 
 - (id<SEObjectInstance>)new_args:(id)args
@@ -276,7 +281,7 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
     // アニメーションを開始する前にプロパティを書き換えるから終わったら消しても構わない
     // ...というか消さないと色々と面倒になる気がする
 //    animation.removedOnCompletion = NO;
-//    animation.fillMode = kCAFillModeForwards;
+    animation.fillMode = kCAFillModeForwards;
     animation.fromValue = val;
     animation.toValue = toValue;
     
@@ -303,7 +308,13 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
     NSString *uuid = (__bridge_transfer NSString *)CFUUIDCreateString(NULL, uuidRef);
         CFRelease(uuidRef);
     NSString *animationKey = [NSString stringWithFormat:@"%@-%@",key,uuid]; // translate-xxxxx
+    // 現在実行中のアニメーションの把握するためにholderに数を追加
+    __weak SEBasicLayerClass *__holder = (SEBasicLayerClass*)self.holder;
+    __holder.activeAnimationCount += 1;
     [CATransaction begin];
+    [CATransaction setCompletionBlock:^{
+        __holder.activeAnimationCount -= 1;
+    }];
     // 終わったあとにアニメーションを剥がすため、先にプロパティを設定しておく
     if ([animation isKindOfClass:[CAAnimationGroup class]]) {
         for (CABasicAnimation *a in [(CAAnimationGroup*)animation animations]) {
@@ -314,15 +325,8 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
         id key = [(CABasicAnimation*)animation keyPath];
         [self.layer setValue:val forKeyPath:key];
     }
-    [CATransaction commit];  
-    SEAnimationOperation *op = [SEAnimationOperation animationOperationWithTarget:self.layer animation:animation];
-    op.animationKey = animationKey;
-    SEAnimationOperation *dep = [(SEBasicLayerClass*)self.holder previousOperation];
-    if (dep) {
-        [op addDependency:dep];
-    }
-    [(SEBasicLayerClass*)self.holder setPreviousOperation:op];
-    [[NSOperationQueue mainQueue] addOperations:@[op] waitUntilFinished:NO];
+    [self.layer addAnimation:animation forKey:animationKey];
+    [CATransaction commit];
 }
 
 
@@ -334,8 +338,13 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
     g.duration = duration;
     g.repeatCount = 1;
 //    g.removedOnCompletion = NO;
-//    g.fillMode = kCAFillModeForwards;
+    g.fillMode = kCAFillModeForwards;
     _animationGroup = g;
+}
+
+- (void)chainAnimations
+{
+    
 }
 
 - (void)commitAnimation

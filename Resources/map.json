@@ -33,6 +33,7 @@
       "shadowOpacity": "shadowOpcity_opacity:",
       "shadowRadius": "shadowRadius_radius:",
       "beginAnimation": "beginAnimation_duration:",
+      "chainAnimations": "chainAnimations",
       "commitAnimation": "commitAnimation",
       "position": "position_x:y:duration:",
       "zPosition": "zPosition_z:duration:",

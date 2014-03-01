@@ -80,6 +80,7 @@
 		SEL_FOR_METHOD(@"shadowOpacity",shadowOpcity_opacity:);
 		SEL_FOR_METHOD(@"shadowRadius",shadowRadius_radius:);
 		SEL_FOR_METHOD(@"beginAnimation",beginAnimation_duration:);
+		SEL_FOR_METHOD(@"chainAnimations",chainAnimations);
 		SEL_FOR_METHOD(@"commitAnimation",commitAnimation);
 		SEL_FOR_METHOD(@"position",position_x:y:duration:);
 		SEL_FOR_METHOD(@"zPosition",zPosition_z:duration:);
@@ -137,6 +138,7 @@
 		SEL_FOR_METHOD(@"shadowOpacity",shadowOpcity_opacity:);
 		SEL_FOR_METHOD(@"shadowRadius",shadowRadius_radius:);
 		SEL_FOR_METHOD(@"beginAnimation",beginAnimation_duration:);
+		SEL_FOR_METHOD(@"chainAnimations",chainAnimations);
 		SEL_FOR_METHOD(@"commitAnimation",commitAnimation);
 		SEL_FOR_METHOD(@"position",position_x:y:duration:);
 		SEL_FOR_METHOD(@"zPosition",zPosition_z:duration:);
