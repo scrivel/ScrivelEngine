@@ -9,4 +9,4 @@
 	url = https://github.com/scrivel/Fragaria
 [submodule "External/KXEventEmitter"]
 	path = External/KXEventEmitter
-	url = https://github.com/keroxpKXEventEmitter
+	url = https://github.com/keroxp/KXEventEmitter
