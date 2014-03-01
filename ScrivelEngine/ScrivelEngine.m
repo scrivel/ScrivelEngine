@@ -150,7 +150,7 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
             }
             // タップを待つ処理をキューイングする
             [self kx_once:SEWaitCompletionEvent handler:^(NSNotification *n) {
-                [__self.app waitText];
+                [__self.app waitTap];
                 [__self kx_once:SEWaitCompletionEvent handler:^(NSNotification *n) {
                     [__self enqueueScript:nil];
                 }];
