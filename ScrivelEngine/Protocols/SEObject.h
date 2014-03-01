@@ -18,6 +18,7 @@
 
 @protocol SEObject <NSObject>
 
+@required
 /**
  メソッドを呼び出す
  
@@ -26,6 +27,7 @@
  **/
 - (id)callMethod_method:(SEMethod*)method;
 
+@optional
 /**
  スクリプトの処理を規定の秒数だけストップさせる
  このメソッドはScrielEngineのscript evaluationをサスペンドするメソッドです
