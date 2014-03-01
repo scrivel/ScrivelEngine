@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString *const SEWaitBeganEvent;
 extern NSString *const SEWaitCompletionEvent;
 extern NSString *const SEAnimationCompletionEvent;
 

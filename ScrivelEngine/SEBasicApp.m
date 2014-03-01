@@ -10,6 +10,7 @@
 #import "ScrivelEngine.h"
 #import "SEResponderProxy.h"
 #import <objc/runtime.h>
+#import "NSObject+KXEventEmitter.h"
 
 #define kPositionTypeKey @"positionType"
 #define kSizeTypeKey @"sizeType"
@@ -59,20 +60,16 @@
         [self.engine.rootView removeGestureRecognizer:sender];
     }
 #else
-    if ([sender isKindOfClass:[SEResponderProxy class]]) {
+    if ([sender isKindOfClass:[NSEvent class]]) {
         _responderProxy.delegate = nil;
     }
 #endif
-    if ([sender isKindOfClass:[NSNotification class]]) {
-        if ([[(NSNotification*)sender name] isEqualToString:SEAnimationCompletionEvent]) {
-            [[NSNotificationCenter defaultCenter] removeObserver:self name:SEAnimationCompletionEvent object:nil];
-        }
-    }
-    [[NSNotificationCenter defaultCenter] postNotificationName:SEWaitCompletionEvent object:sender userInfo:nil];
+    [self kx_emit:SEWaitCompletionEvent];
 }
 
 - (void)wait_duration:(NSTimeInterval)duration
 {
+    [self kx_emit:SEWaitBeganEvent];
     [self performSelector:@selector(completeWait:) withObject:self afterDelay:duration];
 }
 
@@ -89,11 +86,15 @@
         [_responderProxy setNextResponder:r];
     }
 #endif
+    [self kx_emit:SEWaitBeganEvent];
 }
 
 - (void)waitAnimation
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(completeWait:) name:SEAnimationCompletionEvent object:nil];
+    [self kx_emit:SEWaitBeganEvent];
+    [self kx_once:SEAnimationCompletionEvent handler:^(NSNotification *n) {
+        [self kx_emit:SEWaitCompletionEvent];
+    }];
 }
 
 - (void)waitText

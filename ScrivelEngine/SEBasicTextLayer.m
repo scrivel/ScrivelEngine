@@ -39,7 +39,7 @@
     return new;
 }
 
-- (id)callStatic_method:(SEMethod *)method
+- (id)callMethod_method:(SEMethod *)method
 {
     SEL s =[self.engine.classProxy selectorForMethodIdentifier:method.name classIdentifier:self.classIdentifier];
     // セレクタがマッピングされているが、クラスメソッドでないものはPrimaryにProxyする

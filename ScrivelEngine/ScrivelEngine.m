@@ -18,19 +18,7 @@
 #import "SEMethodChain.h"
 #import "SEWords.h"
 #import "SEClassProxy.h"
-
-#define REGISTER_NEXT_EVENT_LOOP_IF_NEEDED(m) \
-if ([m.name hasPrefix:@"wait"]) {\
-    _isWaiting = YES;\
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enqueueScript:) name:SEWaitCompletionEvent object:nil];\
-}\
-
-#define ENQUEUE_NEXT_RUNLOOP(t,m) \
-SEMethodInvocation *iv = [SEMethodInvocation new];\
-iv.target = t;\
-iv.method = m;\
-[_methodInvocationQueue enqueue:iv];\
-
+#import "NSObject+KXEventEmitter.h"
 
 @interface SEMethodInvocation : NSObject
 
@@ -52,6 +40,7 @@ iv.method = m;\
 
 
 static NSArray *engineClassses;
+NSString *const SEWaitBeganEvent = @"org.scrive.ScrivelEngine:SEWaitBeganEvent";
 NSString *const SEWaitCompletionEvent = @"org.scrive.ScrivelEngine:SEWaitCompleteEvent";
 NSString *const SEAnimationCompletionEvent = @"org.scrive.ScrivelEngine:SEAnimationCompleteEvent";
 
@@ -62,6 +51,7 @@ NSString *const SEAnimationCompletionEvent = @"org.scrive.ScrivelEngine:SEAnimat
 }
 
 @synthesize classProxy = _classProxy;
+@synthesize isWaiting = _isWaiting;
 
 + (void)load
 {
@@ -101,25 +91,29 @@ NSString *const SEAnimationCompletionEvent = @"org.scrive.ScrivelEngine:SEAnimat
     return [self enqueueScript:s];
 }
 
-- (id)enqueueScript:(SEScript*)script
+- (id)enqueueScript:(id)sender
 {
     _isWaiting = NO;
     id returnValue = nil;
-    if ([script isKindOfClass:[NSNotification class]]) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:SEWaitCompletionEvent object:nil];
-    }else if ([script isKindOfClass:[SEScript class]]){
+    __weak typeof(self) __self = self;
+    [self kx_once:SEWaitBeganEvent handler:^(NSNotification *n) {
+        [__self setValue:@YES forKey:@"_isWaiting"];
+        [__self kx_once:SEWaitCompletionEvent handler:^(NSNotification *n) {
+            [__self enqueueScript:nil];
+        }];
+    }];
+    if ([sender isKindOfClass:[SEScript class]]){
         // エレメントをキューイング
-        [_elementQueue enqueueObjects:script.elements];        
+        [_elementQueue enqueueObjects:[(SEScript*)sender elements]];
     }
     // 前回のイベントループで途中だったメソッドを実行する
     SEMethodInvocation *invocation;
-    while (!_isWaiting && (invocation = [_methodInvocationQueue dequeue]) != nil) {
+    while (!self.isWaiting && (invocation = [_methodInvocationQueue dequeue]) != nil) {
         returnValue = [invocation invoke];
-        REGISTER_NEXT_EVENT_LOOP_IF_NEEDED(invocation.method);
     }
     // 溜まっているエレメントを順番に処理していく
     SEElement *element;
-    while (!_isWaiting && (element = [_elementQueue dequeue]) != nil) {
+    while (!self.isWaiting && (element = [_elementQueue dequeue]) != nil) {
         if ([element isKindOfClass:[SEMethodChain class]]) {
             SEMethodChain *chain = (SEMethodChain*)element;
             // staticメソッドを実行
@@ -127,18 +121,18 @@ NSString *const SEAnimationCompletionEvent = @"org.scrive.ScrivelEngine:SEAnimat
             id<SEObjectClass> class = [self valueForKey:[NSString stringWithFormat:@"_%@",classID]];
             SEMethod *m = [chain.methods objectAtIndex:0];
             id<SEObjectInstance> instance = [class callMethod_method:m];
-            // wait(1)のようなwait系メソッドならば次回のイベントループに回す
-            REGISTER_NEXT_EVENT_LOOP_IF_NEEDED(m);
             // インスタンスのメソッドチェーンを実行
             for (NSUInteger i = 1; i < chain.methods.count; i++) {
                 m = [chain.methods objectAtIndex:i];
                 // wait中でなければ実行
-                if (!_isWaiting) {
+                if (!self.isWaiting) {
                     returnValue = [instance callMethod_method:m];
-                    REGISTER_NEXT_EVENT_LOOP_IF_NEEDED(m);
                 }else{
                     // 次回のイベントループにキューイングする
-                    ENQUEUE_NEXT_RUNLOOP(instance, m);
+                    SEMethodInvocation *iv = [SEMethodInvocation new];
+                    iv.target = instance;
+                    iv.method = m;
+                    [_methodInvocationQueue enqueue:iv];
                 }
             }
         }else if([element isKindOfClass:[SEWords class]]){
