@@ -106,7 +106,7 @@ NSString *const SEAnimationCompletionEvent = @"org.scrive.ScrivelEngine:SEAnimat
     _isWaiting = NO;
     id returnValue = nil;
     if ([script isKindOfClass:[NSNotification class]]) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:SEWaitCompletionEvent object:nil];
     }else if ([script isKindOfClass:[SEScript class]]){
         // エレメントをキューイング
         [_elementQueue enqueueObjects:script.elements];        

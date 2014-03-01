@@ -569,8 +569,7 @@
 				A6AC921B18AC921C00D43025 /* ScrivelEngineMacDemo */,
 				A6A6127318A7B0DA00CBD988 /* Frameworks */,
 				A6A6127218A7B0DA00CBD988 /* Products */,
-				A6AB55D518C225C50083760F /* NSObject+KXEventEmitter.h */,
-				A6AB55D618C225C50083760F /* NSObject+KXEventEmitter.m */,
+				A6AB55DB18C235D60083760F /* lib */,
 				C4B2227A2DAB4A94B8A28A3B /* Pods-ScrivelEngineDemo.xcconfig */,
 			);
 			sourceTree = "<group>";
@@ -615,6 +614,15 @@
 				D9B262D9694048BFA8251D77 /* libPods-ScrivelEngineMacDemo.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A6AB55DB18C235D60083760F /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				A6AB55D618C225C50083760F /* NSObject+KXEventEmitter.m */,
+				A6AB55D518C225C50083760F /* NSObject+KXEventEmitter.h */,
+			);
+			name = lib;
 			sourceTree = "<group>";
 		};
 		A6AC921B18AC921C00D43025 /* ScrivelEngineMacDemo */ = {
