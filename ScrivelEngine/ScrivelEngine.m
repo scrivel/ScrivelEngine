@@ -113,7 +113,7 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
                     // 次回のイベントループにキューイングする
                     m.target = instance;
                     [_methodQueue enqueue:m];
-                }
+                } 
             }
         }else if([element isKindOfClass:[SEWords class]]){
             SEWords *words = (SEWords*)element;

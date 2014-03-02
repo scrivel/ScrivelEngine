@@ -1,22 +1,22 @@
-// create layer
-layer.new(1)
-	.size(100,100)
-	.position(0.5,0.5)
-	.loadImage("keroxp.jpg")
+// create layer 
+layer.new(1) // with index 1
+	.size(100,100) // set size {100,100} in px
+	.position(0.5,0.5) // set position {0.5,0.5}, normalized position
+	.loadImage("keroxp.jpg") // load iamge on the layer named "keroxp.jpg"
 // animate layer
-layer.at(1)
-	.translate(0.2,0,1)
-	.waitAnimation()
-	.scale(2.0)
-	.wait(1)
-	.translate(0,0.2,1)
-	.waitAnimation()
-	.beginAnimation(1)
+layer.at(1) // of index 1
+	.translate(0.2,0,1) // translate 0.2 to x, 0.1 to y in a second
+	.waitAnimation() // wait completion of previous animation
+	.scale(2.0) // make scale be twice, without animation
+	.wait(1) // wait a second
+	.translate(0,0.2,1) // ...
+	.waitAnimation() // ...
+	.beginAnimation(1) // begin a set of animations
 		.translate(-0.2,-0.2)
 		.rotate(45)
 		.scale(2.0)
-	.commitAnimation()
-	.waitAnimation()	
+	.commitAnimation() // commit compositted animations
+	.waitAnimation() // and animate more !	
 	.rotateY(360,2)
 	.waitAnimation()
 	.beginAnimation(1)
