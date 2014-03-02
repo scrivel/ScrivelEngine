@@ -290,7 +290,7 @@
 - (void)scale_ratio:(CGFloat)ratio duration:(NSTimeInterval)duration;
 
 /**
- レイヤーをanchorPointを中心に回転させる。
+ レイヤーをanchorPointを中心にz軸に対して回転させる。
  
  @method  rotate
  @param	{Number} degree		角度。
@@ -298,6 +298,27 @@
  正の値で左回転。負の値で右回転。
  **/
 - (void)rotate_degree:(CGFloat)degree duration:(NSTimeInterval)duration;
+
+/**
+ レイヤーをanchorPointを中心にx軸にたいして回転させる。
+ 
+ @method  rotateX
+ @param	{Number} degree		角度。
+ @param	{Number} [duration]	秒数
+ 正の値で左回転。負の値で右回転。
+ **/
+- (void)rotateX_degree:(CGFloat)degree duration:(NSTimeInterval)duration;
+
+/**
+ レイヤーをanchorPointを中心にy軸に対して回転させる。
+ 
+ @method  rotateY
+ @param	{Number} degree		角度。
+ @param	{Number} [duration]	秒数
+ 正の値で左回転。負の値で右回転。
+ **/
+- (void)rotateY_degree:(CGFloat)degree duration:(NSTimeInterval)duration;
+
 
 /**
  レイヤーの不透明度を指定する。

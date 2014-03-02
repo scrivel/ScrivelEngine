@@ -436,16 +436,29 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 
 - (void)scale_ratio:(CGFloat)ratio duration:(NSTimeInterval)duration
 {
-    NSParameterAssert(VALID_CGFLOAT(ratio));
-	[self enqueuAnimationForKeyPath:@"transform.scale" toValue:@(ratio) duration:duration];
+    CGFloat _ratio = ROUND_CGFLOAT(ratio);
+	[self enqueuAnimationForKeyPath:@"transform.scale" toValue:@(_ratio) duration:duration];
 }
 
 - (void)rotate_degree:(CGFloat)degree duration:(NSTimeInterval)duration
 {
-    NSParameterAssert(VALID_CGFLOAT(degree));
-    CGFloat _degree = RADIAN(degree);
+    CGFloat _degree = RADIAN(ROUND_CGFLOAT(degree));
     CGFloat rotationZ = [[self.layer valueForKeyPath:@"transform.rotation.z"] CGFloatValue];
     [self enqueuAnimationForKeyPath:@"transform.rotation.z" toValue:@(_degree+rotationZ) duration:duration];
+}
+
+- (void)rotateX_degree:(CGFloat)degree duration:(NSTimeInterval)duration
+{
+    CGFloat _degree = RADIAN(ROUND_CGFLOAT(degree));
+    CGFloat rotationX = [[self.layer valueForKeyPath:@"transform.rotation.x"] CGFloatValue];
+    [self enqueuAnimationForKeyPath:@"transform.rotation.x" toValue:@(_degree+rotationX) duration:duration];
+}
+
+- (void)rotateY_degree:(CGFloat)degree duration:(NSTimeInterval)duration
+{
+    CGFloat _degree = RADIAN(ROUND_CGFLOAT(degree));
+    CGFloat rotationY = [[self.layer valueForKeyPath:@"transform.rotation.y"] CGFloatValue];
+    [self enqueuAnimationForKeyPath:@"transform.rotation.y" toValue:@(_degree+rotationY) duration:duration];
 }
 
 - (void)opacity_ratio:(CGFloat)ratio duration:(NSTimeInterval)duration

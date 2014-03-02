@@ -47,6 +47,8 @@
       "translateZ": "translateZ_z:duration:",
       "scale": "scale_ratio:duration:",
       "rotate": "rotate_degree:duration:",
+      "rotateX": "rotateX_degree:duration:",
+      "rotateY": "rotateY_degree:duration:",
       "opacity": "opacity_ratio:duration:"
     },
     "extends": "abstract"

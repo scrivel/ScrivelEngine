@@ -94,6 +94,8 @@
 		SEL_FOR_METHOD(@"translateZ",translateZ_z:duration:);
 		SEL_FOR_METHOD(@"scale",scale_ratio:duration:);
 		SEL_FOR_METHOD(@"rotate",rotate_degree:duration:);
+		SEL_FOR_METHOD(@"rotateX",rotateX_degree:duration:);
+		SEL_FOR_METHOD(@"rotateY",rotateY_degree:duration:);
 		SEL_FOR_METHOD(@"opacity",opacity_ratio:duration:);
 		// inherited from abstract
 		SEL_FOR_METHOD(@"callMethod",callMethod_method:);
@@ -152,6 +154,8 @@
 		SEL_FOR_METHOD(@"translateZ",translateZ_z:duration:);
 		SEL_FOR_METHOD(@"scale",scale_ratio:duration:);
 		SEL_FOR_METHOD(@"rotate",rotate_degree:duration:);
+		SEL_FOR_METHOD(@"rotateX",rotateX_degree:duration:);
+		SEL_FOR_METHOD(@"rotateY",rotateY_degree:duration:);
 		SEL_FOR_METHOD(@"opacity",opacity_ratio:duration:);
 		// inherited from abstract
 		SEL_FOR_METHOD(@"callMethod",callMethod_method:);
