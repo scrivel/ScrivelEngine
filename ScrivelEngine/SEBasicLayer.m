@@ -18,6 +18,7 @@
 #import "SEClassProxy.h"
 #import "SEColorUtil.h"
 #import "SEAnimationOperation.h"
+#import "NSObject+KXEventEmitter.h"
 
 #define kMaxLayer 1000
 #define kGroupedAnimationKey @"GroupedAnimation"
@@ -101,6 +102,7 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 @interface SEBasicLayer()
 {
     BOOL _animationBegan;
+    BOOL _animationChainBegan;
     CAAnimationGroup *_animationGroup;
 }
 @end
@@ -327,6 +329,10 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
     }
     [self.layer addAnimation:animation forKey:animationKey];
     [CATransaction commit];
+    // チェイン状態だったらアニメーションごとにwaitAnimation()する
+    if (_animationChainBegan) {
+        [self waitAnimation];
+    }
 }
 
 
@@ -344,16 +350,17 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 
 - (void)chainAnimations
 {
-    
+    _animationChainBegan = YES;
 }
 
 - (void)commitAnimation
 {
     // Queueに貯めたアニメーションをグループ化して追加する
-    NSAssert(_animationBegan, @"beginAnimationが呼ばれていない");
-    NSAssert(_animationGroup.animations.count > 0, @"アニメーションが追加されていない");
-    [self addAnimation:_animationGroup forKey:kGroupedAnimationKey completion:NULL];
+    if (_animationBegan) {
+        [self addAnimation:_animationGroup forKey:kGroupedAnimationKey completion:NULL];
+    }
     _animationBegan = NO;
+    _animationChainBegan = YES;
     _animationGroup = nil;
 }
 
