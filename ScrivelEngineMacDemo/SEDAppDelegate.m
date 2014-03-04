@@ -29,11 +29,19 @@
     // Fragaria
     MGSFragaria *f = [[MGSFragaria alloc] init];
     [f setObject:self forKey:MGSFODelegate];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSArchiver archivedDataWithRootObject:[NSFont fontWithName:@"Menlo Bold" size:16.0f]] forKey:MGSFragariaPrefsTextFont];    
     [f setObject:@"SEScript" forKey:MGSFOSyntaxDefinitionName];
     [f embedInView:self.editorView];
     NSString *path = [[NSBundle mainBundle] pathForResource:@"animate" ofType:@"sescript"];
     NSString *str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSArchiver archivedDataWithRootObject:[NSFont fontWithName:@"Menlo Bold" size:16.0f]] forKey:MGSFragariaPrefsTextFont];
+    [[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:MGSFragariaPrefsAutocompleteSuggestAutomatically];
+    [[NSUserDefaults standardUserDefaults] setObject:@(NO) forKey:MGSFragariaPrefsAutomaticLinkDetection];
+    [[NSUserDefaults standardUserDefaults] setObject:@(0.5) forKey:MGSFragariaPrefsAutocompleteAfterDelay];
+    [[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:MGSFragariaPrefsAutoInsertAClosingBrace];
+    [[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:MGSFragariaPrefsAutoInsertAClosingParenthesis];
+    [[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:MGSFragariaPrefsAutomaticallyIndentBraces];
+    [[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:MGSFragariaPrefsAutomaticQuoteSubstitution];
+    
     [f setString:str];
     fragaria = f;
     // font

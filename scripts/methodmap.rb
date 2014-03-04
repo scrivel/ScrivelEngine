@@ -1,8 +1,12 @@
 require "json"
+require "plist"
 
 out = File.expand_path("Resources/map.json")
 path = File.expand_path("ScrivelEngine/Protocols")
 proxy_path = File.expand_path("ScrivelEngine/SEBasicClassProxy.m")
+plist_path = File.expand_path("External/Fragaria/Syntax Definitions/sescript.plist")
+
+plist = Plist::parse_xml(plist_path)
 
 # p path
 hash = {}
@@ -57,6 +61,14 @@ hierarchy = {}
 open(out ,"w"){|f| f.write JSON.pretty_generate hash }
 p "#{out} generated."
 
+hash.each do |c,props|
+  plist["autocompleteWords"] << c unless plist["autocompleteWords"].index(c)
+  props["methods"].each do |method,sel|
+      plist["autocompleteWords"] << method unless plist["autocompleteWords"].index(method)
+  end
+end
+
+plist.save_plist plist_path
 
 class_for_class = ""
 sel_for_method = ""
