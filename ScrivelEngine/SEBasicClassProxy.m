@@ -53,6 +53,7 @@
 		// inherited from app
 		SEL_FOR_METHOD(@"set",set_key:value:);
 		SEL_FOR_METHOD(@"enable",enable_key:enable:);
+		SEL_FOR_METHOD(@"alias",);
 		// inherited from abstract
 		SEL_FOR_METHOD(@"callMethod",callMethod_method:);
 		SEL_FOR_METHOD(@"wait",wait_duration:);
@@ -79,8 +80,8 @@
 		SEL_FOR_METHOD(@"shadowColor",shadowColor_color:);
 		SEL_FOR_METHOD(@"shadowOpacity",shadowOpcity_opacity:);
 		SEL_FOR_METHOD(@"shadowRadius",shadowRadius_radius:);
-		SEL_FOR_METHOD(@"beginAnimation",beginAnimation_duration:);
-		SEL_FOR_METHOD(@"chainAnimations",chainAnimations);
+		SEL_FOR_METHOD(@"beginAnimation",beginAnimation_duration:options:);
+		SEL_FOR_METHOD(@"chainAnimation",chainAnimation);
 		SEL_FOR_METHOD(@"commitAnimation",commitAnimation);
 		SEL_FOR_METHOD(@"position",position_x:y:duration:);
 		SEL_FOR_METHOD(@"zPosition",zPosition_z:duration:);
@@ -139,8 +140,8 @@
 		SEL_FOR_METHOD(@"shadowColor",shadowColor_color:);
 		SEL_FOR_METHOD(@"shadowOpacity",shadowOpcity_opacity:);
 		SEL_FOR_METHOD(@"shadowRadius",shadowRadius_radius:);
-		SEL_FOR_METHOD(@"beginAnimation",beginAnimation_duration:);
-		SEL_FOR_METHOD(@"chainAnimations",chainAnimations);
+		SEL_FOR_METHOD(@"beginAnimation",beginAnimation_duration:options:);
+		SEL_FOR_METHOD(@"chainAnimation",chainAnimation);
 		SEL_FOR_METHOD(@"commitAnimation",commitAnimation);
 		SEL_FOR_METHOD(@"position",position_x:y:duration:);
 		SEL_FOR_METHOD(@"zPosition",zPosition_z:duration:);

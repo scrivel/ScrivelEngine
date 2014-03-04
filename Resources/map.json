@@ -13,7 +13,8 @@
   "app": {
     "methods": {
       "set": "set_key:value:",
-      "enable": "enable_key:enable:"
+      "enable": "enable_key:enable:",
+      "alias": ""
     },
     "extends": "abstract"
   },
@@ -32,8 +33,8 @@
       "shadowColor": "shadowColor_color:",
       "shadowOpacity": "shadowOpcity_opacity:",
       "shadowRadius": "shadowRadius_radius:",
-      "beginAnimation": "beginAnimation_duration:",
-      "chainAnimations": "chainAnimations",
+      "beginAnimation": "beginAnimation_duration:options:",
+      "chainAnimation": "chainAnimation",
       "commitAnimation": "commitAnimation",
       "position": "position_x:y:duration:",
       "zPosition": "zPosition_z:duration:",

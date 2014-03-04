@@ -101,8 +101,6 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 
 @interface SEBasicLayer()
 {
-    BOOL _animationBegan;
-    BOOL _animationChainBegan;
     CAAnimationGroup *_animationGroup;
 }
 @end
@@ -278,11 +276,6 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
     if (!_animationBegan) {
         animation.duration = duration;
     }
-    // 元に戻さない
-    animation.repeatCount = 1;
-    // アニメーションを開始する前にプロパティを書き換えるから終わったら消しても構わない
-    // ...というか消さないと色々と面倒になる気がする
-//    animation.removedOnCompletion = NO;
     animation.fillMode = kCAFillModeForwards;
     animation.fromValue = val;
     animation.toValue = toValue;
@@ -310,13 +303,15 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
     NSString *uuid = (__bridge_transfer NSString *)CFUUIDCreateString(NULL, uuidRef);
         CFRelease(uuidRef);
     NSString *animationKey = [NSString stringWithFormat:@"%@-%@",key,uuid]; // translate-xxxxx
-    // 現在実行中のアニメーションの把握するためにholderに数を追加
-    __weak SEBasicLayerClass *__holder = (SEBasicLayerClass*)self.holder;
-    __holder.activeAnimationCount += 1;
     [CATransaction begin];
-    [CATransaction setCompletionBlock:^{
-        __holder.activeAnimationCount -= 1;
-    }];
+    // サイクルアニメーションでない場合のみ、現在実行中のアニメーションの把握するためにholderに数を追加
+    if (!_isRepeatingForever) {
+        __weak SEBasicLayerClass *__holder = (SEBasicLayerClass*)self.holder;
+        __holder.activeAnimationCount += 1;
+        [CATransaction setCompletionBlock:^{
+            __holder.activeAnimationCount -= 1;
+        }];
+    }
     // 終わったあとにアニメーションを剥がすため、先にプロパティを設定しておく
     if ([animation isKindOfClass:[CAAnimationGroup class]]) {
         for (CABasicAnimation *a in [(CAAnimationGroup*)animation animations]) {
@@ -335,20 +330,68 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
     }
 }
 
-
-- (void)beginAnimation_duration:(NSTimeInterval)duration
+- (void)beginAnimation_duration:(NSTimeInterval)duration options:(NSDictionary *)options
 {
     _animationBegan = YES;
-////    NSAssert(duration > 0, @"durationが0以下");
-    CAAnimationGroup *g = [CAAnimationGroup animation];
-    g.duration = duration;
-    g.repeatCount = 1;
-//    g.removedOnCompletion = NO;
-    g.fillMode = kCAFillModeForwards;
-    _animationGroup = g;
+    CAAnimationGroup *a = [CAAnimationGroup animation];
+    if ([options[@"repeatCount"] isKindOfClass:[NSNumber class]]) {
+        float rc  = [options[@"repeatCount"] floatValue];
+        // マイナス値でサイクルアニメーション
+        if (rc < 0) {
+            a.repeatCount = HUGE_VALF;
+        }else{
+            a.repeatCount = rc;
+        }
+    }
+    if ([options[@"timing"] isKindOfClass:[NSString class]]) {
+        NSString *tm = options[@"timing"];
+        NSString *name = kCAMediaTimingFunctionDefault;
+        if ([tm isEqualToString:@"linear"]) {
+            name = kCAMediaTimingFunctionLinear;
+        }else if ([tm isEqualToString:@"ease-in"]){
+            name = kCAMediaTimingFunctionEaseIn;
+        }else if ([tm isEqualToString:@"ease-out"]){
+            name = kCAMediaTimingFunctionEaseOut;
+        }else if ([tm isEqualToString:@"ease-in-ease-out"]){
+            name = kCAMediaTimingFunctionEaseInEaseOut;
+        }
+        a.timingFunction = [CAMediaTimingFunction functionWithName:name];
+    }else if ([options[@"timingPoints"] isKindOfClass:[NSArray class]]){
+        CGFloat p1x = ROUND_CGFLOAT([options[@"timingPoints"][0] CGFloatValue]);
+        CGFloat p1y = ROUND_CGFLOAT([options[@"timingPoints"][1] CGFloatValue]);
+        CGFloat p2x = ROUND_CGFLOAT([options[@"timingPoints"][2] CGFloatValue]);
+        CGFloat p2y = ROUND_CGFLOAT([options[@"timingPoints"][3] CGFloatValue]);
+        a.timingFunction = [CAMediaTimingFunction functionWithControlPoints:(float)p1x :(float)p1y :(float)p2x :(float)p2y];
+    }
+    if ([options[@"repeatDuration"] isKindOfClass:[NSNumber class]]) {
+        CFTimeInterval rd = [options[@"repeatDuration"] doubleValue];
+        a.repeatDuration = rd;
+    }
+    if ([options[@"removeOnCompletion"] isKindOfClass:[NSNumber class]]) {
+        BOOL roc = [options[@"removeOnCompletion"] boolValue];
+        a.removedOnCompletion = roc;
+    }
+    if ([options[@"timeOffset"] isKindOfClass:[NSNumber class]]) {
+        CFTimeInterval to = [options[@"timeOffset"] doubleValue];
+        a.timeOffset = to;
+    }
+    if ([options[@"autoreverses"] isKindOfClass:[NSNumber class]]) {
+        BOOL ar = [options[@"autoreverses"] boolValue];
+        a.autoreverses = ar;
+    }
+    if ([options[@"duration"] isKindOfClass:[NSNumber class]]) {
+        CFTimeInterval d = [options[@"duration"] doubleValue];
+        a.duration = d;
+    }
+    a.duration = ROUND_CGFLOAT(duration);
+    a.fillMode = kCAFillModeForwards;    
+    if (a.repeatCount == HUGE_VALF) {
+        _isRepeatingForever = YES;
+    }
+    _animationGroup = a;
 }
 
-- (void)chainAnimations
+- (void)chainAnimation
 {
     _animationChainBegan = YES;
 }

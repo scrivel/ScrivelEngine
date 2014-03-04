@@ -54,6 +54,9 @@
 
 @property (nonatomic) unsigned int index;
 @property (nonatomic) CALayer *layer;
+@property (nonatomic, readonly) BOOL animationBegan;
+@property (nonatomic, readonly) BOOL animationChainBegan;
+@property (nonatomic, readonly) BOOL isRepeatingForever;
 
 - (void)enqueuAnimationForKeyPath:(NSString*)keyPath
                           toValue:(id)value

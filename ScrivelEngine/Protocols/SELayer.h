@@ -165,19 +165,29 @@
     .scale(2.0)
     .commitAnimation()
  
+ optionsにはアニメーションの指定もできる
  
  @method beginAnimation
- @param (Number) [duration]
+ @param {Number} [duration]
+ @param {Object} [options] アニメーションオプション
+    @param {Boolean} [options.autoreverses] アニメーションを逆実行するか
+    @param {Number} [options.repeatCount] アニメーションの繰り返し回数
+    @param {Number} [options.repeatDuration] アニメーションの繰り返しの間隔
+    @param {Number} [options.timeOffset] アニメーション開始までのオフセット時間
+    @param {Boolean} [options.removeOnCompletion] アニメーション終了時にもとに戻すかどうか
+    @param {String} [options.timing] アニメーションカーブ // linear, ease-in, ease-out, ease-in-ease-out, default
+    @param {Array} [options.timingPoints] アニメーションカーブを構成するポイント。正規化された値。 例) 0.1, 0.1, 0.2, 0.2
+    @param {Number} [options.duration] アニメーションの時間。指定された場合こちらが優先される
  **/
-- (void)beginAnimation_duration:(NSTimeInterval)duration;
+- (void)beginAnimation_duration:(NSTimeInterval)duration options:(NSDictionary*)options;
 
 /**
  アニメーションチェインを開始する。
  ~ commiAnimation()までに呼び出されたアニメーションメソッドは逐次実行される
  
- @method chainAnimations
+ @method chainAnimation
  **/
-- (void)chainAnimations;
+- (void)chainAnimation;
 
 /**
  アニメーションを開始する
