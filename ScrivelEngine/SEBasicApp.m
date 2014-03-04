@@ -8,9 +8,12 @@
 
 #import "SEBasicApp.h"
 #import "ScrivelEngine.h"
+#if !TARGET_OS_IPHONE
 #import "SEResponderProxy.h"
+#endif
 #import <objc/runtime.h>
 #import "NSObject+KXEventEmitter.h"
+#import "SEBasicClassProxy.h"
 
 #define kPositionTypeKey @"positionType"
 #define kSizeTypeKey @"sizeType"
@@ -19,6 +22,7 @@
 {
     NSMutableDictionary *__keyValueStore;
     NSMutableDictionary *__enabledStore;
+    NSMutableDictionary *__aliasStore;
 #if TARGET_OS_IPHONE
     UITapGestureRecognizer *_tapGestureRecognizer;
 #else
@@ -32,6 +36,7 @@
     self = [super init];
     __keyValueStore = [NSMutableDictionary new];
     __enabledStore = [NSMutableDictionary new];
+    __aliasStore = [NSMutableDictionary new];
     [self set_key:kPositionTypeKey value:@"norm"];
     [self set_key:kSizeTypeKey value:@"px"];
     return self ?: nil;
@@ -49,6 +54,27 @@
     if (key) {
         [__enabledStore setObject:@(enable) forKey:key];
     }
+}
+
+- (void)alias_alias:(NSString *)alias method:(NSString *)method
+{
+    // wa -> waitAnimation
+    [__aliasStore setObject:method forKey:alias];
+}
+
+- (NSDictionary *)keyValueStore
+{
+    return __keyValueStore;
+}
+
+- (NSDictionary *)enabledStore
+{
+    return __enabledStore;
+}
+
+- (NSDictionary *)aliasStore
+{
+    return __aliasStore;
 }
 
 #pragma mark - wait

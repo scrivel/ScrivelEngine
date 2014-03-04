@@ -17,7 +17,6 @@
 #import <objc/message.h>
 #import "SEClassProxy.h"
 #import "SEColorUtil.h"
-#import "SEAnimationOperation.h"
 #import "NSObject+KXEventEmitter.h"
 
 #define kMaxLayer 1000

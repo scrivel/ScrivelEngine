@@ -12,13 +12,17 @@
 #import "SEMethod.h"
 #import "SEClassProxy.h"
 #import <objc/message.h>
+#import "SEBasicApp.h"
 
 #define SAME_TYPE(s1,s2) ((strcmp(s1,s2) == 0) ? YES : NO)
 
 static id callMethod(id target, NSString *class, SEMethod *method, ScrivelEngine *engine)
 {
     // SEMethodを動的に呼び出す
-    SEL sel = [engine.classProxy selectorForMethodIdentifier:method.name classIdentifier:class];
+    
+    // aliasを探す
+    NSString *name = [[(SEBasicApp*)engine.app aliasStore] objectForKey:method.name] ?: method.name;
+    SEL sel = [engine.classProxy selectorForMethodIdentifier:name classIdentifier:class];
     // wait系メソッドをappにフォワーディングする
     if ([method.name hasPrefix:@"wait"]) {
         target = engine.app;

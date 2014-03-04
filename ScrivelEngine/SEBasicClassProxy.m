@@ -53,7 +53,7 @@
 		// inherited from app
 		SEL_FOR_METHOD(@"set",set_key:value:);
 		SEL_FOR_METHOD(@"enable",enable_key:enable:);
-		SEL_FOR_METHOD(@"alias",);
+		SEL_FOR_METHOD(@"alias",alias_alias:method:);
 		// inherited from abstract
 		SEL_FOR_METHOD(@"callMethod",callMethod_method:);
 		SEL_FOR_METHOD(@"wait",wait_duration:);

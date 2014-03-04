@@ -64,14 +64,14 @@
     id ret;
     NSTextView *v = [fragaria objectForKey:ro_MGSFOTextView];
     NSError *e = nil;
-    // validate
-    if (![_engine validateScript:v.string error:&e]) {
-        NSAlert *av = [NSAlert alertWithError:e];
-        [av runModal];
-    }else{
+//    // validate
+//    if (![_engine validateScript:v.string error:&e]) {
+//        NSAlert *av = [NSAlert alertWithError:e];
+//        [av runModal];
+//    }else{
         ret = [_engine evaluateScript:v.string error:&e];
         NSLog(@"%@",ret);
-    }
+//    }
 }
 - (void)changeFont:(NSFontManager*)sender
 {

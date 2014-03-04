@@ -1,16 +1,21 @@
 PODS:
+  - KXEventEmitter (0.0.2)
   - ParseKit (0.7)
   - ScrivelEngine (0.0.1):
     - ParseKit (~> 0.7)
 
 DEPENDENCIES:
+  - KXEventEmitter (from `https://github.com/keroxp/KXEventEmitter`)
   - ScrivelEngine (from `.`)
 
 EXTERNAL SOURCES:
+  KXEventEmitter:
+    :git: https://github.com/keroxp/KXEventEmitter
   ScrivelEngine:
     :path: .
 
 SPEC CHECKSUMS:
+  KXEventEmitter: 96b693b79fba28f1ea0edb4e9d244c3e2d024053
   ParseKit: 3e29375d37e10b468fa2298ad7304a10f553bcef
   ScrivelEngine: 7cec8e5fc36227444f2f00448cb447fc54f25254
 

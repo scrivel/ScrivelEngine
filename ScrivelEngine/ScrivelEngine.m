@@ -167,7 +167,8 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
                 return NO;
             }
             for (SEMethod *method in chain) {
-                if (![_classProxy selectorForMethodIdentifier:method.name classIdentifier:chain.targetClass]) {
+                if (![_classProxy selectorForMethodIdentifier:method.name classIdentifier:chain.targetClass]
+                    && ![[(SEBasicApp*)self.app aliasStore] objectForKey:method.name]) {
                     NSString *type = (method == [chain.methods firstObject]) ? @"static" : @"instance";
                     NSMutableString *ms = [NSMutableString stringWithString:@"!!存在しないメソッドの呼び出しです!!\n"];
                     [ms appendFormat:@"line\t\t:\t%@\n",NSStringFromRange(chain.rangeOfLines)];

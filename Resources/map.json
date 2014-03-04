@@ -14,7 +14,7 @@
     "methods": {
       "set": "set_key:value:",
       "enable": "enable_key:enable:",
-      "alias": ""
+      "alias": "alias_alias:method:"
     },
     "extends": "abstract"
   },

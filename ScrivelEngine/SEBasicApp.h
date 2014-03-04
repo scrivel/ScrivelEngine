@@ -13,6 +13,7 @@
 
 @property (nonatomic, readonly) NSDictionary *keyValueStore;
 @property (nonatomic, readonly) NSDictionary *enabledStore;
+@property (nonatomic, readonly) NSDictionary *aliasStore;
 
 @property (nonatomic, readonly) SEPositionType positionType;
 @property (nonatomic, readonly) SESizeType sizeType;

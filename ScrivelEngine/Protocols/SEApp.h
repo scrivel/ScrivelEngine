@@ -40,4 +40,14 @@
  **/
 - (void)enable_key:(NSString*)key enable:(BOOL)enable;
 
+/**
+ メソッドのエイリアス（別名）を作成する
+ aliasで定義されたmethod2名は、以降の呼び出しでmehtod1と同じ動きをする
+ 
+ @method alias
+ @param {String} alias
+ @param {String} method
+ **/
+- (void)alias_alias:(NSString*)alias method:(NSString*)method;
+
 @end
