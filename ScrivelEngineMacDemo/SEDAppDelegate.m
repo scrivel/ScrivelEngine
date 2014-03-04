@@ -29,6 +29,7 @@
     // Fragaria
     MGSFragaria *f = [[MGSFragaria alloc] init];
     [f setObject:self forKey:MGSFODelegate];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSArchiver archivedDataWithRootObject:[NSFont fontWithName:@"Menlo Bold" size:16.0f]] forKey:MGSFragariaPrefsTextFont];    
     [f setObject:@"SEScript" forKey:MGSFOSyntaxDefinitionName];
     [f embedInView:self.editorView];
     NSString *path = [[NSBundle mainBundle] pathForResource:@"animate" ofType:@"sescript"];
