@@ -312,14 +312,16 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
         }];
     }
     // 終わったあとにアニメーションを剥がすため、先にプロパティを設定しておく
-    if ([animation isKindOfClass:[CAAnimationGroup class]]) {
-        for (CABasicAnimation *a in [(CAAnimationGroup*)animation animations]) {
-            [self.layer setValue:a.toValue forKeyPath:a.keyPath];
+    if (!animation.autoreverses) {
+        if ([animation isKindOfClass:[CAAnimationGroup class]]) {
+            for (CABasicAnimation *a in [(CAAnimationGroup*)animation animations]) {
+                [self.layer setValue:a.toValue forKeyPath:a.keyPath];
+            }
+        }else if ([animation isKindOfClass:[CABasicAnimation class]]){
+            id val = [(CABasicAnimation*)animation toValue];
+            id key = [(CABasicAnimation*)animation keyPath];
+            [self.layer setValue:val forKeyPath:key];
         }
-    }else if ([animation isKindOfClass:[CABasicAnimation class]]){
-        id val = [(CABasicAnimation*)animation toValue];
-        id key = [(CABasicAnimation*)animation keyPath];
-        [self.layer setValue:val forKeyPath:key];
     }
     [self.layer addAnimation:animation forKey:animationKey];
     [CATransaction commit];
@@ -333,6 +335,8 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 {
     _animationBegan = YES;
     CAAnimationGroup *a = [CAAnimationGroup animation];
+    a.duration = ROUND_CGFLOAT(duration);
+    a.fillMode = kCAFillModeForwards;
     if ([options[@"repeatCount"] isKindOfClass:[NSNumber class]]) {
         float rc  = [options[@"repeatCount"] floatValue];
         // マイナス値でサイクルアニメーション
@@ -382,8 +386,6 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
         CFTimeInterval d = [options[@"duration"] doubleValue];
         a.duration = d;
     }
-    a.duration = ROUND_CGFLOAT(duration);
-    a.fillMode = kCAFillModeForwards;    
     if (a.repeatCount == HUGE_VALF) {
         _isRepeatingForever = YES;
     }
@@ -402,7 +404,7 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
         [self addAnimation:_animationGroup forKey:kGroupedAnimationKey completion:NULL];
     }
     _animationBegan = NO;
-    _animationChainBegan = YES;
+    _animationChainBegan = NO;
     _animationGroup = nil;
 }
 
