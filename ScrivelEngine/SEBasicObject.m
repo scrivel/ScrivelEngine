@@ -16,12 +16,12 @@
 
 #define SAME_TYPE(s1,s2) ((strcmp(s1,s2) == 0) ? YES : NO)
 
-static id callMethod(id target, NSString *class, SEMethod *method, ScrivelEngine *engine)
+
+id callMethod(id target, NSString *class, SEMethod *method, ScrivelEngine *engine)
 {
     // SEMethodを動的に呼び出す
-    
     // aliasを探す
-    NSString *name = [[(SEBasicApp*)engine.app aliasStore] objectForKey:method.name] ?: method.name;
+    NSString *name = [[(SEBasicObjectClass*)target aliasStore] objectForKey:method.name] ?: method.name;
     SEL sel = [engine.classProxy selectorForMethodIdentifier:name classIdentifier:class];
     // wait系メソッドをappにフォワーディングする
     if ([method.name hasPrefix:@"wait"]) {
@@ -68,6 +68,54 @@ static id callMethod(id target, NSString *class, SEMethod *method, ScrivelEngine
     }
 }
 
+@implementation _SEObject
+{
+    NSMutableDictionary *__keyValueStore;
+    NSMutableDictionary *__enabledStore;
+    NSMutableDictionary *__aliasStore;
+}
+
+@synthesize keyValueStore = __keyValueStore;
+@synthesize enabledStore = _enabledStore;
+@synthesize aliasStore = __aliasStore;
+
+- (id)init
+{
+    self = [super init];
+    __keyValueStore = [NSMutableDictionary new];
+    __enabledStore = [NSMutableDictionary new];
+    __aliasStore = [NSMutableDictionary new];
+    return self ?: nil;
+}
+
+- (id)callMethod_method:(SEMethod *)method
+{
+    // override
+    NSAssert(NO, @"!!NEEDS OVERRIDE!!");
+    return nil;
+}
+
+- (void)set_key:(NSString *)key value:(id)value
+{
+    if (key && value != nil && value != [NSNull null]) {
+        [__keyValueStore setObject:value forKey:key];
+    }
+}
+
+- (void)enable_key:(NSString *)key enable:(BOOL)enable
+{
+    if (key) {
+        [__enabledStore setObject:@(enable) forKey:key];
+    }
+}
+
+- (void)alias_alias:(NSString *)alias method:(NSString *)method
+{
+    // wa -> waitAnimation
+    [__aliasStore setObject:method forKey:alias];
+}
+
+@end
 
 @implementation SEBasicObjectClass
 {

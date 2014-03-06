@@ -62,6 +62,35 @@
 - (void)waitAnimation;
 
 
+/**
+ 対応するKeyの値を設定する
+ 
+ @method set
+ @param {String} key
+ @param {Value} value
+ **/
+- (void)set_key:(NSString*)key value:(id)value;
+
+/**
+ 対応する値をenable/disableする
+ 
+ @method enable
+ @param {String} key
+ @param {Boolean} enable
+ **/
+- (void)enable_key:(NSString*)key enable:(BOOL)enable;
+
+/**
+ メソッドのエイリアス（別名）を作成する
+ aliasで定義されたmethod2名は、以降の呼び出しでmehtod1と同じ動きをする
+ 
+ @method alias
+ @param {String} alias
+ @param {String} method
+ **/
+- (void)alias_alias:(NSString*)alias method:(NSString*)method;
+
+
 @end
 
 @protocol SEObjectClass <SEObject>

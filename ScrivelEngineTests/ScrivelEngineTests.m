@@ -38,7 +38,7 @@
     XCTAssert(engine, );
     id ret;
     NSError *e = nil;
-    XCTAssertNoThrow(ret = [engine evaluateScript:@"layer.at(1).position(100,100)" error:&e], );
+    XCTAssertNoThrow(ret = [engine evaluateScript:@"layer.get(1).position(100,100)" error:&e], );
 //    XCTAssert(ret, );
 }
 
@@ -129,8 +129,8 @@
     id c = [engine classProxy];
     XCTAssert([c isKindOfClass:[SEBasicClassProxy class]],);
     SEL sel;
-    XCTAssertNoThrow(sel = [c selectorForMethodIdentifier:@"at" classIdentifier:@"layer"], );
-    XCTAssert(sel == @selector(at_index:),);
+    XCTAssertNoThrow(sel = [c selectorForMethodIdentifier:@"get" classIdentifier:@"layer"], );
+    XCTAssert(sel == @selector(get_key:),);
 }
 
 - (void)testScriptString

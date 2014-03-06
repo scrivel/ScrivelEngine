@@ -20,9 +20,7 @@
 
 @implementation SEBasicApp
 {
-    NSMutableDictionary *__keyValueStore;
-    NSMutableDictionary *__enabledStore;
-    NSMutableDictionary *__aliasStore;
+
 #if TARGET_OS_IPHONE
     UITapGestureRecognizer *_tapGestureRecognizer;
 #else
@@ -34,47 +32,9 @@
 - (id)init
 {
     self = [super init];
-    __keyValueStore = [NSMutableDictionary new];
-    __enabledStore = [NSMutableDictionary new];
-    __aliasStore = [NSMutableDictionary new];
     [self set_key:kPositionTypeKey value:@"norm"];
     [self set_key:kSizeTypeKey value:@"px"];
     return self ?: nil;
-}
-
-- (void)set_key:(NSString *)key value:(id)value
-{
-    if (key && value != nil && value != [NSNull null]) {
-        [__keyValueStore setObject:value forKey:key];
-    }
-}
-
-- (void)enable_key:(NSString *)key enable:(BOOL)enable
-{
-    if (key) {
-        [__enabledStore setObject:@(enable) forKey:key];
-    }
-}
-
-- (void)alias_alias:(NSString *)alias method:(NSString *)method
-{
-    // wa -> waitAnimation
-    [__aliasStore setObject:method forKey:alias];
-}
-
-- (NSDictionary *)keyValueStore
-{
-    return __keyValueStore;
-}
-
-- (NSDictionary *)enabledStore
-{
-    return __enabledStore;
-}
-
-- (NSDictionary *)aliasStore
-{
-    return __aliasStore;
 }
 
 #pragma mark - wait
@@ -133,7 +93,7 @@
 
 - (SEPositionType)positionType
 {
-    NSString *t = [__keyValueStore objectForKey:kPositionTypeKey];
+    NSString *t = [self.keyValueStore objectForKey:kPositionTypeKey];
     if ([t isEqualToString:@"norm"]) {
         return SEPositionTypeNormalized;
     }else if ([t isEqualToString:@"px"]){
@@ -144,7 +104,7 @@
 
 - (SESizeType)sizeType
 {
-    NSString *t = [__keyValueStore objectForKey:kSizeTypeKey];
+    NSString *t = [self.keyValueStore objectForKey:kSizeTypeKey];
     if ([t isEqualToString:@"norm"]) {
         return SESizeTypeNormalized;
     }else if ([t isEqualToString:@"px"]){
