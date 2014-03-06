@@ -35,7 +35,7 @@
     SEBasicTextLayer *new = (SEBasicTextLayer*)[super new_args:args];
     // まだレイヤーがない場合はそのレイヤーをprimaryに設定する
     if (self.layers.count == 1) {
-        [self setPrimary_key:new.name];
+        [self setPrimary_key:new.key];
     }
     return new;
 }

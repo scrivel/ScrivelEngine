@@ -6,15 +6,15 @@
       "waitTap": "waitTap",
       "waitText": "waitText",
       "waitAnimation": "waitAnimation",
+      "set": "set_key:value:",
+      "enable": "enable_key:enable:",
+      "alias": "alias_alias:method:",
       "new": "new_args:"
     },
     "extends": ""
   },
   "app": {
     "methods": {
-      "set": "set_key:value:",
-      "enable": "enable_key:enable:",
-      "alias": "alias_alias:method:"
     },
     "extends": "abstract"
   },
@@ -24,37 +24,20 @@
       "get": "get_key:",
       "clear": "clear_key:",
       "defineAnimation": "define_name:animations:options:",
-      "setAnchorPoint": "setAnchorPoint_x:y:",
-      "setGravity": "setGravity_gravity:",
       "loadImage": "loadImage_path:duration:",
       "clearImage": "clearImage_duration:",
-      "bg": "bg_color:",
-      "border": "border_width:color:",
-      "shadowOffset": "shadowOffset_x:y:",
-      "shadowColor": "shadowColor_color:",
-      "shadowOpacity": "shadowOpcity_opacity:",
-      "shadowRadius": "shadowRadius_radius:",
       "begin": "begin_duration:options:",
       "chain": "chain",
       "commit": "commit",
       "stop": "stop",
       "pause": "pause",
       "resume": "resume",
-      "position": "position_x:y:duration:",
-      "zPosition": "zPosition_z:duration:",
-      "size": "size_width:height:duration:",
       "show": "show",
       "hide": "hide",
       "toggle": "toggle",
       "fadeIn": "fadeIn_duration:",
       "fadeOut": "fadeOut_duration:",
-      "translate": "translate_x:y:duration:",
-      "translateZ": "translateZ_z:duration:",
-      "scale": "scale_ratio:duration:",
-      "rotate": "rotate_degree:duration:",
-      "rotateX": "rotateX_degree:duration:",
-      "rotateY": "rotateY_degree:duration:",
-      "opacity": "opacity_ratio:duration:"
+      "animate": "animate_key:value:duration:options:"
     },
     "extends": "abstract"
   },

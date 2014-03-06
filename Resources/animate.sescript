@@ -1,4 +1,4 @@
-// create layer 
+// create layer
 layer.new(1) // with index 1
 	.size(100,100) // set size {100,100} in px
 	.position(0.5,0.5) // set position {0.5,0.5}, normalized position

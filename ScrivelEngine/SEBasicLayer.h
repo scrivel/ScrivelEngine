@@ -11,6 +11,7 @@
 #import "SEBasicObject.h"
 #import "SELayer.h"
 #import "SEBasicApp.h"
+#import "NSNumber+CGFloat.h"
 #import <objc/runtime.h>
 
 
@@ -43,6 +44,45 @@
 #define SEPointMake(x,y) CGPointMake(X(x),Y(y))
 #define SERectMake(x,y,w,h) CGRectMake(X(x), Y(y), W(w), H(h))
 
+#define CGSizeFromArray(a) CGSizeMake([a[0] CGFloatValue], [a[1] CGFloatValue])
+#define CGSizeFromDictionary(d) CGSizeMake([d[@"width"] CGFloatValue], [d[@"height"] CGFloatValue])
+
+static inline CGSize CGSizeFromObject(id obj)
+{
+    if ([obj isKindOfClass:[NSArray class]]){
+        return CGSizeFromArray(obj);
+    }else if ([obj isKindOfClass:[NSDictionary class]]){
+        return CGSizeFromDictionary(obj);
+    }
+    return CGSizeZero;
+}
+
+#define CGPointFromArray(a) CGPointMake([a[0] CGFloatValue], [a[1] CGFloatValue])
+#define CGPointFromDictionary(d) CGPointMake([d[@"x"] CGFloatValue], [d[@"y"] CGFloatValue])
+
+static inline CGPoint CGPointFromObject(id obj)
+{
+    if ([obj isKindOfClass:[NSArray class]]){
+        return CGPointFromArray(obj);
+    }else if ([obj isKindOfClass:[NSDictionary class]]){
+        return CGPointFromDictionary(obj);
+    }
+    return CGPointZero;
+}
+
+#define CGRectFromArray(a) CGRectMake([a[0] CGFloatValue], [a[1] CGFloatValue], [a[2] CGFloatValue], [a[3] CGFloatValue])
+#define CGRectFromDictionary(d) CGRectMake([d[@"x"] CGFloatValue], [d[@"y"] CGFloatValue], [d[@"width"] CGFloatValue], [d[@"height"] CGFloatValue])
+
+static inline CGRect CGRectFromObject(id obj)
+{
+    if ([obj isKindOfClass:[NSArray class]]){
+        return CGRectFromArray(obj);
+    }else if ([obj isKindOfClass:[NSDictionary class]]){
+        return CGRectFromDictionary(obj);        
+    }
+    return CGRectZero;
+}
+
 @interface SEBasicLayerClass : SEBasicObjectClass <SELayerClass>
 
 @property (nonatomic, readonly) NSDictionary *layers;
@@ -52,20 +92,12 @@
 
 @interface SEBasicLayer : SEBasicObject <SELayerInstance>
 
-@property (nonatomic) NSString *name;
+@property (nonatomic) id<NSCopying> key;
 @property (nonatomic) unsigned int index;
 @property (nonatomic) CALayer *layer;
 @property (nonatomic, readonly) BOOL animationBegan;
 @property (nonatomic, readonly) BOOL animationChainBegan;
 @property (nonatomic, readonly) BOOL isRepeatingForever;
-
-- (void)enqueuAnimationForKeyPath:(NSString*)keyPath
-                          toValue:(id)value
-                         duration:(NSTimeInterval)duration
-                       completion:(void(^)())completion;
-- (void)addAnimation:(CAAnimation*)animation
-              forKey:(NSString *)key
-          completion:(void(^)())completion;
 
 @end
 

@@ -64,15 +64,15 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 - (id<SEObjectInstance>)new_args:(id)args
 {
     SEBasicLayer *layer;
-    if ([args isKindOfClass:[NSNumber class]]) {
-        layer =  (SEBasicLayer*)[super new_args:@{@"index": args}];
-    }else{
-        layer = (SEBasicLayer*)[super new_args:args];
+    id _args = args;
+    if (![_args isKindOfClass:[NSDictionary class]]) {
+        _args = @{@"key": args};
     }
+    layer = (SEBasicLayer*)[super new_args:_args];
     // 古いレイヤーを消す
-    [self clear_key:layer.name];
+    [self clear_key:layer.key];
     // 登録
-    [__layers setObject:layer forKey:@(layer.index)];
+    [__layers setObject:layer forKey:layer.key];
     // レイヤーを追加
     [self.engine.rootView.layer addSublayer:layer.layer];
     return layer;
@@ -82,7 +82,7 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 
 - (id)get_key:(id<NSCopying>)key
 {
-    return [self.layers objectForKey:[key copyWithZone:NULL]];
+    return [self.layers objectForKey:key];
 }
 
 - (void)clear_key:(id<NSCopying>)key
@@ -106,37 +106,97 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 @interface SEBasicLayer()
 {
     CAAnimationGroup *_animationGroup;
+    NSString *_gravity;
+    SEPoint _anchorPoint;
+    CGFloat _borderWidth;
+    SEColor *_bgColor;
+    SEColor *_borderColor;
+    SEColor *_shadowColor;
+    CGFloat _shadowOpacity;
+    CGFloat _shadowRadius;
+    SESize _shadowOffset;
 }
 @end
 
 @implementation SEBasicLayer
 
+@synthesize gravity = _gravity;
+@synthesize anchorPoint = _anchorPoint;
+@synthesize bgColor = _bgColor;
+@synthesize borderColor = _borderColor;
+@synthesize borderWidth = _borderWidth;
+@synthesize shadowColor = _shadowColor;
+@synthesize shadowOpacity = _shadowOpacity;
+@synthesize shadowRadius = _shadowRadius;
+@synthesize shadowOffset = _shadowOffset;
+
 #pragma mark - Private
+
+#define KEY_IS(k) [key isEqualToString:k]
 
 - (instancetype)initWithOpts:(NSDictionary *)options holder:(SEBasicObjectClass *)holder
 {
     self = [super initWithOpts:options holder:holder];
-    NSParameterAssert(options[@"index"]);
-    _index = [options[@"index"] unsignedIntValue];
     // 実体はレイヤー
     _layer = [CALayer layer];
     _layer.position = SEPointMake(0.5, 0.5);
+    // parse options
+    [CATransaction begin];
+    [CATransaction setAnimationDuration:0];
+    [options enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        if (KEY_IS(@"index")) {
+            _index = [options[@"index"] unsignedIntValue];
+        }else if (KEY_IS(@"key")){
+            _key = options[@"key"];
+        }else{
+            // set animatable value
+            CABasicAnimation *a = [self animationWithKey:key value:obj duration:0 options:nil];
+            if (a) [_layer setValue:a.toValue forKey:a.keyPath];
+        }
+    }];
+    [CATransaction commit];
     return self ?: nil;
 }
 
 #pragma mark - Property
 
-- (void)setAnchorPoint_x:(CGFloat)x y:(CGFloat)y
+- (void)set_key:(NSString *)key value:(id)value
 {
-#if TARGET_OS_IPHONE
-    CGFloat _y = 1 - y;
-#else
-    CGFloat _y = y;
-#endif
-	self.layer.anchorPoint = CGPointMake(x, _y);
+    if (KEY_IS(@"anchorPoint")) {
+        [self setAnchorPoint:CGPointFromArray(value)];
+    }else if (KEY_IS(@"gravity")){
+        [self setGravity:value];
+    }else if (KEY_IS(@"bgColor")){
+        [self setBgColor:[SEColorUtil colorWithHEXString:value]];
+    }else if (KEY_IS(@"borderColor")){
+        [self setBorderColor:[SEColorUtil colorWithHEXString:value]];
+    }else if (KEY_IS(@"borderWidth")){
+        [self setBorderWidth:[value CGFloatValue]];
+    }else if (KEY_IS(@"shadowColor")){
+        [self setShadowColor:[SEColorUtil colorWithHEXString:value]];
+    }else if (KEY_IS(@"shadowOpacity")){
+        [self setShadowOpacity:[value CGFloatValue]];
+    }else if (KEY_IS(@"shadowRadius")){
+        [self setShadowRadius:[value CGFloatValue]];
+    }else if (KEY_IS(@"shadowOffset")){
+        [self setShadowOffset:CGSizeFromArray(value)];
+    }else{
+        [super set_key:key value:value];
+    }
 }
 
-- (void)setGravity_gravity:(NSString *)gravity
+- (void)setAnchorPoint:(CGPoint)anchorPoint
+{
+#if TARGET_OS_IPHONE
+    CGFloat _y = 1 - anchorPoint.y;
+#else
+    CGFloat _y = anchorPoint.y;
+#endif
+	self.layer.anchorPoint = CGPointMake(anchorPoint.x, _y);
+    _anchorPoint = anchorPoint;
+}
+
+- (void)setGravity:(NSString *)gravity
 {
     if ([gravity isEqualToString:@"center"] ) {
         self.layer.contentsGravity = kCAGravityCenter;
@@ -174,6 +234,48 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
     else if ([gravity isEqualToString:@"resize-aspect-fill"] ) {
         self.layer.contentsGravity = kCAGravityResizeAspectFill;
     }
+    _gravity = gravity;
+}
+
+#pragma mark - Appearence
+
+- (void)setBgColor:(SEColor *)bgColor
+{
+    if (bgColor) self.layer.backgroundColor = [bgColor CGColor];
+    _bgColor = bgColor;
+}
+
+- (void)setBorderWidth:(CGFloat)borderWidth
+{
+    ROUND_CGFLOAT(borderWidth);
+    self.layer.borderWidth = borderWidth;
+    _borderWidth = borderWidth;
+}
+
+- (void)setShadowColor:(SEColor *)shadowColor
+{
+    if (shadowColor) self.layer.shadowColor = [shadowColor CGColor];
+    _shadowColor = shadowColor;
+}
+
+- (void)setShadowOffset:(SESize)shadowOffset
+{
+    CGSize s = SESizeMake(shadowOffset.width, shadowOffset.height);
+    self.layer.shadowOffset = s;
+    _shadowOffset = s;
+}
+
+- (void)setShadowOpacity:(CGFloat)shadowOpacity
+{
+    self.layer.shadowOpacity = ZERO_TO_ONE(shadowOpacity);
+    _shadowOpacity = shadowOpacity;
+}
+
+- (void)setShadowRadius:(CGFloat)shadowRadius
+{
+    ROUND_CGFLOAT(shadowRadius);
+    self.layer.shadowRadius = shadowRadius;
+    _shadowRadius = shadowRadius;
 }
 
 #pragma mark - Image
@@ -193,9 +295,9 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
     if (val) {
         // レイヤのサイズが設定されていなかったら画像サイズにレイヤーの大きさを調整
         if (CGSizeEqualToSize(self.layer.bounds.size, CGSizeZero)) {
-            [self enqueuAnimationForKeyPath:@"bounds.size" toValue:[NSValue se_ValueWithSize:image.size] duration:0];
+            [self animate_key:@"bounds.size" value:[NSValue se_ValueWithSize:image.size] duration:0 options:nil];
         }
-        [self enqueuAnimationForKeyPath:@"contents" toValue:val duration:duration];
+        [self animate_key:@"contents" value:val duration:duration options:nil];
     }
 }
 
@@ -207,190 +309,43 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
     [CATransaction commit];
 }
 
-#pragma mark - Appearence
-
-- (void)bg_color:(NSString *)color
+- (void)show
 {
-    SEColor *hex = [SEColorUtil colorWithHEXString:color];
-    if (hex) self.layer.backgroundColor = [hex CGColor];
+    self.layer.hidden = NO;
 }
 
-- (void)border_width:(CGFloat)width color:(NSString *)color
+- (void)hide
 {
-    if VALID_CGFLOAT(width) self.layer.borderWidth = width;
-    SEColor *hex = [SEColorUtil colorWithHEXString:color];
-    if (hex) self.layer.borderColor = [hex CGColor];
+    self.layer.hidden = YES;
 }
 
-- (void)shadowColor_color:(NSString *)color
+- (void)toggle
 {
-    SEColor *hex  = [SEColorUtil colorWithHEXString:color];
-    if (hex) self.layer.shadowColor = [hex CGColor];
+    BOOL hidden = self.layer.hidden;
+    self.layer.hidden = !hidden;
 }
 
-- (void)shadowOffset_x:(CGFloat)x y:(CGFloat)y
+- (void)fadeIn_duration:(NSTimeInterval)duration
 {
-    CGFloat _x = VALID_CGFLOAT(x) ? x : self.layer.shadowOffset.width;
-    CGFloat _y = VALID_CGFLOAT(y) ? y : self.layer.shadowOffset.height;
-    CGSize s = SESizeMake(_x, _y);
-    self.layer.shadowOffset = s;
+    [self show];
+    [self animate_key:@"opacity" value:@1 duration:duration options:nil];
 }
 
-- (void)shadowOpcity_opacity:(CGFloat)opacity
+- (void)fadeOut_duration:(NSTimeInterval)duration
 {
-    self.layer.shadowOpacity = ZERO_TO_ONE(opacity);
-}
-
-- (void)shadowRadius_radius:(CGFloat)radius
-{
-    if VALID_CGFLOAT(radius) self.layer.shadowRadius = radius;
+    [self _animate_key:@"opacity" value:@0 duration:duration options:nil completion:^{
+        [self hide];
+    }];
 }
 
 #pragma mark - Animations
 
-- (void)enqueuAnimationForKeyPath:(NSString *)keyPath toValue:(id)value duration:(NSTimeInterval)duration
-{
-    [self enqueuAnimationForKeyPath:keyPath toValue:value duration:duration completion:NULL];
-}
-
-- (void)enqueuAnimationForKeyPath:(NSString *)keyPath
-                          toValue:(id)toValue
-                         duration:(NSTimeInterval)duration
-                       completion:(void(^)())completion
-{
-    NSParameterAssert(keyPath != nil);
-    NSParameterAssert(toValue != nil);
-    NSParameterAssert(duration >= 0);
-    duration = ROUND_DOUBLE(duration);
-    if (!_animationBegan && duration == 0) {
-        // durationが0ならばアニメーションはしない
-        [CATransaction begin];
-        [CATransaction setAnimationDuration:0];
-        [CATransaction setCompletionBlock:^{
-            if (completion) completion();
-        }];
-        [self.layer setValue:toValue forKeyPath:keyPath];
-        [CATransaction commit];
-        return;
-    }
-    // アニメーションを作成
-    id val = [self.layer valueForKeyPath:keyPath];
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:keyPath];
-    // アニメーションの合成中は個別の間隔は無視
-    if (!_animationBegan) {
-        animation.duration = duration;
-    }
-    animation.fillMode = kCAFillModeForwards;
-    animation.fromValue = val;
-    animation.toValue = toValue;
-    
-    if (_animationBegan) {
-        // アニメーションの合成ならばキューに貯める
-        NSArray *as = _animationGroup.animations;
-        if (as) {
-            _animationGroup.animations = [as arrayByAddingObject:animation];
-        }else{
-            _animationGroup.animations = @[animation];
-        }
-    }else{
-        // 通常の実行
-        [self addAnimation:animation forKey:keyPath completion:completion];
-    }
-}
-
-- (void)addAnimation:(CAAnimation*)animation forKey:(NSString *)key completion:(void(^)())completion
-{
-    NSParameterAssert(animation != nil);
-    NSParameterAssert(key != nil);
-    // レイヤーへのアニメーションが被らないようにUUIDを付ける
-    CFUUIDRef uuidRef = CFUUIDCreate(NULL);
-    NSString *uuid = (__bridge_transfer NSString *)CFUUIDCreateString(NULL, uuidRef);
-        CFRelease(uuidRef);
-    NSString *animationKey = [NSString stringWithFormat:@"%@-%@",key,uuid]; // translate-xxxxx
-    [CATransaction begin];
-    // サイクルアニメーションでない場合のみ、現在実行中のアニメーションの把握するためにholderに数を追加
-    if (!_isRepeatingForever) {
-        __weak SEBasicLayerClass *__holder = (SEBasicLayerClass*)self.holder;
-        __holder.activeAnimationCount += 1;
-        [CATransaction setCompletionBlock:^{
-            __holder.activeAnimationCount -= 1;
-        }];
-    }
-    // 終わったあとにアニメーションを剥がすため、先にプロパティを設定しておく
-    if (!animation.autoreverses) {
-        if ([animation isKindOfClass:[CAAnimationGroup class]]) {
-            for (CABasicAnimation *a in [(CAAnimationGroup*)animation animations]) {
-                [self.layer setValue:a.toValue forKeyPath:a.keyPath];
-            }
-        }else if ([animation isKindOfClass:[CABasicAnimation class]]){
-            id val = [(CABasicAnimation*)animation toValue];
-            id key = [(CABasicAnimation*)animation keyPath];
-            [self.layer setValue:val forKeyPath:key];
-        }
-    }
-    [self.layer addAnimation:animation forKey:animationKey];
-    [CATransaction commit];
-    // チェイン状態だったらアニメーションごとにwaitAnimation()する
-    if (_animationChainBegan) {
-        [self waitAnimation];
-    }
-}
-
 - (void)begin_duration:(NSTimeInterval)duration options:(NSDictionary *)options
 {
     _animationBegan = YES;
-    CAAnimationGroup *a = [CAAnimationGroup animation];
+    CAAnimationGroup *a = (CAAnimationGroup*)addOptions([CAAnimationGroup animation], options);
     a.duration = ROUND_CGFLOAT(duration);
     a.fillMode = kCAFillModeForwards;
-    if ([options[@"repeatCount"] isKindOfClass:[NSNumber class]]) {
-        float rc  = [options[@"repeatCount"] floatValue];
-        // マイナス値でサイクルアニメーション
-        if (rc < 0) {
-            a.repeatCount = HUGE_VALF;
-        }else{
-            a.repeatCount = rc;
-        }
-    }
-    if ([options[@"timing"] isKindOfClass:[NSString class]]) {
-        NSString *tm = options[@"timing"];
-        NSString *name = kCAMediaTimingFunctionDefault;
-        if ([tm isEqualToString:@"linear"]) {
-            name = kCAMediaTimingFunctionLinear;
-        }else if ([tm isEqualToString:@"ease-in"]){
-            name = kCAMediaTimingFunctionEaseIn;
-        }else if ([tm isEqualToString:@"ease-out"]){
-            name = kCAMediaTimingFunctionEaseOut;
-        }else if ([tm isEqualToString:@"ease-in-ease-out"]){
-            name = kCAMediaTimingFunctionEaseInEaseOut;
-        }
-        a.timingFunction = [CAMediaTimingFunction functionWithName:name];
-    }else if ([options[@"timingPoints"] isKindOfClass:[NSArray class]]){
-        CGFloat p1x = ROUND_CGFLOAT([options[@"timingPoints"][0] CGFloatValue]);
-        CGFloat p1y = ROUND_CGFLOAT([options[@"timingPoints"][1] CGFloatValue]);
-        CGFloat p2x = ROUND_CGFLOAT([options[@"timingPoints"][2] CGFloatValue]);
-        CGFloat p2y = ROUND_CGFLOAT([options[@"timingPoints"][3] CGFloatValue]);
-        a.timingFunction = [CAMediaTimingFunction functionWithControlPoints:(float)p1x :(float)p1y :(float)p2x :(float)p2y];
-    }
-    if ([options[@"repeatDuration"] isKindOfClass:[NSNumber class]]) {
-        CFTimeInterval rd = [options[@"repeatDuration"] doubleValue];
-        a.repeatDuration = rd;
-    }
-    if ([options[@"removeOnCompletion"] isKindOfClass:[NSNumber class]]) {
-        BOOL roc = [options[@"removeOnCompletion"] boolValue];
-        a.removedOnCompletion = roc;
-    }
-    if ([options[@"timeOffset"] isKindOfClass:[NSNumber class]]) {
-        CFTimeInterval to = [options[@"timeOffset"] doubleValue];
-        a.timeOffset = to;
-    }
-    if ([options[@"autoreverses"] isKindOfClass:[NSNumber class]]) {
-        BOOL ar = [options[@"autoreverses"] boolValue];
-        a.autoreverses = ar;
-    }
-    if ([options[@"duration"] isKindOfClass:[NSNumber class]]) {
-        CFTimeInterval d = [options[@"duration"] doubleValue];
-        a.duration = d;
-    }
     if (a.repeatCount == HUGE_VALF) {
         _isRepeatingForever = YES;
     }
@@ -435,116 +390,220 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
     self.layer.beginTime = timeSincePause;
 }
 
-- (void)position_x:(CGFloat)x y:(CGFloat)y duration:(NSTimeInterval)duration
+- (void)animate_key:(NSString *)key value:(id)value duration:(CFTimeInterval)duration options:(NSDictionary *)options
 {
-    CGFloat _x = VALID_CGFLOAT(x) ? X(x) : self.layer.position.x;
-    CGFloat _y = VALID_CGFLOAT(y) ? Y(y) : self.layer.position.y;
-    CGPoint position = CGPointMake(_x, _y);
-    NSValue *v = [NSValue se_valueWithPoint:position];
-    [self enqueuAnimationForKeyPath:@"position" toValue:v duration:duration];
+    [self _animate_key:key value:value duration:duration options:options completion:NULL];
 }
 
-- (void)zPosition_z:(CGFloat)z duration:(NSTimeInterval)duration
+- (void)_animate_key:(NSString *)key value:(id)value duration:(CFTimeInterval)duration options:(NSDictionary *)options completion:(void(^)())completion
 {
-    // z値だけは正規化できないので常にpx値
-    CGFloat _z = VALID_CGFLOAT(z) ? z : self.layer.zPosition;
-    [self enqueuAnimationForKeyPath:@"zPosition" toValue:@(_z) duration:duration];
+    CABasicAnimation *animation = [self animationWithKey:key value:value duration:duration options:options];
+    duration = ROUND_DOUBLE(duration);
+    if (!_animationBegan && duration == 0) {
+        // durationが0ならばアニメーションはしない
+        [CATransaction begin];
+        [CATransaction setAnimationDuration:0];
+        [CATransaction setCompletionBlock:^{
+            if (completion) completion();
+        }];
+        [self.layer setValue:animation.toValue forKeyPath:animation.keyPath];
+        [CATransaction commit];
+        return;
+    }
+    // アニメーションを作成
+    id val = [self.layer valueForKeyPath:animation.keyPath];
+    // アニメーションの合成中は個別の間隔は無視
+    if (!_animationBegan) {
+        animation.duration = duration;
+    }
+    animation.fillMode = kCAFillModeForwards;
+    animation.fromValue = val;
+    
+    if (_animationBegan) {
+        // アニメーションの合成ならばキューに貯める
+        NSArray *as = _animationGroup.animations;
+        if (as) {
+            _animationGroup.animations = [as arrayByAddingObject:animation];
+        }else{
+            _animationGroup.animations = @[animation];
+        }
+    }else{
+        // 通常の実行
+        [self addAnimation:animation forKey:key completion:completion];
+    }
 }
 
-- (void)size_width:(CGFloat)width height:(CGFloat)height duration:(NSTimeInterval)duration
+
+- (void)addAnimation:(CAAnimation*)animation forKey:(NSString *)key completion:(void(^)())completion
 {
-    CGRect bounds = self.layer.bounds;
-    SESize s = SESizeMake(ROUND_CGFLOAT(width), ROUND_CGFLOAT(height));
-    bounds.size.width += s.width;
-    bounds.size.height += s.height;
-    NSValue *v = [NSValue se_valueWithRect:bounds];
-	[self enqueuAnimationForKeyPath:@"bounds" toValue:v duration:duration];
+    // レイヤーへのアニメーションが被らないようにUUIDを付ける
+    CFUUIDRef uuidRef = CFUUIDCreate(NULL);
+    NSString *uuid = (__bridge_transfer NSString *)CFUUIDCreateString(NULL, uuidRef);
+    CFRelease(uuidRef);
+    NSString *animationKey = [NSString stringWithFormat:@"%@-%@",key,uuid]; // translate-xxxxx
+    [CATransaction begin];
+    // サイクルアニメーションでない場合のみ、現在実行中のアニメーションの把握するためにholderに数を追加
+    if (!_isRepeatingForever) {
+        __weak SEBasicLayerClass *__holder = (SEBasicLayerClass*)self.holder;
+        __holder.activeAnimationCount += 1;
+        [CATransaction setCompletionBlock:^{
+            __holder.activeAnimationCount -= 1;
+        }];
+    }
+    // 終わったあとにアニメーションを剥がすため、先にプロパティを設定しておく
+    if (!animation.autoreverses) {
+        if ([animation isKindOfClass:[CAAnimationGroup class]]) {
+            for (CABasicAnimation *a in [(CAAnimationGroup*)animation animations]) {
+                [self.layer setValue:a.toValue forKeyPath:a.keyPath];
+            }
+        }else if ([animation isKindOfClass:[CABasicAnimation class]]){
+            id val = [(CABasicAnimation*)animation toValue];
+            id key = [(CABasicAnimation*)animation keyPath];
+            [self.layer setValue:val forKeyPath:key];
+        }
+    }
+    [self.layer addAnimation:animation forKey:animationKey];
+    [CATransaction commit];
+    // チェイン状態だったらアニメーションごとにwaitAnimation()する
+    if (_animationChainBegan) {
+        [self waitAnimation];
+    }
 }
 
-- (void)show
+- (CABasicAnimation*)animationWithKey:(NSString*)key value:(id)value duration:(CFTimeInterval)duration options:(NSDictionary*)options
 {
-    self.layer.hidden = NO;
-}
-
-- (void)hide
-{
-    self.layer.hidden = YES;
-}
-
-- (void)toggle
-{
-    BOOL hidden = self.layer.hidden;
-    self.layer.hidden = !hidden;
-}
-
-- (void)fadeIn_duration:(NSTimeInterval)duration
-{
-    [self show];
-    [self opacity_ratio:1 duration:duration];
-}
-
-- (void)fadeOut_duration:(NSTimeInterval)duration
-{
-    [self enqueuAnimationForKeyPath:@"opacity" toValue:@(0) duration:duration completion:^{
-        [self hide];
-    }];
-}
-
-- (void)translate_x:(CGFloat)x y:(CGFloat)y duration:(NSTimeInterval)duration
-{
-    SEPoint p = self.layer.position;
-    CGFloat _x = ROUND_CGFLOAT(x);
-    _x += NORM_POSITION ? p.x/VW : p.x;
-    CGFloat _y = ROUND_CGFLOAT(y);
-    // 座標を補正
+    CABasicAnimation *animation = [CABasicAnimation animation];
+    
+    // create animation
+    
+    if (KEY_IS(@"position")) {
+        SEPoint point = CGPointFromObject(value);
+        CGFloat _x = VALID_CGFLOAT(point.x) ? X(point.x) : self.layer.position.x;
+        CGFloat _y = VALID_CGFLOAT(point.y) ? Y(point.y) : self.layer.position.y;
+        CGPoint position = CGPointMake(_x, _y);
+        animation.toValue = [NSValue se_valueWithPoint:position];
+        animation.keyPath = @"position";
+    }else if (KEY_IS(@"zPosition")){
+        // z値だけは正規化できないので常にpx値
+        CGFloat z = [value CGFloatValue];
+        CGFloat _z = VALID_CGFLOAT(z) ? z : self.layer.zPosition;
+        animation.toValue = @(_z);
+        animation.keyPath = @"zPosition";
+    }else if (KEY_IS(@"size")){
+        CGRect bounds = self.layer.bounds;
+        CGSize size = CGSizeFromObject(value);
+        SESize s = SESizeMake(ROUND_CGFLOAT(size.width), ROUND_CGFLOAT(size.height));
+        bounds.size.width += s.width;
+        bounds.size.height += s.height;
+        animation.toValue = [NSValue se_valueWithRect:bounds];
+        animation.keyPath = @"bounds";
+    }else if (KEY_IS(@"translate")){
+        SEPoint selfp = self.layer.position;
+        SEPoint point = CGPointFromObject(value);
+        CGFloat _x = ROUND_CGFLOAT(point.x);
+        _x += NORM_POSITION ? selfp.x/VW : selfp.x;
+        CGFloat _y = ROUND_CGFLOAT(point.y);
+        // 座標を補正
 #if TARGET_OS_IPHONE
-    _y += NORM_POSITION ? 1 - p.y/VH : VH - p.y;
+        _y += NORM_POSITION ? 1 - selfp.y/VH : VH - selfp.y;
 #else
-    _y += NORM_POSITION ? p.y/VH : p.y;
+        _y += NORM_POSITION ? selfp.y/VH : selfp.y;
 #endif
-    // transform.translateを使うと面倒なので加算してpositionのアニメーションにする
-    [self position_x:_x y:_y duration:duration];
+        // transform.translateを使うと面倒なので加算してpositionのアニメーションにする
+        return [self animationWithKey:@"position" value:@[@(_x),@(_y)] duration:duration options:options];
+    }else if (KEY_IS(@"translateZ")){
+        CGFloat _z = ROUND_CGFLOAT([value CGFloatValue]) + self.layer.zPosition;
+        animation.toValue = @(_z);
+        animation.keyPath = @"zPosition";
+    }else if (KEY_IS(@"scale")){
+        CGFloat _ratio = ROUND_CGFLOAT([value CGFloatValue]);
+        animation.toValue = @(_ratio);
+        animation.keyPath = @"transform.scale";
+    }else if (KEY_IS(@"rotate")){
+        CGFloat _degree = RADIAN(ROUND_CGFLOAT([value CGFloatValue]));
+        CGFloat rotationZ = [[self.layer valueForKeyPath:@"transform.rotation.z"] CGFloatValue];
+        animation.toValue = @(_degree+rotationZ);
+        animation.keyPath = @"transform.rotation.z";
+    }else if (KEY_IS(@"rotateX")){
+        CGFloat _degree = RADIAN(ROUND_CGFLOAT([value CGFloatValue]));
+        CGFloat rotationX = [[self.layer valueForKeyPath:@"transform.rotation.x"] CGFloatValue];
+        animation.toValue = @(_degree+rotationX);
+        animation.keyPath = @"transform.rotation.x";
+    }else if (KEY_IS(@"rotateY")){
+        CGFloat _degree = RADIAN(ROUND_CGFLOAT([value CGFloatValue]));
+        CGFloat rotationY = [[self.layer valueForKeyPath:@"transform.rotation.y"] CGFloatValue];
+        animation.toValue = @(_degree+rotationY);
+        animation.keyPath = @"transform.rotation.y";
+    }else if (KEY_IS(@"opacity")){
+        CGFloat _opacity = ZERO_TO_ONE([value CGFloatValue]);
+        animation.toValue = @(_opacity);
+        animation.keyPath = @"opacity";
+    }else if (KEY_IS(@"contents")){
+        animation.toValue = value;
+        animation.keyPath = @"contents";
+    }
+    
+    // add options
+    
+    addOptions(animation, options);
+    
+    return (animation.toValue && animation.keyPath) ? animation : nil;
 }
 
-- (void)translateZ_z:(CGFloat)z duration:(NSTimeInterval)duration
+static CAAnimation * addOptions(CAAnimation *animation, NSDictionary *options)
 {
-    CGFloat _z = ROUND_CGFLOAT(z) + self.layer.zPosition;
-    [self zPosition_z:_z duration:duration];
+    if ([options[@"repeatCount"] isKindOfClass:[NSNumber class]]) {
+        float rc  = [options[@"repeatCount"] floatValue];
+        // マイナス値でサイクルアニメーション
+        if (rc < 0) {
+            animation.repeatCount = HUGE_VALF;
+        }else{
+            animation.repeatCount = rc;
+        }
+    }
+    
+    if ([options[@"timing"] isKindOfClass:[NSString class]]) {
+        NSString *tm = options[@"timing"];
+        NSString *name = kCAMediaTimingFunctionDefault;
+        if ([tm isEqualToString:@"linear"]) {
+            name = kCAMediaTimingFunctionLinear;
+        }else if ([tm isEqualToString:@"ease-in"]){
+            name = kCAMediaTimingFunctionEaseIn;
+        }else if ([tm isEqualToString:@"ease-out"]){
+            name = kCAMediaTimingFunctionEaseOut;
+        }else if ([tm isEqualToString:@"ease-in-ease-out"]){
+            name = kCAMediaTimingFunctionEaseInEaseOut;
+        }
+        animation.timingFunction = [CAMediaTimingFunction functionWithName:name];
+    }else if ([options[@"timingPoints"] isKindOfClass:[NSArray class]]){
+        CGFloat p1x = ROUND_CGFLOAT([options[@"timingPoints"][0] CGFloatValue]);
+        CGFloat p1y = ROUND_CGFLOAT([options[@"timingPoints"][1] CGFloatValue]);
+        CGFloat p2x = ROUND_CGFLOAT([options[@"timingPoints"][2] CGFloatValue]);
+        CGFloat p2y = ROUND_CGFLOAT([options[@"timingPoints"][3] CGFloatValue]);
+        animation.timingFunction = [CAMediaTimingFunction functionWithControlPoints:(float)p1x :(float)p1y :(float)p2x :(float)p2y];
+    }
+    if ([options[@"repeatDuration"] isKindOfClass:[NSNumber class]]) {
+        CFTimeInterval rd = [options[@"repeatDuration"] doubleValue];
+        animation.repeatDuration = rd;
+    }
+    if ([options[@"removeOnCompletion"] isKindOfClass:[NSNumber class]]) {
+        BOOL roc = [options[@"removeOnCompletion"] boolValue];
+        animation.removedOnCompletion = roc;
+    }
+    if ([options[@"timeOffset"] isKindOfClass:[NSNumber class]]) {
+        CFTimeInterval to = [options[@"timeOffset"] doubleValue];
+        animation.timeOffset = to;
+    }
+    if ([options[@"autoreverses"] isKindOfClass:[NSNumber class]]) {
+        BOOL ar = [options[@"autoreverses"] boolValue];
+        animation.autoreverses = ar;
+    }
+    if ([options[@"duration"] isKindOfClass:[NSNumber class]]) {
+        CFTimeInterval d = [options[@"duration"] doubleValue];
+        animation.duration = d;
+    }
+    return animation;
 }
-
-- (void)scale_ratio:(CGFloat)ratio duration:(NSTimeInterval)duration
-{
-    CGFloat _ratio = ROUND_CGFLOAT(ratio);
-	[self enqueuAnimationForKeyPath:@"transform.scale" toValue:@(_ratio) duration:duration];
-}
-
-- (void)rotate_degree:(CGFloat)degree duration:(NSTimeInterval)duration
-{
-    CGFloat _degree = RADIAN(ROUND_CGFLOAT(degree));
-    CGFloat rotationZ = [[self.layer valueForKeyPath:@"transform.rotation.z"] CGFloatValue];
-    [self enqueuAnimationForKeyPath:@"transform.rotation.z" toValue:@(_degree+rotationZ) duration:duration];
-}
-
-- (void)rotateX_degree:(CGFloat)degree duration:(NSTimeInterval)duration
-{
-    CGFloat _degree = RADIAN(ROUND_CGFLOAT(degree));
-    CGFloat rotationX = [[self.layer valueForKeyPath:@"transform.rotation.x"] CGFloatValue];
-    [self enqueuAnimationForKeyPath:@"transform.rotation.x" toValue:@(_degree+rotationX) duration:duration];
-}
-
-- (void)rotateY_degree:(CGFloat)degree duration:(NSTimeInterval)duration
-{
-    CGFloat _degree = RADIAN(ROUND_CGFLOAT(degree));
-    CGFloat rotationY = [[self.layer valueForKeyPath:@"transform.rotation.y"] CGFloatValue];
-    [self enqueuAnimationForKeyPath:@"transform.rotation.y" toValue:@(_degree+rotationY) duration:duration];
-}
-
-- (void)opacity_ratio:(CGFloat)ratio duration:(NSTimeInterval)duration
-{
-    NSParameterAssert(VALID_CGFLOAT(ratio));
-    [self enqueuAnimationForKeyPath:@"opacity" toValue:@(ZERO_TO_ONE(ratio)) duration:duration];
-}
-
 
 @end
 

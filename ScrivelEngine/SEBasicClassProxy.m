@@ -44,6 +44,9 @@
 		SEL_FOR_METHOD(@"waitTap",waitTap);
 		SEL_FOR_METHOD(@"waitText",waitText);
 		SEL_FOR_METHOD(@"waitAnimation",waitAnimation);
+		SEL_FOR_METHOD(@"set",set_key:value:);
+		SEL_FOR_METHOD(@"enable",enable_key:enable:);
+		SEL_FOR_METHOD(@"alias",alias_alias:method:);
 		SEL_FOR_METHOD(@"new",new_args:);
 
 	}
@@ -51,15 +54,15 @@
 		// app
 
 		// inherited from app
-		SEL_FOR_METHOD(@"set",set_key:value:);
-		SEL_FOR_METHOD(@"enable",enable_key:enable:);
-		SEL_FOR_METHOD(@"alias",alias_alias:method:);
 		// inherited from abstract
 		SEL_FOR_METHOD(@"callMethod",callMethod_method:);
 		SEL_FOR_METHOD(@"wait",wait_duration:);
 		SEL_FOR_METHOD(@"waitTap",waitTap);
 		SEL_FOR_METHOD(@"waitText",waitText);
 		SEL_FOR_METHOD(@"waitAnimation",waitAnimation);
+		SEL_FOR_METHOD(@"set",set_key:value:);
+		SEL_FOR_METHOD(@"enable",enable_key:enable:);
+		SEL_FOR_METHOD(@"alias",alias_alias:method:);
 		SEL_FOR_METHOD(@"new",new_args:);
 
 	}
@@ -71,43 +74,29 @@
 		SEL_FOR_METHOD(@"get",get_key:);
 		SEL_FOR_METHOD(@"clear",clear_key:);
 		SEL_FOR_METHOD(@"defineAnimation",define_name:animations:options:);
-		SEL_FOR_METHOD(@"setAnchorPoint",setAnchorPoint_x:y:);
-		SEL_FOR_METHOD(@"setGravity",setGravity_gravity:);
 		SEL_FOR_METHOD(@"loadImage",loadImage_path:duration:);
 		SEL_FOR_METHOD(@"clearImage",clearImage_duration:);
-		SEL_FOR_METHOD(@"bg",bg_color:);
-		SEL_FOR_METHOD(@"border",border_width:color:);
-		SEL_FOR_METHOD(@"shadowOffset",shadowOffset_x:y:);
-		SEL_FOR_METHOD(@"shadowColor",shadowColor_color:);
-		SEL_FOR_METHOD(@"shadowOpacity",shadowOpcity_opacity:);
-		SEL_FOR_METHOD(@"shadowRadius",shadowRadius_radius:);
 		SEL_FOR_METHOD(@"begin",begin_duration:options:);
 		SEL_FOR_METHOD(@"chain",chain);
 		SEL_FOR_METHOD(@"commit",commit);
 		SEL_FOR_METHOD(@"stop",stop);
 		SEL_FOR_METHOD(@"pause",pause);
 		SEL_FOR_METHOD(@"resume",resume);
-		SEL_FOR_METHOD(@"position",position_x:y:duration:);
-		SEL_FOR_METHOD(@"zPosition",zPosition_z:duration:);
-		SEL_FOR_METHOD(@"size",size_width:height:duration:);
 		SEL_FOR_METHOD(@"show",show);
 		SEL_FOR_METHOD(@"hide",hide);
 		SEL_FOR_METHOD(@"toggle",toggle);
 		SEL_FOR_METHOD(@"fadeIn",fadeIn_duration:);
 		SEL_FOR_METHOD(@"fadeOut",fadeOut_duration:);
-		SEL_FOR_METHOD(@"translate",translate_x:y:duration:);
-		SEL_FOR_METHOD(@"translateZ",translateZ_z:duration:);
-		SEL_FOR_METHOD(@"scale",scale_ratio:duration:);
-		SEL_FOR_METHOD(@"rotate",rotate_degree:duration:);
-		SEL_FOR_METHOD(@"rotateX",rotateX_degree:duration:);
-		SEL_FOR_METHOD(@"rotateY",rotateY_degree:duration:);
-		SEL_FOR_METHOD(@"opacity",opacity_ratio:duration:);
+		SEL_FOR_METHOD(@"animate",animate_key:value:duration:options:);
 		// inherited from abstract
 		SEL_FOR_METHOD(@"callMethod",callMethod_method:);
 		SEL_FOR_METHOD(@"wait",wait_duration:);
 		SEL_FOR_METHOD(@"waitTap",waitTap);
 		SEL_FOR_METHOD(@"waitText",waitText);
 		SEL_FOR_METHOD(@"waitAnimation",waitAnimation);
+		SEL_FOR_METHOD(@"set",set_key:value:);
+		SEL_FOR_METHOD(@"enable",enable_key:enable:);
+		SEL_FOR_METHOD(@"alias",alias_alias:method:);
 		SEL_FOR_METHOD(@"new",new_args:);
 
 	}
@@ -133,43 +122,29 @@
 		SEL_FOR_METHOD(@"get",get_key:);
 		SEL_FOR_METHOD(@"clear",clear_key:);
 		SEL_FOR_METHOD(@"defineAnimation",define_name:animations:options:);
-		SEL_FOR_METHOD(@"setAnchorPoint",setAnchorPoint_x:y:);
-		SEL_FOR_METHOD(@"setGravity",setGravity_gravity:);
 		SEL_FOR_METHOD(@"loadImage",loadImage_path:duration:);
 		SEL_FOR_METHOD(@"clearImage",clearImage_duration:);
-		SEL_FOR_METHOD(@"bg",bg_color:);
-		SEL_FOR_METHOD(@"border",border_width:color:);
-		SEL_FOR_METHOD(@"shadowOffset",shadowOffset_x:y:);
-		SEL_FOR_METHOD(@"shadowColor",shadowColor_color:);
-		SEL_FOR_METHOD(@"shadowOpacity",shadowOpcity_opacity:);
-		SEL_FOR_METHOD(@"shadowRadius",shadowRadius_radius:);
 		SEL_FOR_METHOD(@"begin",begin_duration:options:);
 		SEL_FOR_METHOD(@"chain",chain);
 		SEL_FOR_METHOD(@"commit",commit);
 		SEL_FOR_METHOD(@"stop",stop);
 		SEL_FOR_METHOD(@"pause",pause);
 		SEL_FOR_METHOD(@"resume",resume);
-		SEL_FOR_METHOD(@"position",position_x:y:duration:);
-		SEL_FOR_METHOD(@"zPosition",zPosition_z:duration:);
-		SEL_FOR_METHOD(@"size",size_width:height:duration:);
 		SEL_FOR_METHOD(@"show",show);
 		SEL_FOR_METHOD(@"hide",hide);
 		SEL_FOR_METHOD(@"toggle",toggle);
 		SEL_FOR_METHOD(@"fadeIn",fadeIn_duration:);
 		SEL_FOR_METHOD(@"fadeOut",fadeOut_duration:);
-		SEL_FOR_METHOD(@"translate",translate_x:y:duration:);
-		SEL_FOR_METHOD(@"translateZ",translateZ_z:duration:);
-		SEL_FOR_METHOD(@"scale",scale_ratio:duration:);
-		SEL_FOR_METHOD(@"rotate",rotate_degree:duration:);
-		SEL_FOR_METHOD(@"rotateX",rotateX_degree:duration:);
-		SEL_FOR_METHOD(@"rotateY",rotateY_degree:duration:);
-		SEL_FOR_METHOD(@"opacity",opacity_ratio:duration:);
+		SEL_FOR_METHOD(@"animate",animate_key:value:duration:options:);
 		// inherited from abstract
 		SEL_FOR_METHOD(@"callMethod",callMethod_method:);
 		SEL_FOR_METHOD(@"wait",wait_duration:);
 		SEL_FOR_METHOD(@"waitTap",waitTap);
 		SEL_FOR_METHOD(@"waitText",waitText);
 		SEL_FOR_METHOD(@"waitAnimation",waitAnimation);
+		SEL_FOR_METHOD(@"set",set_key:value:);
+		SEL_FOR_METHOD(@"enable",enable_key:enable:);
+		SEL_FOR_METHOD(@"alias",alias_alias:method:);
 		SEL_FOR_METHOD(@"new",new_args:);
 
 	}

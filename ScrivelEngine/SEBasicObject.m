@@ -23,10 +23,19 @@ id callMethod(id target, NSString *class, SEMethod *method, ScrivelEngine *engin
     // aliasを探す
     NSString *name = [[(SEBasicObjectClass*)target aliasStore] objectForKey:method.name] ?: method.name;
     SEL sel = [engine.classProxy selectorForMethodIdentifier:name classIdentifier:class];
-    // wait系メソッドをappにフォワーディングする
     if ([method.name hasPrefix:@"wait"]) {
+        // wait系メソッドをappにフォワーディングする
         target = engine.app;
         sel = [engine.classProxy selectorForMethodIdentifier:method.name classIdentifier:@"app"];
+    }else if ([method.name isEqualToString:@"set"]){
+        // setメソッドだけはargumentsをそのまま引数に渡す
+        NSArray *key = [method argAtIndex:0];
+        NSArray *values = [method.arguments subarrayWithRange:NSMakeRange(1, method.arguments.count-1)];
+        if (values.count == 1) {
+            return objc_msgSend(target, @selector(set_key:value:), key, values[0]);
+        }else if (values.count > 1){
+            return objc_msgSend(target, @selector(set_key:value:), key, values) ?: nil;
+        }
     }
     NSMethodSignature *sig = [target methodSignatureForSelector:sel];
     NSInvocation *iv = [NSInvocation invocationWithMethodSignature:sig];
@@ -113,6 +122,21 @@ id callMethod(id target, NSString *class, SEMethod *method, ScrivelEngine *engin
 {
     // wa -> waitAnimation
     [__aliasStore setObject:method forKey:alias];
+}
+
+- (BOOL)respondsToKey:(NSString *)key
+{
+    return NO;
+}
+
+- (BOOL)canEnableForKey:(NSString *)key
+{
+    return NO;
+}
+
+- (BOOL)canAliasizeForKey:(NSString *)key
+{
+    return NO;
 }
 
 @end

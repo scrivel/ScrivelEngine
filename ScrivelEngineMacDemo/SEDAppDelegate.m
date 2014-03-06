@@ -41,7 +41,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:MGSFragariaPrefsAutoInsertAClosingBrace];
     [[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:MGSFragariaPrefsAutoInsertAClosingParenthesis];
     [[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:MGSFragariaPrefsAutomaticallyIndentBraces];
-    [[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:MGSFragariaPrefsAutomaticQuoteSubstitution];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:MGSFragariaPrefsAutomaticQuoteSubstitution];
     
     [f setString:str];
     fragaria = f;

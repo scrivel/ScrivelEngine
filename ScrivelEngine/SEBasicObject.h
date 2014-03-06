@@ -18,6 +18,10 @@ OBJC_EXPORT id callMethod(id , NSString *, SEMethod *, ScrivelEngine *);
 @property (nonatomic, readonly) NSDictionary *enabledStore;
 @property (nonatomic, readonly) NSDictionary *aliasStore;
 
+- (BOOL)respondsToKey:(NSString*)key;
+- (BOOL)canEnableForKey:(NSString*)key;
+- (BOOL)canAliasizeForKey:(NSString*)key;
+
 @end
 
 @interface SEBasicObjectClass : _SEObject <SEObjectClass>

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SEObject.h"
+#import "ScrivelEngine.h"
 
 @protocol SELayerClass <SEObjectClass>
 @required
@@ -65,22 +66,19 @@
 #pragma mark - Property
 
 /**
- レイヤーのアンカーポイントを指定する。
- pointの各値は0~1の間で正規化されている必要がある。
+ 位置、回転などのアンカーポイント。
  
- @method setAnchorPoint
- @param {Number} x
- @param {Number} y
+ @properety anchorPoint
+ @type String
+ @default (0.5,0.5)
  **/
-- (void)setAnchorPoint_x:(CGFloat)x y:(CGFloat)y;
-
+@property (nonatomic) CGPoint anchorPoint;
 /**
- 画像のgravity（表示モード）を指定する。
  
- @method setGravity
- @param {String} type
+ @property gravity
+ @type String
  **/
-- (void)setGravity_gravity:(NSString*)gravity;
+@property (nonatomic) NSString *gravity;
 
 #pragma mark - Image
 
@@ -109,50 +107,48 @@
 /**
  背景色を指定する
  
- @method bg
- @param {String} color 色 by hex #ffffff
+ @property bgColor
+ @type String
  **/
-- (void)bg_color:(NSString*)color;
-
+@property (nonatomic) SEColor *bgColor;
 /**
- 境界線を指定する
+ 境界線の太さ指定する
  
- @method border
-     @params {Number} [width] 境界線の幅 by px
-     @params {String} [color] 境界線の色 by hex #123456
+ @property borderWidth
+ @type Number
  **/
-- (void)border_width:(CGFloat)width color:(NSString*)color;
-
+@property (nonatomic) CGFloat borderWidth;
+/**
+ 境界線の色を指定する
+ 
+ @property borderColor
+ @type
+ **/
+@property (nonatomic) SEColor *borderColor;
 /**
  影のオフセットを指定する
  
- @method shadowOffset
- @param {Number} x
- @param {Number} y
+ @property shadowOffset
  **/
-- (void)shadowOffset_x:(CGFloat)x y:(CGFloat)y;
+@property (nonatomic) SESize shadowOffset;
 /**
  影の色を指定する
  
- @method shadowColor
- @param {String} color hex
+ @property shadowColor
  **/
-- (void)shadowColor_color:(NSString*)color;
+@property (nonatomic) SEColor *shadowColor;
 /**
  影の不透明度を指定する
  
- @method shadowOpacity
- @param {Number} opacity
+ @property shadowOpacity
  **/
-- (void)shadowOpcity_opacity:(CGFloat)opacity;
-
+@property (nonatomic) CGFloat shadowOpacity;
 /**
  影の拡散を指定する
  
- @method shadowRadius
- @param {Number} radius
+ @property shadowRadius
  **/
-- (void)shadowRadius_radius:(CGFloat)radius;
+@property (nonatomic) CGFloat shadowRadius;
 
 #pragma mark - Animation
 
@@ -223,37 +219,6 @@
 - (void)resume;
 
 /**
- レイヤーの位置を指定する。
- 位置はanchorによってpxか0~1の値になる
- 
- @method  position
- @param	{Number} x
- @param	{Number} y
- @param {Number} [duration]
- **/
-- (void)position_x:(CGFloat)x y:(CGFloat)y duration:(NSTimeInterval)duration;
-
-/**
- レイヤーのz座標の位置を指定する。
- 
- @method  zPosition
- @param	{Number} z px
- @parma {Number} duration
- **/
-- (void)zPosition_z:(CGFloat)z duration:(NSTimeInterval)duration;
-
-/**
- レイヤーのサイズを変更する。
- 画像が読み込まれていた場合はサイズを優先して拡大縮小する。
- 
- @method  size
- @param	{Number} width
- @param	{Number} height
- @param  {Number} [duration]
- **/
-- (void)size_width:(CGFloat)width height:(CGFloat)height duration:(NSTimeInterval)duration;
-
-/**
  レイヤーを表示する。
  すでに表示されている場合は何も起こらない。
  durationを指定することでフェードインする。
@@ -274,7 +239,6 @@
  レイヤーの表示/非表示を切り替える。
  
  @method  toggle
- @param	{Number} [duration]	秒数はミリセカンド(1/1000秒）
  **/
 - (void)toggle;
 
@@ -293,76 +257,28 @@
  **/
 - (void)fadeOut_duration:(NSTimeInterval)duration;
 
+
 /**
- レイヤーを移動させる。
- 移動は現在のpositionに加算される。
+ レイヤーをアニメーションさせる
+ animatebleなkeyは以下
+ position x,y
+ zPosition z
+ size w,h
+ translate x, y
+ translateZ z
+ scale ratio
+ rotate degree
+ rotateX degree
+ rotateY degree
+ opacity ratio
  
- @method translate
- @param {Number} x
- @param {Number} y
+ @method animate
+ @param {String} key
+ @param {Number|Object} value
  @param {Number} [duration]
+ @param {Object} [options]
  **/
-- (void)translate_x:(CGFloat)x y:(CGFloat)y duration:(NSTimeInterval)duration;
-
-/**
- レイヤーをz方向に移動させる。
- 移動は現在のpositionに加算される。
- 
- @method translateZ
- @param {Number} z
- @param {Number} [duration]
- **/
-- (void)translateZ_z:(CGFloat)z duration:(NSTimeInterval)duration;
-
-
-/**
- レイヤーを現在のアンカーポイントを中心に拡大/縮小する
- 
- @method  scale
- @param	{Number} ratio	 	拡大率。1.0=100%
- @param	{Number} [duration]	秒数
- **/
-- (void)scale_ratio:(CGFloat)ratio duration:(NSTimeInterval)duration;
-
-/**
- レイヤーをanchorPointを中心にz軸に対して回転させる。
- 
- @method  rotate
- @param	{Number} degree		角度。
- @param	{Number} [duration]	秒数
- 正の値で左回転。負の値で右回転。
- **/
-- (void)rotate_degree:(CGFloat)degree duration:(NSTimeInterval)duration;
-
-/**
- レイヤーをanchorPointを中心にx軸にたいして回転させる。
- 
- @method  rotateX
- @param	{Number} degree		角度。
- @param	{Number} [duration]	秒数
- 正の値で左回転。負の値で右回転。
- **/
-- (void)rotateX_degree:(CGFloat)degree duration:(NSTimeInterval)duration;
-
-/**
- レイヤーをanchorPointを中心にy軸に対して回転させる。
- 
- @method  rotateY
- @param	{Number} degree		角度。
- @param	{Number} [duration]	秒数
- 正の値で左回転。負の値で右回転。
- **/
-- (void)rotateY_degree:(CGFloat)degree duration:(NSTimeInterval)duration;
-
-
-/**
- レイヤーの不透明度を指定する。
- 
- @method  opacity
- @param	{Number} ratio 0~1の値
- @param  {Number} [duration]
- **/
-- (void)opacity_ratio:(CGFloat)ratio duration:(NSTimeInterval)duration;
+- (void)animate_key:(NSString*)key value:(id)value duration:(CFTimeInterval)duration options:(NSDictionary*)options;
 
 
 
