@@ -135,6 +135,8 @@
 		A6D925D818B8E24600902230 /* NSBundle+ScrivelEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D925D418B8E24600902230 /* NSBundle+ScrivelEngine.m */; };
 		A6D925DC18B914E700902230 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A60ECBC818AC8523000F7A40 /* Main.storyboard */; };
 		A6D925DD18B914E700902230 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A60ECBBF18AC8523000F7A40 /* InfoPlist.strings */; };
+		A6F1145A18C776BA002CBAB6 /* SECharacterLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = A6F1145918C776B9002CBAB6 /* SECharacterLayer.h */; };
+		A6F1145B18C776BA002CBAB6 /* SECharacterLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = A6F1145918C776B9002CBAB6 /* SECharacterLayer.h */; };
 		A6FBB37518BE2A5C008DDF22 /* SEResponderProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FBB37318BE2A5C008DDF22 /* SEResponderProxy.m */; };
 		A6FBB37618BE2B67008DDF22 /* SEResponderProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FBB37218BE2A5C008DDF22 /* SEResponderProxy.h */; };
 		A6FBB38418BF210C008DDF22 /* SEClassProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FBB38318BF210C008DDF22 /* SEClassProxy.h */; };
@@ -304,6 +306,7 @@
 		A6D1760D18AE628200AB11AF /* SEScriptParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEScriptParser.m; sourceTree = "<group>"; };
 		A6D925D318B8E24600902230 /* NSBundle+ScrivelEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+ScrivelEngine.h"; sourceTree = "<group>"; };
 		A6D925D418B8E24600902230 /* NSBundle+ScrivelEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+ScrivelEngine.m"; sourceTree = "<group>"; };
+		A6F1145918C776B9002CBAB6 /* SECharacterLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SECharacterLayer.h; sourceTree = "<group>"; };
 		A6FBB37218BE2A5C008DDF22 /* SEResponderProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEResponderProxy.h; path = OSX/SEResponderProxy.h; sourceTree = "<group>"; };
 		A6FBB37318BE2A5C008DDF22 /* SEResponderProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEResponderProxy.m; path = OSX/SEResponderProxy.m; sourceTree = "<group>"; };
 		A6FBB38318BF210C008DDF22 /* SEClassProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEClassProxy.h; sourceTree = "<group>"; };
@@ -408,6 +411,7 @@
 				A639F08618BB7A0C00CF4148 /* SEApp.h */,
 				A604522518B3A30B00B85928 /* SELayer.h */,
 				A604522718B3A30B00B85928 /* SETextLayer.h */,
+				A6F1145918C776B9002CBAB6 /* SECharacterLayer.h */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -692,6 +696,7 @@
 				A6FBB37618BE2B67008DDF22 /* SEResponderProxy.h in Headers */,
 				A6AB55D818C225C50083760F /* NSObject+KXEventEmitter.h in Headers */,
 				A6D04D4B18B7701C00977B7A /* SEBasicClassProxy.h in Headers */,
+				A6F1145B18C776BA002CBAB6 /* SECharacterLayer.h in Headers */,
 				A604523018B3A35A00B85928 /* SEObject.h in Headers */,
 				A6A1691518B25A410041BBBA /* SEScript.h in Headers */,
 				A604522918B3A30B00B85928 /* SELayer.h in Headers */,
@@ -715,6 +720,7 @@
 				A609F66E18B48F74000A0EFB /* Stack.h in Headers */,
 				A6D04D3818B4DFA600977B7A /* ScrivelEngine.h in Headers */,
 				A6A1691B18B25A4C0041BBBA /* SEMethod.h in Headers */,
+				A6F1145A18C776BA002CBAB6 /* SECharacterLayer.h in Headers */,
 				A604523B18B3A58B00B85928 /* SEBasicObject.h in Headers */,
 				A6A1691118B25A390041BBBA /* SEScriptParser.h in Headers */,
 				A639F08718BB7A0C00CF4148 /* SEApp.h in Headers */,

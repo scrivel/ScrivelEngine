@@ -35,7 +35,7 @@
     SEBasicTextLayer *new = (SEBasicTextLayer*)[super new_args:args];
     // まだレイヤーがない場合はそのレイヤーをprimaryに設定する
     if (self.layers.count == 1) {
-        [self setPrimary_index:new.index];
+        [self setPrimary_key:new.name];
     }
     return new;
 }
@@ -50,9 +50,9 @@
     return [super callMethod_method:method];
 }
 
-- (void)setPrimary_index:(NSUInteger)index
+- (void)setPrimary_key:(id<NSCopying>)key
 {
-    SEBasicTextLayer *l = [self at_index:index];
+    SEBasicTextLayer *l = [self get_key:key];
     if (l) {
 #if TARGET_OS_IPHONE
         [self.engine.rootView removeGestureRecognizer:_tapGestureRecognizer];
@@ -75,9 +75,9 @@
     }
 }
 
-- (void)setNameLayer_index:(NSUInteger)index
+- (void)setNameLayer_key:(id<NSCopying>)key
 {
-    SEBasicTextLayer *l = [self at_index:index];
+    SEBasicTextLayer *l = [self get_key:key];
     if (l) {
         _primaryNameLayer = l;
     }

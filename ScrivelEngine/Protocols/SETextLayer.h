@@ -23,7 +23,7 @@
  @static
  @pram {Number} index レイヤーの番号
  **/
-- (void)setPrimary_index:(NSUInteger)index;
+- (void)setPrimary_key:(id<NSCopying>)key;
 
 
 /**
@@ -33,7 +33,7 @@
  @static
  @param {Number} index レイヤーの番号
  **/
-- (void)setNameLayer_index:(NSUInteger)index;
+- (void)setNameLayer_key:(id<NSCopying>)key;
 
 /**
  現在のプライマリネームレイヤーに名前を表示する
@@ -105,20 +105,6 @@
  @method start
  **/
 - (void)start;
-
-/**
- 文字列の表示を一時停止する
- 
- @method pause
- **/
-- (void)pause;
-
-/**
- 一時停止中のアニメーションを再開する
- 
- @method resume
- **/
-- (void)resume;
 
 /**
  現在表示している文字列をクリアする

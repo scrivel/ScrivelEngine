@@ -68,8 +68,9 @@
 
 		// inherited from layer
 		SEL_FOR_METHOD(@"new",new_args:);
-		SEL_FOR_METHOD(@"at",at_index:);
-		SEL_FOR_METHOD(@"clear",clear_index:);
+		SEL_FOR_METHOD(@"get",get_key:);
+		SEL_FOR_METHOD(@"clear",clear_key:);
+		SEL_FOR_METHOD(@"defineAnimation",define_name:animations:options:);
 		SEL_FOR_METHOD(@"setAnchorPoint",setAnchorPoint_x:y:);
 		SEL_FOR_METHOD(@"setGravity",setGravity_gravity:);
 		SEL_FOR_METHOD(@"loadImage",loadImage_path:duration:);
@@ -80,9 +81,12 @@
 		SEL_FOR_METHOD(@"shadowColor",shadowColor_color:);
 		SEL_FOR_METHOD(@"shadowOpacity",shadowOpcity_opacity:);
 		SEL_FOR_METHOD(@"shadowRadius",shadowRadius_radius:);
-		SEL_FOR_METHOD(@"beginAnimation",beginAnimation_duration:options:);
-		SEL_FOR_METHOD(@"chainAnimation",chainAnimation);
-		SEL_FOR_METHOD(@"commitAnimation",commitAnimation);
+		SEL_FOR_METHOD(@"begin",begin_duration:options:);
+		SEL_FOR_METHOD(@"chain",chain);
+		SEL_FOR_METHOD(@"commit",commit);
+		SEL_FOR_METHOD(@"stop",stop);
+		SEL_FOR_METHOD(@"pause",pause);
+		SEL_FOR_METHOD(@"resume",resume);
 		SEL_FOR_METHOD(@"position",position_x:y:duration:);
 		SEL_FOR_METHOD(@"zPosition",zPosition_z:duration:);
 		SEL_FOR_METHOD(@"size",size_width:height:duration:);
@@ -111,8 +115,8 @@
 		// text
 
 		// inherited from text
-		SEL_FOR_METHOD(@"setPrimary",setPrimary_index:);
-		SEL_FOR_METHOD(@"setNameLayer",setNameLayer_index:);
+		SEL_FOR_METHOD(@"setPrimary",setPrimary_key:);
+		SEL_FOR_METHOD(@"setNameLayer",setNameLayer_key:);
 		SEL_FOR_METHOD(@"setName",setName_name:);
 		SEL_FOR_METHOD(@"setInterval",setInterval_interval:);
 		SEL_FOR_METHOD(@"setFont",setFont_name:size:);
@@ -120,16 +124,15 @@
 		SEL_FOR_METHOD(@"setLineSpacing",setLineSpacing_spacing:);
 		SEL_FOR_METHOD(@"setText",setText_text:noanimate:);
 		SEL_FOR_METHOD(@"start",start);
-		SEL_FOR_METHOD(@"pause",pause);
-		SEL_FOR_METHOD(@"resume",resume);
 		SEL_FOR_METHOD(@"clear",clear);
 		SEL_FOR_METHOD(@"skip",skip);
 		SEL_FOR_METHOD(@"padding",setPadding_top:left:bottom:right:);
 		SEL_FOR_METHOD(@"horizontalAlign",setHorizontalAlign_direction:);
 		// inherited from layer
 		SEL_FOR_METHOD(@"new",new_args:);
-		SEL_FOR_METHOD(@"at",at_index:);
-		SEL_FOR_METHOD(@"clear",clear_index:);
+		SEL_FOR_METHOD(@"get",get_key:);
+		SEL_FOR_METHOD(@"clear",clear_key:);
+		SEL_FOR_METHOD(@"defineAnimation",define_name:animations:options:);
 		SEL_FOR_METHOD(@"setAnchorPoint",setAnchorPoint_x:y:);
 		SEL_FOR_METHOD(@"setGravity",setGravity_gravity:);
 		SEL_FOR_METHOD(@"loadImage",loadImage_path:duration:);
@@ -140,9 +143,12 @@
 		SEL_FOR_METHOD(@"shadowColor",shadowColor_color:);
 		SEL_FOR_METHOD(@"shadowOpacity",shadowOpcity_opacity:);
 		SEL_FOR_METHOD(@"shadowRadius",shadowRadius_radius:);
-		SEL_FOR_METHOD(@"beginAnimation",beginAnimation_duration:options:);
-		SEL_FOR_METHOD(@"chainAnimation",chainAnimation);
-		SEL_FOR_METHOD(@"commitAnimation",commitAnimation);
+		SEL_FOR_METHOD(@"begin",begin_duration:options:);
+		SEL_FOR_METHOD(@"chain",chain);
+		SEL_FOR_METHOD(@"commit",commit);
+		SEL_FOR_METHOD(@"stop",stop);
+		SEL_FOR_METHOD(@"pause",pause);
+		SEL_FOR_METHOD(@"resume",resume);
 		SEL_FOR_METHOD(@"position",position_x:y:duration:);
 		SEL_FOR_METHOD(@"zPosition",zPosition_z:duration:);
 		SEL_FOR_METHOD(@"size",size_width:height:duration:);

@@ -70,7 +70,7 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
         layer = (SEBasicLayer*)[super new_args:args];
     }
     // 古いレイヤーを消す
-    [self clear_index:layer.index];
+    [self clear_key:layer.name];
     // 登録
     [__layers setObject:layer forKey:@(layer.index)];
     // レイヤーを追加
@@ -80,15 +80,20 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 
 #pragma mark - SELayerClass
 
-- (id)at_index:(NSUInteger)index
+- (id)get_key:(id<NSCopying>)key
 {
-    return [self.layers objectForKey:@((unsigned int)index)];
+    return [self.layers objectForKey:[key copyWithZone:NULL]];
 }
 
-- (void)clear_index:(NSUInteger)index
+- (void)clear_key:(id<NSCopying>)key
 {
-    [[[__layers objectForKey:@(index)] layer]removeFromSuperlayer];
-    [__layers removeObjectForKey:@(index)];
+    [[[__layers objectForKey:key] layer]removeFromSuperlayer];
+    [__layers removeObjectForKey:key];
+}
+
+- (void)define_name:(id<NSCopying>)name animations:(NSDictionary *)animations options:(NSDictionary *)options
+{
+    
 }
 
 - (NSDictionary *)layers
@@ -331,7 +336,7 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
     }
 }
 
-- (void)beginAnimation_duration:(NSTimeInterval)duration options:(NSDictionary *)options
+- (void)begin_duration:(NSTimeInterval)duration options:(NSDictionary *)options
 {
     _animationBegan = YES;
     CAAnimationGroup *a = [CAAnimationGroup animation];
@@ -392,12 +397,12 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
     _animationGroup = a;
 }
 
-- (void)chainAnimation
+- (void)chain
 {
     _animationChainBegan = YES;
 }
 
-- (void)commitAnimation
+- (void)commit
 {
     // Queueに貯めたアニメーションをグループ化して追加する
     if (_animationBegan) {
@@ -406,6 +411,28 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
     _animationBegan = NO;
     _animationChainBegan = NO;
     _animationGroup = nil;
+}
+
+- (void)stop
+{
+    [self.layer removeAllAnimations];
+    [(SEBasicLayerClass*)self.holder setActiveAnimationCount:0];
+}
+
+- (void)pause
+{
+    CFTimeInterval pausedTime = [self.layer convertTime:CACurrentMediaTime() fromLayer:nil];
+    self.layer.speed = 0;
+    self.layer.timeOffset = pausedTime;
+}
+
+- (void)resume
+{
+    self.layer.speed = 1.0f;
+    self.layer.timeOffset = 0;
+    CFTimeInterval pausedTime = self.layer.timeOffset;
+    CFTimeInterval timeSincePause = [self.layer convertTime:CACurrentMediaTime() fromLayer:nil] - pausedTime;
+    self.layer.beginTime = timeSincePause;
 }
 
 - (void)position_x:(CGFloat)x y:(CGFloat)y duration:(NSTimeInterval)duration

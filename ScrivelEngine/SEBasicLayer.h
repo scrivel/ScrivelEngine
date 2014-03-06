@@ -52,6 +52,7 @@
 
 @interface SEBasicLayer : SEBasicObject <SELayerInstance>
 
+@property (nonatomic) NSString *name;
 @property (nonatomic) unsigned int index;
 @property (nonatomic) CALayer *layer;
 @property (nonatomic, readonly) BOOL animationBegan;

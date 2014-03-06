@@ -34,25 +34,29 @@
 #pragma mark - Static
 
 /**
- 指定された番号のレイヤーを返す
- 指定された番号にレイヤーがない場合はnilを返す
+ レイヤーを取得する
  
- @method at
+ @method get
  @static
- @return id
- @param {Number} index レイヤー番号
- @return SELayer
+ @param {String|Number} key レイヤー番号
  **/
-- (id)at_index:(NSUInteger)index;
+- (id)get_key:(id<NSCopying>)key;
 
 /**
  レイヤーを破棄する。
  読み込まれている画像、設定されているアニメーションは即時に破棄される。
  
  @method  clear
- @param {Number} index レイヤー番号
+ @param {String|Number} key キー
  **/
-- (void)clear_index:(NSUInteger)index;
+- (void)clear_key:(id<NSCopying>)key;
+
+/**
+ 
+ @method defineAnimation
+ **/
+- (void)define_name:(id<NSCopying>)name animations:(NSDictionary*)animations options:(NSDictionary*)options;
+
 
 @end
 
@@ -167,7 +171,7 @@
  
  optionsにはアニメーションの指定もできる
  
- @method beginAnimation
+ @method begin
  @param {Number} [duration]
  @param {Object} [options] アニメーションオプション
     @param {Boolean} [options.autoreverses] アニメーションを逆実行するか
@@ -179,23 +183,44 @@
     @param {Array} [options.timingPoints] アニメーションカーブを構成するポイント。正規化された値。 例) 0.1, 0.1, 0.2, 0.2
     @param {Number} [options.duration] アニメーションの時間。指定された場合こちらが優先される
  **/
-- (void)beginAnimation_duration:(NSTimeInterval)duration options:(NSDictionary*)options;
+- (void)begin_duration:(NSTimeInterval)duration options:(NSDictionary*)options;
 
 /**
  アニメーションチェインを開始する。
  ~ commiAnimation()までに呼び出されたアニメーションメソッドは逐次実行される
  
- @method chainAnimation
+ @method chain
  **/
-- (void)chainAnimation;
+- (void)chain;
 
 /**
  アニメーションを開始する
  beginAnimation()からここまでに呼び出されたアニメーションメソッドが合成される
  
- @method commitAnimation
+ @method commit
  **/
-- (void)commitAnimation;
+- (void)commit;
+
+/**
+ 実行中のすべてのアニメーションを削除する
+ 
+ @method stop
+ **/
+- (void)stop;
+
+/**
+ 実行中のすべてのアニメーションを一時停止する
+ 
+ @method pause
+ **/
+- (void)pause;
+
+/**
+ 一時停止中のアニメーションを再開する
+ 
+ @method resume
+ **/
+- (void)resume;
 
 /**
  レイヤーの位置を指定する。
