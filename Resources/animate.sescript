@@ -1,37 +1,39 @@
 // create layer
-layer.new(1) // with index 1
-	.size(100,100) // set size {100,100} in px
-	.position(0.5,0.5) // set position {0.5,0.5}, normalized position
-	.loadImage("keroxp.jpg") // load iamge on the layer named "keroxp.jpg"
+layer.new({
+	key : 1	
+	})
+	.animate("size",[100,100])
+	.animate("size",[0.5,0.5])
+	.loadImage("keroxp.jpg")
 // animate layer
-layer.at(1) // of index 1
-	.translate(0.2,0,1) // translate 0.2 to x, 0.1 to y in a second
+layer.get(1) // of index 1
+	.animate("translate",[0.2,0],1)
 	.waitAnimation() // wait completion of previous animation
-	.scale(2.0) // make scale be twice, without animation
+	.animate("scale",2.0) // make scale be twice, without animation
 	.wait(1) // wait a second
-	.translate(0,0.2,1) // ...
+	.animate("translate",[0,0.2],1) // ...
 	.waitAnimation() // ...
-	.beginAnimation(1) // begin a set of animations
-		.translate(-0.2,-0.2)
-		.rotate(45)
-		.scale(2.0)
-	.commitAnimation() // commit compositted animations
+	.begin(1) // begin a set of animations
+		.animate("translate",[-0.2,-0.2])
+		.animate("rotate",45)
+		.animate("scale",2.0)
+	.commit() // commit compositted animations
 	.waitAnimation() // and animate more !	
-	.rotateY(360,2)
+	.animate("rotateY",360,2)
 	.waitAnimation()
-	.beginAnimation(1)
-		.scale(1.0)
-		.rotate(-45)
-	.commitAnimation()
-	.opacity(0.5,3)
-	.translate(0.2,0,3)
+	.begin(1)
+		.animate("scale",1.0)
+		.animate("rotate",-45)
+	.commit()
+	.animate("opacity",0.5,3)
+	.animate("translate",[0.2,0],3)
 	.waitAnimation()
-	.beginAnimation(3)
-	.rotate(1440)
-	.scale(2.0)
-	.commitAnimation()
+	.begin(3)
+		.animate("rotate",1440)
+		.animate("scale",2.0)
+	.commit()
 	.waitAnimation()
-	.scale(1.0,1)
-	.opacity(1)
-	.rotateX(360,2)
+	.animate("scale",1.0,1)
+	.animate("opacity",1)
+	.animate("rotateX",360,2)
 	.waitAnimation()

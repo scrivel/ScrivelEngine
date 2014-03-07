@@ -150,10 +150,6 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
     [options enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         if (KEY_IS(@"key")){
             _key = options[@"key"];
-        }else{
-            // set animatable value
-            CABasicAnimation *a = [self animationWithKey:key value:obj duration:0 options:nil];
-            if (a) [_layer setValue:a.toValue forKey:a.keyPath];
         }
     }];
     [CATransaction commit];

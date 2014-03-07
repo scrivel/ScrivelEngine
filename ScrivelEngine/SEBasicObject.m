@@ -167,6 +167,10 @@ id callMethod(id target, NSString *class, SEMethod *method, ScrivelEngine *engin
     SEBasicObject *new = [[self.instanceClass alloc] initWithOpts:args holder:self];
     // インスタンスを弱参照で保持する（必要かな？）
     [__instances addObject:new];
+    //
+    [args enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        [new set_key:key value:obj];
+    }];
     return new;
 }
 
