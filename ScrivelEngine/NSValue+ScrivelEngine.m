@@ -37,4 +37,31 @@
 #endif
 }
 
+- (SEPoint)se_pointValue
+{
+#if TARGET_OS_IPHONE
+    return [self CGPointValue];
+#elif TARGET_OS_MAC
+    return [self pointValue];
+#endif
+}
+
+- (SESize)se_sizeValue
+{
+#if TARGET_OS_IPHONE
+    return [self CGSizeValue];
+#elif TARGET_OS_MAC
+    return [self sizeValue];
+#endif
+}
+
+- (SERect)se_rectValue
+{
+#if TARGET_OS_IPHONE
+    return [self CGRectValue];
+#elif TARGET_OS_MAC
+    return [self rectValue];
+#endif
+}
+
 @end

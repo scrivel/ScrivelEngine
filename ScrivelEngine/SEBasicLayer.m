@@ -74,7 +74,11 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
     // 登録
     [__layers setObject:layer forKey:layer.key];
     // レイヤーを追加
-    [self.engine.rootView.layer addSublayer:layer.layer];
+    if ([args[@"index"] isKindOfClass:[NSNumber class]]) {
+        [self.engine.rootView.layer insertSublayer:layer.layer atIndex:[args[@"index"] unsignedIntValue]];
+    }else{
+        [self.engine.rootView.layer addSublayer:layer.layer];
+    }
     return layer;
 }
 
@@ -144,9 +148,7 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
     [CATransaction begin];
     [CATransaction setAnimationDuration:0];
     [options enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        if (KEY_IS(@"index")) {
-            _index = [options[@"index"] unsignedIntValue];
-        }else if (KEY_IS(@"key")){
+        if (KEY_IS(@"key")){
             _key = options[@"key"];
         }else{
             // set animatable value
@@ -162,7 +164,9 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 
 - (void)set_key:(NSString *)key value:(id)value
 {
-    if (KEY_IS(@"anchorPoint")) {
+    if (KEY_IS(@"index")){
+        [self setIndex:[value unsignedIntValue]];
+    }else if (KEY_IS(@"anchorPoint")) {
         [self setAnchorPoint:CGPointFromArray(value)];
     }else if (KEY_IS(@"gravity")){
         [self setGravity:value];
@@ -183,6 +187,11 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
     }else{
         [super set_key:key value:value];
     }
+}
+
+- (void)setIndex:(unsigned int)index
+{
+    [self.holder.engine.rootView.layer insertSublayer:self.layer atIndex:index];
 }
 
 - (void)setAnchorPoint:(CGPoint)anchorPoint
@@ -294,8 +303,10 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 #endif
     if (val) {
         // レイヤのサイズが設定されていなかったら画像サイズにレイヤーの大きさを調整
-        if (CGSizeEqualToSize(self.layer.bounds.size, CGSizeZero)) {
-            [self animate_key:@"bounds.size" value:[NSValue se_ValueWithSize:image.size] duration:0 options:nil];
+        SESize s = self.layer.bounds.size;
+        if (CGSizeEqualToSize(s, CGSizeZero)) {
+            SESize is = image.size;
+            [self animate_key:@"size" value:[NSValue se_ValueWithSize:is] duration:0 options:nil];
         }
         [self animate_key:@"contents" value:val duration:duration options:nil];
     }
@@ -327,6 +338,7 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 
 - (void)fadeIn_duration:(NSTimeInterval)duration
 {
+    self.layer.opacity = 0;
     [self show];
     [self animate_key:@"opacity" value:@1 duration:duration options:nil];
 }

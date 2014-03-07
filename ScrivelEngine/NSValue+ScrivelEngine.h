@@ -14,5 +14,8 @@
 + (instancetype)se_valueWithPoint:(SEPoint)point;
 + (instancetype)se_valueWithRect:(SERect)rect;
 + (instancetype)se_ValueWithSize:(SESize)size;
+- (SESize)se_sizeValue;
+- (SEPoint)se_pointValue;
+- (SERect)se_rectValue;
 
 @end

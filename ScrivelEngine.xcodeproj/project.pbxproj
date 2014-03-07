@@ -56,6 +56,10 @@
 		A60ECC2518AC8A5D000F7A40 /* SEScriptTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC2418AC8A5D000F7A40 /* SEScriptTests.m */; };
 		A60ECC5018AC8C54000F7A40 /* SEMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC1618AC8A46000F7A40 /* SEMethod.m */; };
 		A60ECC5118AC8C54000F7A40 /* SEScript.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC1818AC8A46000F7A40 /* SEScript.m */; };
+		A612D79618CA235B00D72A11 /* Demo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A612D79518CA235B00D72A11 /* Demo.bundle */; };
+		A612D79718CA235B00D72A11 /* Demo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A612D79518CA235B00D72A11 /* Demo.bundle */; };
+		A612D79918CA236D00D72A11 /* demo.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A612D79818CA236D00D72A11 /* demo.sescript */; };
+		A612D79A18CA236D00D72A11 /* demo.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A612D79818CA236D00D72A11 /* demo.sescript */; };
 		A639F08718BB7A0C00CF4148 /* SEApp.h in Headers */ = {isa = PBXBuildFile; fileRef = A639F08618BB7A0C00CF4148 /* SEApp.h */; };
 		A639F08818BB7A0C00CF4148 /* SEApp.h in Headers */ = {isa = PBXBuildFile; fileRef = A639F08618BB7A0C00CF4148 /* SEApp.h */; };
 		A639F08B18BB82F800CF4148 /* SEBasicApp.h in Headers */ = {isa = PBXBuildFile; fileRef = A639F08918BB82F800CF4148 /* SEBasicApp.h */; };
@@ -254,6 +258,8 @@
 		A60ECC2E18AC8BE1000F7A40 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A60ECC2F18AC8BE1000F7A40 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		A60ECC3018AC8BE1000F7A40 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		A612D79518CA235B00D72A11 /* Demo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Demo.bundle; sourceTree = "<group>"; };
+		A612D79818CA236D00D72A11 /* demo.sescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = demo.sescript; sourceTree = "<group>"; };
 		A62FE7A818AE3F4B00F12E3A /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		A638D2FC18AD1FCC0008635E /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		A638D2FE18AD20010008635E /* ParseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseKit.framework; path = External/ParseKit/build/Debug/ParseKit.framework; sourceTree = "<group>"; };
@@ -655,6 +661,7 @@
 		A6FBB3A518BF2C25008DDF22 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A612D79518CA235B00D72A11 /* Demo.bundle */,
 				A6FBB3A618BF2C25008DDF22 /* animate.sescript */,
 				A6FBB3A718BF2C25008DDF22 /* keroxp.jpg */,
 				A6FBB3A818BF2C25008DDF22 /* map.json */,
@@ -663,6 +670,7 @@
 				A6FBB3AB18BF2C25008DDF22 /* script.grammer */,
 				A6FBB3AC18BF2C25008DDF22 /* stopbutton.png */,
 				A6FBB3DB18BF6F49008DDF22 /* text.sescript */,
+				A612D79818CA236D00D72A11 /* demo.sescript */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -937,6 +945,8 @@
 				A6FBB3B418BF2C25008DDF22 /* keroxp.jpg in Resources */,
 				A6FBB3BC18BF2C25008DDF22 /* runbutton.png in Resources */,
 				A6FBB3B018BF2C25008DDF22 /* animate.sescript in Resources */,
+				A612D79A18CA236D00D72A11 /* demo.sescript in Resources */,
+				A612D79718CA235B00D72A11 /* Demo.bundle in Resources */,
 				A6FBB3C018BF2C25008DDF22 /* sample.sescript in Resources */,
 				A6AC922018AC921C00D43025 /* InfoPlist.strings in Resources */,
 				A6AC922E18AC921C00D43025 /* Images.xcassets in Resources */,
@@ -957,6 +967,8 @@
 				A6FBB3B318BF2C25008DDF22 /* keroxp.jpg in Resources */,
 				A6FBB3BB18BF2C25008DDF22 /* runbutton.png in Resources */,
 				A6FBB3C318BF2C25008DDF22 /* script.grammer in Resources */,
+				A612D79918CA236D00D72A11 /* demo.sescript in Resources */,
+				A612D79618CA235B00D72A11 /* Demo.bundle in Resources */,
 				A6FBB3B718BF2C25008DDF22 /* map.json in Resources */,
 				A6FBB3BF18BF2C25008DDF22 /* sample.sescript in Resources */,
 				A6D925DC18B914E700902230 /* Main.storyboard in Resources */,

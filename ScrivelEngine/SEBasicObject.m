@@ -29,13 +29,14 @@ id callMethod(id target, NSString *class, SEMethod *method, ScrivelEngine *engin
         sel = [engine.classProxy selectorForMethodIdentifier:method.name classIdentifier:@"app"];
     }else if ([method.name isEqualToString:@"set"]){
         // setメソッドだけはargumentsをそのまま引数に渡す
-        NSArray *key = [method argAtIndex:0];
+        NSString *key = [method argAtIndex:0];
         NSArray *values = [method.arguments subarrayWithRange:NSMakeRange(1, method.arguments.count-1)];
         if (values.count == 1) {
-            return objc_msgSend(target, @selector(set_key:value:), key, values[0]);
+            [(_SEObject*)target set_key:key value:values[0]];
         }else if (values.count > 1){
-            return objc_msgSend(target, @selector(set_key:value:), key, values) ?: nil;
+            [(_SEObject*)target set_key:key value:values];
         }
+        return nil;
     }
     NSMethodSignature *sig = [target methodSignatureForSelector:sel];
     NSInvocation *iv = [NSInvocation invocationWithMethodSignature:sig];

@@ -648,10 +648,9 @@
         </menu>
         <customObject id="494" customClass="SEDAppDelegate">
             <connections>
-                <outlet property="editorView" destination="mJw-Oh-E53" id="KlE-pd-ypE"/>
+                <outlet property="editorView" destination="eSr-Vb-iSh" id="qe7-76-sY8"/>
                 <outlet property="fontManager" destination="420" id="L2K-R6-aP4"/>
-                <outlet property="panelView" destination="VHZ-VK-nn8" id="dCp-sG-xdY"/>
-                <outlet property="toolbar" destination="II4-yS-Hm3" id="bgo-Yn-DQz"/>
+                <outlet property="panelView" destination="Eao-gg-eLD" id="cfo-B9-cc9"/>
                 <outlet property="window" destination="ze1-IH-x8Z" id="GHS-B7-tca"/>
             </connections>
         </customObject>
@@ -659,22 +658,35 @@
         <window title="ScrivelEngineMacDemo" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="ze1-IH-x8Z">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="771" height="499"/>
+            <rect key="contentRect" x="335" y="390" width="461" height="499"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
             <view key="contentView" id="2fE-2f-lRU">
-                <rect key="frame" x="0.0" y="0.0" width="771" height="499"/>
+                <rect key="frame" x="0.0" y="0.0" width="461" height="499"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <splitView dividerStyle="paneSplitter" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="muy-Rb-YEP">
-                        <rect key="frame" x="0.0" y="0.0" width="771" height="499"/>
+                    <splitView dividerStyle="paneSplitter" translatesAutoresizingMaskIntoConstraints="NO" id="gCd-AX-DRm">
+                        <rect key="frame" x="0.0" y="0.0" width="461" height="499"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <customView fixedFrame="YES" id="mJw-Oh-E53">
-                                <rect key="frame" x="0.0" y="0.0" width="383" height="499"/>
+                            <customView fixedFrame="YES" id="gEP-9Y-Gnu">
+                                <rect key="frame" x="0.0" y="0.0" width="461" height="55"/>
                                 <autoresizingMask key="autoresizingMask"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eSa-0l-2aW">
+                                        <rect key="frame" x="14" y="10" width="65" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="push" title="Run" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FnM-Xd-JLA">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="run:" target="494" id="Nnq-M9-FXX"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                             </customView>
-                            <customView fixedFrame="YES" id="VHZ-VK-nn8">
-                                <rect key="frame" x="393" y="0.0" width="378" height="499"/>
+                            <customView fixedFrame="YES" id="eSr-Vb-iSh">
+                                <rect key="frame" x="0.0" y="65" width="461" height="434"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </customView>
                         </subviews>
@@ -685,25 +697,34 @@
                     </splitView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="muy-Rb-YEP" firstAttribute="top" secondItem="2fE-2f-lRU" secondAttribute="top" id="7A4-k9-WB7"/>
-                    <constraint firstAttribute="trailing" secondItem="muy-Rb-YEP" secondAttribute="trailing" id="AVk-hM-U7e"/>
-                    <constraint firstItem="muy-Rb-YEP" firstAttribute="leading" secondItem="2fE-2f-lRU" secondAttribute="leading" id="NYq-Zv-m7e"/>
-                    <constraint firstAttribute="bottom" secondItem="muy-Rb-YEP" secondAttribute="bottom" id="rev-CB-tGV"/>
+                    <constraint firstAttribute="bottom" secondItem="gCd-AX-DRm" secondAttribute="bottom" id="THy-Za-pDd"/>
+                    <constraint firstItem="gCd-AX-DRm" firstAttribute="top" secondItem="2fE-2f-lRU" secondAttribute="top" id="a4g-t8-KUc"/>
+                    <constraint firstItem="gCd-AX-DRm" firstAttribute="leading" secondItem="2fE-2f-lRU" secondAttribute="leading" id="mEB-aw-ZIP"/>
+                    <constraint firstAttribute="trailing" secondItem="gCd-AX-DRm" secondAttribute="trailing" id="pau-e8-pnl"/>
                 </constraints>
             </view>
-            <toolbar key="toolbar" implicitIdentifier="BB13A085-388D-44E8-A537-5BE6E360BDB8" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="regular" id="II4-yS-Hm3">
-                <allowedToolbarItems>
-                    <toolbarItem implicitItemIdentifier="NSToolbarShowColorsItem" id="gse-ts-N9K"/>
-                    <toolbarItem implicitItemIdentifier="NSToolbarShowFontsItem" id="Fn3-cF-Xom"/>
-                    <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="olm-zV-zNx"/>
-                    <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="fAL-kt-dhU"/>
-                    <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="k5a-R9-hyo"/>
-                </allowedToolbarItems>
-                <defaultToolbarItems>
-                    <toolbarItem reference="Fn3-cF-Xom"/>
-                    <toolbarItem reference="k5a-R9-hyo"/>
-                </defaultToolbarItems>
-            </toolbar>
+        </window>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="p5X-he-43E" customClass="NSPanel">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="112" width="320" height="568"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
+            <view key="contentView" id="2Pd-bS-XcQ">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Eao-gg-eLD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </customView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Eao-gg-eLD" firstAttribute="leading" secondItem="2Pd-bS-XcQ" secondAttribute="leading" id="G0j-pr-BJN"/>
+                    <constraint firstAttribute="bottom" secondItem="Eao-gg-eLD" secondAttribute="bottom" id="YSP-np-BI9"/>
+                    <constraint firstItem="Eao-gg-eLD" firstAttribute="top" secondItem="2Pd-bS-XcQ" secondAttribute="top" id="ZV5-N2-VVx"/>
+                    <constraint firstAttribute="trailing" secondItem="Eao-gg-eLD" secondAttribute="trailing" id="iSC-Uk-ZbF"/>
+                </constraints>
+            </view>
         </window>
     </objects>
 </document>

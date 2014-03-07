@@ -12,6 +12,7 @@
 #import "SELayer.h"
 #import "SEBasicApp.h"
 #import "NSNumber+CGFloat.h"
+#import "NSValue+ScrivelEngine.h"
 #import <objc/runtime.h>
 
 
@@ -53,6 +54,8 @@ static inline CGSize CGSizeFromObject(id obj)
         return CGSizeFromArray(obj);
     }else if ([obj isKindOfClass:[NSDictionary class]]){
         return CGSizeFromDictionary(obj);
+    }else if ([obj isKindOfClass:[NSValue class]]){
+        return [obj se_sizeValue];
     }
     return CGSizeZero;
 }
@@ -66,6 +69,8 @@ static inline CGPoint CGPointFromObject(id obj)
         return CGPointFromArray(obj);
     }else if ([obj isKindOfClass:[NSDictionary class]]){
         return CGPointFromDictionary(obj);
+    }else if ([obj isKindOfClass:[NSValue class]]){
+        return [obj se_pointValue];
     }
     return CGPointZero;
 }
@@ -79,6 +84,8 @@ static inline CGRect CGRectFromObject(id obj)
         return CGRectFromArray(obj);
     }else if ([obj isKindOfClass:[NSDictionary class]]){
         return CGRectFromDictionary(obj);        
+    }else if ([obj isKindOfClass:[NSValue class]]){
+        return [obj se_rectValue];
     }
     return CGRectZero;
 }
