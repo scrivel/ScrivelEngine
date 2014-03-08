@@ -22,20 +22,39 @@
 
 - (void)enqueue:(id)obj
 {
-    [_concret insertObject:obj atIndex:0];
+    [self enqueue:obj prior:NO];
+}
+
+- (void)enqueue:(id)obj prior:(BOOL)prior
+{
+    if (prior) {
+        [_concret insertObject:obj atIndex:0];
+    }else{
+        [_concret addObject:obj];
+    }
 }
 
 - (void)enqueueObjects:(NSArray *)objcts
 {
-    for (id obj in objcts) {
-        [self enqueue:obj];
+    [self enqueueObjects:objcts prior:NO];
+}
+
+- (void)enqueueObjects:(NSArray *)objcts prior:(BOOL)prior
+{
+    if (prior) {
+        NSIndexSet *is = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, objcts.count)];
+        [_concret insertObjects:objcts atIndexes:is];
+    }else{
+        [_concret addObjectsFromArray:objcts];
     }
 }
 
 - (id)dequeue
 {
-    id obj = [_concret lastObject];
-    [_concret removeLastObject];
+    id obj = [_concret firstObject];
+    if (_concret.count > 0) {
+        [_concret removeObjectAtIndex:0];
+    }
     return obj;
 }
 
@@ -56,12 +75,12 @@
 
 - (id)head
 {
-    return [_concret lastObject];
+    return [_concret firstObject];
 }
 
 - (id)tail
 {
-    return (_concret.count > 0) ? [_concret objectAtIndex:0] : nil;
+    return [_concret lastObject];
 }
 
 @end

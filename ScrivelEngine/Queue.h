@@ -14,6 +14,8 @@
 - (id)dequeue;
 - (void)enqueue:(id)obj;
 - (void)enqueueObjects:(NSArray*)objcts;
+- (void)enqueue:(id)obj prior:(BOOL)prior;
+- (void)enqueueObjects:(NSArray*)objcts prior:(BOOL)prior;
 - (void)clear;
 
 - (NSUInteger)count;
