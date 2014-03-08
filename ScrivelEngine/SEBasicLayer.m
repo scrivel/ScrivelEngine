@@ -103,9 +103,9 @@
 
 @end
 
-@interface SEBasicLayer()
+
+@implementation SEBasicLayer
 {
-    CAAnimationGroup *_animationGroup;
     NSString *_gravity;
     SEPoint _anchorPoint;
     CGFloat _borderWidth;
@@ -116,9 +116,6 @@
     CGFloat _shadowRadius;
     SESize _shadowOffset;
 }
-@end
-
-@implementation SEBasicLayer
 
 @synthesize gravity = _gravity;
 @synthesize anchorPoint = _anchorPoint;
@@ -344,32 +341,34 @@
 
 #pragma mark - Animations
 
-- (void)begin_duration:(NSTimeInterval)duration options:(NSDictionary *)options
+- (void)transact_duration:(NSTimeInterval)duration animations:(NSDictionary *)animations options:(NSDictionary *)options
 {
-    _animationBegan = YES;
-    CAAnimationGroup *a = (CAAnimationGroup*)addOptions([CAAnimationGroup animation], options);
-    a.duration = ROUND_CGFLOAT(duration);
-    a.fillMode = kCAFillModeForwards;
-    if (a.repeatCount == HUGE_VALF) {
+    // 複数のアニメーションを合成する
+    CAAnimationGroup *g  = [CAAnimationGroup animation];
+    addOptions(g, options);
+    duration = ROUND_CGFLOAT(duration);
+    NSMutableArray *ma = [NSMutableArray arrayWithCapacity:animations.allKeys.count];
+    [animations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        CABasicAnimation *a = [self animationWithKey:key value:obj duration:duration options:nil];
+        [ma addObject:a];
+    }];
+    g.duration = duration;
+    g.animations = ma;
+    g.fillMode = kCAFillModeForwards;
+    if (g.repeatCount == HUGE_VALF) {
         _isRepeatingForever = YES;
     }
-    _animationGroup = a;
+    [self addAnimation:g forKey:kGroupedAnimationKey completion:NULL];
 }
 
 - (void)chain
 {
-    _animationChainBegan = YES;
+    _isChaining = YES;
 }
 
 - (void)commit
 {
-    // Queueに貯めたアニメーションをグループ化して追加する
-    if (_animationBegan) {
-        [self addAnimation:_animationGroup forKey:kGroupedAnimationKey completion:NULL];
-    }
-    _animationBegan = NO;
-    _animationChainBegan = NO;
-    _animationGroup = nil;
+    _isChaining = NO;
 }
 
 - (void)stop
@@ -404,24 +403,13 @@
     NSDictionary *definition = [(SEBasicLayerClass*)self.holder definedAnimations][animationName];
     NSDictionary *animations = definition[@"animations"];
     NSDictionary *options = definition[@"options"];
-    CAAnimationGroup *g  = [CAAnimationGroup animation];
-    addOptions(g, options);
-    duration = ROUND_CGFLOAT(duration);
-    NSMutableArray *ma = [NSMutableArray arrayWithCapacity:animations.allKeys.count];
-    [animations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        CABasicAnimation *a = [self animationWithKey:key value:obj duration:duration options:nil];
-        [ma addObject:a];
-    }];
-    g.duration = duration;
-    g.animations = ma;
-    [self addAnimation:g forKey:kGroupedAnimationKey completion:NULL];
+    [self transact_duration:duration animations:animations options:options];
 }
 
 - (void)_animate_key:(NSString *)key value:(id)value duration:(CFTimeInterval)duration options:(NSDictionary *)options completion:(void(^)())completion
 {
     CABasicAnimation *animation = [self animationWithKey:key value:value duration:duration options:options];
-    duration = ROUND_DOUBLE(duration);
-    if (!_animationBegan && duration == 0) {
+    if (ROUND_CGFLOAT(duration) == 0) {
         // durationが0ならばアニメーションはしない
         [CATransaction begin];
         [CATransaction setAnimationDuration:0];
@@ -430,24 +418,7 @@
         }];
         [self.layer setValue:animation.toValue forKeyPath:animation.keyPath];
         [CATransaction commit];
-        return;
-    }
-    // アニメーションの合成中は個別の間隔は無視
-    if (!_animationBegan) {
-        animation.duration = duration;
-    }
-    animation.fillMode = kCAFillModeForwards;
-    
-    if (_animationBegan) {
-        // アニメーションの合成ならばキューに貯める
-        NSArray *as = _animationGroup.animations;
-        if (as) {
-            _animationGroup.animations = [as arrayByAddingObject:animation];
-        }else{
-            _animationGroup.animations = @[animation];
-        }
     }else{
-        // 通常の実行
         [self addAnimation:animation forKey:key completion:completion];
     }
 }
@@ -484,7 +455,7 @@
     [self.layer addAnimation:animation forKey:animationKey];
     [CATransaction commit];
     // チェイン状態だったらアニメーションごとにwaitAnimation()する
-    if (_animationChainBegan) {
+    if (_isChaining) {
         [self waitAnimation];
     }
 }
@@ -586,6 +557,8 @@
     animation.toValue = [self toValueForKey:key value:value];
     animation.keyPath = [self keyPathForKey:key];
     animation.fromValue = [self.layer valueForKeyPath:animation.keyPath];
+    animation.fillMode = kCAFillModeForwards;
+    animation.duration = ROUND_CGFLOAT(duration);
     addOptions(animation, options);
     return animation ?: nil;
 }

@@ -61,7 +61,7 @@
 
 /**
  
- @method defineAnimation
+ @method define
  **/
 - (void)define_name:(id<NSCopying>)name animations:(NSDictionary*)animations options:(NSDictionary*)options;
 
@@ -160,22 +160,18 @@
 #pragma mark - Animation
 
 /**
- アニメーションを生成する
- commitAnimation()までに呼び出されたアニメーションメソッドは合成される
- 間で呼び出されたアニメーションメソッドのduration引数は無視される
- // 1番のレイヤーに、3秒で(100,100)移動、20度回転、拡大率200%のアニメーションを使用する
- layer.at(1)
-    .beginAnimation(300)
-    .translate(100,100)
-    .rotate(20)
-    .opacity(0.2,100) // 100は無視される
-    .scale(2.0)
-    .commitAnimation()
+ アニメーションを合成する
+ // 1のレイヤーに、3秒で(0.1,0)移動、20度回転、拡大率200%のアニメーションを使用する
+ layer.get(1)
+    .transact(3, {
+        translate : [0.1,0],
+        scale : 2.0,
+        rotate: 20
+    })
  
- optionsにはアニメーションの指定もできる
- 
- @method begin
- @param {Number} [duration]
+ @method transact
+ @param {Number} duration 秒数
+ @param {Object} animations アニメーションの指定
  @param {Object} [options] アニメーションオプション
     @param {Boolean} [options.autoreverses] アニメーションを逆実行するか
     @param {Number} [options.repeatCount] アニメーションの繰り返し回数
@@ -186,19 +182,18 @@
     @param {Array} [options.timingPoints] アニメーションカーブを構成するポイント。正規化された値。 例) 0.1, 0.1, 0.2, 0.2
     @param {Number} [options.duration] アニメーションの時間。指定された場合こちらが優先される
  **/
-- (void)begin_duration:(NSTimeInterval)duration options:(NSDictionary*)options;
+- (void)transact_duration:(NSTimeInterval)duration animations:(NSDictionary*)animations options:(NSDictionary*)options;
 
 /**
  アニメーションチェインを開始する。
- ~ commiAnimation()までに呼び出されたアニメーションメソッドは逐次実行される
+ ~ commit()までに呼び出されたアニメーションメソッドは逐次実行される
  
  @method chain
  **/
 - (void)chain;
 
 /**
- アニメーションを開始する
- beginAnimation()からここまでに呼び出されたアニメーションメソッドが合成される
+ チェインを終了する 
  
  @method commit
  **/

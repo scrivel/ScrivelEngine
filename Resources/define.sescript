@@ -1,5 +1,5 @@
 // define a set of animations
-layer.defineAnimation("jump",{
+layer.define("jump",{
 	translate: [0,0.1]
 	},{
 	autoreverses: true,

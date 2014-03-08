@@ -13,26 +13,26 @@ layer.get(1) // of index 1
 	.wait(1) // wait a second
 	.animate("translate",[0,0.2],1) // ...
 	.waitAnimation() // ...
-	.begin(1) // begin a set of animations
-		.animate("translate",[-0.2,-0.2])
-		.animate("rotate",45)
-		.animate("scale",2.0)
-	.commit() // commit compositted animations
-	.waitAnimation() // and animate more !	
+	.chain()
+	.transact(2,{
+		translate : [-0.2,-0.2],
+		rotate : 45,
+		scale : 2.0
+		})
 	.animate("rotateY",360,2)
-	.waitAnimation()
-	.begin(1)
-		.animate("scale",1.0)
-		.animate("rotate",-45)
+	.transact(2, {
+		scale : 1.0,
+		rotate : -45		
+		})
 	.commit()
+	.chain()
 	.animate("opacity",0.5,3)
 	.animate("translate",[0.2,0],3)
-	.waitAnimation()
-	.begin(3)
-		.animate("rotate",1440)
-		.animate("scale",2.0)
 	.commit()
-	.waitAnimation()
+	.transact(2,{
+		rotate : 1440,
+		scale : 2.0
+		})		
 	.animate("scale",1.0,1)
 	.animate("opacity",1)
 	.animate("rotateX",360,2)

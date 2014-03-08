@@ -115,8 +115,7 @@ static inline CGRect CGRectFromObject(id obj)
 @property (nonatomic) id<NSCopying> key;
 @property (nonatomic) unsigned int index;
 @property (nonatomic) CALayer *layer;
-@property (nonatomic, readonly) BOOL animationBegan;
-@property (nonatomic, readonly) BOOL animationChainBegan;
+@property (nonatomic, readonly) BOOL isChaining;
 @property (nonatomic, readonly) BOOL isRepeatingForever;
 
 @end
