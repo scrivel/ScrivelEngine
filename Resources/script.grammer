@@ -13,7 +13,7 @@ words       =   name? '[' text ']';
 name        =   Word | QuotedString;
 text        =   (Word | QuotedString | Number)+;
 
-methodChain =   identifier ('.' method)* ';'?;
+methodChain =   identifier ('.' method)* ';';
 method 		=	identifier '(' arguments ')';
 arguments	=	Empty | value (',' value )*;
 value		= 	Number | QuotedString | array | object | 'true' | 'false' | 'null';

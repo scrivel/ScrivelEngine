@@ -234,10 +234,11 @@ static PKToken *openCurlyToken;
 - (void)parser:(PKParser *)parser didMatchKey:(PKAssembly *)assembly
 {
     PKToken *tok = [assembly pop];
-    if (tok.tokenType == PKTokenTypeQuotedString
-        || tok.tokenType == PKTokenTypeWord) {
-        [_keyStack push:tok.stringValue];
+    NSString *key = tok.stringValue;
+    if (tok.tokenType == PKTokenTypeQuotedString){
+        key = [key substringWithRange:NSMakeRange(1, tok.stringValue.length-2)];
     }
+    [_keyStack push:key];
 }
 
 - (void)parser:(PKParser *)parser didMatchIdentifier:(PKAssembly *)assembly
@@ -276,7 +277,11 @@ static PKToken *openCurlyToken;
         _textBeginLineNumber = parser.tokenizer.lineNumber;
     }
     _textEndLineNumber = parser.tokenizer.lineNumber;
-    [_textStack push:tok.stringValue];
+    NSString *text = tok.stringValue;
+    if (tok.tokenType == PKTokenTypeQuotedString) {
+        text = [text substringWithRange:NSMakeRange(1, tok.stringValue.length-2)];
+    }
+    [_textStack push:text];
 }
 
 @end

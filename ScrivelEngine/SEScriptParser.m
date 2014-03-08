@@ -233,9 +233,7 @@
             break;
         }
     }
-    if ([self predicts:SESCRIPTPARSER_TOKEN_KIND_SEMI_COLON, 0]) {
-        [self match:SESCRIPTPARSER_TOKEN_KIND_SEMI_COLON discard:NO]; 
-    }
+    [self match:SESCRIPTPARSER_TOKEN_KIND_SEMI_COLON discard:NO]; 
 
     [self fireAssemblerSelector:@selector(parser:didMatchMethodChain:)];
 }

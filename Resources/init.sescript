@@ -54,6 +54,6 @@ layer.define("jump",{
 		},{
 		autoreverses : true,
 		timing : "ease"
-		})
+		});
 
 		

@@ -1,5 +1,5 @@
 // 外部スクリプトをロード
-app.load("init.sescript")
+app.load("init.sescript");
 app.wait(1);
 
 layer.get("bg").fadeIn(2);
@@ -19,7 +19,7 @@ layer.get("ななみ")
 	
 layer.get("ななみ").do("jump",0.2);
 ななみ["やっほー！　ぷちっと！クチュリエールの世界へようこそ！"]
-layer.get("つむぎ").do("jump",0.1)
+layer.get("つむぎ").do("jump",0.1);
 つむぎ["わ、わ、え、えっと、わたしのなまえは……"]
 ななみ["あはは、つむぎ慌てすぎだって！"]
 

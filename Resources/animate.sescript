@@ -4,7 +4,7 @@ layer.new({
 	})
 	.animate("size",[100,100])
 	.animate("size",[0.5,0.5])
-	.loadImage("keroxp.jpg")
+	.loadImage("keroxp.jpg");
 // animate layer
 layer.get(1) // of index 1
 	.animate("translate",[0.2,0],1)
@@ -14,13 +14,13 @@ layer.get(1) // of index 1
 	.animate("translate",[0,0.2],1) // ...
 	.waitAnimation() // ...
 	.chain()
-	.transact(2,{
+	.transact(1,{
 		translate : [-0.2,-0.2],
 		rotate : 45,
 		scale : 2.0
 		})
 	.animate("rotateY",360,2)
-	.transact(2, {
+	.transact(1, {
 		scale : 1.0,
 		rotate : -45		
 		})
@@ -29,11 +29,12 @@ layer.get(1) // of index 1
 	.animate("opacity",0.5,3)
 	.animate("translate",[0.2,0],3)
 	.commit()
-	.transact(2,{
+	.transact(1,{
 		rotate : 1440,
 		scale : 2.0
-		})		
+		})	
+	.waitAnimation()	
 	.animate("scale",1.0,1)
 	.animate("opacity",1)
 	.animate("rotateX",360,2)
-	.waitAnimation()
+	.waitAnimation();
