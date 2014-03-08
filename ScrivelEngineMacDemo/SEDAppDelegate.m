@@ -8,6 +8,7 @@
 
 #import "SEDAppDelegate.h"
 #import "ScrivelEngine.h"
+#import "SEBasicLayer.h"
 
 @interface SEDAppDelegate ()
 {
@@ -71,7 +72,7 @@
 }
 
 - (IBAction)clear:(id)sender {
-    
+    [(SEBasicLayerClass*)_engine.layer clearAll];
 }
 
 - (IBAction)popup:(NSPopUpButton*)sender {

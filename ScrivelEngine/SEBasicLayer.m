@@ -91,8 +91,16 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 
 - (void)clear_key:(id<NSCopying>)key
 {
-    [[[__layers objectForKey:key] layer]removeFromSuperlayer];
+    [[[__layers objectForKey:key] layer] removeFromSuperlayer];
     [__layers removeObjectForKey:key];
+}
+
+- (void)clearAll
+{
+    for (SEBasicLayer *l in __layers.objectEnumerator) {
+        [[l layer] removeFromSuperlayer];
+    }
+    [__layers removeAllObjects];
 }
 
 - (void)define_name:(id<NSCopying>)name animations:(NSDictionary *)animations options:(NSDictionary *)options

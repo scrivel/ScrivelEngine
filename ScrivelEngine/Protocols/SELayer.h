@@ -53,6 +53,13 @@
 - (void)clear_key:(id<NSCopying>)key;
 
 /**
+ すべてのレイヤーを破棄する
+ 
+ @method clearAll
+ **/
+- (void)clearAll;
+
+/**
  
  @method defineAnimation
  **/

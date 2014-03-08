@@ -24,6 +24,7 @@
       "new": "new_args:",
       "get": "get_key:",
       "clear": "clear_key:",
+      "clearAll": "clearAll",
       "defineAnimation": "define_name:animations:options:",
       "loadImage": "loadImage_path:duration:",
       "clearImage": "clearImage_duration:",

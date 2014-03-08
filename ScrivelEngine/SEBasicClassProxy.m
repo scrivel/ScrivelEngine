@@ -74,6 +74,7 @@
 		SEL_FOR_METHOD(@"new",new_args:);
 		SEL_FOR_METHOD(@"get",get_key:);
 		SEL_FOR_METHOD(@"clear",clear_key:);
+		SEL_FOR_METHOD(@"clearAll",clearAll);
 		SEL_FOR_METHOD(@"defineAnimation",define_name:animations:options:);
 		SEL_FOR_METHOD(@"loadImage",loadImage_path:duration:);
 		SEL_FOR_METHOD(@"clearImage",clearImage_duration:);
@@ -122,6 +123,7 @@
 		SEL_FOR_METHOD(@"new",new_args:);
 		SEL_FOR_METHOD(@"get",get_key:);
 		SEL_FOR_METHOD(@"clear",clear_key:);
+		SEL_FOR_METHOD(@"clearAll",clearAll);
 		SEL_FOR_METHOD(@"defineAnimation",define_name:animations:options:);
 		SEL_FOR_METHOD(@"loadImage",loadImage_path:duration:);
 		SEL_FOR_METHOD(@"clearImage",clearImage_duration:);
