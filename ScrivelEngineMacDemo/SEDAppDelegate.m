@@ -16,9 +16,11 @@
 }
 @property (weak) IBOutlet NSView *editorView;
 @property (weak) IBOutlet NSView *panelView;
+@property (weak) IBOutlet NSPopUpButton *popupButton;
 
 @end
 @implementation SEDAppDelegate
+
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -28,8 +30,6 @@
     [[NSUserDefaults standardUserDefaults] setObject:[NSArchiver archivedDataWithRootObject:[NSFont fontWithName:@"Menlo Bold" size:16.0f]] forKey:MGSFragariaPrefsTextFont];    
     [f setObject:@"SEScript" forKey:MGSFOSyntaxDefinitionName];
     [f embedInView:self.editorView];
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"animate" ofType:@"sescript"];
-    NSString *str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     [[NSUserDefaults standardUserDefaults] setObject:[NSArchiver archivedDataWithRootObject:[NSFont fontWithName:@"Menlo Bold" size:16.0f]] forKey:MGSFragariaPrefsTextFont];
     [[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:MGSFragariaPrefsAutocompleteSuggestAutomatically];
     [[NSUserDefaults standardUserDefaults] setObject:@(NO) forKey:MGSFragariaPrefsAutomaticLinkDetection];
@@ -39,15 +39,22 @@
     [[NSUserDefaults standardUserDefaults] setObject:@(YES) forKey:MGSFragariaPrefsAutomaticallyIndentBraces];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:MGSFragariaPrefsAutomaticQuoteSubstitution];
     
-    [f setString:str];
     fragaria = f;
 
     // engine
     _engine = [ScrivelEngine new];
     self.panelView.wantsLayer = YES;
     _engine.rootView = self.panelView;
-    
+
+    NSArray *scripts = [[NSBundle mainBundle] pathsForResourcesOfType:@"sescript" inDirectory:nil];
+    for (NSString *path in scripts) {
+        NSURL *url = [NSURL URLWithString:path];
+        [self.popupButton addItemWithTitle:[[url pathComponents] lastObject]];
+    }
+    [self.popupButton selectItemAtIndex:0];
+    [self popup:self.popupButton];
 }
+
 - (IBAction)run:(id)sender {
     NSLog(@"%@",sender);
     id ret;
@@ -62,5 +69,17 @@
         NSLog(@"%@",ret);
     }
 }
+
+- (IBAction)clear:(id)sender {
+    
+}
+
+- (IBAction)popup:(NSPopUpButton*)sender {
+    NSString *p = [[NSBundle mainBundle] pathForResource:sender.selectedItem.title ofType:nil];
+    NSString *s = [NSString stringWithContentsOfFile:p encoding:NSUTF8StringEncoding error:nil];
+    [fragaria setString:s];
+    [fragaria reloadString];
+}
+
 
 @end

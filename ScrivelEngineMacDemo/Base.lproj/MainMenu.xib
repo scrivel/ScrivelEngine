@@ -651,6 +651,7 @@
                 <outlet property="editorView" destination="eSr-Vb-iSh" id="qe7-76-sY8"/>
                 <outlet property="fontManager" destination="420" id="L2K-R6-aP4"/>
                 <outlet property="panelView" destination="Eao-gg-eLD" id="cfo-B9-cc9"/>
+                <outlet property="popupButton" destination="LCD-Ob-Zd0" id="ONS-qo-Lqa"/>
                 <outlet property="window" destination="ze1-IH-x8Z" id="GHS-B7-tca"/>
             </connections>
         </customObject>
@@ -681,6 +682,29 @@
                                         </buttonCell>
                                         <connections>
                                             <action selector="run:" target="494" id="Nnq-M9-FXX"/>
+                                        </connections>
+                                    </button>
+                                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LCD-Ob-Zd0">
+                                        <rect key="frame" x="181" y="14" width="136" height="26"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="hos-oC-AHM">
+                                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                            <menu key="menu" title="OtherViews" id="Gcg-eV-Ki3"/>
+                                        </popUpButtonCell>
+                                        <connections>
+                                            <action selector="popup:" target="494" id="QQF-Rx-zDb"/>
+                                        </connections>
+                                    </popUpButton>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oR5-mm-qJc">
+                                        <rect key="frame" x="93" y="10" width="73" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KUz-44-rG6">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="clear:" target="494" id="cwv-f3-KpK"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -726,5 +750,6 @@
                 </constraints>
             </view>
         </window>
+        <userDefaultsController representsSharedInstance="YES" id="Fhu-QN-gBw"/>
     </objects>
 </document>
