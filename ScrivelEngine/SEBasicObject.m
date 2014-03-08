@@ -17,7 +17,7 @@
 #define SAME_TYPE(s1,s2) ((strcmp(s1,s2) == 0) ? YES : NO)
 
 
-id callMethod(id target, NSString *class, SEMethod *method, ScrivelEngine *engine)
+id se_callMethod(id target, NSString *class, SEMethod *method, ScrivelEngine *engine)
 {
     // SEMethodを動的に呼び出す
     // aliasを探す
@@ -159,7 +159,7 @@ id callMethod(id target, NSString *class, SEMethod *method, ScrivelEngine *engin
 
 - (id)callMethod_method:(SEMethod *)method
 {
-    return callMethod(self, self.classIdentifier, method, self.engine);
+    return se_callMethod(self, self.classIdentifier, method, self.engine);
 }
 
 - (id)new_args:(id)args
@@ -190,7 +190,7 @@ id callMethod(id target, NSString *class, SEMethod *method, ScrivelEngine *engin
 
 - (id)callMethod_method:(SEMethod *)method
 {
-    return callMethod(self, self.holder.classIdentifier, method, self.holder.engine);
+    return se_callMethod(self, self.holder.classIdentifier, method, self.holder.engine);
 }
 
 - (id)forwardingTargetForSelector:(SEL)aSelector

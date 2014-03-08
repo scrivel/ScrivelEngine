@@ -10,7 +10,7 @@
 #import <Foundation/Foundation.h>
 #import "SEObject.h"
 
-OBJC_EXPORT id callMethod(id , NSString *, SEMethod *, ScrivelEngine *);
+OBJC_EXPORT id se_callMethod(id , NSString *, SEMethod *, ScrivelEngine *);
 
 @interface _SEObject : NSObject <SEObject>
 
