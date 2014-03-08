@@ -286,7 +286,12 @@
  @param {Object} [options]
  **/
 - (void)animate_key:(NSString*)key value:(id)value duration:(CFTimeInterval)duration options:(NSDictionary*)options;
-
-
-
+/**
+ 定義済みのアニメーションを実行する
+ 
+ @method do
+ @param {String} animationName
+ @param {Number} duration
+ **/
+- (void)do_animationName:(NSString *)animationName duration:(CFTimeInterval)duration;
 @end

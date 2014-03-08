@@ -1,0 +1,35 @@
+// 外部スクリプトをロード
+app.load("init.sescript")
+app.wait(1);
+
+layer.get("bg")
+	.fadeIn(2);
+layer.get("textbg")
+	.fadeIn(1);
+
+app.waitAnimation();
+
+layer.get("つむぎ")
+	.fadeIn(1);
+
+app.wait(1);
+
+layer.get("ななみ")
+	.fadeIn(1)
+    .waitAnimation()
+	.wait(1);
+
+// はずませる
+layer.get("ななみ")
+	.begin(0.2, {
+		autoreverses : true,
+		timing : "ease"
+		})
+	.animate("translate",[0,0.1])
+	.commit()
+	.waitAnimation();
+	
+ななみ["やっほー！　ぷちっと！クチュリエールの世界へようこそ！"]
+つむぎ["わ、わ、え、えっと、わたしのなまえは……"]
+ななみ["あはは、つむぎ慌てすぎだって！"]
+

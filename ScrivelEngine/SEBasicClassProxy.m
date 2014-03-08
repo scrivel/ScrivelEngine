@@ -90,6 +90,7 @@
 		SEL_FOR_METHOD(@"fadeIn",fadeIn_duration:);
 		SEL_FOR_METHOD(@"fadeOut",fadeOut_duration:);
 		SEL_FOR_METHOD(@"animate",animate_key:value:duration:options:);
+		SEL_FOR_METHOD(@"do",do_animationName:duration:);
 		// inherited from abstract
 		SEL_FOR_METHOD(@"callMethod",callMethod_method:);
 		SEL_FOR_METHOD(@"wait",wait_duration:);
@@ -139,6 +140,7 @@
 		SEL_FOR_METHOD(@"fadeIn",fadeIn_duration:);
 		SEL_FOR_METHOD(@"fadeOut",fadeOut_duration:);
 		SEL_FOR_METHOD(@"animate",animate_key:value:duration:options:);
+		SEL_FOR_METHOD(@"do",do_animationName:duration:);
 		// inherited from abstract
 		SEL_FOR_METHOD(@"callMethod",callMethod_method:);
 		SEL_FOR_METHOD(@"wait",wait_duration:);

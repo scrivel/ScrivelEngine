@@ -22,17 +22,6 @@
 #define kMaxLayer 1000
 #define kGroupedAnimationKey @"GroupedAnimation"
 
-static inline CGFloat ZERO_TO_ONE(CGFloat f)
-{
-    CGFloat _f = ROUND_CGFLOAT(f);
-    if (_f < 0) {
-        return 0.0;
-    }else if (_f > 1){
-        return 1.0;
-    }
-    return _f;
-}
-
 @interface SEBasicLayerClass ()
 
 @end
@@ -40,7 +29,10 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 @implementation SEBasicLayerClass
 {
     NSMutableDictionary *__layers;
+    NSMutableDictionary *__definedAnimations;
 }
+@synthesize layers = __layers;
+@synthesize definedAnimations = __definedAnimations;
 
 #pragma makr - SEObjectClass
 
@@ -48,6 +40,7 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 {
     self = [super initWithEngine:engine classIdentifier:classIdentifier];
     __layers = [NSMutableDictionary new];
+    __definedAnimations = [NSMutableDictionary new];
     self.instanceClass = [SEBasicLayer class];
     return self ?: nil;
 }
@@ -105,12 +98,7 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
 
 - (void)define_name:(id<NSCopying>)name animations:(NSDictionary *)animations options:(NSDictionary *)options
 {
-    
-}
-
-- (NSDictionary *)layers
-{
-    return __layers;
+    [__definedAnimations setObject:@{@"animations": animations, @"options" : options} forKey:name];
 }
 
 @end
@@ -411,6 +399,24 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
     [self _animate_key:key value:value duration:duration options:options completion:NULL];
 }
 
+- (void)do_animationName:(NSString *)animationName duration:(CFTimeInterval)duration
+{
+    NSDictionary *definition = [(SEBasicLayerClass*)self.holder definedAnimations][animationName];
+    NSDictionary *animations = definition[@"animations"];
+    NSDictionary *options = definition[@"options"];
+    CAAnimationGroup *g  = [CAAnimationGroup animation];
+    addOptions(g, options);
+    duration = ROUND_CGFLOAT(duration);
+    NSMutableArray *ma = [NSMutableArray arrayWithCapacity:animations.allKeys.count];
+    [animations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        CABasicAnimation *a = [self animationWithKey:key value:obj duration:duration options:nil];
+        [ma addObject:a];
+    }];
+    g.duration = duration;
+    g.animations = ma;
+    [self addAnimation:g forKey:kGroupedAnimationKey completion:NULL];
+}
+
 - (void)_animate_key:(NSString *)key value:(id)value duration:(CFTimeInterval)duration options:(NSDictionary *)options completion:(void(^)())completion
 {
     CABasicAnimation *animation = [self animationWithKey:key value:value duration:duration options:options];
@@ -426,14 +432,11 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
         [CATransaction commit];
         return;
     }
-    // アニメーションを作成
-    id val = [self.layer valueForKeyPath:animation.keyPath];
     // アニメーションの合成中は個別の間隔は無視
     if (!_animationBegan) {
         animation.duration = duration;
     }
     animation.fillMode = kCAFillModeForwards;
-    animation.fromValue = val;
     
     if (_animationBegan) {
         // アニメーションの合成ならばキューに貯める
@@ -486,33 +489,27 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
     }
 }
 
-- (CABasicAnimation*)animationWithKey:(NSString*)key value:(id)value duration:(CFTimeInterval)duration options:(NSDictionary*)options
+- (id)toValueForKey:(NSString*)key value:(id)value
 {
-    CABasicAnimation *animation = [CABasicAnimation animation];
-    
     // create animation
-    
     if (KEY_IS(@"position")) {
         SEPoint point = CGPointFromObject(value);
         CGFloat _x = VALID_CGFLOAT(point.x) ? X(point.x) : self.layer.position.x;
         CGFloat _y = VALID_CGFLOAT(point.y) ? Y(point.y) : self.layer.position.y;
         CGPoint position = CGPointMake(_x, _y);
-        animation.toValue = [NSValue se_valueWithPoint:position];
-        animation.keyPath = @"position";
+        return [NSValue se_valueWithPoint:position];
     }else if (KEY_IS(@"zPosition")){
         // z値だけは正規化できないので常にpx値
         CGFloat z = [value CGFloatValue];
         CGFloat _z = VALID_CGFLOAT(z) ? z : self.layer.zPosition;
-        animation.toValue = @(_z);
-        animation.keyPath = @"zPosition";
+        return @(_z);
     }else if (KEY_IS(@"size")){
         CGRect bounds = self.layer.bounds;
         CGSize size = CGSizeFromObject(value);
         SESize s = SESizeMake(ROUND_CGFLOAT(size.width), ROUND_CGFLOAT(size.height));
         bounds.size.width += s.width;
         bounds.size.height += s.height;
-        animation.toValue = [NSValue se_valueWithRect:bounds];
-        animation.keyPath = @"bounds";
+        return [NSValue se_valueWithRect:bounds];
     }else if (KEY_IS(@"translate")){
         SEPoint selfp = self.layer.position;
         SEPoint point = CGPointFromObject(value);
@@ -526,44 +523,71 @@ static inline CGFloat ZERO_TO_ONE(CGFloat f)
         _y += NORM_POSITION ? selfp.y/VH : selfp.y;
 #endif
         // transform.translateを使うと面倒なので加算してpositionのアニメーションにする
-        return [self animationWithKey:@"position" value:@[@(_x),@(_y)] duration:duration options:options];
+        return [self toValueForKey:@"position" value:[NSValue se_valueWithPoint:CGPointMake(_x, _y)]];
     }else if (KEY_IS(@"translateZ")){
         CGFloat _z = ROUND_CGFLOAT([value CGFloatValue]) + self.layer.zPosition;
-        animation.toValue = @(_z);
-        animation.keyPath = @"zPosition";
+        // 同じくzPositionのアニメーションにする
+        return [self toValueForKey:@"zPosition" value:@(_z)];
     }else if (KEY_IS(@"scale")){
         CGFloat _ratio = ROUND_CGFLOAT([value CGFloatValue]);
-        animation.toValue = @(_ratio);
-        animation.keyPath = @"transform.scale";
+        return @(_ratio);
     }else if (KEY_IS(@"rotate")){
         CGFloat _degree = RADIAN(ROUND_CGFLOAT([value CGFloatValue]));
         CGFloat rotationZ = [[self.layer valueForKeyPath:@"transform.rotation.z"] CGFloatValue];
-        animation.toValue = @(_degree+rotationZ);
-        animation.keyPath = @"transform.rotation.z";
+        return @(_degree+rotationZ);
     }else if (KEY_IS(@"rotateX")){
         CGFloat _degree = RADIAN(ROUND_CGFLOAT([value CGFloatValue]));
         CGFloat rotationX = [[self.layer valueForKeyPath:@"transform.rotation.x"] CGFloatValue];
-        animation.toValue = @(_degree+rotationX);
-        animation.keyPath = @"transform.rotation.x";
+        return @(_degree+rotationX);
     }else if (KEY_IS(@"rotateY")){
         CGFloat _degree = RADIAN(ROUND_CGFLOAT([value CGFloatValue]));
         CGFloat rotationY = [[self.layer valueForKeyPath:@"transform.rotation.y"] CGFloatValue];
-        animation.toValue = @(_degree+rotationY);
-        animation.keyPath = @"transform.rotation.y";
+        return @(_degree+rotationY);
     }else if (KEY_IS(@"opacity")){
         CGFloat _opacity = ZERO_TO_ONE([value CGFloatValue]);
-        animation.toValue = @(_opacity);
-        animation.keyPath = @"opacity";
+        return @(_opacity);
     }else if (KEY_IS(@"contents")){
-        animation.toValue = value;
-        animation.keyPath = @"contents";
+        return value;
     }
-    
-    // add options
-    
+    return nil;
+}
+
+- (NSString *)keyPathForKey:(NSString*)key
+{
+    if (KEY_IS(@"position")) {
+        return @"position";
+    }else if (KEY_IS(@"zPosition")){
+        return @"zPosition";
+    }else if (KEY_IS(@"size")){
+        return @"bounds";
+    }else if (KEY_IS(@"translate")){
+        return @"position";
+    }else if (KEY_IS(@"translateZ")){
+        return @"zPosition";
+    }else if (KEY_IS(@"scale")){
+        return @"transform.scale";
+    }else if (KEY_IS(@"rotate")){
+        return @"transform.rotation.z";
+    }else if (KEY_IS(@"rotateX")){
+        return @"transform.rotation.x";
+    }else if (KEY_IS(@"rotateY")){
+        return @"transform.rotation.y";
+    }else if (KEY_IS(@"opacity")){
+        return @"opacity";
+    }else if (KEY_IS(@"contents")){
+        return @"contents";
+    }
+    return nil;
+}
+
+- (CABasicAnimation*)animationWithKey:(NSString*)key value:(id)value duration:(CFTimeInterval)duration options:(NSDictionary*)options
+{
+    CABasicAnimation *animation = [CABasicAnimation animation];
+    animation.toValue = [self toValueForKey:key value:value];
+    animation.keyPath = [self keyPathForKey:key];
+    animation.fromValue = [self.layer valueForKeyPath:animation.keyPath];
     addOptions(animation, options);
-    
-    return (animation.toValue && animation.keyPath) ? animation : nil;
+    return animation ?: nil;
 }
 
 static CAAnimation * addOptions(CAAnimation *animation, NSDictionary *options)

@@ -15,6 +15,7 @@
 #import "NSValue+ScrivelEngine.h"
 #import <objc/runtime.h>
 
+#define KEY_IS(k) [key isEqualToString:k]
 
 #define VH self.holder.engine.rootView.bounds.size.height
 #define VW self.holder.engine.rootView.bounds.size.width
@@ -44,6 +45,17 @@
 #define SESizeMake(w,h) CGSizeMake(W(w),H(h))
 #define SEPointMake(x,y) CGPointMake(X(x),Y(y))
 #define SERectMake(x,y,w,h) CGRectMake(X(x), Y(y), W(w), H(h))
+
+static inline CGFloat ZERO_TO_ONE(CGFloat f)
+{
+    CGFloat _f = ROUND_CGFLOAT(f);
+    if (_f < 0) {
+        return 0.0;
+    }else if (_f > 1){
+        return 1.0;
+    }
+    return _f;
+}
 
 #define CGSizeFromArray(a) CGSizeMake([a[0] CGFloatValue], [a[1] CGFloatValue])
 #define CGSizeFromDictionary(d) CGSizeMake([d[@"width"] CGFloatValue], [d[@"height"] CGFloatValue])
@@ -94,6 +106,7 @@ static inline CGRect CGRectFromObject(id obj)
 
 @property (nonatomic, readonly) NSDictionary *layers;
 @property (nonatomic) NSUInteger activeAnimationCount;
+@property (nonatomic) NSDictionary *definedAnimations;
 
 @end
 

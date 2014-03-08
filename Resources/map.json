@@ -39,7 +39,8 @@
       "toggle": "toggle",
       "fadeIn": "fadeIn_duration:",
       "fadeOut": "fadeOut_duration:",
-      "animate": "animate_key:value:duration:options:"
+      "animate": "animate_key:value:duration:options:",
+      "do": "do_animationName:duration:"
     },
     "extends": "abstract"
   },
