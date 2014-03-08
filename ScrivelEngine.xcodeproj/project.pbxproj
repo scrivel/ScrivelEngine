@@ -64,14 +64,6 @@
 		A612D79D18CAFF3A00D72A11 /* init.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A612D79B18CAFF3A00D72A11 /* init.sescript */; };
 		A612D7A518CB02C000D72A11 /* UtilTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A612D7A418CB02C000D72A11 /* UtilTests.m */; };
 		A612D7A618CB02C000D72A11 /* UtilTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A612D7A418CB02C000D72A11 /* UtilTests.m */; };
-		A612D7B718CB214700D72A11 /* KXSharedSpace.h in Headers */ = {isa = PBXBuildFile; fileRef = A612D7B318CB214700D72A11 /* KXSharedSpace.h */; };
-		A612D7B818CB214700D72A11 /* KXSharedSpace.h in Headers */ = {isa = PBXBuildFile; fileRef = A612D7B318CB214700D72A11 /* KXSharedSpace.h */; };
-		A612D7B918CB214700D72A11 /* KXSharedSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = A612D7B418CB214700D72A11 /* KXSharedSpace.m */; };
-		A612D7BA18CB214700D72A11 /* KXSharedSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = A612D7B418CB214700D72A11 /* KXSharedSpace.m */; };
-		A612D7BB18CB214700D72A11 /* NSObject+KXSharedSpace.h in Headers */ = {isa = PBXBuildFile; fileRef = A612D7B518CB214700D72A11 /* NSObject+KXSharedSpace.h */; };
-		A612D7BC18CB214700D72A11 /* NSObject+KXSharedSpace.h in Headers */ = {isa = PBXBuildFile; fileRef = A612D7B518CB214700D72A11 /* NSObject+KXSharedSpace.h */; };
-		A612D7BD18CB214700D72A11 /* NSObject+KXSharedSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = A612D7B618CB214700D72A11 /* NSObject+KXSharedSpace.m */; };
-		A612D7BE18CB214700D72A11 /* NSObject+KXSharedSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = A612D7B618CB214700D72A11 /* NSObject+KXSharedSpace.m */; };
 		A612D7C618CB38DD00D72A11 /* define.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A612D7C518CB38DD00D72A11 /* define.sescript */; };
 		A612D7C718CB38DD00D72A11 /* define.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A612D7C518CB38DD00D72A11 /* define.sescript */; };
 		A639F08718BB7A0C00CF4148 /* SEApp.h in Headers */ = {isa = PBXBuildFile; fileRef = A639F08618BB7A0C00CF4148 /* SEApp.h */; };
@@ -276,10 +268,6 @@
 		A612D79818CA236D00D72A11 /* demo.sescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = demo.sescript; sourceTree = "<group>"; };
 		A612D79B18CAFF3A00D72A11 /* init.sescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.sescript; sourceTree = "<group>"; };
 		A612D7A418CB02C000D72A11 /* UtilTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilTests.m; sourceTree = "<group>"; };
-		A612D7B318CB214700D72A11 /* KXSharedSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KXSharedSpace.h; path = External/KXSharedSpace/Classes/KXSharedSpace.h; sourceTree = "<group>"; };
-		A612D7B418CB214700D72A11 /* KXSharedSpace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KXSharedSpace.m; path = External/KXSharedSpace/Classes/KXSharedSpace.m; sourceTree = "<group>"; };
-		A612D7B518CB214700D72A11 /* NSObject+KXSharedSpace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+KXSharedSpace.h"; path = "External/KXSharedSpace/Classes/NSObject+KXSharedSpace.h"; sourceTree = "<group>"; };
-		A612D7B618CB214700D72A11 /* NSObject+KXSharedSpace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+KXSharedSpace.m"; path = "External/KXSharedSpace/Classes/NSObject+KXSharedSpace.m"; sourceTree = "<group>"; };
 		A612D7C518CB38DD00D72A11 /* define.sescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = define.sescript; path = Resources/define.sescript; sourceTree = SOURCE_ROOT; };
 		A62FE7A818AE3F4B00F12E3A /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		A638D2FC18AD1FCC0008635E /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
@@ -641,10 +629,6 @@
 		A6AB55DB18C235D60083760F /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				A612D7B318CB214700D72A11 /* KXSharedSpace.h */,
-				A612D7B418CB214700D72A11 /* KXSharedSpace.m */,
-				A612D7B518CB214700D72A11 /* NSObject+KXSharedSpace.h */,
-				A612D7B618CB214700D72A11 /* NSObject+KXSharedSpace.m */,
 				A6AB55D618C225C50083760F /* NSObject+KXEventEmitter.m */,
 				A6AB55D518C225C50083760F /* NSObject+KXEventEmitter.h */,
 			);
@@ -716,7 +700,6 @@
 				A639F08C18BB82F800CF4148 /* SEBasicApp.h in Headers */,
 				A6D04D4518B74D4D00977B7A /* NSArray+Where.h in Headers */,
 				A6D1760E18AE628200AB11AF /* SEScriptParser.h in Headers */,
-				A612D7B818CB214700D72A11 /* KXSharedSpace.h in Headers */,
 				A6FBB3E918BF707B008DDF22 /* SEWords.h in Headers */,
 				A6A1691918B25A470041BBBA /* SEMethodChain.h in Headers */,
 				A6FBB3E318BF706F008DDF22 /* SEElement.h in Headers */,
@@ -731,7 +714,6 @@
 				A639F0A518BCEFFF00CF4148 /* NSNumber+CGFloat.h in Headers */,
 				A6FBB3D818BF4CFF008DDF22 /* SEColorUtil.h in Headers */,
 				A6FBB37618BE2B67008DDF22 /* SEResponderProxy.h in Headers */,
-				A612D7BC18CB214700D72A11 /* NSObject+KXSharedSpace.h in Headers */,
 				A6AB55D818C225C50083760F /* NSObject+KXEventEmitter.h in Headers */,
 				A6D04D4B18B7701C00977B7A /* SEBasicClassProxy.h in Headers */,
 				A6F1145B18C776BA002CBAB6 /* SECharacterLayer.h in Headers */,
@@ -761,10 +743,8 @@
 				A6F1145A18C776BA002CBAB6 /* SECharacterLayer.h in Headers */,
 				A604523B18B3A58B00B85928 /* SEBasicObject.h in Headers */,
 				A6A1691118B25A390041BBBA /* SEScriptParser.h in Headers */,
-				A612D7B718CB214700D72A11 /* KXSharedSpace.h in Headers */,
 				A639F08718BB7A0C00CF4148 /* SEApp.h in Headers */,
 				A6D925D518B8E24600902230 /* NSBundle+ScrivelEngine.h in Headers */,
-				A612D7BB18CB214700D72A11 /* NSObject+KXSharedSpace.h in Headers */,
 				A604523718B3A58B00B85928 /* SEBasicLayer.h in Headers */,
 				A6FBB38418BF210C008DDF22 /* SEClassProxy.h in Headers */,
 				A639F0A418BCEFFF00CF4148 /* NSNumber+CGFloat.h in Headers */,
@@ -1065,13 +1045,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A612D7B918CB214700D72A11 /* KXSharedSpace.m in Sources */,
 				A604523918B3A58B00B85928 /* SEBasicLayer.m in Sources */,
 				A63F889218AFBBBA007FBE57 /* SEScriptAssembler.m in Sources */,
 				A63F88B218B0F496007FBE57 /* ScrivelEngine.m in Sources */,
 				A639F0A618BCEFFF00CF4148 /* NSNumber+CGFloat.m in Sources */,
 				A609F67018B48F74000A0EFB /* Stack.m in Sources */,
-				A612D7BD18CB214700D72A11 /* NSObject+KXSharedSpace.m in Sources */,
 				A60ECC2018AC8A46000F7A40 /* SEScript.m in Sources */,
 				A60ECC1F18AC8A46000F7A40 /* SEMethod.m in Sources */,
 				A6FBB3D918BF4CFF008DDF22 /* SEColorUtil.m in Sources */,
@@ -1120,13 +1098,11 @@
 				A609F66518B47F58000A0EFB /* NSValue+ScrivelEngine.m in Sources */,
 				A639F08E18BB82F800CF4148 /* SEBasicApp.m in Sources */,
 				A6FBB3DA18BF4CFF008DDF22 /* SEColorUtil.m in Sources */,
-				A612D7BA18CB214700D72A11 /* KXSharedSpace.m in Sources */,
 				A6FBB3E518BF706F008DDF22 /* SEElement.m in Sources */,
 				A63F88B318B0F496007FBE57 /* ScrivelEngine.m in Sources */,
 				A6D04D4D18B7701C00977B7A /* SEBasicClassProxy.m in Sources */,
 				A604524C18B3C78200B85928 /* SEBasicTextLayer.m in Sources */,
 				A60ECC5118AC8C54000F7A40 /* SEScript.m in Sources */,
-				A612D7BE18CB214700D72A11 /* NSObject+KXSharedSpace.m in Sources */,
 				A6D925D818B8E24600902230 /* NSBundle+ScrivelEngine.m in Sources */,
 				A6D04D4718B74D4D00977B7A /* NSArray+Where.m in Sources */,
 				A6D1761018AE628200AB11AF /* SEScriptParser.m in Sources */,
