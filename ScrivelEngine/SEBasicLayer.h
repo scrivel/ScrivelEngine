@@ -102,6 +102,21 @@ static inline CGRect CGRectFromObject(id obj)
     return CGRectZero;
 }
 
+#define SEEdgeInsetsFromArray(a) SEEdgeInsetsMake([a[0] CGFloatValue], [a[1] CGFloatValue], [a[2] CGFloatValue], [a[3] CGFloatValue])
+#define SEEdgeInsetsFromDictionary(d) SEEdgeInsetsMake([d[@"top"] CGFloatValue], [d[@"left"] CGFloatValue], [d[@"bottom"] CGFloatValue], [d[@"right"] CGFloatValue])
+
+static inline SEEdgeInsets SEEdgeInsetsFromObject(id obj)
+{
+    if ([obj isKindOfClass:[NSArray class]]) {
+        return SEEdgeInsetsFromArray(obj);
+    }else if ([obj isKindOfClass:[NSDictionary class]]){
+        return SEEdgeInsetsFromDictionary(obj);
+    }else if ([obj isKindOfClass:[NSValue class]]){
+        return [obj se_edgeInsetsValue];
+    }
+    return SEEdgeInsetsMake(0, 0, 0, 0);
+}
+
 @interface SEBasicLayerClass : SEBasicObjectClass <SELayerClass>
 
 @property (nonatomic, readonly) NSDictionary *layers;

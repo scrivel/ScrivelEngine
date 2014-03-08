@@ -49,16 +49,10 @@
       "setPrimary": "setPrimary_key:",
       "setNameLayer": "setNameLayer_key:",
       "setName": "setName_name:",
-      "setInterval": "setInterval_interval:",
-      "setFont": "setFont_name:size:",
-      "setCcolor": "setColor_color:",
-      "setLineSpacing": "setLineSpacing_spacing:",
       "setText": "setText_text:noanimate:",
       "start": "start",
       "clear": "clear",
-      "skip": "skip",
-      "padding": "setPadding_top:left:bottom:right:",
-      "horizontalAlign": "setHorizontalAlign_direction:"
+      "skip": "skip"
     },
     "extends": "layer"
   }

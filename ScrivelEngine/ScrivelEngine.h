@@ -62,6 +62,12 @@ typedef NS_ENUM(NSUInteger, SESizeType){
     SESizeTypeNormalized
 };
 
+typedef NS_ENUM(NSUInteger, SETextAlignment) {
+    SETextAlignmentDefault = 0,
+    SETextAlignmentLeft,
+    SETextAlignmentCenter,
+    SETextAlignmentRight
+};
 
 @interface ScrivelEngine : NSObject
 

@@ -94,7 +94,23 @@
 {
     NSTimer *_timer;
     NSUInteger _currentCharacterIndex;
+    CFTimeInterval _interval;
+    NSString *_fontName;
+    CGFloat _fontSize;
+    SEColor *_color;
+    CGFloat _lineSpacing;
+    SEEdgeInsets _padding;
+    SETextAlignment _textAlign;
+    
 }
+
+@synthesize interval = _interval;
+@synthesize fontName = _fontName;
+@synthesize fontSize = _fontSize;
+@synthesize color = _color;
+@synthesize lineSpacing = _lineSpacing;
+@synthesize padding = _padding;
+@synthesize textAlign = _textAlign;
 
 #pragma mark -
 
@@ -102,21 +118,47 @@
 {
     self = [super initWithOpts:options holder:holder];
     CATextLayer *tl = [CATextLayer layer];
-    self.layer = tl;
+//    self.layer = tl;
+    [self.layer addSublayer:tl];
+    [self.layer addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:NULL];
+    [self.layer addObserver:self forKeyPath:@"anchorPoint" options:NSKeyValueObservingOptionNew context:NULL];
+    
     self.textLayer = tl;
     self.textLayer.wrapped = YES;
     self.textLayer.fontSize = 14.0f;
     self.textLayer.foregroundColor = [[SEColor blackColor] CGColor];
     
-    _animationInterval = 0.1f;
     _font = [SEFont systemFontOfSize:14.0f];
-    _padding = SEEdgeInsetsMake(0, 0, 0, 0);
-#if TARGET_OS_IPHONE
-    _horizontalAlignment = NSTextAlignmentLeft;
-#elif TARGET_OS_MAC
-    _horizontalAlignment = NSLeftTextAlignment;
-#endif
+    _currentCharacterIndex = 0;
+    
+    self.interval = 0.1f;
+    self.fontSize = 14.0f;
+    self.fontName = [_font fontName];
+    self.textAlign = SETextAlignmentDefault;
+    self.padding = SEEdgeInsetsMake(0, 0, 0, 0);
+    self.lineSpacing = 0;
+    self.color = [SEColor blackColor];
+    
     return self ?: nil;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (object == self.layer){
+        if([keyPath isEqualToString:@"bounds"]) {
+            SERect bounds = [[change objectForKey:NSKeyValueChangeNewKey] se_rectValue];
+            bounds.size.width -= self.padding.left + self.padding.right;
+            bounds.size.height -= self.padding.top + self.padding.bottom;
+            self.textLayer.bounds = bounds;
+            SEPoint position = self.textLayer.position;
+            position.x += self.padding.left;
+            position.y += self.padding.bottom;
+            self.textLayer.position = position;
+        }else if ([keyPath isEqualToString:@"anchorPoint"]){
+            self.textLayer.anchorPoint = [[change objectForKey:NSKeyValueChangeNewKey] se_pointValue];
+        }
+    }
+
 }
 
 #if TARGET_OS_IPHONE
@@ -172,17 +214,6 @@
 
 #pragma mark - CALayer
 
-- (void)setInterval_interval:(NSTimeInterval)interval
-{
-    if VALID_DOUBLE(interval) _animationInterval = interval;
-}
-
-- (void)setColor_color:(NSString *)color
-{
-    SEColor *c = [SEColorUtil colorWithHEXString:color];
-    if (c) self.textLayer.foregroundColor = [c CGColor];
-}
-
 - (void)setText_text:(NSString *)text noanimate:(BOOL)noanimate
 {
     NSString *__text = [text copy];
@@ -211,7 +242,7 @@
         [__self kx_emit:SEWaitCompletionEvent];
     }];
     _isAnimating = YES;
-    _timer = [NSTimer timerWithTimeInterval:self.animationInterval target:self selector:@selector(addCharacter) userInfo:nil repeats:YES];
+    _timer = [NSTimer timerWithTimeInterval:self.interval target:self selector:@selector(addCharacter) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSDefaultRunLoopMode];
 }
 
@@ -238,41 +269,94 @@
 	[self finishAnimation];
 }
 
-- (void)setPadding_top:(CGFloat)top left:(CGFloat)left bottom:(CGFloat)bottom right:(CGFloat)right
+- (void)set_key:(NSString *)key value:(id)value
 {
-    CGFloat _top = H(ROUND_CGFLOAT(top));
-    CGFloat _left = W(ROUND_CGFLOAT(left));
-    CGFloat _bottom = H(ROUND_CGFLOAT(bottom));
-    CGFloat _right = W(ROUND_CGFLOAT(right));
-    _padding = SEEdgeInsetsMake(_top, _left, _bottom, _right);
-}
-
-- (void)setFont_name:(NSString *)name size:(CGFloat)size
-{
-    CGFloat _size = VALID_CGFLOAT(size) ? size : self.font.pointSize;
-    SEFont *f = [SEFont fontWithName:name size:_size];
-    if (f) self.textLayer.font = (__bridge CFTypeRef)(f);
-}
-
-- (void)setLineSpacing_spacing:(CGFloat)spacing
-{
-    if VALID_CGFLOAT(spacing) {
-        NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
-        ps.lineSpacing = spacing;
-        SEFont *f = [SEFont systemFontOfSize:self.font.pointSize];
-        NSDictionary *attr = @{NSParagraphStyleAttributeName: ps,
-                               NSFontAttributeName : f};
-        NSAttributedString *as;
-        if ([self.text isKindOfClass:[NSString class]]) {
-            as= [[NSAttributedString alloc] initWithString:self.text attributes:attr];
-        }else if ([self.text isKindOfClass:[NSAttributedString class]]){
+    if (KEY_IS(@"padding")) {
+        [self setPadding:SEEdgeInsetsFromObject(value)];
+    }else if (KEY_IS(@"fontName")){
+        [self setFontName:value];
+    }else if (KEY_IS(@"fontSize")){
+        [self setFontSize:[value CGFloatValue]];
+    }else if (KEY_IS(@"color")){
+        SEColor *c = [SEColorUtil colorWithHEXString:value];
+        if (c) self.textLayer.foregroundColor = [c CGColor];
+    }else if (KEY_IS(@"lineScacing")){
+        [self setLineSpacing:[value CGFloatValue]];
+    }else if (KEY_IS(@"textAlign")){
+        NSString *key = value;
+        if (KEY_IS(@"left")) {
+            [self setTextAlign:SETextAlignmentLeft];
+        }else if (KEY_IS(@"center")){
+            [self setTextAlign:SETextAlignmentCenter];
+        }else if (KEY_IS(@"right")){
+            [self setTextAlign:SETextAlignmentRight];
         }
+    }else if (KEY_IS(@"interval")){
+        self.interval = [value doubleValue];
+    }else{
+        [super set_key:key value:value];
     }
 }
 
-- (void)setHorizontalAlign_direction:(NSTextAlignment)direction
+- (void)setPadding:(SEEdgeInsets)padding
 {
-    
+    CGFloat _top = H(ROUND_CGFLOAT(padding.top));
+    CGFloat _left = W(ROUND_CGFLOAT(padding.left));
+    CGFloat _bottom = H(ROUND_CGFLOAT(padding.bottom));
+    CGFloat _right = W(ROUND_CGFLOAT(padding.right));
+    _padding = SEEdgeInsetsMake(_top, _left, _bottom, _right);
+}
+
+- (void)setFontName:(NSString *)fontName
+{
+    CGFloat size = self.textLayer.fontSize;
+    SEFont *f = [SEFont fontWithName:fontName size:size];
+    self.textLayer.font = (__bridge CFTypeRef)f;
+    _fontName = fontName;
+}
+
+- (void)setFontSize:(CGFloat)fontSize
+{
+    self.textLayer.fontSize = fontSize;
+    _fontSize = fontSize;
+}
+
+- (void)setColor:(SEColor *)color
+{
+    self.textLayer.foregroundColor = (__bridge CGColorRef)(color);
+}
+
+- (void)setLineSpacing:(CGFloat)lineSpacing
+{
+    NSMutableParagraphStyle *ps = [NSMutableParagraphStyle new];
+    ps.lineSpacing = lineSpacing;
+    SEFont *f = [SEFont systemFontOfSize:self.font.pointSize];
+    NSDictionary *attr = @{NSParagraphStyleAttributeName: ps,
+                           NSFontAttributeName : f};
+    NSAttributedString *as;
+    if ([self.text isKindOfClass:[NSString class]]) {
+        as= [[NSAttributedString alloc] initWithString:self.text attributes:attr];
+    }else if ([self.text isKindOfClass:[NSAttributedString class]]){
+    }
+    _lineSpacing = lineSpacing;
+}
+
+- (void)setTextAlign:(SETextAlignment)textAlign
+{
+    switch (textAlign) {
+        case SETextAlignmentLeft:
+            self.textLayer.alignmentMode = kCAAlignmentLeft;
+            break;
+        case SETextAlignmentCenter:
+            self.textLayer.alignmentMode = kCAAlignmentCenter;
+            break;
+        case SETextAlignmentRight:
+            self.textLayer.alignmentMode = kCAAlignmentRight;
+            break;
+        default:
+            self.textLayer.alignmentMode = kCAAlignmentNatural;
+            break;
+    }
 }
 
 /*

@@ -37,6 +37,15 @@
 #endif
 }
 
++ (instancetype)se_valueWithEdgeInsets:(SEEdgeInsets)insets
+{
+#if TARGET_OS_IPHONE
+    return [NSValue valueWithUIEdgeInsets:insets];
+#elif TARGET_OS_MAC
+    return [NSValue valueWithBytes:&insets objCType:@encode(NSEdgeInsets)];
+#endif
+}
+
 - (SEPoint)se_pointValue
 {
 #if TARGET_OS_IPHONE
@@ -61,6 +70,17 @@
     return [self CGRectValue];
 #elif TARGET_OS_MAC
     return [self rectValue];
+#endif
+}
+
+- (SEEdgeInsets)se_edgeInsetsValue
+{
+#if TARGET_OS_IPHONE
+    return [self UIEdgeInsetsValue];
+#elif TARGET_OS_MAC
+    NSEdgeInsets is = NSEdgeInsetsMake(0, 0, 0, 0);
+    [self getValue:&is];
+    return is;
 #endif
 }
 

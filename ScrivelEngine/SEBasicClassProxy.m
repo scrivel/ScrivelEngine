@@ -110,16 +110,10 @@
 		SEL_FOR_METHOD(@"setPrimary",setPrimary_key:);
 		SEL_FOR_METHOD(@"setNameLayer",setNameLayer_key:);
 		SEL_FOR_METHOD(@"setName",setName_name:);
-		SEL_FOR_METHOD(@"setInterval",setInterval_interval:);
-		SEL_FOR_METHOD(@"setFont",setFont_name:size:);
-		SEL_FOR_METHOD(@"setCcolor",setColor_color:);
-		SEL_FOR_METHOD(@"setLineSpacing",setLineSpacing_spacing:);
 		SEL_FOR_METHOD(@"setText",setText_text:noanimate:);
 		SEL_FOR_METHOD(@"start",start);
 		SEL_FOR_METHOD(@"clear",clear);
 		SEL_FOR_METHOD(@"skip",skip);
-		SEL_FOR_METHOD(@"padding",setPadding_top:left:bottom:right:);
-		SEL_FOR_METHOD(@"horizontalAlign",setHorizontalAlign_direction:);
 		// inherited from layer
 		SEL_FOR_METHOD(@"new",new_args:);
 		SEL_FOR_METHOD(@"get",get_key:);

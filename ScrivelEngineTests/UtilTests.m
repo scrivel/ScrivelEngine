@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "Queue.h"
+#import "NSValue+ScrivelEngine.h"
 
 @interface UtilTests : XCTestCase
 
@@ -43,6 +44,17 @@
     XCTAssert([q.head isEqual: @(-2)], );
     XCTAssert([q.tail isEqual: @(3)], );
     XCTAssert([[q dequeue] isEqual: @(-2)], );
+}
+
+- (void)testInsetsValue
+{
+    SEEdgeInsets is = SEEdgeInsetsMake(10, 10, 10, 10);
+    NSValue *v = [NSValue se_valueWithEdgeInsets:is];
+    SEEdgeInsets is2 = [v se_edgeInsetsValue];
+    XCTAssert(is2.top == is.top, );
+    XCTAssert(is2.left == is.left, );
+    XCTAssert(is2.bottom == is.bottom, );
+    XCTAssert(is2.right == is.right, );    
 }
 
 @end

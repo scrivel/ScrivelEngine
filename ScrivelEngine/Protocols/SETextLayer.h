@@ -55,39 +55,53 @@
  @extends layer
  **/
 
-
 /**
- 文字表示の間隔を指定する
- 
- @method setInterval
- @param {Number} interval 秒数。デフォルトは0.1。
- **/
-- (void)setInterval_interval:(NSTimeInterval)interval;
+ テキストアニメーションの間隔
 
-/**
- フォントを指定する
- 
- @method setFont
- @param {String} name
- @param {Number} size
+ @type Number
+ @default 0.1
+ @property interval
  **/
-- (void)setFont_name:(NSString*)name size:(CGFloat)size;
-
+@property (nonatomic) CFTimeInterval interval;
 /**
- 文字色を指定する
+ フォント
  
- @method setCcolor
- @param {String} color by hex
+ @type String
+ @property fontName
  **/
-- (void)setColor_color:(NSString*)color;
-
+@property (nonatomic) NSString *fontName;
 /**
- 行間を指定する
+ フォントサイズ
  
- @method setLineSpacing
- @param {Number} spacing
+ @type Number
+ @property fontSize
  **/
-- (void)setLineSpacing_spacing:(CGFloat)spacing;
+@property (nonatomic) CGFloat fontSize;
+/**
+ フォントカラー
+ 
+ @type String
+ @property color
+ **/
+@property (nonatomic) SEColor *color;
+/**
+ 行間の幅
+ 
+ @property lineSpacing
+ **/
+@property (nonatomic) CGFloat lineSpacing;
+/**
+ 背景に対するpadding
+ 
+ @property padding
+ **/
+@property (nonatomic) SEEdgeInsets padding;
+/**
+ 文字寄せ
+ 
+ @property textAlign
+ **/
+@property (nonatomic) SETextAlignment textAlign;
 
 /**
  文字列を表示する。文字列は一文字ずつintervalの値で表示される。
@@ -118,25 +132,5 @@
  @method skip
  **/
 - (void)skip;
-
-/**
- レイヤーサイズに対してのテクストエリアのパディングを設定する
- 
- @method padding
- @param {Number} top
- @param {Number} left
- @param {Number} bottom
- @param {Number} right
- **/
-- (void)setPadding_top:(CGFloat)top left:(CGFloat)left bottom:(CGFloat)bottom right:(CGFloat)right;
-
-/**
- テクストフレームの横揃えを指定する。
- 
- @method  horizontalAlign
- @param  {String} horizontalAlign "left", "center", "right", "justified", "natulal"のいずれか
- 詳細はNSTextAlignmentを参照
- **/
-- (void)setHorizontalAlign_direction:(NSTextAlignment)direction;
 
 @end

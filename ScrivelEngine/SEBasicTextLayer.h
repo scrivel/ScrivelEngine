@@ -26,12 +26,9 @@
 @interface SEBasicTextLayer : SEBasicLayer <SETextLayerInstance>
 
 @property (nonatomic) CATextLayer *textLayer;
-@property (nonatomic, readonly) NSTimeInterval animationInterval;
-@property (nonatomic, readonly) SEEdgeInsets padding;
 @property (nonatomic, readonly) SEFont *font;
 // 現在表示している文字列。NSString or NSAttributedString
 @property (nonatomic, readonly) id text;
-@property (nonatomic, readonly) NSTextAlignment *horizontalAlignment;
 @property (nonatomic, readonly) BOOL isAnimating;
 
 #if TARGET_OS_IPHONE
