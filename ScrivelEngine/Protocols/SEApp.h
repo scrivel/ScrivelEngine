@@ -21,6 +21,12 @@
 
 @protocol SEApp <SEObjectClass>
 
-
+/**
+ 外部スクリプトをロードして実行する
+ 
+ @method load
+ @param {String} scriptPath
+ **/
+- (void)load_scriptPath:(NSString*)scriptPath;
 
 @end

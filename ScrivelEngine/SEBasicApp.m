@@ -14,6 +14,8 @@
 #import <objc/runtime.h>
 #import "NSObject+KXEventEmitter.h"
 #import "SEBasicClassProxy.h"
+#import "NSBundle+ScrivelEngine.h"
+#import "SEScript.h"
 
 #define kPositionTypeKey @"positionType"
 #define kSizeTypeKey @"sizeType"
@@ -87,6 +89,22 @@
 - (void)waitText
 {
 
+}
+
+
+- (void)load_scriptPath:(NSString *)scriptPath
+{
+    NSString *path = [[NSBundle mainBundle] se_pathForResource:scriptPath];
+    if (path) {
+        NSError *e = nil;
+        NSString *script = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&e];
+        if ([self.engine validateScript:script error:&e]) {
+            SEScript *s = [SEScript scriptWithString:script error:&e];
+            if (!e) {
+                [self.engine enqueueScript:s prior:YES];
+            }
+        }
+    }
 }
 
 #pragma mark - Accessor

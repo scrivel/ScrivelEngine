@@ -54,6 +54,7 @@
 		// app
 
 		// inherited from app
+		SEL_FOR_METHOD(@"load",load_scriptPath:);
 		// inherited from abstract
 		SEL_FOR_METHOD(@"callMethod",callMethod_method:);
 		SEL_FOR_METHOD(@"wait",wait_duration:);

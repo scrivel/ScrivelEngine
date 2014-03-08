@@ -60,6 +60,10 @@
 		A612D79718CA235B00D72A11 /* Demo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A612D79518CA235B00D72A11 /* Demo.bundle */; };
 		A612D79918CA236D00D72A11 /* demo.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A612D79818CA236D00D72A11 /* demo.sescript */; };
 		A612D79A18CA236D00D72A11 /* demo.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A612D79818CA236D00D72A11 /* demo.sescript */; };
+		A612D79C18CAFF3A00D72A11 /* init.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A612D79B18CAFF3A00D72A11 /* init.sescript */; };
+		A612D79D18CAFF3A00D72A11 /* init.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A612D79B18CAFF3A00D72A11 /* init.sescript */; };
+		A612D7A518CB02C000D72A11 /* UtilTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A612D7A418CB02C000D72A11 /* UtilTests.m */; };
+		A612D7A618CB02C000D72A11 /* UtilTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A612D7A418CB02C000D72A11 /* UtilTests.m */; };
 		A639F08718BB7A0C00CF4148 /* SEApp.h in Headers */ = {isa = PBXBuildFile; fileRef = A639F08618BB7A0C00CF4148 /* SEApp.h */; };
 		A639F08818BB7A0C00CF4148 /* SEApp.h in Headers */ = {isa = PBXBuildFile; fileRef = A639F08618BB7A0C00CF4148 /* SEApp.h */; };
 		A639F08B18BB82F800CF4148 /* SEBasicApp.h in Headers */ = {isa = PBXBuildFile; fileRef = A639F08918BB82F800CF4148 /* SEBasicApp.h */; };
@@ -260,6 +264,8 @@
 		A60ECC3018AC8BE1000F7A40 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		A612D79518CA235B00D72A11 /* Demo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Demo.bundle; sourceTree = "<group>"; };
 		A612D79818CA236D00D72A11 /* demo.sescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = demo.sescript; sourceTree = "<group>"; };
+		A612D79B18CAFF3A00D72A11 /* init.sescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.sescript; sourceTree = "<group>"; };
+		A612D7A418CB02C000D72A11 /* UtilTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilTests.m; sourceTree = "<group>"; };
 		A62FE7A818AE3F4B00F12E3A /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		A638D2FC18AD1FCC0008635E /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		A638D2FE18AD20010008635E /* ParseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseKit.framework; path = External/ParseKit/build/Debug/ParseKit.framework; sourceTree = "<group>"; };
@@ -486,10 +492,11 @@
 		A60ECC0718AC86A7000F7A40 /* ScrivelEngineTests */ = {
 			isa = PBXGroup;
 			children = (
-				A6D0516818B840CB00977B7A /* ObjcTests.m */,
 				A60ECC0818AC86A7000F7A40 /* Supporting Files */,
+				A6D0516818B840CB00977B7A /* ObjcTests.m */,
 				A60ECC2418AC8A5D000F7A40 /* SEScriptTests.m */,
 				A6D04D3918B4F76D00977B7A /* ScrivelEngineTests.m */,
+				A612D7A418CB02C000D72A11 /* UtilTests.m */,
 			);
 			path = ScrivelEngineTests;
 			sourceTree = "<group>";
@@ -670,6 +677,7 @@
 				A6FBB3AB18BF2C25008DDF22 /* script.grammer */,
 				A6FBB3AC18BF2C25008DDF22 /* stopbutton.png */,
 				A6FBB3DB18BF6F49008DDF22 /* text.sescript */,
+				A612D79B18CAFF3A00D72A11 /* init.sescript */,
 				A612D79818CA236D00D72A11 /* demo.sescript */,
 			);
 			path = Resources;
@@ -943,6 +951,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6FBB3B418BF2C25008DDF22 /* keroxp.jpg in Resources */,
+				A612D79D18CAFF3A00D72A11 /* init.sescript in Resources */,
 				A6FBB3BC18BF2C25008DDF22 /* runbutton.png in Resources */,
 				A6FBB3B018BF2C25008DDF22 /* animate.sescript in Resources */,
 				A612D79A18CA236D00D72A11 /* demo.sescript in Resources */,
@@ -975,6 +984,7 @@
 				A6FBB3C718BF2C25008DDF22 /* stopbutton.png in Resources */,
 				A6FBB3AF18BF2C25008DDF22 /* animate.sescript in Resources */,
 				A6D925DD18B914E700902230 /* InfoPlist.strings in Resources */,
+				A612D79C18CAFF3A00D72A11 /* init.sescript in Resources */,
 				A6FBB3DE18BF6F49008DDF22 /* text.sescript in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1060,6 +1070,7 @@
 				A6D04D3A18B4F76D00977B7A /* ScrivelEngineTests.m in Sources */,
 				A6D0516918B840CC00977B7A /* ObjcTests.m in Sources */,
 				A60ECC2518AC8A5D000F7A40 /* SEScriptTests.m in Sources */,
+				A612D7A518CB02C000D72A11 /* UtilTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1099,6 +1110,7 @@
 				A6D04D3B18B4F77000977B7A /* ScrivelEngineTests.m in Sources */,
 				A6D0516A18B840CC00977B7A /* ObjcTests.m in Sources */,
 				A63BB5F318AD30EA0051FA9F /* SEScriptTests.m in Sources */,
+				A612D7A618CB02C000D72A11 /* UtilTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

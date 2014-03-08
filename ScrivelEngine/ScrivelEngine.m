@@ -70,10 +70,10 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
     if (*error) {
         return NO;
     }
-    return [self enqueueScript:s];
+    return [self enqueueScript:s prior:NO];
 }
 
-- (id)enqueueScript:(id)sender
+- (id)enqueueScript:(id)sender prior:(BOOL)prior
 {
     _isWaiting = NO;
     id returnValue = nil;
@@ -81,12 +81,17 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
     [self kx_once:SEWaitBeganEvent handler:^(NSNotification *n) {
         [__self setValue:@YES forKey:@"_isWaiting"];
         [__self kx_once:SEWaitCompletionEvent handler:^(NSNotification *n) {
-            [__self enqueueScript:nil];
+            [__self enqueueScript:nil prior:NO];
         }];
     }];
     if ([sender isKindOfClass:[SEScript class]]){
-        // エレメントをキューイング
-        [_elementQueue enqueueObjects:[(SEScript*)sender elements]];
+        // priorの場合は割り込みさせる
+        if (prior) {
+            [_elementQueue enqueueObjects:[(SEScript*)sender elements] prior:YES];
+        }else{
+            // エレメントをキューイング
+            [_elementQueue enqueueObjects:[(SEScript*)sender elements]];
+        }
     }
     // 前回のイベントループで途中だったメソッドを実行する
     SEMethod *method;
@@ -131,7 +136,7 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
             [self kx_once:SEWaitCompletionEvent handler:^(NSNotification *n) {
                 [__self.app waitTap];
                 [__self kx_once:SEWaitCompletionEvent handler:^(NSNotification *n) {
-                    [__self enqueueScript:nil];
+                    [__self enqueueScript:nil prior:NO];
                 }];
             }];
         }else{

@@ -79,7 +79,7 @@ typedef NS_ENUM(NSUInteger, SESizeType){
 // SEScriptを実行
 - (id)evaluateScript:(NSString*)script error:(NSError**)error;
 // スクリプトをキューイング
-- (id)enqueueScript:(SEScript*)script;
+- (id)enqueueScript:(SEScript*)script prior:(BOOL)prior;
 // スクリプトをlint
 - (BOOL)validateScript:(NSString*)script error:(NSError**)error;
 

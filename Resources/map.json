@@ -15,6 +15,7 @@
   },
   "app": {
     "methods": {
+      "load": "load_scriptPath:"
     },
     "extends": "abstract"
   },
