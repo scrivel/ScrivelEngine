@@ -120,8 +120,11 @@
     CATextLayer *tl = [CATextLayer layer];
 //    self.layer = tl;
     [self.layer addSublayer:tl];
+    // TextLayerを親のレイヤーに追随させる
+    self.textLayer.anchorPoint = self.layer.anchorPoint;
     [self.layer addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:NULL];
     [self.layer addObserver:self forKeyPath:@"anchorPoint" options:NSKeyValueObservingOptionNew context:NULL];
+    [self.layer addObserver:self forKeyPath:@"position" options:NSKeyValueObservingOptionNew context:NULL];
     
     self.textLayer = tl;
     self.textLayer.wrapped = YES;
@@ -150,12 +153,10 @@
             bounds.size.width -= self.padding.left + self.padding.right;
             bounds.size.height -= self.padding.top + self.padding.bottom;
             self.textLayer.bounds = bounds;
-            SEPoint position = self.textLayer.position;
-            position.x += self.padding.left;
-            position.y += self.padding.bottom;
-            self.textLayer.position = position;
         }else if ([keyPath isEqualToString:@"anchorPoint"]){
             self.textLayer.anchorPoint = [[change objectForKey:NSKeyValueChangeNewKey] se_pointValue];
+        }else if ([keyPath isEqualToString:@"position"]){
+            self.textLayer.position = [[change objectForKey:NSKeyValueChangeNewKey] se_pointValue];
         }
     }
 
