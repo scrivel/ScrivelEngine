@@ -25,8 +25,8 @@
       "get": "get_key:",
       "clear": "clear_key:",
       "clearAll": "clearAll",
-      "define": "define_name:animations:options:",
-      "loadImage": "loadImage_path:duration:",
+      "defineAnimation": "defineAnimation_name:animations:options:",
+      "loadImage": "loadImage_path:",
       "clearImage": "clearImage_duration:",
       "transact": "transact_duration:animations:options:",
       "chain": "chain",
@@ -53,6 +53,18 @@
       "start": "start",
       "clear": "clear",
       "skip": "skip"
+    },
+    "extends": "layer"
+  },
+  "chara": {
+    "methods": {
+      "mark": "mark_key:x:y:",
+      "defineMotion": "defineMotion_name:",
+      "defineExpression": "defineExpression_name:imagePath:",
+      "express": "express_name:duration:",
+      "exit": "exit_info:",
+      "appear": "appear_info:",
+      "motion": "motion_name:options:"
     },
     "extends": "layer"
   }

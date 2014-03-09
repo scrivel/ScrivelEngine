@@ -1,0 +1,31 @@
+// つむぎ
+chara.new({
+	key : "つむぎ",
+	index: 2,
+	anchorPoint:[0.5,0],
+	image : "Demo.bundle/tsumugi.png"
+	})
+	.animate("position",[-999,-999]);
+
+// まこと
+chara.new({
+	key : "ななみ",
+	index: 3,
+	anchorPoint: [0.5,0],
+	image : "Demo.bundle/nanami.png"
+	})
+	.animate("position",[-999,-999]);
+
+chara.mark("left",0.2,0.1);
+chara.mark("right",0.75,0.1);
+
+chara.get("つむぎ").appear({
+		at : "left",
+		from : "left",
+		duration : 1
+	});
+chara.get("ななみ").appear({
+	at : "right",
+	from : "right",
+	duration : 1
+	});

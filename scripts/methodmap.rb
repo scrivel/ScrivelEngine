@@ -12,7 +12,7 @@ plist = Plist::parse_xml(plist_path)
 hash = {}
 hierarchy = {}
 
-["SEObject.h","SEApp.h","SELayer.h","SETextLayer.h"].each{|h|
+["SEObject.h","SEApp.h","SELayer.h","SETextLayer.h","SECharacterLayer.h"].each{|h|
   f = File.expand_path(path+"/"+h)
   name = File.basename f, ".h"
   str = open(f).read
@@ -98,6 +98,7 @@ tmp = <<"EOS"
 #import "SEBasicObject.h"
 #import "SEBasicLayer.h"
 #import "SEBasicTextLayer.h"
+#import "SEBasicCharacterLayer.h"
 
 @implementation SEBasicClassProxy
 
@@ -112,6 +113,7 @@ tmp = <<"EOS"
         return [SEBasicLayerClass class];
     }else if ([classIdentifier isEqualToString:@"chara"]){
         // キャラ
+        return [SEBasicCharacterLayerClass class];
     }else if ([classIdentifier isEqualToString:@"bg"]){
         // 背景
     }else if ([classIdentifier isEqualToString:@"text"]){

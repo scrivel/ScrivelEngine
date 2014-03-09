@@ -29,4 +29,7 @@
  **/
 - (void)load_scriptPath:(NSString*)scriptPath;
 
+@property (nonatomic, readonly) SEPositionType positionType;
+@property (nonatomic, readonly) SESizeType sizeType;
+
 @end

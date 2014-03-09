@@ -39,7 +39,7 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        engineClassses = @[@"app",@"layer",@"text"];//,@"bgm",@"se",@"ui",@"chara"];
+        engineClassses = @[@"app",@"layer",@"text",@"chara"];//,@"bgm",@"se",@"ui",@"chara"];
     });
 }
 

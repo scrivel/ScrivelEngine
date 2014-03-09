@@ -11,7 +11,5 @@
 
 @interface SEBasicApp : SEBasicObjectClass <SEApp>
 
-@property (nonatomic, readonly) SEPositionType positionType;
-@property (nonatomic, readonly) SESizeType sizeType;
 
 @end
