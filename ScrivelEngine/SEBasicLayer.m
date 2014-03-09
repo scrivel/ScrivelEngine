@@ -96,7 +96,7 @@
     [__layers removeAllObjects];
 }
 
-- (void)define_name:(id<NSCopying>)name animations:(NSDictionary *)animations options:(NSDictionary *)options
+- (void)defineAnimation_name:(id<NSCopying>)name animations:(NSDictionary *)animations options:(NSDictionary *)options
 {
     [__definedAnimations setObject:@{@"animations": animations, @"options" : options} forKey:name];
 }
@@ -173,6 +173,8 @@
         [self setShadowRadius:[value CGFloatValue]];
     }else if (KEY_IS(@"shadowOffset")){
         [self setShadowOffset:CGSizeFromArray(value)];
+    }else if (KEY_IS(@"image")){
+        [self loadImage_path:value];
     }else{
         [super set_key:key value:value];
     }
@@ -278,7 +280,7 @@
 
 #pragma mark - Image
 
-- (void)loadImage_path:(NSString *)path duration:(NSTimeInterval)duration
+- (void)loadImage_path:(NSString *)path
 {
     NSString *_path = [[NSBundle mainBundle] se_pathForResource:path];
 //    NSAssert(_path, @"パスに画像がありません");
@@ -297,7 +299,7 @@
             SESize is = image.size;
             [self animate_key:@"size" value:[NSValue se_ValueWithSize:is] duration:0 options:nil];
         }
-        [self animate_key:@"contents" value:val duration:duration options:nil];
+        self.layer.contents = val;
     }
 }
 

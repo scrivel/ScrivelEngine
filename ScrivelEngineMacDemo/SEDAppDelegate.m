@@ -73,6 +73,8 @@
 
 - (IBAction)clear:(id)sender {
     [(SEBasicLayerClass*)_engine.layer clearAll];
+    [(SEBasicLayerClass*)_engine.text clearAll];
+    [(SEBasicLayerClass*)_engine.chara clearAll];
 }
 
 - (IBAction)popup:(NSPopUpButton*)sender {

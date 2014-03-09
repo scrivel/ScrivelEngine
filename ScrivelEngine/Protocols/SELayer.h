@@ -61,9 +61,9 @@
 
 /**
  
- @method define
+ @method defineAnimation
  **/
-- (void)define_name:(id<NSCopying>)name animations:(NSDictionary*)animations options:(NSDictionary*)options;
+- (void)defineAnimation_name:(id<NSCopying>)name animations:(NSDictionary*)animations options:(NSDictionary*)options;
 
 
 @end
@@ -95,9 +95,8 @@
  
  @method  loadImage
  @param	{String} path 読み込む画像のファイル名。[NSBundle mainBundle]からの相対パス。
- @param {Number} [duration] クロスフェードさせる場合の秒数
  **/
-- (void)loadImage_path:(NSString*)path duration:(NSTimeInterval)duration;
+- (void)loadImage_path:(NSString*)path;
 
 /**
  レイヤーに読み込んである画像をクリアする。

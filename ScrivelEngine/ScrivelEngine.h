@@ -14,7 +14,7 @@ extern NSString *const SEAnimationCompletionEvent;
 extern NSString *const SETextDisplayCompletionEvent;
 
 @class SEScript, SEMethod, SEBasicApp;
-@protocol SEClassProxy, SEApp, SELayerClass, SETextLayerClass, SETextLayerDelegate;
+@protocol SEClassProxy, SEApp, SELayerClass, SETextLayerClass, SETextLayerDelegate, SECharacterLayerClass;
 
 #if TARGET_OS_IPHONE
 #define SEView UIView
@@ -81,6 +81,7 @@ typedef NS_ENUM(NSUInteger, SETextAlignment) {
 @property (nonatomic, readonly) id<SEApp> app;
 @property (nonatomic, readonly) id<SELayerClass> layer;
 @property (nonatomic, readonly) id<SETextLayerClass> text;
+@property (nonatomic, readonly) id<SECharacterLayerClass> chara;
 
 // SEScriptを実行
 - (id)evaluateScript:(NSString*)script error:(NSError**)error;
