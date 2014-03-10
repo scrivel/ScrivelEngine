@@ -21,61 +21,68 @@ id se_callMethod(id target, NSString *class, SEMethod *method, ScrivelEngine *en
 {
     // SEMethodを動的に呼び出す
     // aliasを探す
-    NSString *name = [[(SEBasicObjectClass*)target aliasStore] objectForKey:method.name] ?: method.name;
-    SEL sel = [engine.classProxy selectorForMethodIdentifier:name classIdentifier:class];
-    if ([method.name hasPrefix:@"wait"]) {
-        // wait系メソッドをappにフォワーディングする
-        target = engine.app;
-        sel = [engine.classProxy selectorForMethodIdentifier:method.name classIdentifier:@"app"];
-    }else if ([method.name isEqualToString:@"set"]){
-        // setメソッドだけはargumentsをそのまま引数に渡す
-        NSString *key = [method argAtIndex:0];
-        NSArray *values = [method.arguments subarrayWithRange:NSMakeRange(1, method.arguments.count-1)];
-        if (values.count == 1) {
-            [(_SEObject*)target set_key:key value:values[0]];
-        }else if (values.count > 1){
-            [(_SEObject*)target set_key:key value:values];
+    __unsafe_unretained id retval = nil;
+    @try {
+        NSString *name = [[(SEBasicObjectClass*)target aliasStore] objectForKey:method.name] ?: method.name;
+        SEL sel = [engine.classProxy selectorForMethodIdentifier:name classIdentifier:class];
+        if ([method.name hasPrefix:@"wait"]) {
+            // wait系メソッドをappにフォワーディングする
+            target = engine.app;
+            sel = [engine.classProxy selectorForMethodIdentifier:method.name classIdentifier:@"app"];
+        }else if ([method.name isEqualToString:@"set"]){
+            // setメソッドだけはargumentsをそのまま引数に渡す
+            NSString *key = [method argAtIndex:0];
+            NSArray *values = [method.arguments subarrayWithRange:NSMakeRange(1, method.arguments.count-1)];
+            if (values.count == 1) {
+                [(_SEObject*)target set_key:key value:values[0]];
+            }else if (values.count > 1){
+                [(_SEObject*)target set_key:key value:values];
+            }
+            return nil;
         }
-        return nil;
-    }
-    NSMethodSignature *sig = [target methodSignatureForSelector:sel];
-    NSInvocation *iv = [NSInvocation invocationWithMethodSignature:sig];
-    [iv setTarget:target];
-    [iv setSelector:sel];
-    [iv retainArguments];
-    for (NSUInteger i = 0; i < sig.numberOfArguments - 2; i++) {
-        // シグネチャのargの型によって安全に引数を渡す
-        // 現状、原則としてint, unsinedなどのCプリミティブ型は引数にはしない
-        const char * type = [sig getArgumentTypeAtIndex:i+2];
-        if (SAME_TYPE(type, @encode(NSUInteger))) {
-            NSUInteger uintarg = (NSUInteger)[method unsignedIntegerArtAtIndex:i];
-            [iv setArgument:&uintarg atIndex:i+2];
-        }else if (SAME_TYPE(type, @encode(NSInteger))){
-            NSInteger intarg = [method integerArgAtIndex:i];
-            [iv setArgument:&intarg atIndex:i+2];
-        }else if (SAME_TYPE(type, @encode(CGFloat))){
-            CGFloat cgfArg = [method CGFloatArgAtIndex:i];
-            [iv setArgument:&cgfArg atIndex:i+2];
-        }else if (SAME_TYPE(type, @encode(NSTimeInterval))){
-            NSTimeInterval doubleArg = [method doubleArgAtIndex:i];
-            [iv setArgument:&doubleArg atIndex:i+2];
-        }else if (SAME_TYPE(type, @encode(BOOL))){
-            BOOL boolArg = [method boolArgAtIndex:i];
-            [iv setArgument:&boolArg atIndex:i+2];
+        NSMethodSignature *sig = [target methodSignatureForSelector:sel];
+        NSInvocation *iv = [NSInvocation invocationWithMethodSignature:sig];
+        [iv setTarget:target];
+        [iv setSelector:sel];
+        [iv retainArguments];
+        for (NSUInteger i = 0; i < sig.numberOfArguments - 2; i++) {
+            // シグネチャのargの型によって安全に引数を渡す
+            // 現状、原則としてint, unsinedなどのCプリミティブ型は引数にはしない
+            const char * type = [sig getArgumentTypeAtIndex:i+2];
+            if (SAME_TYPE(type, @encode(NSUInteger))) {
+                NSUInteger uintarg = (NSUInteger)[method unsignedIntegerArtAtIndex:i];
+                [iv setArgument:&uintarg atIndex:i+2];
+            }else if (SAME_TYPE(type, @encode(NSInteger))){
+                NSInteger intarg = [method integerArgAtIndex:i];
+                [iv setArgument:&intarg atIndex:i+2];
+            }else if (SAME_TYPE(type, @encode(CGFloat))){
+                CGFloat cgfArg = [method CGFloatArgAtIndex:i];
+                [iv setArgument:&cgfArg atIndex:i+2];
+            }else if (SAME_TYPE(type, @encode(NSTimeInterval))){
+                NSTimeInterval doubleArg = [method doubleArgAtIndex:i];
+                [iv setArgument:&doubleArg atIndex:i+2];
+            }else if (SAME_TYPE(type, @encode(BOOL))){
+                BOOL boolArg = [method boolArgAtIndex:i];
+                [iv setArgument:&boolArg atIndex:i+2];
+            }else{
+                id arg = nil;
+                arg = [method argAtIndex:i];
+                [iv setArgument:&arg atIndex:i+2];
+            }
+        }
+        [iv invoke];
+        if (SAME_TYPE([sig methodReturnType], @encode(void))) {
+            return target;
         }else{
-            id arg = nil;
-            arg = [method argAtIndex:i];
-            [iv setArgument:&arg atIndex:i+2];
+            [iv getReturnValue:&retval];
         }
     }
-    [iv invoke];
-    if (SAME_TYPE([sig methodReturnType], @encode(void))) {
-        return target;
-    }else{
-        __unsafe_unretained id retval = nil;
-        [iv getReturnValue:&retval];
-        return retval ?: nil;
+    @catch (NSException *exception) {
+        NSLog(@"could not call method '%@' for class '%@' : %@",method.name, class, exception);
     }
+    @finally {
+    }
+    return retval ?: nil;
 }
 
 @implementation _SEObject
