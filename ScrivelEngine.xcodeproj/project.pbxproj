@@ -23,7 +23,6 @@
 		A604523D18B3A58B00B85928 /* SEBasicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A604523418B3A58B00B85928 /* SEBasicObject.m */; };
 		A604523E18B3A58B00B85928 /* SEBasicObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A604523418B3A58B00B85928 /* SEBasicObject.m */; };
 		A604524318B3C67B00B85928 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63F899018B23A51007FBE57 /* QuartzCore.framework */; };
-		A604524418B3C68300B85928 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63F899218B23A5C007FBE57 /* QuartzCore.framework */; };
 		A604524518B3C6A700B85928 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6AC928518AC960300D43025 /* UIKit.framework */; };
 		A604524618B3C6AF00B85928 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6AC927E18AC95DB00D43025 /* Cocoa.framework */; };
 		A604524918B3C78200B85928 /* SEBasicTextLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = A604524718B3C78200B85928 /* SEBasicTextLayer.h */; };
@@ -42,14 +41,11 @@
 		A609F66F18B48F74000A0EFB /* Stack.h in Headers */ = {isa = PBXBuildFile; fileRef = A609F66C18B48F74000A0EFB /* Stack.h */; };
 		A609F67018B48F74000A0EFB /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = A609F66D18B48F74000A0EFB /* Stack.m */; };
 		A609F67118B48F74000A0EFB /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = A609F66D18B48F74000A0EFB /* Stack.m */; };
-		A60ECBB818AC8523000F7A40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A6127418A7B0DA00CBD988 /* Foundation.framework */; };
 		A60ECBBA18AC8523000F7A40 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECBB918AC8523000F7A40 /* CoreGraphics.framework */; };
 		A60ECBC318AC8523000F7A40 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECBC218AC8523000F7A40 /* main.m */; };
 		A60ECBC718AC8523000F7A40 /* SEDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECBC618AC8523000F7A40 /* SEDAppDelegate.m */; };
 		A60ECBCD18AC8523000F7A40 /* SEDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECBCC18AC8523000F7A40 /* SEDViewController.m */; };
-		A60ECBF418AC86A7000F7A40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A6127418A7B0DA00CBD988 /* Foundation.framework */; };
 		A60ECC0118AC86A7000F7A40 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A6128218A7B0DA00CBD988 /* XCTest.framework */; };
-		A60ECC0218AC86A7000F7A40 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A6127418A7B0DA00CBD988 /* Foundation.framework */; };
 		A60ECC0C18AC86A7000F7A40 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A60ECC0A18AC86A7000F7A40 /* InfoPlist.strings */; };
 		A60ECC1F18AC8A46000F7A40 /* SEMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC1618AC8A46000F7A40 /* SEMethod.m */; };
 		A60ECC2018AC8A46000F7A40 /* SEScript.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC1818AC8A46000F7A40 /* SEScript.m */; };
@@ -100,9 +96,7 @@
 		A63F88BE18B11089007FBE57 /* SEMethodChain.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889418AFBCC5007FBE57 /* SEMethodChain.m */; };
 		A63F88C118B111BF007FBE57 /* libScrivelEngineMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECC2A18AC8BE1000F7A40 /* libScrivelEngineMac.a */; };
 		A63F88C518B11412007FBE57 /* ParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A638D30018AD20150008635E /* ParseKit.framework */; };
-		A63F898418B2307B007FBE57 /* libParseKitMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A63F898318B2307B007FBE57 /* libParseKitMobile.a */; };
 		A63F899118B23A51007FBE57 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63F899018B23A51007FBE57 /* QuartzCore.framework */; };
-		A63F899318B23A5C007FBE57 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63F899218B23A5C007FBE57 /* QuartzCore.framework */; };
 		A63F899418B23D07007FBE57 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6AC928518AC960300D43025 /* UIKit.framework */; };
 		A6A1691118B25A390041BBBA /* SEScriptParser.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D1760C18AE628200AB11AF /* SEScriptParser.h */; };
 		A6A1691218B25A3D0041BBBA /* SEScriptAssembler.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F889018AFBBBA007FBE57 /* SEScriptAssembler.h */; };
@@ -130,8 +124,6 @@
 		A6AC928418AC95FC00D43025 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6AC927E18AC95DB00D43025 /* Cocoa.framework */; };
 		A6AC928618AC960300D43025 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6AC928518AC960300D43025 /* UIKit.framework */; };
 		A6AC92C018ACF44400D43025 /* libScrivelEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECBF318AC86A7000F7A40 /* libScrivelEngine.a */; };
-		A6B104D918B869E700F0D28D /* MGSFragaria.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B104D818B869E700F0D28D /* MGSFragaria.framework */; };
-		A6B104DF18B8792500F0D28D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63F899218B23A5C007FBE57 /* QuartzCore.framework */; };
 		A6D04D3818B4DFA600977B7A /* ScrivelEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F88AF18B0F496007FBE57 /* ScrivelEngine.h */; };
 		A6D04D3A18B4F76D00977B7A /* ScrivelEngineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D04D3918B4F76D00977B7A /* ScrivelEngineTests.m */; };
 		A6D04D3B18B4F77000977B7A /* ScrivelEngineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D04D3918B4F76D00977B7A /* ScrivelEngineTests.m */; };
@@ -157,6 +149,9 @@
 		A6D925DD18B914E700902230 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A60ECBBF18AC8523000F7A40 /* InfoPlist.strings */; };
 		A6F1145A18C776BA002CBAB6 /* SECharacterLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = A6F1145918C776B9002CBAB6 /* SECharacterLayer.h */; };
 		A6F1145B18C776BA002CBAB6 /* SECharacterLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = A6F1145918C776B9002CBAB6 /* SECharacterLayer.h */; };
+		A6F499E418CDE50400B46770 /* MGSFragaria.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F499E318CDE50400B46770 /* MGSFragaria.framework */; };
+		A6F499EA18CDE55F00B46770 /* libParseKitMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6F499E918CDE55F00B46770 /* libParseKitMobile.a */; };
+		A6F499EB18CDE56800B46770 /* ParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A638D30018AD20150008635E /* ParseKit.framework */; };
 		A6FBB37518BE2A5C008DDF22 /* SEResponderProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FBB37318BE2A5C008DDF22 /* SEResponderProxy.m */; };
 		A6FBB37618BE2B67008DDF22 /* SEResponderProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FBB37218BE2A5C008DDF22 /* SEResponderProxy.h */; };
 		A6FBB38418BF210C008DDF22 /* SEClassProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FBB38318BF210C008DDF22 /* SEClassProxy.h */; };
@@ -173,22 +168,10 @@
 		A6FBB3B618BF2C25008DDF22 /* map.json in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3A818BF2C25008DDF22 /* map.json */; };
 		A6FBB3B718BF2C25008DDF22 /* map.json in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3A818BF2C25008DDF22 /* map.json */; };
 		A6FBB3B818BF2C25008DDF22 /* map.json in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3A818BF2C25008DDF22 /* map.json */; };
-		A6FBB3B918BF2C25008DDF22 /* runbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3A918BF2C25008DDF22 /* runbutton.png */; };
-		A6FBB3BA18BF2C25008DDF22 /* runbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3A918BF2C25008DDF22 /* runbutton.png */; };
-		A6FBB3BB18BF2C25008DDF22 /* runbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3A918BF2C25008DDF22 /* runbutton.png */; };
-		A6FBB3BC18BF2C25008DDF22 /* runbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3A918BF2C25008DDF22 /* runbutton.png */; };
-		A6FBB3BD18BF2C25008DDF22 /* sample.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3AA18BF2C25008DDF22 /* sample.sescript */; };
-		A6FBB3BE18BF2C25008DDF22 /* sample.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3AA18BF2C25008DDF22 /* sample.sescript */; };
-		A6FBB3BF18BF2C25008DDF22 /* sample.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3AA18BF2C25008DDF22 /* sample.sescript */; };
-		A6FBB3C018BF2C25008DDF22 /* sample.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3AA18BF2C25008DDF22 /* sample.sescript */; };
 		A6FBB3C118BF2C25008DDF22 /* script.grammer in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3AB18BF2C25008DDF22 /* script.grammer */; };
 		A6FBB3C218BF2C25008DDF22 /* script.grammer in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3AB18BF2C25008DDF22 /* script.grammer */; };
 		A6FBB3C318BF2C25008DDF22 /* script.grammer in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3AB18BF2C25008DDF22 /* script.grammer */; };
 		A6FBB3C418BF2C25008DDF22 /* script.grammer in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3AB18BF2C25008DDF22 /* script.grammer */; };
-		A6FBB3C518BF2C25008DDF22 /* stopbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3AC18BF2C25008DDF22 /* stopbutton.png */; };
-		A6FBB3C618BF2C25008DDF22 /* stopbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3AC18BF2C25008DDF22 /* stopbutton.png */; };
-		A6FBB3C718BF2C25008DDF22 /* stopbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3AC18BF2C25008DDF22 /* stopbutton.png */; };
-		A6FBB3C818BF2C25008DDF22 /* stopbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3AC18BF2C25008DDF22 /* stopbutton.png */; };
 		A6FBB3D718BF4CFF008DDF22 /* SEColorUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FBB3D518BF4CFF008DDF22 /* SEColorUtil.h */; };
 		A6FBB3D818BF4CFF008DDF22 /* SEColorUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FBB3D518BF4CFF008DDF22 /* SEColorUtil.h */; };
 		A6FBB3D918BF4CFF008DDF22 /* SEColorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FBB3D618BF4CFF008DDF22 /* SEColorUtil.m */; };
@@ -271,9 +254,6 @@
 		A60ECC1818AC8A46000F7A40 /* SEScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEScript.m; sourceTree = "<group>"; };
 		A60ECC2418AC8A5D000F7A40 /* SEScriptTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEScriptTests.m; sourceTree = "<group>"; };
 		A60ECC2A18AC8BE1000F7A40 /* libScrivelEngineMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libScrivelEngineMac.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		A60ECC2E18AC8BE1000F7A40 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		A60ECC2F18AC8BE1000F7A40 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		A60ECC3018AC8BE1000F7A40 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		A612D79518CA235B00D72A11 /* Demo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Demo.bundle; sourceTree = "<group>"; };
 		A612D79818CA236D00D72A11 /* demo.sescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = demo.sescript; sourceTree = "<group>"; };
 		A612D79B18CAFF3A00D72A11 /* init.sescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.sescript; sourceTree = "<group>"; };
@@ -284,30 +264,21 @@
 		A612D8D018CCD30400D72A11 /* SEBasicCharacterLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEBasicCharacterLayer.h; sourceTree = "<group>"; };
 		A612D8D118CCD30400D72A11 /* SEBasicCharacterLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEBasicCharacterLayer.m; sourceTree = "<group>"; };
 		A612D8D618CCE48A00D72A11 /* chara.sescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chara.sescript; sourceTree = "<group>"; };
-		A62FE7A818AE3F4B00F12E3A /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		A638D2FC18AD1FCC0008635E /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
-		A638D2FE18AD20010008635E /* ParseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseKit.framework; path = External/ParseKit/build/Debug/ParseKit.framework; sourceTree = "<group>"; };
 		A638D30018AD20150008635E /* ParseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseKit.framework; path = "../../../Library/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug/ParseKit.framework"; sourceTree = "<group>"; };
 		A639F08618BB7A0C00CF4148 /* SEApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEApp.h; sourceTree = "<group>"; };
 		A639F08918BB82F800CF4148 /* SEBasicApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEBasicApp.h; sourceTree = "<group>"; };
 		A639F08A18BB82F800CF4148 /* SEBasicApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEBasicApp.m; sourceTree = "<group>"; };
 		A639F0A218BCEFFF00CF4148 /* NSNumber+CGFloat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+CGFloat.h"; sourceTree = "<group>"; };
 		A639F0A318BCEFFF00CF4148 /* NSNumber+CGFloat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+CGFloat.m"; sourceTree = "<group>"; };
-		A63BB5DC18AD2DFD0051FA9F /* libParseKit-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libParseKit-iOS.a"; path = "External/ParseKit/build/Debug-iphoneuniversal/libParseKit-iOS.a"; sourceTree = "<group>"; };
 		A63BB5E318AD30D30051FA9F /* ScrivelEngineMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrivelEngineMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A63BB5F718AD348A0051FA9F /* libParseKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libParseKit.a; path = External/ParseKit/build/Debug/libParseKit.a; sourceTree = "<group>"; };
 		A63F889018AFBBBA007FBE57 /* SEScriptAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEScriptAssembler.h; sourceTree = "<group>"; };
 		A63F889118AFBBBA007FBE57 /* SEScriptAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEScriptAssembler.m; sourceTree = "<group>"; };
 		A63F889318AFBCC5007FBE57 /* SEMethodChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEMethodChain.h; sourceTree = "<group>"; };
 		A63F889418AFBCC5007FBE57 /* SEMethodChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEMethodChain.m; sourceTree = "<group>"; };
 		A63F88AF18B0F496007FBE57 /* ScrivelEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrivelEngine.h; sourceTree = "<group>"; };
 		A63F88B018B0F496007FBE57 /* ScrivelEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrivelEngine.m; sourceTree = "<group>"; };
-		A63F88BA18B10EC0007FBE57 /* ParseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseKit.framework; path = External/ParseKit/build/ParseKit.framework; sourceTree = "<group>"; };
-		A63F88C218B111FE007FBE57 /* libScrivelEngineMac.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libScrivelEngineMac.a; path = "../../../Library/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug/libScrivelEngineMac.a"; sourceTree = "<group>"; };
-		A63F898318B2307B007FBE57 /* libParseKitMobile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libParseKitMobile.a; path = "External/ParseKit/build/Debug-iphoneos/libParseKitMobile.a"; sourceTree = "<group>"; };
 		A63F899018B23A51007FBE57 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		A63F899218B23A5C007FBE57 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
-		A6A6127418A7B0DA00CBD988 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A6A6128218A7B0DA00CBD988 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A6AB55D518C225C50083760F /* NSObject+KXEventEmitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+KXEventEmitter.h"; path = "External/KXEventEmitter/Classes/NSObject+KXEventEmitter.h"; sourceTree = "<group>"; };
 		A6AB55D618C225C50083760F /* NSObject+KXEventEmitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+KXEventEmitter.m"; path = "External/KXEventEmitter/Classes/NSObject+KXEventEmitter.m"; sourceTree = "<group>"; };
@@ -325,7 +296,6 @@
 		A6AC928018AC95F200D43025 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		A6AC928218AC95F700D43025 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		A6AC928518AC960300D43025 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		A6B104D818B869E700F0D28D /* MGSFragaria.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MGSFragaria.framework; path = External/Fragaria/build/Debug/MGSFragaria.framework; sourceTree = "<group>"; };
 		A6D04D3918B4F76D00977B7A /* ScrivelEngineTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrivelEngineTests.m; sourceTree = "<group>"; };
 		A6D04D4218B74D4D00977B7A /* NSArray+Where.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Where.h"; sourceTree = "<group>"; };
 		A6D04D4318B74D4D00977B7A /* NSArray+Where.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Where.m"; sourceTree = "<group>"; };
@@ -337,16 +307,15 @@
 		A6D925D318B8E24600902230 /* NSBundle+ScrivelEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+ScrivelEngine.h"; sourceTree = "<group>"; };
 		A6D925D418B8E24600902230 /* NSBundle+ScrivelEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+ScrivelEngine.m"; sourceTree = "<group>"; };
 		A6F1145918C776B9002CBAB6 /* SECharacterLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SECharacterLayer.h; sourceTree = "<group>"; };
+		A6F499E318CDE50400B46770 /* MGSFragaria.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MGSFragaria.framework; path = "../../../Library/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug/MGSFragaria.framework"; sourceTree = "<group>"; };
+		A6F499E918CDE55F00B46770 /* libParseKitMobile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libParseKitMobile.a; path = "External/ParseKit/build/Debug-iphoneos/libParseKitMobile.a"; sourceTree = "<group>"; };
 		A6FBB37218BE2A5C008DDF22 /* SEResponderProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEResponderProxy.h; path = OSX/SEResponderProxy.h; sourceTree = "<group>"; };
 		A6FBB37318BE2A5C008DDF22 /* SEResponderProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEResponderProxy.m; path = OSX/SEResponderProxy.m; sourceTree = "<group>"; };
 		A6FBB38318BF210C008DDF22 /* SEClassProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEClassProxy.h; sourceTree = "<group>"; };
 		A6FBB3A618BF2C25008DDF22 /* animate.sescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = animate.sescript; sourceTree = "<group>"; };
 		A6FBB3A718BF2C25008DDF22 /* keroxp.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = keroxp.jpg; sourceTree = "<group>"; };
 		A6FBB3A818BF2C25008DDF22 /* map.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = map.json; sourceTree = "<group>"; };
-		A6FBB3A918BF2C25008DDF22 /* runbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = runbutton.png; sourceTree = "<group>"; };
-		A6FBB3AA18BF2C25008DDF22 /* sample.sescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sample.sescript; sourceTree = "<group>"; };
 		A6FBB3AB18BF2C25008DDF22 /* script.grammer */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = script.grammer; sourceTree = "<group>"; };
-		A6FBB3AC18BF2C25008DDF22 /* stopbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stopbutton.png; sourceTree = "<group>"; };
 		A6FBB3D518BF4CFF008DDF22 /* SEColorUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEColorUtil.h; sourceTree = "<group>"; };
 		A6FBB3D618BF4CFF008DDF22 /* SEColorUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEColorUtil.m; sourceTree = "<group>"; };
 		A6FBB3DB18BF6F49008DDF22 /* text.sescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = text.sescript; sourceTree = "<group>"; };
@@ -355,7 +324,6 @@
 		A6FBB3E618BF707B008DDF22 /* SEWords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEWords.h; sourceTree = "<group>"; };
 		A6FBB3E718BF707B008DDF22 /* SEWords.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEWords.m; sourceTree = "<group>"; };
 		C4B2227A2DAB4A94B8A28A3B /* Pods-ScrivelEngineDemo.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScrivelEngineDemo.xcconfig"; path = "Pods/Pods-ScrivelEngineDemo.xcconfig"; sourceTree = "<group>"; };
-		D9B262D9694048BFA8251D77 /* libPods-ScrivelEngineMacDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ScrivelEngineMacDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -365,7 +333,6 @@
 			files = (
 				A6AC928618AC960300D43025 /* UIKit.framework in Frameworks */,
 				A60ECBBA18AC8523000F7A40 /* CoreGraphics.framework in Frameworks */,
-				A60ECBB818AC8523000F7A40 /* Foundation.framework in Frameworks */,
 				793C1D19390A4FBEB4072956 /* libPods-ScrivelEngineDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,10 +341,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A63F898418B2307B007FBE57 /* libParseKitMobile.a in Frameworks */,
 				A63F899418B23D07007FBE57 /* UIKit.framework in Frameworks */,
 				A63F899118B23A51007FBE57 /* QuartzCore.framework in Frameworks */,
-				A60ECBF418AC86A7000F7A40 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,12 +350,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6F499EA18CDE55F00B46770 /* libParseKitMobile.a in Frameworks */,
 				A639F0A118BB932100CF4148 /* CoreGraphics.framework in Frameworks */,
 				A604524518B3C6A700B85928 /* UIKit.framework in Frameworks */,
 				A604524318B3C67B00B85928 /* QuartzCore.framework in Frameworks */,
 				A6AC92C018ACF44400D43025 /* libScrivelEngine.a in Frameworks */,
 				A60ECC0118AC86A7000F7A40 /* XCTest.framework in Frameworks */,
-				A60ECC0218AC86A7000F7A40 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,7 +364,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A63F88C518B11412007FBE57 /* ParseKit.framework in Frameworks */,
-				A63F899318B23A5C007FBE57 /* QuartzCore.framework in Frameworks */,
 				A6AC927F18AC95DB00D43025 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -408,8 +372,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6F499EB18CDE56800B46770 /* ParseKit.framework in Frameworks */,
 				A604524618B3C6AF00B85928 /* Cocoa.framework in Frameworks */,
-				A604524418B3C68300B85928 /* QuartzCore.framework in Frameworks */,
 				A63F88C118B111BF007FBE57 /* libScrivelEngineMac.a in Frameworks */,
 				A63BB5F618AD34010051FA9F /* Foundation.framework in Frameworks */,
 				A63BB5E418AD30D30051FA9F /* XCTest.framework in Frameworks */,
@@ -420,8 +384,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6B104DF18B8792500F0D28D /* QuartzCore.framework in Frameworks */,
-				A6B104D918B869E700F0D28D /* MGSFragaria.framework in Frameworks */,
+				A6F499E418CDE50400B46770 /* MGSFragaria.framework in Frameworks */,
 				A6D0517518B856A300977B7A /* ParseKit.framework in Frameworks */,
 				A63BB5F518AD33D70051FA9F /* libScrivelEngineMac.a in Frameworks */,
 				A6AC928418AC95FC00D43025 /* Cocoa.framework in Frameworks */,
@@ -514,9 +477,9 @@
 			children = (
 				A60ECC0818AC86A7000F7A40 /* Supporting Files */,
 				A6D0516818B840CB00977B7A /* ObjcTests.m */,
+				A612D7A418CB02C000D72A11 /* UtilTests.m */,
 				A60ECC2418AC8A5D000F7A40 /* SEScriptTests.m */,
 				A6D04D3918B4F76D00977B7A /* ScrivelEngineTests.m */,
-				A612D7A418CB02C000D72A11 /* UtilTests.m */,
 			);
 			path = ScrivelEngineTests;
 			sourceTree = "<group>";
@@ -530,14 +493,33 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A60ECC2D18AC8BE1000F7A40 /* Other Frameworks */ = {
+		A612D8D918CDE4A200D72A11 /* OS */ = {
 			isa = PBXGroup;
 			children = (
-				A60ECC2E18AC8BE1000F7A40 /* Foundation.framework */,
-				A60ECC2F18AC8BE1000F7A40 /* CoreData.framework */,
-				A60ECC3018AC8BE1000F7A40 /* AppKit.framework */,
+				A638D2FC18AD1FCC0008635E /* libicucore.dylib */,
+				A6AC928518AC960300D43025 /* UIKit.framework */,
+				A63F899018B23A51007FBE57 /* QuartzCore.framework */,
+				A6AC928218AC95F700D43025 /* Foundation.framework */,
+				A6AC928018AC95F200D43025 /* AppKit.framework */,
+				A6AC927E18AC95DB00D43025 /* Cocoa.framework */,
+				A6A6128218A7B0DA00CBD988 /* XCTest.framework */,
+				A60ECBB918AC8523000F7A40 /* CoreGraphics.framework */,
 			);
-			name = "Other Frameworks";
+			name = OS;
+			sourceTree = "<group>";
+		};
+		A63F6D1B18CDE5FE00C76ACE /* scripts */ = {
+			isa = PBXGroup;
+			children = (
+				A612D7C518CB38DD00D72A11 /* define.sescript */,
+				A6FBB3A618BF2C25008DDF22 /* animate.sescript */,
+				A6FBB3AB18BF2C25008DDF22 /* script.grammer */,
+				A6FBB3DB18BF6F49008DDF22 /* text.sescript */,
+				A612D79B18CAFF3A00D72A11 /* init.sescript */,
+				A612D79818CA236D00D72A11 /* demo.sescript */,
+				A612D8D618CCE48A00D72A11 /* chara.sescript */,
+			);
+			name = scripts;
 			sourceTree = "<group>";
 		};
 		A63F888D18AFBA94007FBE57 /* Bridge */ = {
@@ -619,28 +601,9 @@
 		A6A6127318A7B0DA00CBD988 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A6B104D818B869E700F0D28D /* MGSFragaria.framework */,
-				A63F899218B23A5C007FBE57 /* QuartzCore.framework */,
-				A63F899018B23A51007FBE57 /* QuartzCore.framework */,
-				A63F898318B2307B007FBE57 /* libParseKitMobile.a */,
-				A63F88C218B111FE007FBE57 /* libScrivelEngineMac.a */,
-				A63F88BA18B10EC0007FBE57 /* ParseKit.framework */,
-				A63BB5F718AD348A0051FA9F /* libParseKit.a */,
-				A63BB5DC18AD2DFD0051FA9F /* libParseKit-iOS.a */,
-				A638D30018AD20150008635E /* ParseKit.framework */,
-				A638D2FE18AD20010008635E /* ParseKit.framework */,
-				A638D2FC18AD1FCC0008635E /* libicucore.dylib */,
-				A6AC928518AC960300D43025 /* UIKit.framework */,
-				A6AC928218AC95F700D43025 /* Foundation.framework */,
-				A6AC928018AC95F200D43025 /* AppKit.framework */,
-				A6AC927E18AC95DB00D43025 /* Cocoa.framework */,
-				A6A6127418A7B0DA00CBD988 /* Foundation.framework */,
-				A6A6128218A7B0DA00CBD988 /* XCTest.framework */,
-				A60ECBB918AC8523000F7A40 /* CoreGraphics.framework */,
-				A62FE7A818AE3F4B00F12E3A /* CoreFoundation.framework */,
-				A60ECC2D18AC8BE1000F7A40 /* Other Frameworks */,
-				4CE535954D37458B9E35A0D4 /* libPods-ScrivelEngineDemo.a */,
-				D9B262D9694048BFA8251D77 /* libPods-ScrivelEngineMacDemo.a */,
+				A6F499E618CDE51B00B46770 /* External */,
+				A6F499E518CDE50D00B46770 /* Pods */,
+				A612D8D918CDE4A200D72A11 /* OS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -678,6 +641,24 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A6F499E518CDE50D00B46770 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4CE535954D37458B9E35A0D4 /* libPods-ScrivelEngineDemo.a */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A6F499E618CDE51B00B46770 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				A6F499E918CDE55F00B46770 /* libParseKitMobile.a */,
+				A6F499E318CDE50400B46770 /* MGSFragaria.framework */,
+				A638D30018AD20150008635E /* ParseKit.framework */,
+			);
+			name = External;
+			sourceTree = "<group>";
+		};
 		A6FBB37118BE2A50008DDF22 /* OSX */ = {
 			isa = PBXGroup;
 			children = (
@@ -690,19 +671,10 @@
 		A6FBB3A518BF2C25008DDF22 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A612D7C518CB38DD00D72A11 /* define.sescript */,
 				A612D79518CA235B00D72A11 /* Demo.bundle */,
-				A6FBB3A618BF2C25008DDF22 /* animate.sescript */,
+				A63F6D1B18CDE5FE00C76ACE /* scripts */,
 				A6FBB3A718BF2C25008DDF22 /* keroxp.jpg */,
 				A6FBB3A818BF2C25008DDF22 /* map.json */,
-				A6FBB3A918BF2C25008DDF22 /* runbutton.png */,
-				A6FBB3AA18BF2C25008DDF22 /* sample.sescript */,
-				A6FBB3AB18BF2C25008DDF22 /* script.grammer */,
-				A6FBB3AC18BF2C25008DDF22 /* stopbutton.png */,
-				A6FBB3DB18BF6F49008DDF22 /* text.sescript */,
-				A612D79B18CAFF3A00D72A11 /* init.sescript */,
-				A612D79818CA236D00D72A11 /* demo.sescript */,
-				A612D8D618CCE48A00D72A11 /* chara.sescript */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -940,10 +912,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6FBB3BD18BF2C25008DDF22 /* sample.sescript in Resources */,
 				A6FBB3C118BF2C25008DDF22 /* script.grammer in Resources */,
-				A6FBB3B918BF2C25008DDF22 /* runbutton.png in Resources */,
-				A6FBB3C518BF2C25008DDF22 /* stopbutton.png in Resources */,
 				A6FBB3B118BF2C25008DDF22 /* keroxp.jpg in Resources */,
 				A6FBB3AD18BF2C25008DDF22 /* animate.sescript in Resources */,
 				A6FBB3DC18BF6F49008DDF22 /* text.sescript in Resources */,
@@ -963,13 +932,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6FBB3C618BF2C25008DDF22 /* stopbutton.png in Resources */,
 				A6FBB3C218BF2C25008DDF22 /* script.grammer in Resources */,
 				A6FBB3B218BF2C25008DDF22 /* keroxp.jpg in Resources */,
-				A6FBB3BA18BF2C25008DDF22 /* runbutton.png in Resources */,
 				A6FBB3AE18BF2C25008DDF22 /* animate.sescript in Resources */,
 				A6FBB3DD18BF6F49008DDF22 /* text.sescript in Resources */,
-				A6FBB3BE18BF2C25008DDF22 /* sample.sescript in Resources */,
 				A6FBB3B618BF2C25008DDF22 /* map.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -980,16 +946,13 @@
 			files = (
 				A6FBB3B418BF2C25008DDF22 /* keroxp.jpg in Resources */,
 				A612D79D18CAFF3A00D72A11 /* init.sescript in Resources */,
-				A6FBB3BC18BF2C25008DDF22 /* runbutton.png in Resources */,
 				A6FBB3B018BF2C25008DDF22 /* animate.sescript in Resources */,
 				A612D8D818CCE48A00D72A11 /* chara.sescript in Resources */,
 				A612D79A18CA236D00D72A11 /* demo.sescript in Resources */,
 				A612D7C718CB38DD00D72A11 /* define.sescript in Resources */,
 				A612D79718CA235B00D72A11 /* Demo.bundle in Resources */,
-				A6FBB3C018BF2C25008DDF22 /* sample.sescript in Resources */,
 				A6AC922018AC921C00D43025 /* InfoPlist.strings in Resources */,
 				A6AC922E18AC921C00D43025 /* Images.xcassets in Resources */,
-				A6FBB3C818BF2C25008DDF22 /* stopbutton.png in Resources */,
 				A6AC922618AC921C00D43025 /* Credits.rtf in Resources */,
 				A6AC922C18AC921C00D43025 /* MainMenu.xib in Resources */,
 				A6FBB3DF18BF6F49008DDF22 /* text.sescript in Resources */,
@@ -1004,16 +967,13 @@
 			files = (
 				A6A6ED7718B9A62B00A64483 /* Images.xcassets in Resources */,
 				A6FBB3B318BF2C25008DDF22 /* keroxp.jpg in Resources */,
-				A6FBB3BB18BF2C25008DDF22 /* runbutton.png in Resources */,
 				A6FBB3C318BF2C25008DDF22 /* script.grammer in Resources */,
 				A612D79918CA236D00D72A11 /* demo.sescript in Resources */,
 				A612D7C618CB38DD00D72A11 /* define.sescript in Resources */,
 				A612D79618CA235B00D72A11 /* Demo.bundle in Resources */,
 				A6FBB3B718BF2C25008DDF22 /* map.json in Resources */,
 				A612D8D718CCE48A00D72A11 /* chara.sescript in Resources */,
-				A6FBB3BF18BF2C25008DDF22 /* sample.sescript in Resources */,
 				A6D925DC18B914E700902230 /* Main.storyboard in Resources */,
-				A6FBB3C718BF2C25008DDF22 /* stopbutton.png in Resources */,
 				A6FBB3AF18BF2C25008DDF22 /* animate.sescript in Resources */,
 				A6D925DD18B914E700902230 /* InfoPlist.strings in Resources */,
 				A612D79C18CAFF3A00D72A11 /* init.sescript in Resources */,
@@ -1469,6 +1429,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1511,6 +1472,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

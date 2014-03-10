@@ -39,7 +39,7 @@
 - (void)testMethodChain
 {
     NSError *e = nil;
-    SEScript *s = [SEScript scriptWithString:@"layer.at(1).position(100,100).size(1,2,3)" error:&e];
+    SEScript *s = [SEScript scriptWithString:@"layer.at(1).position(100,100).size(1,2,3);" error:&e];
     XCTAssertNil(e, );
     XCTAssert(s.elements.count == 1, );
     XCTAssert([s.elements[0] isKindOfClass:[SEMethodChain class]], );
@@ -52,21 +52,6 @@
     XCTAssert([m integerArgAtIndex:0] == 1,);
     XCTAssert([m integerArgAtIndex:1] == 2,);
     XCTAssert([m integerArgAtIndex:2] == 3,);
-}
-
-- (void)testString
-{
-    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"sample" ofType:@"sescript"];
-    NSError *e = nil;
-    NSString *script = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&e];
-    SEScript *s = [SEScript scriptWithString:script error:&e];
-    XCTAssertNil(e,);
-    XCTAssert(s, );
-    NSLog(@"%@",s);
-    for (SEElement *elm in s.elements) {
-        XCTAssert([elm isKindOfClass:[SEElement class]], );
-    }
-    NSLog(@"%@",e);
 }
 
 @end
