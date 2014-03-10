@@ -9,14 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "SEScript.h"
 #import "SEMethodChain.h"
-
-//static inline void _testParseError(NSString *string, SEScriptParseError type) {
-//    NSError *e = nil;
-//    SEScript *s = [SEScript scriptWithString:string error:&e];
-//    XCTAssertNil(s, @"エラーが起きてるから無い");
-//    XCTAssertNotNil(e, @"エラーが起きてるから有る");
-//    XCTAssert(e.code == type, );
-//}
+#import "SEWords.h"
 
 @interface SEScriptTests : XCTestCase
 
@@ -52,6 +45,36 @@
     XCTAssert([m integerArgAtIndex:0] == 1,);
     XCTAssert([m integerArgAtIndex:1] == 2,);
     XCTAssert([m integerArgAtIndex:2] == 3,);
+}
+
+- (void)testMethodChain2
+{
+    NSError *e = nil;
+    SEScript *s = [SEScript scriptWithString:@"{\"かえるくん\"}.do(\"jump\",1).did().will();" error:&e];
+    XCTAssertNil(e, );
+    XCTAssert(s.elements.count == 1, );
+    SEMethodChain *chain = s.elements[0];
+    XCTAssert(chain.type == SEMethodChainTypeCharacterSpecified, );
+    XCTAssert(chain.methods.count == 3, );
+    XCTAssert([chain.target isEqualToString:@"かえるくん"], );
+    XCTAssert([[chain.methods[0] name] isEqualToString:@"do"], );
+    XCTAssert([[chain.methods[1] name] isEqualToString:@"did"], );
+    XCTAssert([[chain.methods[2] name] isEqualToString:@"will"], );
+}
+
+- (void)testWords
+{
+    NSString *w = @"{\"かえるくん\"}(\"せりふ\",{duration : 1.0});";
+    NSError *e = nil;
+    SEScript *s = [SEScript scriptWithString:w error:&e];
+    XCTAssertNil(e, );
+    XCTAssert(s, );
+    XCTAssert(s.elements.count == 1, );
+    SEWords *elem = s.elements[0];
+    XCTAssert([elem isKindOfClass:[SEWords class]], );
+    XCTAssert([elem.character isEqualToString:@"かえるくん"], );
+    XCTAssert([elem.text isEqualToString:@"せりふ"], );
+    XCTAssert([elem.options[@"duration"] unsignedIntegerValue] == 1, );
 }
 
 @end

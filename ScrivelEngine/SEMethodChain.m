@@ -13,10 +13,11 @@
 
 @implementation SEMethodChain
 
-- (instancetype)initWithTargetClass:(NSString *)targetClass
+- (instancetype)initWithTarget:(NSString *)target type:(SEMethodChainType)type
 {
     self = [self init];
-    _targetClass = targetClass;
+    _target = target;
+    _type = type;    
     _methods = [NSMutableArray new];    
     return self ?: nil;
 }

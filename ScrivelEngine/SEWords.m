@@ -10,12 +10,22 @@
 
 @implementation SEWords
 
-- (instancetype)initWithName:(NSString *)name text:(NSString *)text
+- (instancetype)initWithCharacter:(NSString *)character arguments:(NSArray *)arguments
 {
     self = [self init];
-    _name = name;
-    _text = text;
+    _character = character;
+    _arguments = arguments;
     return self ?:nil;
+}
+
+- (NSString *)text
+{
+    return [_arguments objectAtIndex:0];
+}
+
+- (NSDictionary *)options
+{
+    return [_arguments objectAtIndex:1];
 }
 
 @end

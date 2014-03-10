@@ -10,9 +10,12 @@
 
 @interface SEWords : SEElement
 
-- (instancetype)initWithName:(NSString*)name text:(NSString*)text;
+- (instancetype)initWithCharacter:(NSString*)character arguments:(NSArray*)arguments;
 
-@property (nonatomic, readonly) NSString *name;
-@property (nonatomic, readonly) NSString *text;
+@property (nonatomic, readonly) NSString *character;
+@property (nonatomic, readonly) NSArray *arguments;
+
+- (NSString*)text;
+- (NSDictionary*)options;
 
 @end

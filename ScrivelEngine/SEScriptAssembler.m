@@ -14,6 +14,26 @@
 #import "Stack.h"
 #import "NSArray+Where.h"
 
+@interface NSString(Dequote)
+
+- (NSString*)dequotedString;
+
+@end
+
+@implementation NSString(Dequote)
+
+- (NSString*)dequotedString
+{
+    char f = [self characterAtIndex:0];
+    char l = [self characterAtIndex:self.length-1];
+    if ((f == '"' && l == '"') || (f == '\'' && l == '\'')){
+        return [self substringWithRange:NSMakeRange(1, self.length-2)];
+    }
+    return self;
+}
+
+@end
+
 @interface SEScriptAssembler ()
 @end
 
@@ -29,6 +49,8 @@ static PKToken *openCurlyToken;
     Stack *_elementStack;
     Stack *_methodChainStack;
     Stack *_wordsStack;
+    Stack *_characterStack;
+    Stack *_nameStack;
     Stack *_methodStack;
     Stack *_argumentsStack;
     Stack *_objectStack;
@@ -37,13 +59,8 @@ static PKToken *openCurlyToken;
     NSUInteger *_arrayStackLength;
     Stack *_valueStack;
     Stack *_keyValueStack;
-    Stack *_keyStack;
+    Stack *_objectKeyStack;
     Stack *_identifierStack;
-    Stack *_nameStack;
-    NSUInteger _nameLineNumber;
-    Stack *_textStack;
-    NSUInteger _textBeginLineNumber;
-    NSUInteger _textEndLineNumber;
 }
 
 + (void)load
@@ -65,6 +82,8 @@ static PKToken *openCurlyToken;
     _elementStack = [Stack new];
     _methodChainStack = [Stack new];
     _wordsStack = [Stack new];
+    _characterStack = [Stack new];
+    _nameStack = [Stack new];
     _methodStack = [Stack new];
     _argumentsStack = [Stack new];
     _objectStack = [Stack new];
@@ -72,10 +91,8 @@ static PKToken *openCurlyToken;
     _argumentsStack = [Stack new];
     _valueStack = [Stack new];
     _keyValueStack = [Stack new];
-    _keyStack = [Stack new];
+    _objectKeyStack = [Stack new];
     _identifierStack = [Stack new];
-    _nameStack = [Stack new];
-    _textStack = [Stack new];
     
     return self ?:nil;
 }
@@ -88,38 +105,49 @@ static PKToken *openCurlyToken;
 #pragma mark - Assembler
 
 
-- (void)parser:(PKParser *)parser didMatchScript:(PKAssembly *)assembly{
+- (void)parser:(PKParser *)parser didMatchScript:(PKAssembly *)assembly
+{
     id element = nil;
     while ((element = [_elementStack pop]) != nil) {
         [_script.elements insertObject:element atIndex:0];
     }
 }
 
-- (void)parser:(PKParser *)parser didMatchElement:(PKAssembly *)assembly{
-    // メソッドチェーンがあればpush
-    id pop = [_methodChainStack pop];
-    if (pop) {
-        [_elementStack push:pop];
+- (void)parser:(PKParser *)parser didMatchElement:(PKAssembly *)assembly
+{
+    id elem;
+    if ((elem = [_valueStack pop])) {
+        [_elementStack push:elem];
         return;
     }
-    // 文字表示？
-    pop = [_wordsStack pop];
-    if (pop){
-        [_elementStack push:pop];
+    if ((elem = [_methodChainStack pop])) {
+        [_elementStack push:elem];
         return;
     }
-    // json形式のvalueならpush
-    id val = [_valueStack pop];
-    if (val) {
-        [_elementStack push:val];
+    if ((elem = [_wordsStack pop])) {
+        [_elementStack push:elem];
         return;
     }
 }
 
+- (void)parser:(PKParser *)parser didMatchWords:(PKAssembly *)assembly
+{
+    NSString *character = [_characterStack pop];
+    NSArray *arguments = [_argumentsStack pop];
+    SEWords *words = [[SEWords alloc] initWithCharacter:character arguments:arguments];
+    [_wordsStack push:words];
+}
+
 - (void)parser:(PKParser *)parser didMatchMethodChain:(PKAssembly *)assembly
 {
-    NSString *targetClass = [_identifierStack pop];
-    SEMethodChain *chain = [[SEMethodChain alloc] initWithTargetClass:targetClass];
+    NSString *target;
+    SEMethodChain *chain;
+    if((target = [_characterStack pop])){
+        chain = [[SEMethodChain alloc] initWithTarget:target type:SEMethodChainTypeCharacterSpecified];
+    }
+    if ((target = [_identifierStack pop])){
+        chain = [[SEMethodChain alloc] initWithTarget:target type:SEMethodChainTypeNormal];
+    }
     SEMethod *m = nil;
     while ((m = [_methodStack pop]) != nil) {
         [chain.methods insertObject:m atIndex:0];
@@ -131,12 +159,23 @@ static PKToken *openCurlyToken;
     [_methodChainStack push:chain];
 }
 
+- (void)parser:(PKParser *)parser didMatchCharacter:(PKAssembly *)assembly
+{
+    NSString *character = [_nameStack pop];
+    [_characterStack push:character];
+}
+
+- (void)parser:(PKParser *)parser didMatchName:(PKAssembly *)assembly
+{
+    NSString *name = [[[assembly pop] stringValue] dequotedString];
+    [_nameStack push:name];
+}
+
 - (void)parser:(PKParser *)parser didMatchMethod:(PKAssembly *)assembly
 {
     NSArray *args = [_argumentsStack pop];
     NSString *identifier = [_identifierStack pop];
-    SEMethod *method = nil;
-    method = [[SEMethod alloc] initWithName:identifier lineNumer:parser.tokenizer.lineNumber];
+    SEMethod *method = [[SEMethod alloc] initWithName:identifier lineNumer:parser.tokenizer.lineNumber];
     [method setArguments:args];
     [_methodStack push:method];
 }
@@ -225,20 +264,20 @@ static PKToken *openCurlyToken;
 
 - (void)parser:(PKParser *)parser didMatchKeyValue:(PKAssembly *)assembly
 {
-    NSString *key = [_keyStack pop];
+    NSString *key = [_objectKeyStack pop];
     id value = [_valueStack pop];
     NSArray *keyValue = @[key,value];
     [_keyValueStack push:keyValue];
 }
 
-- (void)parser:(PKParser *)parser didMatchKey:(PKAssembly *)assembly
+- (void)parser:(PKParser *)parser didMatchObjectKey:(PKAssembly *)assembly
 {
     PKToken *tok = [assembly pop];
     NSString *key = tok.stringValue;
     if (tok.tokenType == PKTokenTypeQuotedString){
         key = [key substringWithRange:NSMakeRange(1, tok.stringValue.length-2)];
     }
-    [_keyStack push:key];
+    [_objectKeyStack push:key];
 }
 
 - (void)parser:(PKParser *)parser didMatchIdentifier:(PKAssembly *)assembly
@@ -247,41 +286,5 @@ static PKToken *openCurlyToken;
     [_identifierStack push:tok.stringValue];
 }
 
-#pragma mark - Words
-
-- (void)parser:(PKParser *)parser didMatchWords:(PKAssembly *)assembly
-{
-    NSString *name = [_nameStack pop];
-    NSString *text = [_textStack pop];
-    SEWords *words = [[SEWords alloc] initWithName:name text:text];
-    if (_textBeginLineNumber != NSUIntegerMax) {
-        NSRange range = NSMakeRange(_textBeginLineNumber, _textEndLineNumber-_textBeginLineNumber+1);
-        words.rangeOfLines = range;
-        _textBeginLineNumber = NSUIntegerMax;
-    }
-    [_wordsStack push:words];
-}
-
-- (void)parser:(PKParser *)parser didMatchName:(PKAssembly *)assembly
-{
-    PKToken *tok = [assembly pop];
-    _nameLineNumber = parser.tokenizer.lineNumber;
-    [_nameStack push:tok.stringValue];
-}
-
-- (void)parser:(PKParser *)parser didMatchText:(PKAssembly *)assembly
-{
-    PKToken *tok = [assembly pop];
-    // テクストの行範囲を調べる
-    if (_textBeginLineNumber == NSUIntegerMax) {
-        _textBeginLineNumber = parser.tokenizer.lineNumber;
-    }
-    _textEndLineNumber = parser.tokenizer.lineNumber;
-    NSString *text = tok.stringValue;
-    if (tok.tokenType == PKTokenTypeQuotedString) {
-        text = [text substringWithRange:NSMakeRange(1, tok.stringValue.length-2)];
-    }
-    [_textStack push:text];
-}
 
 @end

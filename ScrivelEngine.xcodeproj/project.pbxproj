@@ -513,7 +513,6 @@
 			children = (
 				A612D7C518CB38DD00D72A11 /* define.sescript */,
 				A6FBB3A618BF2C25008DDF22 /* animate.sescript */,
-				A6FBB3AB18BF2C25008DDF22 /* script.grammer */,
 				A6FBB3DB18BF6F49008DDF22 /* text.sescript */,
 				A612D79B18CAFF3A00D72A11 /* init.sescript */,
 				A612D79818CA236D00D72A11 /* demo.sescript */,
@@ -674,6 +673,7 @@
 				A612D79518CA235B00D72A11 /* Demo.bundle */,
 				A63F6D1B18CDE5FE00C76ACE /* scripts */,
 				A6FBB3A718BF2C25008DDF22 /* keroxp.jpg */,
+				A6FBB3AB18BF2C25008DDF22 /* script.grammer */,
 				A6FBB3A818BF2C25008DDF22 /* map.json */,
 			);
 			path = Resources;

@@ -46,16 +46,16 @@
 @property (nonatomic, retain) NSMutableDictionary *script_memo;
 @property (nonatomic, retain) NSMutableDictionary *element_memo;
 @property (nonatomic, retain) NSMutableDictionary *words_memo;
-@property (nonatomic, retain) NSMutableDictionary *name_memo;
-@property (nonatomic, retain) NSMutableDictionary *text_memo;
 @property (nonatomic, retain) NSMutableDictionary *methodChain_memo;
+@property (nonatomic, retain) NSMutableDictionary *character_memo;
+@property (nonatomic, retain) NSMutableDictionary *name_memo;
 @property (nonatomic, retain) NSMutableDictionary *method_memo;
 @property (nonatomic, retain) NSMutableDictionary *arguments_memo;
 @property (nonatomic, retain) NSMutableDictionary *value_memo;
 @property (nonatomic, retain) NSMutableDictionary *array_memo;
 @property (nonatomic, retain) NSMutableDictionary *object_memo;
 @property (nonatomic, retain) NSMutableDictionary *keyValue_memo;
-@property (nonatomic, retain) NSMutableDictionary *key_memo;
+@property (nonatomic, retain) NSMutableDictionary *objectKey_memo;
 @property (nonatomic, retain) NSMutableDictionary *identifier_memo;
 @end
 
@@ -72,8 +72,8 @@
         self._tokenKindTab[@"true"] = @(SESCRIPTPARSER_TOKEN_KIND_TRUE);
         self._tokenKindTab[@"."] = @(SESCRIPTPARSER_TOKEN_KIND_DOT);
         self._tokenKindTab[@"{"] = @(SESCRIPTPARSER_TOKEN_KIND_OPEN_CURLY);
-        self._tokenKindTab[@"null"] = @(SESCRIPTPARSER_TOKEN_KIND_NULL);
         self._tokenKindTab[@"]"] = @(SESCRIPTPARSER_TOKEN_KIND_CLOSE_BRACKET);
+        self._tokenKindTab[@"null"] = @(SESCRIPTPARSER_TOKEN_KIND_NULL);
         self._tokenKindTab[@"("] = @(SESCRIPTPARSER_TOKEN_KIND_OPEN_PAREN);
         self._tokenKindTab[@"}"] = @(SESCRIPTPARSER_TOKEN_KIND_CLOSE_CURLY);
         self._tokenKindTab[@")"] = @(SESCRIPTPARSER_TOKEN_KIND_CLOSE_PAREN);
@@ -86,8 +86,8 @@
         self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_TRUE] = @"true";
         self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_DOT] = @".";
         self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_OPEN_CURLY] = @"{";
-        self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_NULL] = @"null";
         self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_CLOSE_BRACKET] = @"]";
+        self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_NULL] = @"null";
         self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_OPEN_PAREN] = @"(";
         self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_CLOSE_CURLY] = @"}";
         self._tokenKindNameTab[SESCRIPTPARSER_TOKEN_KIND_CLOSE_PAREN] = @")";
@@ -95,16 +95,16 @@
         self.script_memo = [NSMutableDictionary dictionary];
         self.element_memo = [NSMutableDictionary dictionary];
         self.words_memo = [NSMutableDictionary dictionary];
-        self.name_memo = [NSMutableDictionary dictionary];
-        self.text_memo = [NSMutableDictionary dictionary];
         self.methodChain_memo = [NSMutableDictionary dictionary];
+        self.character_memo = [NSMutableDictionary dictionary];
+        self.name_memo = [NSMutableDictionary dictionary];
         self.method_memo = [NSMutableDictionary dictionary];
         self.arguments_memo = [NSMutableDictionary dictionary];
         self.value_memo = [NSMutableDictionary dictionary];
         self.array_memo = [NSMutableDictionary dictionary];
         self.object_memo = [NSMutableDictionary dictionary];
         self.keyValue_memo = [NSMutableDictionary dictionary];
-        self.key_memo = [NSMutableDictionary dictionary];
+        self.objectKey_memo = [NSMutableDictionary dictionary];
         self.identifier_memo = [NSMutableDictionary dictionary];
     }
     return self;
@@ -114,16 +114,16 @@
     [_script_memo removeAllObjects];
     [_element_memo removeAllObjects];
     [_words_memo removeAllObjects];
-    [_name_memo removeAllObjects];
-    [_text_memo removeAllObjects];
     [_methodChain_memo removeAllObjects];
+    [_character_memo removeAllObjects];
+    [_name_memo removeAllObjects];
     [_method_memo removeAllObjects];
     [_arguments_memo removeAllObjects];
     [_value_memo removeAllObjects];
     [_array_memo removeAllObjects];
     [_object_memo removeAllObjects];
     [_keyValue_memo removeAllObjects];
-    [_key_memo removeAllObjects];
+    [_objectKey_memo removeAllObjects];
     [_identifier_memo removeAllObjects];
 }
 
@@ -149,14 +149,19 @@
 
 - (void)__element {
     
-    if ([self speculate:^{ [self matchComment:NO]; }]) {
+    if ([self predicts:TOKEN_KIND_BUILTIN_COMMENT, 0]) {
         [self matchComment:NO]; 
-    } else if ([self speculate:^{ [self words]; }]) {
-        [self words]; 
-    } else if ([self speculate:^{ [self methodChain]; }]) {
-        [self methodChain]; 
-    } else if ([self speculate:^{ [self value]; }]) {
-        [self value]; 
+    } else if ([self predicts:SESCRIPTPARSER_TOKEN_KIND_FALSE, SESCRIPTPARSER_TOKEN_KIND_NULL, SESCRIPTPARSER_TOKEN_KIND_OPEN_BRACKET, SESCRIPTPARSER_TOKEN_KIND_OPEN_CURLY, SESCRIPTPARSER_TOKEN_KIND_TRUE, TOKEN_KIND_BUILTIN_NUMBER, TOKEN_KIND_BUILTIN_QUOTEDSTRING, TOKEN_KIND_BUILTIN_WORD, 0]) {
+        if ([self speculate:^{ [self words]; }]) {
+            [self words]; 
+        } else if ([self speculate:^{ [self methodChain]; }]) {
+            [self methodChain]; 
+        } else if ([self speculate:^{ [self value]; }]) {
+            [self value]; 
+        } else {
+            [self raise:@"No viable alternative found in rule 'element'."];
+        }
+        [self match:SESCRIPTPARSER_TOKEN_KIND_SEMI_COLON discard:NO]; 
     } else {
         [self raise:@"No viable alternative found in rule 'element'."];
     }
@@ -170,12 +175,12 @@
 
 - (void)__words {
     
-    if ([self predicts:TOKEN_KIND_BUILTIN_QUOTEDSTRING, TOKEN_KIND_BUILTIN_WORD, 0]) {
-        [self name]; 
+    if ([self speculate:^{ [self character]; }]) {
+        [self character]; 
     }
-    [self match:SESCRIPTPARSER_TOKEN_KIND_OPEN_BRACKET discard:NO]; 
-    [self text]; 
-    [self match:SESCRIPTPARSER_TOKEN_KIND_CLOSE_BRACKET discard:NO]; 
+    [self match:SESCRIPTPARSER_TOKEN_KIND_OPEN_PAREN discard:NO]; 
+    [self arguments]; 
+    [self match:SESCRIPTPARSER_TOKEN_KIND_CLOSE_PAREN discard:NO]; 
 
     [self fireAssemblerSelector:@selector(parser:didMatchWords:)];
 }
@@ -184,62 +189,49 @@
     [self parseRule:@selector(__words) withMemo:_words_memo];
 }
 
-- (void)__name {
-    
-    if ([self predicts:TOKEN_KIND_BUILTIN_WORD, 0]) {
-        [self matchWord:NO]; 
-    } else if ([self predicts:TOKEN_KIND_BUILTIN_QUOTEDSTRING, 0]) {
-        [self matchQuotedString:NO]; 
-    } else {
-        [self raise:@"No viable alternative found in rule 'name'."];
-    }
-
-    [self fireAssemblerSelector:@selector(parser:didMatchName:)];
-}
-
-- (void)name {
-    [self parseRule:@selector(__name) withMemo:_name_memo];
-}
-
-- (void)__text {
-    
-    do {
-        if ([self predicts:TOKEN_KIND_BUILTIN_WORD, 0]) {
-            [self matchWord:NO]; 
-        } else if ([self predicts:TOKEN_KIND_BUILTIN_QUOTEDSTRING, 0]) {
-            [self matchQuotedString:NO]; 
-        } else if ([self predicts:TOKEN_KIND_BUILTIN_NUMBER, 0]) {
-            [self matchNumber:NO]; 
-        } else {
-            [self raise:@"No viable alternative found in rule 'text'."];
-        }
-    } while ([self predicts:TOKEN_KIND_BUILTIN_NUMBER, TOKEN_KIND_BUILTIN_QUOTEDSTRING, TOKEN_KIND_BUILTIN_WORD, 0]);
-
-    [self fireAssemblerSelector:@selector(parser:didMatchText:)];
-}
-
-- (void)text {
-    [self parseRule:@selector(__text) withMemo:_text_memo];
-}
-
 - (void)__methodChain {
     
-    [self identifier]; 
-    while ([self predicts:SESCRIPTPARSER_TOKEN_KIND_DOT, 0]) {
-        if ([self speculate:^{ [self match:SESCRIPTPARSER_TOKEN_KIND_DOT discard:NO]; [self method]; }]) {
-            [self match:SESCRIPTPARSER_TOKEN_KIND_DOT discard:NO]; 
-            [self method]; 
-        } else {
-            break;
-        }
+    if ([self predicts:SESCRIPTPARSER_TOKEN_KIND_OPEN_CURLY, 0]) {
+        [self character]; 
+    } else if ([self predicts:TOKEN_KIND_BUILTIN_WORD, 0]) {
+        [self identifier]; 
+    } else {
+        [self raise:@"No viable alternative found in rule 'methodChain'."];
     }
-    [self match:SESCRIPTPARSER_TOKEN_KIND_SEMI_COLON discard:NO]; 
+    do {
+        [self match:SESCRIPTPARSER_TOKEN_KIND_DOT discard:NO]; 
+        [self method]; 
+    } while ([self speculate:^{ [self match:SESCRIPTPARSER_TOKEN_KIND_DOT discard:NO]; [self method]; }]);
 
     [self fireAssemblerSelector:@selector(parser:didMatchMethodChain:)];
 }
 
 - (void)methodChain {
     [self parseRule:@selector(__methodChain) withMemo:_methodChain_memo];
+}
+
+- (void)__character {
+    
+    [self match:SESCRIPTPARSER_TOKEN_KIND_OPEN_CURLY discard:NO]; 
+    [self name]; 
+    [self match:SESCRIPTPARSER_TOKEN_KIND_CLOSE_CURLY discard:NO]; 
+
+    [self fireAssemblerSelector:@selector(parser:didMatchCharacter:)];
+}
+
+- (void)character {
+    [self parseRule:@selector(__character) withMemo:_character_memo];
+}
+
+- (void)__name {
+    
+    [self matchQuotedString:NO]; 
+
+    [self fireAssemblerSelector:@selector(parser:didMatchName:)];
+}
+
+- (void)name {
+    [self parseRule:@selector(__name) withMemo:_name_memo];
 }
 
 - (void)__method {
@@ -348,7 +340,7 @@
 
 - (void)__keyValue {
     
-    [self key]; 
+    [self objectKey]; 
     [self match:SESCRIPTPARSER_TOKEN_KIND_COLON discard:NO]; 
     [self value]; 
 
@@ -359,21 +351,21 @@
     [self parseRule:@selector(__keyValue) withMemo:_keyValue_memo];
 }
 
-- (void)__key {
+- (void)__objectKey {
     
     if ([self predicts:TOKEN_KIND_BUILTIN_WORD, 0]) {
         [self matchWord:NO]; 
     } else if ([self predicts:TOKEN_KIND_BUILTIN_QUOTEDSTRING, 0]) {
         [self matchQuotedString:NO]; 
     } else {
-        [self raise:@"No viable alternative found in rule 'key'."];
+        [self raise:@"No viable alternative found in rule 'objectKey'."];
     }
 
-    [self fireAssemblerSelector:@selector(parser:didMatchKey:)];
+    [self fireAssemblerSelector:@selector(parser:didMatchObjectKey:)];
 }
 
-- (void)key {
-    [self parseRule:@selector(__key) withMemo:_key_memo];
+- (void)objectKey {
+    [self parseRule:@selector(__objectKey) withMemo:_objectKey_memo];
 }
 
 - (void)__identifier {

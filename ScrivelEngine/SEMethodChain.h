@@ -10,12 +10,17 @@
 
 @class SEMethod;
 
+typedef NS_ENUM(NSUInteger, SEMethodChainType){
+    SEMethodChainTypeNormal = 0,
+    SEMethodChainTypeCharacterSpecified
+};
+
 @interface SEMethodChain : SEElement <NSFastEnumeration>
 
-@property (nonatomic, readonly) NSString *targetClass;
+@property (nonatomic, readonly) NSString *target;
 @property (nonatomic, readonly) NSMutableArray *methods;
-@property (nonatomic) NSRange rangeOfLines;
+@property (nonatomic, readonly) SEMethodChainType type;
 
-- (instancetype)initWithTargetClass:(NSString*)targetClass;
+- (instancetype)initWithTarget:(NSString*)target type:(SEMethodChainType)type;
 
 @end

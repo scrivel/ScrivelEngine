@@ -7,18 +7,16 @@
 @allowsFloatingPoint = YES;
 
 script      =   element+;
-element		=	Comment | words | methodChain | value;
-
-words       =   name? '[' text ']';
-name        =   Word | QuotedString;
-text        =   (Word | QuotedString | Number)+;
-
-methodChain =   identifier ('.' method)* ';';
-method 		=	identifier '(' arguments ')';
-arguments	=	Empty | value (',' value )*;
-value		= 	Number | QuotedString | array | object | 'true' | 'false' | 'null';
-array		=	'[' value (',' value)* ']';
-object		=	'{' keyValue (',' keyValue)* '}';
-keyValue	= 	key ':' value;
-key         =   Word | QuotedString;
-identifier	=	Word;
+element     =	Comment | (words | methodChain | value) ';';
+words       =   character? '(' arguments ')';
+methodChain =   (character | identifier) ('.' method)+;
+character   =   '{' name '}';
+name        =   QuotedString;
+method      =	identifier '(' arguments ')';
+arguments   =	Empty | value (',' value )*;
+value       =   Number | QuotedString | array | object | 'true' | 'false' | 'null';
+array       =	'[' value (',' value)* ']';
+object      =	'{' keyValue (',' keyValue)* '}';
+keyValue    =   objectKey ':' value;
+objectKey   =   Word | QuotedString;
+identifier  =   Word;

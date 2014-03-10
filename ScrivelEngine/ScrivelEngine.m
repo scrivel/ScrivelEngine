@@ -14,6 +14,7 @@
 #import "SEBasicApp.h"
 #import "SEBasicLayer.h"
 #import "SEBasicTextLayer.h"
+#import "SEBasicCharacterLayer.h"
 #import "SEMethod.h"
 #import "SEMethodChain.h"
 #import "SEWords.h"
@@ -30,10 +31,18 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
 {
     Queue *_elementQueue;
     Queue *_methodQueue;
+    SEBasicApp *__app;
+    SEBasicLayerClass *__layer;
+    SEBasicTextLayerClass *__text;
+    SEBasicCharacterLayerClass *__chara;
 }
 
 @synthesize classProxy = _classProxy;
 @synthesize isWaiting = _isWaiting;
+@synthesize app = __app;
+@synthesize layer = __layer;
+@synthesize text = __text;
+@synthesize chara = __chara;
 
 + (void)load
 {
@@ -103,17 +112,31 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
     while (!self.isWaiting && (element = [_elementQueue dequeue]) != nil) {
         if ([element isKindOfClass:[SEMethodChain class]]) {
             SEMethodChain *chain = (SEMethodChain*)element;
+            id<SEObjectInstance> instance;
+            SEMethod *m;
             // staticメソッドを実行
-            NSString *classID = chain.targetClass;
-            id<SEObjectClass> class = [self valueForKey:[NSString stringWithFormat:@"_%@",classID]];
-            SEMethod *m = [chain.methods objectAtIndex:0];
-            id<SEObjectInstance> instance = [class callMethod_method:m];
+            switch (chain.type) {
+                case SEMethodChainTypeNormal: {
+                    // 通常のメソッドチェーン
+                    id<SEObjectClass> class = [self valueForKey:[NSString stringWithFormat:@"_%@",chain.target]];
+                    m = [chain.methods objectAtIndex:0];
+                    instance = [class callMethod_method:m];
+                }
+                    break;
+                case SEMethodChainTypeCharacterSpecified:{
+                    // {"なまえ"}.method()のようなキャラクターに対するメソッド呼び出し
+                    instance = [__chara.layers objectForKey:chain.target];
+                }
+                    break;
+                default:
+                    break;
+            }
             // インスタンスのメソッドチェーンを実行
             for (NSUInteger i = 1; i < chain.methods.count; i++) {
                 m = [chain.methods objectAtIndex:i];
                 // wait中でなければ実行
                 if (!self.isWaiting) {
-                    returnValue = [instance callMethod_method:m];
+                    instance = returnValue = [instance callMethod_method:m];
                 }else{
                     // 次回のイベントループにキューイングする
                     m.target = instance;
@@ -122,9 +145,9 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
             }
         }else if([element isKindOfClass:[SEWords class]]){
             SEWords *words = (SEWords*)element;
-            if (words.name) {
+            if (words.character) {
                 SEMethod *name_m = [[SEMethod alloc] initWithName:@"setName" lineNumer:words.rangeOfLines.location];
-                name_m.arguments = @[words.name];
+                name_m.arguments = @[words.character];
                 returnValue = [self.text callMethod_method:name_m];
             }
             if (words.text) {
@@ -163,21 +186,25 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
     for (SEElement *element in s.elements) {
         if ([element isKindOfClass:[SEMethodChain class]]) {
             SEMethodChain *chain = (SEMethodChain*)element;
-            if (![_classProxy classForClassIdentifier:chain.targetClass]) {
+            if (chain.type == SEMethodChainTypeNormal && ![_classProxy classForClassIdentifier:chain.target]) {
                 NSMutableString *ms = [NSMutableString stringWithString:@"!!存在しないクラスです!!\n"];
                 [ms appendFormat:@"line\t\t:\t%@\n",NSStringFromRange(chain.rangeOfLines)];
-                [ms appendFormat:@"class\t:\t%@\n",chain.targetClass];
+                [ms appendFormat:@"class\t:\t%@\n",chain.target];
                 NSDictionary *ui = @{ NSLocalizedDescriptionKey : ms};
                 *error = [NSError errorWithDomain:@"" code:0 userInfo:ui];
                 return NO;
             }
             for (SEMethod *method in chain) {
-                if (![_classProxy selectorForMethodIdentifier:method.name classIdentifier:chain.targetClass]
+                NSString *cid = chain.target;
+                if (chain.type == SEMethodChainTypeCharacterSpecified) {
+                    cid = @"chara";
+                }
+                if (![_classProxy selectorForMethodIdentifier:method.name classIdentifier:chain.target]
                     && ![[(SEBasicApp*)self.app aliasStore] objectForKey:method.name]) {
                     NSString *type = (method == [chain.methods firstObject]) ? @"static" : @"instance";
                     NSMutableString *ms = [NSMutableString stringWithString:@"!!存在しないメソッドの呼び出しです!!\n"];
                     [ms appendFormat:@"line\t\t:\t%@\n",NSStringFromRange(chain.rangeOfLines)];
-                    [ms appendFormat:@"class\t:\t%@\n",chain.targetClass];
+                    [ms appendFormat:@"class\t:\t%@\n",chain.target];
                     [ms appendFormat:@"type\t:\t%@\n",type];
                     [ms appendFormat:@"name\t:\t%@",method.name];
                     NSDictionary *ui = @{ NSLocalizedDescriptionKey: ms };
@@ -201,7 +228,7 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
             id<SEObjectClass> c = [objc_msgSend(class, @selector(alloc)) initWithEngine:self classIdentifier:className];
             // layer -> _layer
             if (c) {
-                [self setValue:c forKey:[NSString stringWithFormat:@"_%@",className]];
+                [self setValue:c forKey:[NSString stringWithFormat:@"__%@",className]];
             }
         }
     }

@@ -38,14 +38,15 @@
     XCTAssert(engine, );
     id ret;
     NSError *e = nil;
-    XCTAssertNoThrow(ret = [engine evaluateScript:@"layer.get(1).position(100,100)" error:&e], );
-//    XCTAssert(ret, );
+    XCTAssertNoThrow(ret = [engine evaluateScript:@"layer.get(1).animate(\"position\",[100,100]);" error:&e], );
+    XCTAssertNil(e, );
+    NSLog(@"%@",e);
 }
 
 - (void)testString
 {
     NSError *e;
-    id obj = [engine evaluateScript:@"\"string\"" error:&e];
+    id obj = [engine evaluateScript:@"\"string\";" error:&e];
     XCTAssert([obj isKindOfClass:[NSString class]], @"文字列が帰ってきている");
     XCTAssert([obj isEqualToString:@"string"], @"string");
 }
@@ -53,15 +54,15 @@
 - (void)testNumber
 {
     NSError *e;
-    id obj = [engine evaluateScript:@"24" error:&e];
+    id obj = [engine evaluateScript:@"24;" error:&e];
     XCTAssertNil(e, );
     XCTAssert([obj isKindOfClass:[NSNumber class]], @"NSNumber");
     XCTAssert([obj integerValue] == 24, @"24");
-    obj = [engine evaluateScript:@"24.14" error:&e];
+    obj = [engine evaluateScript:@"24.14;" error:&e];
     XCTAssertNil(e, );
     XCTAssert([obj isKindOfClass:[NSNumber class]],);
     XCTAssert([obj doubleValue] > 24,);
-    obj = [engine evaluateScript:@"-23.3" error:&e];
+    obj = [engine evaluateScript:@"-23.3;" error:&e];
     XCTAssert([obj isKindOfClass:[NSNumber class]],);
     XCTAssert([obj doubleValue] < -23.0,);
 }
@@ -69,7 +70,7 @@
 - (void)testArray
 {
     NSError *e;
-    id obj = [engine evaluateScript:@"[1,2,3.1,-0.9]" error:&e];
+    id obj = [engine evaluateScript:@"[1,2,3.1,-0.9];" error:&e];
     XCTAssertNil(e, );
     XCTAssert([obj isKindOfClass:[NSArray class]],);
     XCTAssertFalse([obj isKindOfClass:[NSMutableArray class]], @"mutableではない");
@@ -83,7 +84,7 @@
 - (void)testArray2
 {
     NSError *e;
-    id obj = [engine evaluateScript:@"[1,2,3,[4,5,6]]" error:&e];
+    id obj = [engine evaluateScript:@"[1,2,3,[4,5,6]];" error:&e];
     XCTAssertNil(e, );
     XCTAssert([obj isKindOfClass:[NSArray class]],);
     XCTAssertFalse([obj isKindOfClass:[NSMutableArray class]], @"mutableではない");
@@ -109,7 +110,7 @@
             }\
         }\
     ]\
-    }";
+    };";
     NSDictionary *obj = [engine evaluateScript:json error:&e];
     if (e) {
         NSLog(@"%@",e);
