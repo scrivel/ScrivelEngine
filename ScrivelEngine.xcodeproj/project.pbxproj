@@ -54,14 +54,8 @@
 		A60ECC5118AC8C54000F7A40 /* SEScript.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC1818AC8A46000F7A40 /* SEScript.m */; };
 		A612D79618CA235B00D72A11 /* Demo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A612D79518CA235B00D72A11 /* Demo.bundle */; };
 		A612D79718CA235B00D72A11 /* Demo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A612D79518CA235B00D72A11 /* Demo.bundle */; };
-		A612D79918CA236D00D72A11 /* demo.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A612D79818CA236D00D72A11 /* demo.sescript */; };
-		A612D79A18CA236D00D72A11 /* demo.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A612D79818CA236D00D72A11 /* demo.sescript */; };
-		A612D79C18CAFF3A00D72A11 /* init.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A612D79B18CAFF3A00D72A11 /* init.sescript */; };
-		A612D79D18CAFF3A00D72A11 /* init.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A612D79B18CAFF3A00D72A11 /* init.sescript */; };
 		A612D7A518CB02C000D72A11 /* UtilTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A612D7A418CB02C000D72A11 /* UtilTests.m */; };
 		A612D7A618CB02C000D72A11 /* UtilTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A612D7A418CB02C000D72A11 /* UtilTests.m */; };
-		A612D7C618CB38DD00D72A11 /* define.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A612D7C518CB38DD00D72A11 /* define.sescript */; };
-		A612D7C718CB38DD00D72A11 /* define.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A612D7C518CB38DD00D72A11 /* define.sescript */; };
 		A612D88518CC7C7C00D72A11 /* CAKeyframeAnimation+ScrivelEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = A612D88318CC7C7C00D72A11 /* CAKeyframeAnimation+ScrivelEngine.h */; };
 		A612D88618CC7C7C00D72A11 /* CAKeyframeAnimation+ScrivelEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = A612D88318CC7C7C00D72A11 /* CAKeyframeAnimation+ScrivelEngine.h */; };
 		A612D88718CC7C7C00D72A11 /* CAKeyframeAnimation+ScrivelEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = A612D88418CC7C7C00D72A11 /* CAKeyframeAnimation+ScrivelEngine.m */; };
@@ -70,8 +64,6 @@
 		A612D8D318CCD30400D72A11 /* SEBasicCharacterLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = A612D8D018CCD30400D72A11 /* SEBasicCharacterLayer.h */; };
 		A612D8D418CCD30400D72A11 /* SEBasicCharacterLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A612D8D118CCD30400D72A11 /* SEBasicCharacterLayer.m */; };
 		A612D8D518CCD30400D72A11 /* SEBasicCharacterLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A612D8D118CCD30400D72A11 /* SEBasicCharacterLayer.m */; };
-		A612D8D718CCE48A00D72A11 /* chara.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A612D8D618CCE48A00D72A11 /* chara.sescript */; };
-		A612D8D818CCE48A00D72A11 /* chara.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A612D8D618CCE48A00D72A11 /* chara.sescript */; };
 		A639F08718BB7A0C00CF4148 /* SEApp.h in Headers */ = {isa = PBXBuildFile; fileRef = A639F08618BB7A0C00CF4148 /* SEApp.h */; };
 		A639F08818BB7A0C00CF4148 /* SEApp.h in Headers */ = {isa = PBXBuildFile; fileRef = A639F08618BB7A0C00CF4148 /* SEApp.h */; };
 		A639F08B18BB82F800CF4148 /* SEBasicApp.h in Headers */ = {isa = PBXBuildFile; fileRef = A639F08918BB82F800CF4148 /* SEBasicApp.h */; };
@@ -87,6 +79,10 @@
 		A63BB5F318AD30EA0051FA9F /* SEScriptTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A60ECC2418AC8A5D000F7A40 /* SEScriptTests.m */; };
 		A63BB5F518AD33D70051FA9F /* libScrivelEngineMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECC2A18AC8BE1000F7A40 /* libScrivelEngineMac.a */; };
 		A63BB5F618AD34010051FA9F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6AC928218AC95F700D43025 /* Foundation.framework */; };
+		A63F6D3518CE224100C76ACE /* Scripts.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A63F6D3418CE224100C76ACE /* Scripts.bundle */; };
+		A63F6D3618CE224100C76ACE /* Scripts.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A63F6D3418CE224100C76ACE /* Scripts.bundle */; };
+		A63F6D3718CE224100C76ACE /* Scripts.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A63F6D3418CE224100C76ACE /* Scripts.bundle */; };
+		A63F6D3818CE224100C76ACE /* Scripts.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A63F6D3418CE224100C76ACE /* Scripts.bundle */; };
 		A63F889218AFBBBA007FBE57 /* SEScriptAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889118AFBBBA007FBE57 /* SEScriptAssembler.m */; };
 		A63F889518AFBCC5007FBE57 /* SEMethodChain.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889418AFBCC5007FBE57 /* SEMethodChain.m */; };
 		A63F88B118B0F496007FBE57 /* ScrivelEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F88AF18B0F496007FBE57 /* ScrivelEngine.h */; };
@@ -156,10 +152,6 @@
 		A6FBB37618BE2B67008DDF22 /* SEResponderProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FBB37218BE2A5C008DDF22 /* SEResponderProxy.h */; };
 		A6FBB38418BF210C008DDF22 /* SEClassProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FBB38318BF210C008DDF22 /* SEClassProxy.h */; };
 		A6FBB38518BF210C008DDF22 /* SEClassProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FBB38318BF210C008DDF22 /* SEClassProxy.h */; };
-		A6FBB3AD18BF2C25008DDF22 /* animate.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3A618BF2C25008DDF22 /* animate.sescript */; };
-		A6FBB3AE18BF2C25008DDF22 /* animate.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3A618BF2C25008DDF22 /* animate.sescript */; };
-		A6FBB3AF18BF2C25008DDF22 /* animate.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3A618BF2C25008DDF22 /* animate.sescript */; };
-		A6FBB3B018BF2C25008DDF22 /* animate.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3A618BF2C25008DDF22 /* animate.sescript */; };
 		A6FBB3B118BF2C25008DDF22 /* keroxp.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3A718BF2C25008DDF22 /* keroxp.jpg */; };
 		A6FBB3B218BF2C25008DDF22 /* keroxp.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3A718BF2C25008DDF22 /* keroxp.jpg */; };
 		A6FBB3B318BF2C25008DDF22 /* keroxp.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3A718BF2C25008DDF22 /* keroxp.jpg */; };
@@ -176,10 +168,6 @@
 		A6FBB3D818BF4CFF008DDF22 /* SEColorUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FBB3D518BF4CFF008DDF22 /* SEColorUtil.h */; };
 		A6FBB3D918BF4CFF008DDF22 /* SEColorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FBB3D618BF4CFF008DDF22 /* SEColorUtil.m */; };
 		A6FBB3DA18BF4CFF008DDF22 /* SEColorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FBB3D618BF4CFF008DDF22 /* SEColorUtil.m */; };
-		A6FBB3DC18BF6F49008DDF22 /* text.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3DB18BF6F49008DDF22 /* text.sescript */; };
-		A6FBB3DD18BF6F49008DDF22 /* text.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3DB18BF6F49008DDF22 /* text.sescript */; };
-		A6FBB3DE18BF6F49008DDF22 /* text.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3DB18BF6F49008DDF22 /* text.sescript */; };
-		A6FBB3DF18BF6F49008DDF22 /* text.sescript in Resources */ = {isa = PBXBuildFile; fileRef = A6FBB3DB18BF6F49008DDF22 /* text.sescript */; };
 		A6FBB3E218BF706F008DDF22 /* SEElement.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FBB3E018BF706F008DDF22 /* SEElement.h */; };
 		A6FBB3E318BF706F008DDF22 /* SEElement.h in Headers */ = {isa = PBXBuildFile; fileRef = A6FBB3E018BF706F008DDF22 /* SEElement.h */; };
 		A6FBB3E418BF706F008DDF22 /* SEElement.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FBB3E118BF706F008DDF22 /* SEElement.m */; };
@@ -255,15 +243,11 @@
 		A60ECC2418AC8A5D000F7A40 /* SEScriptTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEScriptTests.m; sourceTree = "<group>"; };
 		A60ECC2A18AC8BE1000F7A40 /* libScrivelEngineMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libScrivelEngineMac.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A612D79518CA235B00D72A11 /* Demo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Demo.bundle; sourceTree = "<group>"; };
-		A612D79818CA236D00D72A11 /* demo.sescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = demo.sescript; sourceTree = "<group>"; };
-		A612D79B18CAFF3A00D72A11 /* init.sescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = init.sescript; sourceTree = "<group>"; };
 		A612D7A418CB02C000D72A11 /* UtilTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilTests.m; sourceTree = "<group>"; };
-		A612D7C518CB38DD00D72A11 /* define.sescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = define.sescript; path = Resources/define.sescript; sourceTree = SOURCE_ROOT; };
 		A612D88318CC7C7C00D72A11 /* CAKeyframeAnimation+ScrivelEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAKeyframeAnimation+ScrivelEngine.h"; sourceTree = "<group>"; };
 		A612D88418CC7C7C00D72A11 /* CAKeyframeAnimation+ScrivelEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAKeyframeAnimation+ScrivelEngine.m"; sourceTree = "<group>"; };
 		A612D8D018CCD30400D72A11 /* SEBasicCharacterLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEBasicCharacterLayer.h; sourceTree = "<group>"; };
 		A612D8D118CCD30400D72A11 /* SEBasicCharacterLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEBasicCharacterLayer.m; sourceTree = "<group>"; };
-		A612D8D618CCE48A00D72A11 /* chara.sescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chara.sescript; sourceTree = "<group>"; };
 		A638D2FC18AD1FCC0008635E /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		A638D30018AD20150008635E /* ParseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseKit.framework; path = "../../../Library/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug/ParseKit.framework"; sourceTree = "<group>"; };
 		A639F08618BB7A0C00CF4148 /* SEApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEApp.h; sourceTree = "<group>"; };
@@ -272,6 +256,7 @@
 		A639F0A218BCEFFF00CF4148 /* NSNumber+CGFloat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+CGFloat.h"; sourceTree = "<group>"; };
 		A639F0A318BCEFFF00CF4148 /* NSNumber+CGFloat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+CGFloat.m"; sourceTree = "<group>"; };
 		A63BB5E318AD30D30051FA9F /* ScrivelEngineMacTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScrivelEngineMacTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A63F6D3418CE224100C76ACE /* Scripts.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Scripts.bundle; sourceTree = "<group>"; };
 		A63F889018AFBBBA007FBE57 /* SEScriptAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEScriptAssembler.h; sourceTree = "<group>"; };
 		A63F889118AFBBBA007FBE57 /* SEScriptAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEScriptAssembler.m; sourceTree = "<group>"; };
 		A63F889318AFBCC5007FBE57 /* SEMethodChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEMethodChain.h; sourceTree = "<group>"; };
@@ -312,13 +297,11 @@
 		A6FBB37218BE2A5C008DDF22 /* SEResponderProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEResponderProxy.h; path = OSX/SEResponderProxy.h; sourceTree = "<group>"; };
 		A6FBB37318BE2A5C008DDF22 /* SEResponderProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEResponderProxy.m; path = OSX/SEResponderProxy.m; sourceTree = "<group>"; };
 		A6FBB38318BF210C008DDF22 /* SEClassProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEClassProxy.h; sourceTree = "<group>"; };
-		A6FBB3A618BF2C25008DDF22 /* animate.sescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = animate.sescript; sourceTree = "<group>"; };
 		A6FBB3A718BF2C25008DDF22 /* keroxp.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = keroxp.jpg; sourceTree = "<group>"; };
 		A6FBB3A818BF2C25008DDF22 /* map.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = map.json; sourceTree = "<group>"; };
 		A6FBB3AB18BF2C25008DDF22 /* script.grammer */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = script.grammer; sourceTree = "<group>"; };
 		A6FBB3D518BF4CFF008DDF22 /* SEColorUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEColorUtil.h; sourceTree = "<group>"; };
 		A6FBB3D618BF4CFF008DDF22 /* SEColorUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEColorUtil.m; sourceTree = "<group>"; };
-		A6FBB3DB18BF6F49008DDF22 /* text.sescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = text.sescript; sourceTree = "<group>"; };
 		A6FBB3E018BF706F008DDF22 /* SEElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEElement.h; sourceTree = "<group>"; };
 		A6FBB3E118BF706F008DDF22 /* SEElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEElement.m; sourceTree = "<group>"; };
 		A6FBB3E618BF707B008DDF22 /* SEWords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEWords.h; sourceTree = "<group>"; };
@@ -508,19 +491,6 @@
 			name = OS;
 			sourceTree = "<group>";
 		};
-		A63F6D1B18CDE5FE00C76ACE /* scripts */ = {
-			isa = PBXGroup;
-			children = (
-				A612D7C518CB38DD00D72A11 /* define.sescript */,
-				A6FBB3A618BF2C25008DDF22 /* animate.sescript */,
-				A6FBB3DB18BF6F49008DDF22 /* text.sescript */,
-				A612D79B18CAFF3A00D72A11 /* init.sescript */,
-				A612D79818CA236D00D72A11 /* demo.sescript */,
-				A612D8D618CCE48A00D72A11 /* chara.sescript */,
-			);
-			name = scripts;
-			sourceTree = "<group>";
-		};
 		A63F888D18AFBA94007FBE57 /* Bridge */ = {
 			isa = PBXGroup;
 			children = (
@@ -670,8 +640,8 @@
 		A6FBB3A518BF2C25008DDF22 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A63F6D3418CE224100C76ACE /* Scripts.bundle */,
 				A612D79518CA235B00D72A11 /* Demo.bundle */,
-				A63F6D1B18CDE5FE00C76ACE /* scripts */,
 				A6FBB3A718BF2C25008DDF22 /* keroxp.jpg */,
 				A6FBB3AB18BF2C25008DDF22 /* script.grammer */,
 				A6FBB3A818BF2C25008DDF22 /* map.json */,
@@ -914,9 +884,8 @@
 			files = (
 				A6FBB3C118BF2C25008DDF22 /* script.grammer in Resources */,
 				A6FBB3B118BF2C25008DDF22 /* keroxp.jpg in Resources */,
-				A6FBB3AD18BF2C25008DDF22 /* animate.sescript in Resources */,
-				A6FBB3DC18BF6F49008DDF22 /* text.sescript in Resources */,
 				A6FBB3B518BF2C25008DDF22 /* map.json in Resources */,
+				A63F6D3518CE224100C76ACE /* Scripts.bundle in Resources */,
 				A60ECC0C18AC86A7000F7A40 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -934,8 +903,7 @@
 			files = (
 				A6FBB3C218BF2C25008DDF22 /* script.grammer in Resources */,
 				A6FBB3B218BF2C25008DDF22 /* keroxp.jpg in Resources */,
-				A6FBB3AE18BF2C25008DDF22 /* animate.sescript in Resources */,
-				A6FBB3DD18BF6F49008DDF22 /* text.sescript in Resources */,
+				A63F6D3618CE224100C76ACE /* Scripts.bundle in Resources */,
 				A6FBB3B618BF2C25008DDF22 /* map.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -945,17 +913,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6FBB3B418BF2C25008DDF22 /* keroxp.jpg in Resources */,
-				A612D79D18CAFF3A00D72A11 /* init.sescript in Resources */,
-				A6FBB3B018BF2C25008DDF22 /* animate.sescript in Resources */,
-				A612D8D818CCE48A00D72A11 /* chara.sescript in Resources */,
-				A612D79A18CA236D00D72A11 /* demo.sescript in Resources */,
-				A612D7C718CB38DD00D72A11 /* define.sescript in Resources */,
 				A612D79718CA235B00D72A11 /* Demo.bundle in Resources */,
 				A6AC922018AC921C00D43025 /* InfoPlist.strings in Resources */,
+				A63F6D3818CE224100C76ACE /* Scripts.bundle in Resources */,
 				A6AC922E18AC921C00D43025 /* Images.xcassets in Resources */,
 				A6AC922618AC921C00D43025 /* Credits.rtf in Resources */,
 				A6AC922C18AC921C00D43025 /* MainMenu.xib in Resources */,
-				A6FBB3DF18BF6F49008DDF22 /* text.sescript in Resources */,
 				A6FBB3C418BF2C25008DDF22 /* script.grammer in Resources */,
 				A6FBB3B818BF2C25008DDF22 /* map.json in Resources */,
 			);
@@ -968,16 +931,11 @@
 				A6A6ED7718B9A62B00A64483 /* Images.xcassets in Resources */,
 				A6FBB3B318BF2C25008DDF22 /* keroxp.jpg in Resources */,
 				A6FBB3C318BF2C25008DDF22 /* script.grammer in Resources */,
-				A612D79918CA236D00D72A11 /* demo.sescript in Resources */,
-				A612D7C618CB38DD00D72A11 /* define.sescript in Resources */,
 				A612D79618CA235B00D72A11 /* Demo.bundle in Resources */,
 				A6FBB3B718BF2C25008DDF22 /* map.json in Resources */,
-				A612D8D718CCE48A00D72A11 /* chara.sescript in Resources */,
 				A6D925DC18B914E700902230 /* Main.storyboard in Resources */,
-				A6FBB3AF18BF2C25008DDF22 /* animate.sescript in Resources */,
+				A63F6D3718CE224100C76ACE /* Scripts.bundle in Resources */,
 				A6D925DD18B914E700902230 /* InfoPlist.strings in Resources */,
-				A612D79C18CAFF3A00D72A11 /* init.sescript in Resources */,
-				A6FBB3DE18BF6F49008DDF22 /* text.sescript in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

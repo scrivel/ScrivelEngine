@@ -1,0 +1,22 @@
+// 外部スクリプトをロード
+app.load("init.sescript");
+app.wait(1);
+
+layer.get("bg").fadeIn(2);
+text.get("text").fadeIn(1);
+
+app.waitAnimation();
+
+layer.get("つむぎ").fadeIn(1);
+
+app.wait(1);
+
+{"ななみ"}.fadeIn(1).waitAnimation().wait(1);
+
+	
+{"ななみ"}.do("jump",0.2);
+{"ななみ"}("やっほー！　ぷちっと！クチュリエールの世界へようこそ！");
+{"つむぎ"}.do("jump",0.1);
+{"つむぎ"}("わ、わ、え、えっと、わたしのなまえは……");
+{"ななみ"}("あはは、つむぎ慌てすぎだって！");
+

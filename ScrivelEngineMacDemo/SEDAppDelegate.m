@@ -47,7 +47,7 @@
     self.panelView.wantsLayer = YES;
     _engine.rootView = self.panelView;
 
-    NSArray *scripts = [[NSBundle mainBundle] pathsForResourcesOfType:@"sescript" inDirectory:nil];
+    NSArray *scripts = [[NSBundle mainBundle] pathsForResourcesOfType:@"sescript" inDirectory:@"Scripts.bundle"];
     for (NSString *path in scripts) {
         NSURL *url = [NSURL URLWithString:path];
         [self.popupButton addItemWithTitle:[[url pathComponents] lastObject]];

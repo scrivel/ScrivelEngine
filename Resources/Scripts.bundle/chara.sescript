@@ -7,7 +7,7 @@ chara.new({
 	})
 	.animate("position",[-999,-999]);
 
-// まこと
+// ななみ
 chara.new({
 	key : "ななみ",
 	index: 3,
@@ -19,13 +19,14 @@ chara.new({
 chara.mark("left",0.2,0.1);
 chara.mark("right",0.75,0.1);
 
-chara.get("つむぎ").appear({
-		at : "left",
-		from : "left",
-		duration : 1
-	});
-chara.get("ななみ").appear({
+{"つむぎ"}.appear({
+    at : "left",
+    from : "left",
+    duration : 1
+});
+
+{"ななみ"}.appear({
 	at : "right",
 	from : "right",
 	duration : 1
-	});
+});

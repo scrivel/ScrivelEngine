@@ -77,4 +77,20 @@
     XCTAssert([elem.options[@"duration"] unsignedIntegerValue] == 1, );
 }
 
+- (void)testScriptString
+{
+    NSArray *scriptPaths = [[NSBundle bundleForClass:[self class]] pathsForResourcesOfType:@"sescript" inDirectory:@"Scripts.bundle"];
+    for (NSString *path in scriptPaths) {
+        NSError *e = nil;
+        NSString *script = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&e];
+        XCTAssertNil(e, );
+        SEScript *s = [SEScript scriptWithString:script error:&e];
+        XCTAssertNil(e, );
+        if (e) {
+            
+        }
+        XCTAssert(s, );
+    }
+}
+
 @end
