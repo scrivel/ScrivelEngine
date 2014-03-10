@@ -243,7 +243,9 @@
         [__self kx_emit:SEWaitCompletionEvent];
     }];
     _isAnimating = YES;
-    _timer = [NSTimer timerWithTimeInterval:self.interval target:self selector:@selector(addCharacter) userInfo:nil repeats:YES];
+    // 加速or減速
+    CFTimeInterval duration = [self.holder.engine convertDuration:self.interval];
+    _timer = [NSTimer timerWithTimeInterval:duration target:self selector:@selector(addCharacter) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSDefaultRunLoopMode];
 }
 

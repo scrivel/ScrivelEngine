@@ -10,6 +10,8 @@
 #import <Foundation/Foundation.h>
 #import "SEObject.h"
 
+#define KEY_IS(k) [key isEqualToString:k]
+
 OBJC_EXPORT id se_callMethod(id , NSString *, SEMethod *, ScrivelEngine *);
 
 @interface _SEObject : NSObject <SEObject>

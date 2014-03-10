@@ -652,6 +652,7 @@
                 <outlet property="fontManager" destination="420" id="L2K-R6-aP4"/>
                 <outlet property="panelView" destination="Eao-gg-eLD" id="cfo-B9-cc9"/>
                 <outlet property="popupButton" destination="LCD-Ob-Zd0" id="ONS-qo-Lqa"/>
+                <outlet property="textField" destination="HTk-nB-UHl" id="ymm-Lv-1uI"/>
                 <outlet property="window" destination="ze1-IH-x8Z" id="GHS-B7-tca"/>
             </connections>
         </customObject>
@@ -689,7 +690,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="hos-oC-AHM">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
+                                            <font key="font" metaFont="menu"/>
                                             <menu key="menu" title="OtherViews" id="Gcg-eV-Ki3"/>
                                         </popUpButtonCell>
                                         <connections>
@@ -707,6 +708,24 @@
                                             <action selector="clear:" target="494" id="cwv-f3-KpK"/>
                                         </connections>
                                     </button>
+                                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HTk-nB-UHl">
+                                        <rect key="frame" x="335" y="16" width="96" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Engine Speed" drawsBackground="YES" id="7Bn-AD-uqs">
+                                            <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" minimumFractionDigits="0" maximumFractionDigits="3" id="fCR-Qu-h8W">
+                                                <real key="roundingIncrement" value="0.0"/>
+                                                <metadata>
+                                                    <bool key="localizesFormat" value="YES"/>
+                                                </metadata>
+                                            </numberFormatter>
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                        <connections>
+                                            <action selector="input:" target="494" id="DHa-If-in7"/>
+                                        </connections>
+                                    </textField>
                                 </subviews>
                             </customView>
                             <customView fixedFrame="YES" id="eSr-Vb-iSh">

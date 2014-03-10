@@ -348,19 +348,28 @@
     // 複数のアニメーションを合成する
     CAAnimationGroup *g  = [CAAnimationGroup animation];
     addOptions(g, options);
-    duration = ROUND_CGFLOAT(duration);
-    NSMutableArray *ma = [NSMutableArray arrayWithCapacity:animations.allKeys.count];
-    [animations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        CABasicAnimation *a = [self animationWithKey:key value:obj duration:duration options:nil];
-        [ma addObject:a];
-    }];
-    g.duration = duration;
-    g.animations = ma;
-    g.fillMode = kCAFillModeForwards;
-    if (g.repeatCount == HUGE_VALF) {
-        _isRepeatingForever = YES;
+    duration = ACTUAL_DURATION(duration);
+    if (duration == 0) {
+        [animations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            [CATransaction begin];
+            [CATransaction setAnimationDuration:0];
+            [self.layer setValue:[self toValueForKey:key value:obj] forKeyPath:[self keyPathForKey:key]];
+            [CATransaction commit];
+        }];
+    }else if(duration > 0){
+        NSMutableArray *ma = [NSMutableArray arrayWithCapacity:animations.allKeys.count];
+        [animations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            CABasicAnimation *a = [self animationWithKey:key value:obj duration:duration options:nil];
+            [ma addObject:a];
+        }];
+        g.duration = duration;
+        g.animations = ma;
+        g.fillMode = kCAFillModeForwards;
+        if (g.repeatCount == HUGE_VALF) {
+            _isRepeatingForever = YES;
+        }
+        [self addAnimation:g forKey:kGroupedAnimationKey completion:NULL];
     }
-    [self addAnimation:g forKey:kGroupedAnimationKey completion:NULL];
 }
 
 - (void)chain
@@ -411,20 +420,17 @@
 - (void)_animate_key:(NSString *)key value:(id)value duration:(CFTimeInterval)duration options:(NSDictionary *)options completion:(void(^)())completion
 {
     CABasicAnimation *animation = [self animationWithKey:key value:value duration:duration options:options];
-    if (ROUND_CGFLOAT(duration) == 0) {
-        // durationが0ならばアニメーションはしない
+    duration = ACTUAL_DURATION(duration);
+    if (duration == 0) {
         [CATransaction begin];
         [CATransaction setAnimationDuration:0];
-        [CATransaction setCompletionBlock:^{
-            if (completion) completion();
-        }];
-        [self.layer setValue:animation.toValue forKeyPath:animation.keyPath];
+        [CATransaction setCompletionBlock:completion];
+        [self.layer setValue:[self toValueForKey:key value:value] forKeyPath:[self keyPathForKey:key]];
         [CATransaction commit];
     }else{
         [self addAnimation:animation forKey:key completion:completion];
     }
 }
-
 
 - (void)addAnimation:(CAAnimation*)animation forKey:(NSString *)key completion:(void(^)())completion
 {
@@ -454,6 +460,8 @@
             [self.layer setValue:val forKeyPath:key];
         }
     }
+    // エンジンの実行スピードに合わせる
+    animation.duration = ACTUAL_DURATION(animation.duration);
     [self.layer addAnimation:animation forKey:animationKey];
     [CATransaction commit];
     // チェイン状態だったらアニメーションごとにwaitAnimation()する

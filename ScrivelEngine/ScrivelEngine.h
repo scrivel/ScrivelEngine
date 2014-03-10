@@ -69,6 +69,8 @@ typedef NS_ENUM(NSUInteger, SETextAlignment) {
     SETextAlignmentRight
 };
 
+#define ScrivelEngineSppedNoWait 0
+
 @interface ScrivelEngine : NSObject
 
 + (instancetype)engineWithRootView:(SEView*)rootView;
@@ -77,6 +79,7 @@ typedef NS_ENUM(NSUInteger, SETextAlignment) {
 @property (nonatomic, weak) SEView *rootView;
 @property (nonatomic) id<SEClassProxy> classProxy;
 @property (nonatomic, readonly) BOOL isWaiting;
+@property (nonatomic) CGFloat speed;
 // アプリケーション本体
 @property (nonatomic, readonly) id<SEApp> app;
 @property (nonatomic, readonly) id<SELayerClass> layer;
@@ -89,5 +92,7 @@ typedef NS_ENUM(NSUInteger, SETextAlignment) {
 - (id)enqueueScript:(SEScript*)script prior:(BOOL)prior;
 // スクリプトをlint
 - (BOOL)validateScript:(NSString*)script error:(NSError**)error;
+// 秒数をエンジンの実行時間にコンバートする
+- (CFTimeInterval)convertDuration:(CFTimeInterval)duration;
 
 @end

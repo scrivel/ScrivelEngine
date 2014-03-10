@@ -63,6 +63,7 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
     [self setClassProxy:[SEBasicClassProxy new]];
     _methodQueue = [Queue new];
     _elementQueue = [Queue new];
+    _speed = 1.0f;
     return self ?: nil;
 }
 
@@ -136,7 +137,7 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
                 m = [chain.methods objectAtIndex:i];
                 // wait中でなければ実行
                 if (!self.isWaiting) {
-                    instance = returnValue = [instance callMethod_method:m];
+                    returnValue = [instance callMethod_method:m];
                 }else{
                     // 次回のイベントループにキューイングする
                     m.target = instance;
@@ -232,6 +233,16 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
             }
         }
     }
+}
+
+- (CFTimeInterval)convertDuration:(CFTimeInterval)duration
+{
+    if (self.speed == ScrivelEngineSppedNoWait) {
+        return 0;
+    }else if(self.speed > 0){
+        return duration/self.speed;
+    }
+    return 0;
 }
 
 @end

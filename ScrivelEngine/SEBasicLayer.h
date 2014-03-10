@@ -15,10 +15,10 @@
 #import "NSValue+ScrivelEngine.h"
 #import <objc/runtime.h>
 
-#define KEY_IS(k) [key isEqualToString:k]
-
 #define VH self.holder.engine.rootView.bounds.size.height
 #define VW self.holder.engine.rootView.bounds.size.width
+
+#define ACTUAL_DURATION(d) [self.holder.engine convertDuration:ROUND_CGFLOAT(d)]
 
 #define NORM_POSITION ([(SEBasicApp*)self.holder.engine.app positionType] == SEPositionTypeNormalized)
 #define NORM_SIZE ([(SEBasicApp*)self.holder.engine.app sizeType] == SESizeTypeNormalized)

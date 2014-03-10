@@ -18,6 +18,7 @@
 @property (weak) IBOutlet NSView *editorView;
 @property (weak) IBOutlet NSView *panelView;
 @property (weak) IBOutlet NSPopUpButton *popupButton;
+@property (weak) IBOutlet NSTextField *textField;
 
 @end
 @implementation SEDAppDelegate
@@ -75,6 +76,10 @@
     [(SEBasicLayerClass*)_engine.layer clearAll];
     [(SEBasicLayerClass*)_engine.text clearAll];
     [(SEBasicLayerClass*)_engine.chara clearAll];
+}
+- (IBAction)input:(id)sender {
+    [_engine setSpeed:self.textField.floatValue];
+    NSLog(@"%@",self.textField.stringValue);
 }
 
 - (IBAction)popup:(NSPopUpButton*)sender {

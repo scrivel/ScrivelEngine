@@ -39,6 +39,16 @@
     return self ?: nil;
 }
 
+- (void)set_key:(NSString *)key value:(id)value
+{
+    if (KEY_IS(@"speed")) {
+        // エンジンのスピードを設定する
+        [self.engine setSpeed:[value doubleValue]];
+    }else{
+        [super set_key:key value:value];
+    }
+}
+
 #pragma mark - wait
 
 - (void)completeWait:(id)sender
