@@ -11,39 +11,6 @@
 
 @protocol SETextLayerClass <SELayerClass>
 
-
-/**
- プライマリテキストレイヤーのindexを指定する
- デフォルトでは最初にインスタンス化されたSETextLayerInstanceがprimaryに設定される
- 以降、クラスに対するインスタンスメソッドの呼び出しは、対象のindexに対して行われる
- text.new(1)
- text.text("some text") // <-> text.at(1).text("some text")
- 
- @method setPrimary
- @static
- @pram {Number} index レイヤーの番号
- **/
-- (void)setPrimary_key:(id<NSCopying>)key;
-
-
-/**
- 名前を表示するためのプライマリレイヤーの番号を指定する
- 
- @method setNameLayer
- @static
- @param {Number} index レイヤーの番号
- **/
-- (void)setNameLayer_key:(id<NSCopying>)key;
-
-/**
- 現在のプライマリネームレイヤーに名前を表示する
- プライマリネームレイヤーが存在しない場合はなにもしない
- 
- @method setName
- @param {String} name 名前
- **/
-- (void)setName_name:(NSString*)name;
-
 @end
 
 @protocol SETextLayerInstance <SELayerInstance>

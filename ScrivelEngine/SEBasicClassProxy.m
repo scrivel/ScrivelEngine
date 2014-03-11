@@ -109,9 +109,6 @@
 		// text
 
 		// inherited from text
-		SEL_FOR_METHOD(@"setPrimary",setPrimary_key:);
-		SEL_FOR_METHOD(@"setNameLayer",setNameLayer_key:);
-		SEL_FOR_METHOD(@"setName",setName_name:);
 		SEL_FOR_METHOD(@"setText",setText_text:noanimate:);
 		SEL_FOR_METHOD(@"start",start);
 		SEL_FOR_METHOD(@"clear",clear);

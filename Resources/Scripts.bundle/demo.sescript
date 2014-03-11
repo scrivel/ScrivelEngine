@@ -19,13 +19,27 @@ layer.new({
 // text
 text.new({
 	key : "text",
-	index : 1000,
+	index : 999,
 	anchorPoint: [0.5,0],
-    padding: [20,10,20,10]
+    padding: [20,10,20,10],
+    fontName : "Rounded M+ 1m",
+    fontSize : 16.0
 	})
 	.animate("position", [0.5,0])
 	.loadImage("Demo.bundle/frame.jpg")
     .hide();
+text.set("primary","text");
+
+text.new({
+    key : "name",
+    index: 1000,
+    anchorPoint : [0,0.5],
+    fontName : "Rounded M+ 1m",
+    fontSize : 16.0
+})
+    .animate("size",[100,44])
+    .animate("position", [0.1,0.5]);
+text.set("nameLabel","name");
 
 // つむぎ
 chara.new({
@@ -68,9 +82,6 @@ chara.get("つむぎ").fadeIn(1);
 app.wait(1);
 
 {"ななみ"}.fadeIn(1).waitAnimation().wait(1);
-
-text.get("text").set("fontName","Rounded M+ 1m");
-text.get("text").set("fontSize", 16.0);
 	
 {"ななみ"}.do("jump",0.2);
 {"ななみ"}("やっほー！　ぷちっと！クチュリエールの世界へようこそ！");

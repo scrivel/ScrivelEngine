@@ -29,8 +29,6 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
 
 @implementation ScrivelEngine
 {
-    Queue *_elementQueue;
-    Queue *_methodQueue;
     SEBasicApp *__app;
     SEBasicLayerClass *__layer;
     SEBasicTextLayerClass *__text;
@@ -148,14 +146,10 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
         }else if([element isKindOfClass:[SEWords class]]){
             SEWords *words = (SEWords*)element;
             if (words.character) {
-                SEMethod *name_m = [[SEMethod alloc] initWithName:@"setName" lineNumer:words.rangeOfLines.location];
-                name_m.arguments = @[words.character];
-                returnValue = [self.text callMethod_method:name_m];
+                [__text.primaryNameLayer setText_text:words.character noanimate:YES];
             }
             if (words.text) {
-                SEMethod *text_m = [[SEMethod alloc] initWithName:@"setText" lineNumer:words.rangeOfLines.location+1];
-                text_m.arguments = @[words.text];
-                returnValue = [self.text callMethod_method:text_m];
+                [__text.primaryTextLayer setText_text:words.text noanimate:NO];
             }
             // タップを待つ処理をキューイングする
             [self kx_once:SEWaitCompletionEvent handler:^(NSNotification *n) {
@@ -238,6 +232,8 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
 
 - (CFTimeInterval)convertDuration:(CFTimeInterval)duration
 {
+#warning #22のための仮対応
+    return duration;
     if (self.speed == ScrivelEngineSppedNoWait) {
         return 0;
     }else if(self.speed > 0){

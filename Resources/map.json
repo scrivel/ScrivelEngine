@@ -46,9 +46,6 @@
   },
   "text": {
     "methods": {
-      "setPrimary": "setPrimary_key:",
-      "setNameLayer": "setNameLayer_key:",
-      "setName": "setName_name:",
       "setText": "setText_text:noanimate:",
       "start": "start",
       "clear": "clear",

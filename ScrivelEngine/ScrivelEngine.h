@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Queue.h"
 
 extern NSString *const SEWaitBeganEvent;
 extern NSString *const SEWaitCompletionEvent;
@@ -80,6 +81,8 @@ typedef NS_ENUM(NSUInteger, SETextAlignment) {
 @property (nonatomic) id<SEClassProxy> classProxy;
 @property (nonatomic, readonly) BOOL isWaiting;
 @property (nonatomic) CGFloat speed;
+@property (nonatomic, readonly) Queue *elementQueue;
+@property (nonatomic, readonly) Queue *methodQueue;
 // アプリケーション本体
 @property (nonatomic, readonly) id<SEApp> app;
 @property (nonatomic, readonly) id<SELayerClass> layer;

@@ -35,7 +35,7 @@
     SEBasicTextLayer *new = (SEBasicTextLayer*)[super new_args:args];
     // まだレイヤーがない場合はそのレイヤーをprimaryに設定する
     if (self.layers.count == 1) {
-        [self setPrimary_key:new.key];
+        [self setPrimaryTextLayer:new];
     }
     return new;
 }
@@ -50,37 +50,42 @@
     return [super callMethod_method:method];
 }
 
-- (void)setPrimary_key:(id<NSCopying>)key
+- (void)set_key:(NSString *)key value:(id)value
 {
-    SEBasicTextLayer *l = [self get_key:key];
-    if (l) {
-#if TARGET_OS_IPHONE
-        [self.engine.rootView removeGestureRecognizer:_tapGestureRecognizer];
-        _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:l action:@selector(handleTap:)];
-        [self.engine.rootView addGestureRecognizer:_tapGestureRecognizer];
-#elif TARGET_OS_MAC
-        // プライマリテキストレイヤだけはタップイベントをキャプチャ出来るようにする
-        // LayerInstanceがResponderProxyをもつとなぜかクラッシュすることがあるので
-        // プライマリレイヤのindexによってdelegate先を変えるようにする
-        // mousedownイベントをハンドリングするためにrootviewのレスポンダチェーンをproxyする
-        if (!_responderProxy) {
-            _responderProxy = [[SEResponderProxy alloc] initWithDelegate:nil selector:@selector(handleNSEvent:)];
-            NSResponder *r = self.engine.rootView.nextResponder;
-            [self.engine.rootView setNextResponder:_responderProxy];
-            [_responderProxy setNextResponder:r];
-        }
-        _responderProxy.delegate = l;
-#endif
-        _primaryTextLayer = l;
+    if (KEY_IS(@"primary")) {
+        [self setPrimaryTextLayer:[self get_key:value]];
+    }else if (KEY_IS(@"nameLabel")){
+        [self setPrimaryNameLayer:[self get_key:value]];
+    }else{
+        [super set_key:key value:value];
     }
 }
 
-- (void)setNameLayer_key:(id<NSCopying>)key
+- (void)setPrimaryTextLayer:(SEBasicTextLayer *)primaryTextLayer
 {
-    SEBasicTextLayer *l = [self get_key:key];
-    if (l) {
-        _primaryNameLayer = l;
+#if TARGET_OS_IPHONE
+    [self.engine.rootView removeGestureRecognizer:_tapGestureRecognizer];
+    _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:l action:@selector(handleTap:)];
+    [self.engine.rootView addGestureRecognizer:_tapGestureRecognizer];
+#elif TARGET_OS_MAC
+    // プライマリテキストレイヤだけはタップイベントをキャプチャ出来るようにする
+    // LayerInstanceがResponderProxyをもつとなぜかクラッシュすることがあるので
+    // プライマリレイヤのindexによってdelegate先を変えるようにする
+    // mousedownイベントをハンドリングするためにrootviewのレスポンダチェーンをproxyする
+    if (!_responderProxy) {
+        _responderProxy = [[SEResponderProxy alloc] initWithDelegate:nil selector:@selector(handleNSEvent:)];
+        NSResponder *r = self.engine.rootView.nextResponder;
+        [self.engine.rootView setNextResponder:_responderProxy];
+        [_responderProxy setNextResponder:r];
     }
+    _responderProxy.delegate = primaryTextLayer;
+#endif
+    _primaryTextLayer = primaryTextLayer;
+}
+
+- (void)setPrimaryNameLayer:(SEBasicTextLayer *)primaryNameLayer
+{
+    _primaryNameLayer = primaryNameLayer;
 }
 
 - (void)setName_name:(NSString *)name
@@ -127,6 +132,7 @@
     [self.layer addObserver:self forKeyPath:@"position" options:NSKeyValueObservingOptionNew context:NULL];
     
     self.textLayer = tl;
+    self.textLayer.backgroundColor = [[SEColor redColor] CGColor];
     self.textLayer.wrapped = YES;
     self.textLayer.fontSize = 14.0f;
     self.textLayer.foregroundColor = [[SEColor blackColor] CGColor];
@@ -152,11 +158,14 @@
             SERect bounds = [[change objectForKey:NSKeyValueChangeNewKey] se_rectValue];
             bounds.size.width -= self.padding.left + self.padding.right;
             bounds.size.height -= self.padding.top + self.padding.bottom;
+            bounds.origin.y += self.padding.bottom;
             self.textLayer.bounds = bounds;
         }else if ([keyPath isEqualToString:@"anchorPoint"]){
             self.textLayer.anchorPoint = [[change objectForKey:NSKeyValueChangeNewKey] se_pointValue];
         }else if ([keyPath isEqualToString:@"position"]){
-            self.textLayer.position = [[change objectForKey:NSKeyValueChangeNewKey] se_pointValue];
+            CGPoint p = [[change objectForKey:NSKeyValueChangeNewKey] se_pointValue];
+            p.y += self.padding.bottom;
+            self.textLayer.position = p;
         }
     }
 
