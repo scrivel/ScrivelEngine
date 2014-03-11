@@ -65,7 +65,7 @@
 {
 #if TARGET_OS_IPHONE
     [self.engine.rootView removeGestureRecognizer:_tapGestureRecognizer];
-    _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:l action:@selector(handleTap:)];
+    _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:primaryTextLayer action:@selector(handleTap:)];
     [self.engine.rootView addGestureRecognizer:_tapGestureRecognizer];
 #elif TARGET_OS_MAC
     // プライマリテキストレイヤだけはタップイベントをキャプチャ出来るようにする
