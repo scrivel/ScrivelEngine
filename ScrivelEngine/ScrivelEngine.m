@@ -119,7 +119,7 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
             switch (chain.type) {
                 case SEMethodChainTypeNormal: {
                     // 通常のメソッドチェーン
-                    id<SEObjectClass> class = [self valueForKey:[NSString stringWithFormat:@"_%@",chain.target]];
+                    id<SEObjectClass> class = [self valueForKey:[NSString stringWithFormat:@"__%@",chain.target]];
                     m = [chain.methods objectAtIndex:0];
                     instance = [class callMethod_method:m];
                 }

@@ -49,7 +49,7 @@ chara.new({
 // defani
 
 // はずませる
-layer.defineAnimation("jump",{
+chara.defineAnimation("jump",{
     translate: [0,0.1]
     },{
     autoreverses : true,
