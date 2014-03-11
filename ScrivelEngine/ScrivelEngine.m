@@ -133,7 +133,8 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
                     break;
             }
             // インスタンスのメソッドチェーンを実行
-            for (NSUInteger i = 1; i < chain.methods.count; i++) {
+            NSUInteger i = (chain.type == SEMethodChainTypeNormal) ? 1 : 0;
+            for (; i < chain.methods.count; i++) {
                 m = [chain.methods objectAtIndex:i];
                 // wait中でなければ実行
                 if (!self.isWaiting) {
@@ -200,7 +201,7 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
                 if (chain.type == SEMethodChainTypeCharacterSpecified) {
                     cid = @"chara";
                 }
-                if (![_classProxy selectorForMethodIdentifier:method.name classIdentifier:chain.target]
+                if (![_classProxy selectorForMethodIdentifier:method.name classIdentifier:cid]
                     && ![[(SEBasicApp*)self.app aliasStore] objectForKey:method.name]) {
                     NSString *type = (method == [chain.methods firstObject]) ? @"static" : @"instance";
                     NSMutableString *ms = [NSMutableString stringWithString:@"!!存在しないメソッドの呼び出しです!!\n"];

@@ -83,7 +83,8 @@
 }
 
 - (IBAction)popup:(NSPopUpButton*)sender {
-    NSString *p = [[NSBundle mainBundle] pathForResource:sender.selectedItem.title ofType:nil];
+    NSString *title = sender.selectedItem.title;
+    NSString *p = [[NSBundle mainBundle] pathForResource:title ofType:nil inDirectory:@"Scripts.bundle"];
     NSString *s = [NSString stringWithContentsOfFile:p encoding:NSUTF8StringEncoding error:nil];
     [fragaria setString:s];
     [fragaria reloadString];

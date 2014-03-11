@@ -28,7 +28,7 @@ text.new({
     .hide();
 
 // つむぎ
-layer.new({
+chara.new({
 	key : "つむぎ",
 	index: 2,
 	anchorPoint:[0.5,0]
@@ -36,8 +36,8 @@ layer.new({
 	.loadImage("Demo.bundle/tsumugi.png")
 	.animate("position",[0.2,0.1])
 	.hide();
-// まこと
-layer.new({
+// ななみ
+chara.new({
 	key : "ななみ",
 	index: 3,
 	anchorPoint: [0.5,0]
@@ -50,10 +50,10 @@ layer.new({
 
 // はずませる
 layer.defineAnimation("jump",{
-		translate: [0,0.1]
-		},{
-		autoreverses : true,
-		timing : "ease"
-		});
+    translate: [0,0.1]
+    },{
+    autoreverses : true,
+    timing : "ease"
+});
 
 		

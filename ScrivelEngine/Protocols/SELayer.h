@@ -177,7 +177,12 @@
     @param {Number} [options.repeatDuration] アニメーションの繰り返しの間隔
     @param {Number} [options.timeOffset] アニメーション開始までのオフセット時間
     @param {Boolean} [options.removeOnCompletion] アニメーション終了時にもとに戻すかどうか
-    @param {String} [options.timing] アニメーションカーブ // linear, ease-in, ease-out, ease-in-ease-out, default
+    @param {String} [options.timing] アニメーションカーブ 
+        @keyword linear
+        @keyword ease-in
+        @keyword ease-out
+        @keyword ease-in-ease-out
+        @keyword default
     @param {Array} [options.timingPoints] アニメーションカーブを構成するポイント。正規化された値。 例) 0.1, 0.1, 0.2, 0.2
     @param {Number} [options.duration] アニメーションの時間。指定された場合こちらが優先される
  **/
@@ -262,16 +267,16 @@
 /**
  レイヤーをアニメーションさせる
  animatebleなkeyは以下
- position x,y
- zPosition z
- size w,h
- translate x, y
- translateZ z
- scale ratio
- rotate degree
- rotateX degree
- rotateY degree
- opacity ratio
+ @animatable position [x,y]
+ @animatable zPosition z
+ @animatable size [w,h]
+ @animatable translate [x,y]
+ @animatable translateZ z
+ @animatable scale ratio
+ @animatable rotate degree
+ @animatable rotateX degree
+ @animatable rotateY degree
+ @animatable opacity ratio
  
  @method animate
  @param {String} key
