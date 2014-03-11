@@ -55,6 +55,7 @@
     }
     [self.popupButton selectItemAtIndex:0];
     [self popup:self.popupButton];
+    
 }
 
 - (IBAction)run:(id)sender {
