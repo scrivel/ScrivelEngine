@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23BCCC1418D055D400E792E4 /* SECALayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 23BCCC1318D055D400E792E4 /* SECALayer.h */; };
+		23BCCC1518D055D400E792E4 /* SECALayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 23BCCC1318D055D400E792E4 /* SECALayer.h */; };
+		23BCCC1E18D0585800E792E4 /* SECALayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 23BCCC1D18D0585800E792E4 /* SECALayer.m */; };
+		23BCCC1F18D0585800E792E4 /* SECALayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 23BCCC1D18D0585800E792E4 /* SECALayer.m */; };
 		793C1D19390A4FBEB4072956 /* libPods-ScrivelEngineDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE535954D37458B9E35A0D4 /* libPods-ScrivelEngineDemo.a */; };
 		A604522818B3A30B00B85928 /* SELayer.h in Headers */ = {isa = PBXBuildFile; fileRef = A604522518B3A30B00B85928 /* SELayer.h */; };
 		A604522918B3A30B00B85928 /* SELayer.h in Headers */ = {isa = PBXBuildFile; fileRef = A604522518B3A30B00B85928 /* SELayer.h */; };
@@ -203,6 +207,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		23BCCC1318D055D400E792E4 /* SECALayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SECALayer.h; sourceTree = "<group>"; };
+		23BCCC1D18D0585800E792E4 /* SECALayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SECALayer.m; sourceTree = "<group>"; };
 		4CE535954D37458B9E35A0D4 /* libPods-ScrivelEngineDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ScrivelEngineDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A604522518B3A30B00B85928 /* SELayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELayer.h; sourceTree = "<group>"; };
 		A604522718B3A30B00B85928 /* SETextLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SETextLayer.h; sourceTree = "<group>"; };
@@ -379,6 +385,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		23BCCC1618D0568300E792E4 /* Layer */ = {
+			isa = PBXGroup;
+			children = (
+				23BCCC1318D055D400E792E4 /* SECALayer.h */,
+				23BCCC1D18D0585800E792E4 /* SECALayer.m */,
+			);
+			name = Layer;
+			sourceTree = "<group>";
+		};
 		A604521118B3967E00B85928 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -451,6 +466,7 @@
 				A63F888D18AFBA94007FBE57 /* Bridge */,
 				A609F65918B47F14000A0EFB /* Util */,
 				A63F888F18AFBAA8007FBE57 /* Supporting Files */,
+				23BCCC1618D0568300E792E4 /* Layer */,
 			);
 			path = ScrivelEngine;
 			sourceTree = "<group>";
@@ -666,6 +682,7 @@
 				A6FBB3E918BF707B008DDF22 /* SEWords.h in Headers */,
 				A6A1691918B25A470041BBBA /* SEMethodChain.h in Headers */,
 				A6FBB3E318BF706F008DDF22 /* SEElement.h in Headers */,
+				23BCCC1518D055D400E792E4 /* SECALayer.h in Headers */,
 				A609F66318B47F58000A0EFB /* NSValue+ScrivelEngine.h in Headers */,
 				A604523C18B3A58B00B85928 /* SEBasicObject.h in Headers */,
 				A63F88B118B0F496007FBE57 /* ScrivelEngine.h in Headers */,
@@ -695,6 +712,7 @@
 			files = (
 				A6FBB3E818BF707B008DDF22 /* SEWords.h in Headers */,
 				A604524918B3C78200B85928 /* SEBasicTextLayer.h in Headers */,
+				23BCCC1418D055D400E792E4 /* SECALayer.h in Headers */,
 				A6A1691418B25A400041BBBA /* SEScript.h in Headers */,
 				A609F66818B48700000A0EFB /* Queue.h in Headers */,
 				A6FBB3E218BF706F008DDF22 /* SEElement.h in Headers */,
@@ -1012,6 +1030,7 @@
 				A6D925D718B8E24600902230 /* NSBundle+ScrivelEngine.m in Sources */,
 				A6D04D4618B74D4D00977B7A /* NSArray+Where.m in Sources */,
 				A6D1760F18AE628200AB11AF /* SEScriptParser.m in Sources */,
+				23BCCC1E18D0585800E792E4 /* SECALayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1047,6 +1066,7 @@
 				A6FBB3DA18BF4CFF008DDF22 /* SEColorUtil.m in Sources */,
 				A6FBB3E518BF706F008DDF22 /* SEElement.m in Sources */,
 				A63F88B318B0F496007FBE57 /* ScrivelEngine.m in Sources */,
+				23BCCC1F18D0585800E792E4 /* SECALayer.m in Sources */,
 				A612D88818CC7C7C00D72A11 /* CAKeyframeAnimation+ScrivelEngine.m in Sources */,
 				A6D04D4D18B7701C00977B7A /* SEBasicClassProxy.m in Sources */,
 				A604524C18B3C78200B85928 /* SEBasicTextLayer.m in Sources */,

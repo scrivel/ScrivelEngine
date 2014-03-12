@@ -5,38 +5,62 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>20564E63-B1BE-4321-B1B5-A100AC3525EB</string>
+	<string>80D67B52-FE8B-4DFD-A6D1-5CE0B7AD5F07</string>
 	<key>IDESourceControlProjectName</key>
 	<string>ScrivelEngine</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>0995EBE4-4B6D-4722-B876-9DC982283B1D</key>
-		<string>ssh://github.com/scrivel/ScrivelEngine.git</string>
-		<key>CE83F3E4-CF4A-4AA6-BC20-F5CBF720D71E</key>
-		<string>ssh://github.com/scrivel/parsekit.git</string>
+		<key>81C1FB16-4A47-4C18-AC1E-FD87EB0D8D73</key>
+		<string>https://github.com/scrivel/ScrivelEngine</string>
+		<key>A6E6C6C1-BC76-4AC7-9C8F-884065C2A357</key>
+		<string>https://github.com/keroxp/KXEventEmitter</string>
+		<key>ECDC856A-A11F-4381-9AF3-32E4B6CB95D5</key>
+		<string>https://github.com/scrivel/parsekit</string>
+		<key>F17FF41C-A51B-4E0B-AB1F-4269919583A5</key>
+		<string>https://github.com/scrivel/Fragaria</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>ScrivelEngine.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>0995EBE4-4B6D-4722-B876-9DC982283B1D</key>
+		<key>81C1FB16-4A47-4C18-AC1E-FD87EB0D8D73</key>
 		<string>..</string>
-		<key>CE83F3E4-CF4A-4AA6-BC20-F5CBF720D71E</key>
+		<key>A6E6C6C1-BC76-4AC7-9C8F-884065C2A357</key>
+		<string>../External/KXEventEmitter</string>
+		<key>ECDC856A-A11F-4381-9AF3-32E4B6CB95D5</key>
 		<string>../External/ParseKit</string>
+		<key>F17FF41C-A51B-4E0B-AB1F-4269919583A5</key>
+		<string>../External/Fragaria</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/scrivel/ScrivelEngine.git</string>
+	<string>https://github.com/scrivel/ScrivelEngine</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>0995EBE4-4B6D-4722-B876-9DC982283B1D</string>
+	<string>81C1FB16-4A47-4C18-AC1E-FD87EB0D8D73</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>CE83F3E4-CF4A-4AA6-BC20-F5CBF720D71E</string>
+			<string>F17FF41C-A51B-4E0B-AB1F-4269919583A5</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Fragaria</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>A6E6C6C1-BC76-4AC7-9C8F-884065C2A357</string>
+			<key>IDESourceControlWCCName</key>
+			<string>KXEventEmitter</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>ECDC856A-A11F-4381-9AF3-32E4B6CB95D5</string>
 			<key>IDESourceControlWCCName</key>
 			<string>ParseKit</string>
 		</dict>
@@ -44,7 +68,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>0995EBE4-4B6D-4722-B876-9DC982283B1D</string>
+			<string>81C1FB16-4A47-4C18-AC1E-FD87EB0D8D73</string>
 			<key>IDESourceControlWCCName</key>
 			<string>ScrivelEngine</string>
 		</dict>

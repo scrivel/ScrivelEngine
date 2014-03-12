@@ -123,13 +123,10 @@
 {
     self = [super initWithOpts:options holder:holder];
     CATextLayer *tl = [CATextLayer layer];
-//    self.layer = tl;
-    [self.layer addSublayer:tl];
+    self.layer = tl;
+    self.textLayer = tl;
+//    [self.layer addSublayer:tl];
     // TextLayerを親のレイヤーに追随させる
-    self.textLayer.anchorPoint = self.layer.anchorPoint;
-    [self.layer addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:NULL];
-    [self.layer addObserver:self forKeyPath:@"anchorPoint" options:NSKeyValueObservingOptionNew context:NULL];
-    [self.layer addObserver:self forKeyPath:@"position" options:NSKeyValueObservingOptionNew context:NULL];
     
     self.textLayer = tl;
     self.textLayer.backgroundColor = [[SEColor redColor] CGColor];
