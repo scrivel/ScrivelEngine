@@ -123,16 +123,17 @@
 {
     self = [super initWithOpts:options holder:holder];
     CATextLayer *tl = [CATextLayer layer];
-//    self.layer = tl;
-    [self.layer addSublayer:tl];
+    self.layer = tl;
+    self.textLayer = tl;
+//    [self.layer addSublayer:tl];
     // TextLayerを親のレイヤーに追随させる
-    self.textLayer.anchorPoint = self.layer.anchorPoint;
-    [self.layer addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:NULL];
-    [self.layer addObserver:self forKeyPath:@"anchorPoint" options:NSKeyValueObservingOptionNew context:NULL];
-    [self.layer addObserver:self forKeyPath:@"position" options:NSKeyValueObservingOptionNew context:NULL];
+//    self.textLayer.anchorPoint = self.layer.anchorPoint;
+//    [self.layer addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:NULL];
+//    [self.layer addObserver:self forKeyPath:@"anchorPoint" options:NSKeyValueObservingOptionNew context:NULL];
+//    [self.layer addObserver:self forKeyPath:@"position" options:NSKeyValueObservingOptionNew context:NULL];
     
     self.textLayer = tl;
-    self.textLayer.backgroundColor = [[SEColor redColor] CGColor];
+//    self.textLayer.backgroundColor = [[SEColor redColor] CGColor];
     self.textLayer.wrapped = YES;
     self.textLayer.fontSize = 14.0f;
     self.textLayer.foregroundColor = [[SEColor blackColor] CGColor];
@@ -211,6 +212,7 @@
         text = [(NSAttributedString*)self.text attributedSubstringFromRange:r];
     }
     self.textLayer.string = text;
+
 }
 
 - (void)finishAnimation
@@ -252,6 +254,12 @@
         [__self kx_emit:SEWaitCompletionEvent];
     }];
     _isAnimating = YES;
+    // 表示している文字を消す
+    // 最初のセットで一度消す
+    [CATransaction begin];
+    [CATransaction setAnimationDuration:0];
+    self.textLayer.string = nil;
+    [CATransaction commit];
     // 加速or減速
     CFTimeInterval duration = [self.holder.engine convertDuration:self.interval];
     _timer = [NSTimer timerWithTimeInterval:duration target:self selector:@selector(addCharacter) userInfo:nil repeats:YES];
@@ -329,7 +337,10 @@
 
 - (void)setFontSize:(CGFloat)fontSize
 {
+    [CATransaction begin];
+    [CATransaction setAnimationDuration:0];
     self.textLayer.fontSize = fontSize;
+    [CATransaction commit];
     _fontSize = fontSize;
 }
 
