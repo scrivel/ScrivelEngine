@@ -2,7 +2,7 @@ app.load("Scripts.bundle/init.sescript");
 app.wait(1);
 
 layer.get("bg").fadeIn(2);
-text.get("text").fadeIn(1);
+layer.get("textbg").fadeIn(2);
 
 app.waitAnimation();
 
@@ -12,9 +12,54 @@ app.wait(1);
 
 {"ななみ"}.fadeIn(1).waitAnimation().wait(1);
 	
-{"ななみ"}.do("jump",0.2);
+{"ななみ"}.do("jump",0.2).waitAnimation();
 {"ななみ"}("やっほー！　ぷちっと！クチュリエールの世界へようこそ！");
+{"ななみ"}("あたし平針ななみ！　羽衣学園中学2年乙組出席番号22番でクチュリエールやってまーっす！");
+{"つむぎ"}.do("jump",0.1).waitAnimation();
+{"つむぎ"}("わ、わ、え、えっと、わ、わたしのにゃまえは……");
+{"つむぎ"}.do("jump",0.1).waitAnimation();
+{"つむぎ"}("〜〜〜〜〜〜〜！");
+{"ななみ"}("あはは、つむぎ慌てすぎ！");
+{"つむぎ"}("うう…ななみちゃんなんでそんなに落ち着いてるの…？");
+{"ななみ"}("えー？　そりゃああれですよ、あれ。");
+{"つむぎ"}("あれ……？");
+{"ななみ"}("……");
+text.get("text").set("fontSize",30);
+{"ななみ"}("忘れた！！");
+text.get("text").set("fontSize",22);
+{"つむぎ"}.transact(0.1,{
+    translate : [0,0.1]
+},{
+    autoreverses : true,
+    repeatCount : 2,
+    timing : "ease"
+});
+{"つむぎ"}("ええー！！");
+text.get("text").set("fontSize",16);
+{"ななみ"}("あはは、まぁいいじゃん。ほら、みんなポカーンってなっちゃってるよ。");
 {"つむぎ"}.do("jump",0.1);
-{"つむぎ"}("わ、わ、え、えっと、わたしのなまえは……");
-{"ななみ"}("あはは、つむぎ慌てすぎだって！");
-
+{"つむぎ"}("はう！ た、たいへん……！");
+{"つむぎ"}("え、ええと、わたしたちはクチュリエールといってですね、困っている人たちのほつれた心の糸を……");
+{"ななみ"}("……");
+{"ななみ"}.animate("position",[0.6,0.1],2).waitAnimation();
+{"ななみ"}("………");
+{"つむぎ"}("な、ななみちゃん、どうしたの……？");
+text.set("fontSize",30);
+{"ななみ"}("やあ！！");
+{"ななみ"}.transact(0.2,{
+    rotate : 10
+},{
+    autoreverses: true,
+    timing: "ease"
+}).waitAnimation();
+{"つむぎ"}.do("jump",0.1);
+{"つむぎ"}("わあああ！！");
+{"ななみ"}.animate("position",[0.75,0.1],0.2);
+text.get("text").set("fontSize",16);
+{"つむぎ"}.animate("translate",[0,-0.05],1).waitAnimation().wait(1);
+{"つむぎ"}("ふぇぇ、ななみちゃんなにをするの……");
+text.get("text").set("fontSize",30);
+{"ななみ"}("かたい！　かたいよつむぎ！");
+{"つむぎ"}("ええ〜……");
+{"つむぎ"}.animate("translate",[0,0.05],0.1,{timing:"ease-out"});
+text.get("text").set("fontSize",16);
