@@ -68,14 +68,77 @@ text.get("text").set("fontSize",16);
 {"ななみ"}("さ、笑顔笑顔♡");
 {"つむぎ"}("……");
 {"つむぎ"}("…………");
-{"つむぎ"}("やっぱりむり〜〜！！");
 text.get("text").set("fontSize",30);
+{"つむぎ"}("やっぱりむり〜〜！！");
 {"つむぎ"}.exit({
     to : "left",
     duration : 0.1
 });
+text.get("text").set("fontSize",16);
 {"ななみ"}("あ、つむぎ、こらまてっ");
 {"ななみ"}.exit({
     to : "left",
     duration : 0.2
 });
+
+{""}("");
+app.wait(3);
+
+chara.new({
+    key : "まとい",
+    index : 4,
+    anchorPoint : [0.5,0],
+    image : "Demo.bundle/matoi.png"
+}).animate("position",[2,0]).animate("rotateY",180);
+
+{"まとい"}.appear({
+	at:  "right",
+	from : "right",
+	duration : 2
+});
+{"ななみ"}.set("index",100);
+{"つむぎ"}.set("index",101);
+
+app.wait(2);
+
+{"まとい"}("ふん。まったくあんな子達がクチュリエールだなんて、この街の妖精たちはいったい何を考えているのかしら。");
+{"まとい"}("というわけで今回のデモはこれでおしまいよ。");
+{"まとい"}("……と、言ってもほとんど何も説明していないのだけれど。");
+{"まとい"}("まぁいいわ。それじゃあ……");
+text.get("text").set("fontSize",22);
+{"ななみ"}("まてー！　つむぎー！");
+{"つむぎ"}.animate("translate",[2,0],0.4).wait(0.2);
+{"ななみ"}.animate("translate",[2,0],0.4);
+{"つむぎ"}("いやー！　もうぜったむりだもんー！");
+text.get("text").set("fontSize",16);
+{"まとい"}("……");
+{"まとい"}("それじゃあ……");
+text.get("text").set("fontSize",22);
+{"つむぎ"}("ぴゃああ〜〜！！");
+{"つむぎ"}.animate("translate",[-2,0],0.4).wait(0.2);
+{"ななみ"}.animate("translate",[-2,0],0.4);
+text.get("text").set("fontSize",16);
+{"まとい"}("……");
+{"まとい"}("……");
+{"まとい"}.animate("translate",[0,0.1],0.1,{timing:"ease",autoreverses:true,repeatCount:3}).waitAnimation();
+text.get("text").set("fontSize",30);
+{"まとい"}("ふたりとも待ちなさーい！！！");
+{"まとい"}.exit({
+	to : "left",
+	duration : 0.1,
+	timing: "ease-in"
+});
+app.set("sizeType","norm");
+layer.new({
+	key : "transaction",
+	index :900,
+	bgColor : "#000000"	
+}).hide().animate("size",[1,1]).fadeIn(2).waitAnimation();
+text.new({
+    key : "last",
+    index : 901,
+    fontSize : 30,
+    color : "#FFFFFF",
+    interval : 0.5,
+    textAlign : "center"
+}).animate("position",[0.5,0.5]).animate("size",[1,0.1]).setText("おしまい");
