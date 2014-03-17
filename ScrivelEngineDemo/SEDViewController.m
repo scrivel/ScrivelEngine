@@ -27,7 +27,7 @@
 	// Do any additional setup after loading the view, typically from a nib.
     _engine = [ScrivelEngine new];
     _engine.rootView = self.view;
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"animate" ofType:@"sescript"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"demo.sescript" ofType:nil inDirectory:@"Scripts.bundle"];
     NSString *str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     _str = str;
 }
@@ -35,7 +35,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    _textView.text = _str;
+//    _textView.text = _str;
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -49,7 +49,7 @@
 }
 - (IBAction)action:(id)sender {
     NSError *e = nil;
-    id ret = [_engine evaluateScript:self.textView.text error:&e];
+    id ret = [_engine evaluateScript:_str error:&e];
     NSLog(@"%@",ret);
 }
 - (IBAction)cloase:(id)sender {
