@@ -74,7 +74,12 @@
         top.x = self.layer.position.x;
         top.y = - CGRectGetHeight(self.layer.bounds)*(1-self.layer.anchorPoint.y);
     }
+    if NORM_POSITION {
+        top.x /= VW;
+        top.y /= VH;
+    }
     [self animate_key:@"position" value:[NSValue se_valueWithPoint:top] duration:duration options:nil];
+    [self waitAnimation];
 }
 
 - (void)appear_info:(NSDictionary *)info
