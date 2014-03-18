@@ -97,7 +97,6 @@
 		A63F88BC18B11089007FBE57 /* SEScriptAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889118AFBBBA007FBE57 /* SEScriptAssembler.m */; };
 		A63F88BE18B11089007FBE57 /* SEMethodChain.m in Sources */ = {isa = PBXBuildFile; fileRef = A63F889418AFBCC5007FBE57 /* SEMethodChain.m */; };
 		A63F88C118B111BF007FBE57 /* libScrivelEngineMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECC2A18AC8BE1000F7A40 /* libScrivelEngineMac.a */; };
-		A63F88C518B11412007FBE57 /* ParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A638D30018AD20150008635E /* ParseKit.framework */; };
 		A63F899118B23A51007FBE57 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63F899018B23A51007FBE57 /* QuartzCore.framework */; };
 		A63F899418B23D07007FBE57 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6AC928518AC960300D43025 /* UIKit.framework */; };
 		A66D847318D6E56E0010EB66 /* SEUnitFloat.h in Headers */ = {isa = PBXBuildFile; fileRef = A66D847118D6E56E0010EB66 /* SEUnitFloat.h */; };
@@ -232,6 +231,7 @@
 		A609F66C18B48F74000A0EFB /* Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stack.h; sourceTree = "<group>"; };
 		A609F66D18B48F74000A0EFB /* Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stack.m; sourceTree = "<group>"; };
 		A60B508C18D880B800204565 /* SETypeDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SETypeDefinition.h; sourceTree = "<group>"; };
+		A60B508F18D8834C00204565 /* libParseKitMobile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libParseKitMobile.a; path = "External/ParseKit/build/Debug-iphoneos/libParseKitMobile.a"; sourceTree = "<group>"; };
 		A60ECBB718AC8523000F7A40 /* ScrivelEngineDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrivelEngineDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A60ECBB918AC8523000F7A40 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		A60ECBBE18AC8523000F7A40 /* ScrivelEngineDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ScrivelEngineDemo-Info.plist"; sourceTree = "<group>"; };
@@ -364,7 +364,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A63F88C518B11412007FBE57 /* ParseKit.framework in Frameworks */,
 				A6AC927F18AC95DB00D43025 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -602,6 +601,7 @@
 		A6A6127318A7B0DA00CBD988 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A60B508F18D8834C00204565 /* libParseKitMobile.a */,
 				A6F499E618CDE51B00B46770 /* External */,
 				A6F499E518CDE50D00B46770 /* Pods */,
 				A612D8D918CDE4A200D72A11 /* OS */,
@@ -1273,6 +1273,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/keroxp/Development/iOS/ScrivelEngine/External/ParseKit/build/Debug-iphoneuniversal",
+					"$(PROJECT_DIR)/External/ParseKit/build/Debug-iphoneos",
 				);
 				MACH_O_TYPE = staticlib;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -1294,6 +1295,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/keroxp/Development/iOS/ScrivelEngine/External/ParseKit/build/Debug-iphoneuniversal",
+					"$(PROJECT_DIR)/External/ParseKit/build/Debug-iphoneos",
 				);
 				MACH_O_TYPE = staticlib;
 				OTHER_LDFLAGS = "$(inherited)";

@@ -9,6 +9,7 @@
 #import "SEDAppDelegate.h"
 #import "ScrivelEngine.h"
 #import "SEBasicLayer.h"
+#import "Queue.h"
 
 @interface SEDAppDelegate ()
 {
