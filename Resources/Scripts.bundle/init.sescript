@@ -1,18 +1,16 @@
-app.set("sizeType","norm");
 layer.new({
 	key : "root",
-	size : [1,1],
+	size : ["100%","100%"],
 	bg : "000",
 	index:0
 	}).hide();
-app.set("sizeType","px");
-    // 背景
+// 背景
 layer.new({
 	key : "bg",
 	index: 1,
 	anchorPoint: [0.5,1]
 	})
-	.animate("position",[0.5,1])
+	.animate("position",["50%","100%"])
 	.loadImage("Demo.bundle/bg1.png")
 	.hide();
 
@@ -23,9 +21,8 @@ layer.new({
     anchorPoint : [0.5,0]
 })
 .loadImage("Demo.bundle/frame.jpg")
-.animate("position",[0.5,0]).hide();
+.animate("position",["50%",0]).hide();
 
-app.set("positionType","px");
 // text
 text.new({
 	key : "text",
@@ -34,8 +31,8 @@ text.new({
     fontName : "Rounded M+ 1m",
     fontSize : 16.0
 	})
-    .animate("size", [300,200])
-	.animate("position", [10,20]);
+    .animate("size", ["300px","200px"])
+	.animate("position", ["10px","20px"]);
 
 text.set("primary","text");
 
@@ -46,12 +43,10 @@ text.new({
     fontName : "Rounded M+ 1m",
     fontSize : 16.0
 })
-    .animate("size",[100,44])
-    .animate("position", [10,250]);
+    .animate("size",["100px","44px"])
+    .animate("position", ["10px","250px"]);
 
 text.set("nameLabel","name");
-
-app.set("positionType","norm");
 
 // つむぎ
 chara.new({
@@ -60,7 +55,7 @@ chara.new({
 	anchorPoint:[0.5,0]
 	})
 	.loadImage("Demo.bundle/tsumugi.png")
-	.animate("position",[0.2,0.1])
+	.animate("position",["20%","10%"])
 	.hide();
 // ななみ
 chara.new({
@@ -69,17 +64,17 @@ chara.new({
 	anchorPoint: [0.5,0]
 	})
 	.loadImage("Demo.bundle/nanami.png")
-	.animate("position",[0.75,0.1])
+	.animate("position",["75%","10%"])
 	.hide();
 
 // はずませる
 chara.defineAnimation("jump",{
-    translate: [0,0.1]
+    translate: [0,"10%"]
     },{
     autoreverses : true,
     timing : "ease"
 });
 
 // mark
-chara.mark("left",0.2,0.1);
-chara.mark("right",0.75,0.1);
+chara.mark("left",["20%","10%"]);
+chara.mark("right",["75%","10%"]);

@@ -28,7 +28,7 @@ text.get("text").set("fontSize",30);
 {"ななみ"}("忘れた！！");
 text.get("text").set("fontSize",22);
 {"つむぎ"}.transact(0.1,{
-    translate : [0,0.1]
+    translate : [0,"10%"]
 },{
     autoreverses : true,
     repeatCount : 2,
@@ -41,7 +41,7 @@ text.get("text").set("fontSize",16);
 {"つむぎ"}("はう！ た、たいへん……！");
 {"つむぎ"}("え、ええと、わたしたちはクチュリエールといってですね、困っている人たちのほつれた心の糸を……");
 {"ななみ"}("……");
-{"ななみ"}.animate("position",[0.6,0.1],2).waitAnimation();
+{"ななみ"}.animate("position",["60%","10%"],2).waitAnimation();
 {"ななみ"}("………");
 {"つむぎ"}("な、ななみちゃん、どうしたの……？");
 text.set("fontSize",30);
@@ -54,14 +54,14 @@ text.set("fontSize",30);
 }).waitAnimation();
 {"つむぎ"}.do("jump",0.1);
 {"つむぎ"}("わあああ！！");
-{"ななみ"}.animate("position",[0.75,0.1],0.2);
+{"ななみ"}.animate("position",["75%","10%"],0.2);
 text.get("text").set("fontSize",16);
-{"つむぎ"}.animate("translate",[0,-0.05],1).waitAnimation().wait(1);
+{"つむぎ"}.animate("translate",[0,"-5%"],1).waitAnimation().wait(1);
 {"つむぎ"}("ふぇぇ、ななみちゃんなにをするの……");
 text.get("text").set("fontSize",30);
 {"ななみ"}("かたい！　かたいよつむぎ！");
 text.get("text").set("fontSize",16);
-{"つむぎ"}.animate("translate",[0,0.05],1,{timing:"ease-out"});
+{"つむぎ"}.animate("translate",[0,"5%"],1,{timing:"ease-out"});
 {"つむぎ"}("そ、そうかなぁ〜");
 {"ななみ"}("もっと笑って、はきはきしゃべらないと、ゲームのよさが伝わらないよ？");
 {"つむぎ"}("う、うん……");
@@ -89,15 +89,13 @@ chara.new({
     index : 4,
     anchorPoint : [0.5,0],
     image : "Demo.bundle/matoi.png"
-}).animate("position",[2,0]).animate("rotateY",180);
+}).animate("position",["150%",0]).animate("rotateY",180);
 
 {"まとい"}.appear({
 	at:  "right",
 	from : "right",
 	duration : 2
 });
-{"ななみ"}.set("index",100);
-{"つむぎ"}.set("index",101);
 
 app.wait(2);
 
@@ -107,20 +105,20 @@ app.wait(2);
 {"まとい"}("まぁいいわ。それじゃあ……");
 text.get("text").set("fontSize",22);
 {"ななみ"}("まてー！　つむぎー！");
-{"つむぎ"}.animate("translate",[2,0],0.4).wait(0.2);
-{"ななみ"}.animate("translate",[2,0],0.4);
+{"つむぎ"}.animate("translate",["150%",0],0.4).wait(0.2);
+{"ななみ"}.animate("translate",["150%",0],0.4);
 {"つむぎ"}("いやー！　もうぜったむりだもんー！");
 text.get("text").set("fontSize",16);
 {"まとい"}("……");
 {"まとい"}("それじゃあ……");
 text.get("text").set("fontSize",22);
 {"つむぎ"}("ぴゃああ〜〜！！");
-{"つむぎ"}.animate("translate",[-2,0],0.4).wait(0.2);
-{"ななみ"}.animate("translate",[-2,0],0.4);
+{"つむぎ"}.animate("translate",["-150%",0],0.4).wait(0.2);
+{"ななみ"}.animate("translate",["-150%",0],0.4);
 text.get("text").set("fontSize",16);
 {"まとい"}("……");
 {"まとい"}("……");
-{"まとい"}.animate("translate",[0,0.1],0.1,{timing:"ease",autoreverses:true,repeatCount:3}).waitAnimation();
+{"まとい"}.animate("translate",[0,"10%"],0.1,{timing:"ease",autoreverses:true,repeatCount:3}).waitAnimation();
 text.get("text").set("fontSize",30);
 {"まとい"}("ふたりとも待ちなさーい！！！");
 {"まとい"}.exit({
@@ -128,12 +126,16 @@ text.get("text").set("fontSize",30);
 	duration : 0.1,
 	timing: "ease-in"
 });
-app.set("sizeType","norm");
 layer.new({
 	key : "transaction",
 	index :900,
 	bgColor : "#000000"	
-}).hide().animate("size",[1,1]).fadeIn(2).waitAnimation();
+})
+.hide()
+.animate("size",["100%","100%"])
+.fadeIn(2)
+.waitAnimation();
+
 text.new({
     key : "last",
     index : 901,
@@ -141,4 +143,5 @@ text.new({
     color : "#FFFFFF",
     interval : 0.5,
     textAlign : "center"
-}).animate("position",[0.5,0.5]).animate("size",[1,0.1]).setText("おしまい");
+}).animate("position",["50%","50%"])
+.animate("size",["100%","10%"]).setText("おしまい");
