@@ -27,7 +27,7 @@
  @param {Number} x
  @param {Number} y
  **/
-- (void)mark_key:(id<NSCopying>)key x:(CGFloat)x y:(CGFloat)y;
+- (void)mark_key:(id<NSCopying>)key point:(id)point;
 
 /**
  

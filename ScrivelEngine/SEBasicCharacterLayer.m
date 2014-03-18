@@ -32,10 +32,10 @@
     return self ?: nil;
 }
 
--(void)mark_key:(id<NSCopying>)key x:(CGFloat)x y:(CGFloat)y
+-(void)mark_key:(id<NSCopying>)key point:(id)point
 {
-    SEPoint p = CGPointMake(ROUND_CGFLOAT(x), ROUND_CGFLOAT(y));
-    [__markedPoints setObject:[NSValue se_valueWithPoint:p] forKey:[key copyWithZone:NULL]];
+    SEPoint _point = SEPointFromObject(self.engine.rootView.bounds.size, point);
+    [__markedPoints setObject:[NSValue se_valueWithPoint:_point] forKey:[key copyWithZone:NULL]];
 }
 
 - (void)defineMotion_name:(NSString *)name
@@ -91,19 +91,19 @@
 
     SEPoint marked = [[(SEBasicCharacterLayerClass*)self.holder markedPoints][at] se_pointValue];
     SEPoint fromp;
-//    if ([from isEqualToString:@"left"]) {
-//        fromp.x = - CGRectGetWidth(self.layer.bounds)*(1-self.layer.anchorPoint.x);
-//        fromp.y = Y(marked.y);
-//    }else if ([from isEqualToString:@"right"]){
-//        fromp.x = VW + CGRectGetWidth(self.layer.bounds)*self.layer.anchorPoint.x;
-//        fromp.y = Y(marked.y);
-//    }else if ([from isEqualToString:@"top"]){
-//        fromp.x = X(marked.x);
-//        fromp.y = VH + CGRectGetHeight(self.layer.bounds)*self.layer.anchorPoint.y;
-//    }else if ([from isEqualToString:@"bottom"]){
-//        fromp.x = X(marked.x);
-//        fromp.y = - CGRectGetHeight(self.layer.bounds)*(1-self.layer.anchorPoint.y);
-//    }
+    if ([from isEqualToString:@"left"]) {
+        fromp.x = - CGRectGetWidth(self.layer.bounds)*(1-self.layer.anchorPoint.x);
+        fromp.y = marked.y;
+    }else if ([from isEqualToString:@"right"]){
+        fromp.x = VIEW_SIZE.width + CGRectGetWidth(self.layer.bounds)*self.layer.anchorPoint.x;
+        fromp.y = marked.y;
+    }else if ([from isEqualToString:@"top"]){
+        fromp.x = marked.x;
+        fromp.y = VIEW_SIZE.height + CGRectGetHeight(self.layer.bounds)*self.layer.anchorPoint.y;
+    }else if ([from isEqualToString:@"bottom"]){
+        fromp.x = marked.x;
+        fromp.y = - CGRectGetHeight(self.layer.bounds)*(1-self.layer.anchorPoint.y);
+    }
     self.layer.position = fromp;
     [self animate_key:@"position" value:[NSValue se_valueWithPoint:marked] duration:duration options:nil];
     [self waitAnimation];

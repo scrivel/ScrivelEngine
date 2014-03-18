@@ -150,7 +150,7 @@
 		// chara
 
 		// inherited from chara
-		SEL_FOR_METHOD(@"mark",mark_key:x:y:);
+		SEL_FOR_METHOD(@"mark",mark_key:point:);
 		SEL_FOR_METHOD(@"defineMotion",defineMotion_name:);
 		SEL_FOR_METHOD(@"defineExpression",defineExpression_name:imagePath:);
 		SEL_FOR_METHOD(@"express",express_name:duration:);

@@ -55,7 +55,7 @@
   },
   "chara": {
     "methods": {
-      "mark": "mark_key:x:y:",
+      "mark": "mark_key:point:",
       "defineMotion": "defineMotion_name:",
       "defineExpression": "defineExpression_name:imagePath:",
       "express": "express_name:duration:",
