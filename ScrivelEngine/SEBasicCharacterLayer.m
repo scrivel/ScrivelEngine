@@ -8,6 +8,8 @@
 
 #import "SEBasicCharacterLayer.h"
 #import "SEBasicApp.h"
+#import "SEGeometory.h"
+
 #define kDefaultDuration 0.25
 #define kDefaultFrom @"left"
 #define kDefaultTo @"right"
@@ -62,19 +64,20 @@
     
     SEPoint top;
     if ([to isEqualToString:@"right"]) {
-        top.x = VW + CGRectGetWidth(self.layer.bounds)*self.layer.anchorPoint.x;
+        top.x = CGRectGetWidth(self.layer.bounds) + CGRectGetWidth(self.layer.bounds)*self.layer.anchorPoint.x;
         top.y = self.layer.position.y;
     }else if ([to isEqualToString:@"left"]){
         top.x = - CGRectGetWidth(self.layer.bounds)*(1-self.layer.anchorPoint.x);
         top.y = self.layer.position.y;
     }else if ([to isEqualToString:@"top"]){
         top.x = self.layer.position.x;
-        top.y = VH + CGRectGetHeight(self.layer.bounds)*self.layer.anchorPoint.y;
+        top.y = CGRectGetHeight(self.layer.bounds) + CGRectGetHeight(self.layer.bounds)*self.layer.anchorPoint.y;
     }else if ([to isEqualToString:@"bottom"]){
         top.x = self.layer.position.x;
         top.y = - CGRectGetHeight(self.layer.bounds)*(1-self.layer.anchorPoint.y);
     }
-    [self animate_key:@"position" value:[NSValue se_valueWithPoint:top] duration:duration options:nil];
+    NSArray *value = @[SEUnitFloatMake(@(top.x)),SEUnitFloatMake(@(top.y))];
+    [self animate_key:@"position" value:value duration:duration options:nil];
 }
 
 - (void)appear_info:(NSDictionary *)info
@@ -87,19 +90,19 @@
     
     SEPoint marked = [[(SEBasicCharacterLayerClass*)self.holder markedPoints][at] se_pointValue];
     SEPoint fromp;
-    if ([from isEqualToString:@"left"]) {
-        fromp.x = - CGRectGetWidth(self.layer.bounds)*(1-self.layer.anchorPoint.x);
-        fromp.y = Y(marked.y);
-    }else if ([from isEqualToString:@"right"]){
-        fromp.x = VW + CGRectGetWidth(self.layer.bounds)*self.layer.anchorPoint.x;
-        fromp.y = Y(marked.y);
-    }else if ([from isEqualToString:@"top"]){
-        fromp.x = X(marked.x);
-        fromp.y = VH + CGRectGetHeight(self.layer.bounds)*self.layer.anchorPoint.y;
-    }else if ([from isEqualToString:@"bottom"]){
-        fromp.x = X(marked.x);
-        fromp.y = - CGRectGetHeight(self.layer.bounds)*(1-self.layer.anchorPoint.y);
-    }
+//    if ([from isEqualToString:@"left"]) {
+//        fromp.x = - CGRectGetWidth(self.layer.bounds)*(1-self.layer.anchorPoint.x);
+//        fromp.y = Y(marked.y);
+//    }else if ([from isEqualToString:@"right"]){
+//        fromp.x = VW + CGRectGetWidth(self.layer.bounds)*self.layer.anchorPoint.x;
+//        fromp.y = Y(marked.y);
+//    }else if ([from isEqualToString:@"top"]){
+//        fromp.x = X(marked.x);
+//        fromp.y = VH + CGRectGetHeight(self.layer.bounds)*self.layer.anchorPoint.y;
+//    }else if ([from isEqualToString:@"bottom"]){
+//        fromp.x = X(marked.x);
+//        fromp.y = - CGRectGetHeight(self.layer.bounds)*(1-self.layer.anchorPoint.y);
+//    }    
     self.layer.position = fromp;
     [self animate_key:@"position" value:[NSValue se_valueWithPoint:marked] duration:duration options:nil];
     [self waitAnimation];

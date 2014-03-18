@@ -136,7 +136,7 @@
     self = [super initWithOpts:options holder:holder];
     // 実体はレイヤー
     _layer = [CALayer layer];
-    _layer.position = SEPointMake(0.5, 0.5);
+    _layer.position = SEPointFromArray(VIEW_SIZE, @[@"50%",@"50%"]);
     // parse options
     [CATransaction begin];
     [CATransaction setAnimationDuration:0];
@@ -156,7 +156,7 @@
     if (KEY_IS(@"index")){
         [self setIndex:[value unsignedIntValue]];
     }else if (KEY_IS(@"anchorPoint")) {
-        [self setAnchorPoint:CGPointFromArray(value)];
+        [self setAnchorPoint:SEPointFromObject(VIEW_SIZE, value)];
     }else if (KEY_IS(@"gravity")){
         [self setGravity:value];
     }else if (KEY_IS(@"bgColor")){
@@ -172,7 +172,7 @@
     }else if (KEY_IS(@"shadowRadius")){
         [self setShadowRadius:[value CGFloatValue]];
     }else if (KEY_IS(@"shadowOffset")){
-        [self setShadowOffset:CGSizeFromArray(value)];
+        [self setShadowOffset:SESizeFromObject(VIEW_SIZE, value)];
     }else if (KEY_IS(@"image")){
         [self loadImage_path:value];
     }else{
@@ -183,6 +183,7 @@
 - (void)setIndex:(unsigned int)index
 {
     [self.holder.engine.rootView.layer insertSublayer:self.layer atIndex:index];
+    _index = index;
 }
 
 - (void)setAnchorPoint:(CGPoint)anchorPoint
@@ -260,14 +261,13 @@
 
 - (void)setShadowOffset:(SESize)shadowOffset
 {
-    CGSize s = SESizeMake(shadowOffset.width, shadowOffset.height);
-    self.layer.shadowOffset = s;
-    _shadowOffset = s;
+    self.layer.shadowOffset = shadowOffset;
+    _shadowOffset = shadowOffset;
 }
 
 - (void)setShadowOpacity:(CGFloat)shadowOpacity
 {
-    self.layer.shadowOpacity = ZERO_TO_ONE(shadowOpacity);
+    self.layer.shadowOpacity = SENormalize(shadowOpacity);
     _shadowOpacity = shadowOpacity;
 }
 
@@ -474,58 +474,47 @@
 {
     // create animation
     if (KEY_IS(@"position")) {
-        SEPoint point = CGPointFromObject(value);
-        CGFloat _x = VALID_CGFLOAT(point.x) ? X(point.x) : self.layer.position.x;
-        CGFloat _y = VALID_CGFLOAT(point.y) ? Y(point.y) : self.layer.position.y;
-        CGPoint position = CGPointMake(_x, _y);
-        return [NSValue se_valueWithPoint:position];
+        SEPoint point = SEPointFromObject(VIEW_SIZE, value);
+        return [NSValue se_valueWithPoint:point];
     }else if (KEY_IS(@"zPosition")){
         // z値だけは正規化できないので常にpx値
-        CGFloat z = [value CGFloatValue];
-        CGFloat _z = VALID_CGFLOAT(z) ? z : self.layer.zPosition;
-        return @(_z);
+        CGFloat z = [[SEUnitFloatMake(value) numberValue] CGFloatValue];
+        return @(z);
     }else if (KEY_IS(@"size")){
         CGRect bounds = self.layer.bounds;
-        CGSize size = CGSizeFromObject(value);
-        SESize s = SESizeMake(ROUND_CGFLOAT(size.width), ROUND_CGFLOAT(size.height));
-        bounds.size.width += s.width;
-        bounds.size.height += s.height;
+        SESize size = SESizeFromObject(VIEW_SIZE, value);
+        bounds.size.width = size.width;
+        bounds.size.height = size.height;
         return [NSValue se_valueWithRect:bounds];
     }else if (KEY_IS(@"translate")){
-        SEPoint selfp = self.layer.position;
-        SEPoint point = CGPointFromObject(value);
-        CGFloat _x = ROUND_CGFLOAT(point.x);
-        _x += NORM_POSITION ? selfp.x/VW : selfp.x;
-        CGFloat _y = ROUND_CGFLOAT(point.y);
-        // 座標を補正
-#if TARGET_OS_IPHONE
-        _y += NORM_POSITION ? 1 - selfp.y/VH : VH - selfp.y;
-#else
-        _y += NORM_POSITION ? selfp.y/VH : selfp.y;
-#endif
-        // transform.translateを使うと面倒なので加算してpositionのアニメーションにする
-        return [self toValueForKey:@"position" value:[NSValue se_valueWithPoint:CGPointMake(_x, _y)]];
+        SEPoint translation = SEPointFromObject(VIEW_SIZE, value);
+        SEPoint position = self.layer.position;
+        position.x += translation.x;
+        position.y += translation.y;
+        return [NSValue se_valueWithPoint:position];
     }else if (KEY_IS(@"translateZ")){
-        CGFloat _z = ROUND_CGFLOAT([value CGFloatValue]) + self.layer.zPosition;
+        CGFloat z = [[SEUnitFloatMake(value) numberValue] CGFloatValue];
+        CGFloat zp = self.layer.zPosition;
+        zp += z;
         // 同じくzPositionのアニメーションにする
-        return [self toValueForKey:@"zPosition" value:@(_z)];
+        return @(zp);
     }else if (KEY_IS(@"scale")){
         CGFloat _ratio = ROUND_CGFLOAT([value CGFloatValue]);
         return @(_ratio);
     }else if (KEY_IS(@"rotate")){
-        CGFloat _degree = RADIAN(ROUND_CGFLOAT([value CGFloatValue]));
+        CGFloat _degree = SEMakeRadian(ROUND_CGFLOAT([value CGFloatValue]));
         CGFloat rotationZ = [[self.layer valueForKeyPath:@"transform.rotation.z"] CGFloatValue];
         return @(_degree+rotationZ);
     }else if (KEY_IS(@"rotateX")){
-        CGFloat _degree = RADIAN(ROUND_CGFLOAT([value CGFloatValue]));
+        CGFloat _degree = SEMakeRadian(ROUND_CGFLOAT([value CGFloatValue]));
         CGFloat rotationX = [[self.layer valueForKeyPath:@"transform.rotation.x"] CGFloatValue];
         return @(_degree+rotationX);
     }else if (KEY_IS(@"rotateY")){
-        CGFloat _degree = RADIAN(ROUND_CGFLOAT([value CGFloatValue]));
+        CGFloat _degree = SEMakeRadian(ROUND_CGFLOAT([value CGFloatValue]));
         CGFloat rotationY = [[self.layer valueForKeyPath:@"transform.rotation.y"] CGFloatValue];
         return @(_degree+rotationY);
     }else if (KEY_IS(@"opacity")){
-        CGFloat _opacity = ZERO_TO_ONE([value CGFloatValue]);
+        CGFloat _opacity = SENormalize([value CGFloatValue]);
         return @(_opacity);
     }else if (KEY_IS(@"contents")){
         return value;

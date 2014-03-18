@@ -2,20 +2,20 @@
 layer.new({
 	key : 1	
 	})
-	.animate("size",[100,100])
-	.animate("size",[0.5,0.5])
+	.animate("size",["100px","100px"])
+	.animate("position",["50%","50%"])
 	.loadImage("keroxp.jpg");
 // animate layer
 layer.get(1) // of index 1
-	.animate("translate",[0.2,0],1)
+	.animate("translate",["20%",0],1)
 	.waitAnimation() // wait completion of previous animation
 	.animate("scale",2.0) // make scale be twice, without animation
 	.wait(1) // wait a second
-	.animate("translate",[0,0.2],1) // ...
+	.animate("translate",[0,"20%"],1) // ...
 	.waitAnimation() // ...
 	.chain()
 	.transact(1,{
-		translate : [-0.2,-0.2],
+		translate : ["-20%","-20%"],
 		rotate : 45,
 		scale : 2.0
 		})
@@ -27,7 +27,7 @@ layer.get(1) // of index 1
 	.commit()
 	.chain()
 	.animate("opacity",0.5,3)
-	.animate("translate",[0.2,0],3)
+	.animate("translate",["20%",0],3)
 	.commit()
 	.transact(1,{
 		rotate : 1440,

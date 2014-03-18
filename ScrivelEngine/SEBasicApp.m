@@ -17,9 +17,6 @@
 #import "NSBundle+ScrivelEngine.h"
 #import "SEScript.h"
 
-#define kPositionTypeKey @"positionType"
-#define kSizeTypeKey @"sizeType"
-
 @implementation SEBasicApp
 {
 
@@ -34,8 +31,6 @@
 - (id)init
 {
     self = [super init];
-    [self set_key:kPositionTypeKey value:@"norm"];
-    [self set_key:kSizeTypeKey value:@"px"];
     return self ?: nil;
 }
 
@@ -101,7 +96,6 @@
 
 }
 
-
 - (void)load_scriptPath:(NSString *)scriptPath
 {
     NSString *path = [[NSBundle mainBundle] se_pathForResource:scriptPath];
@@ -115,30 +109,6 @@
             }
         }
     }
-}
-
-#pragma mark - Accessor
-
-- (SEPositionType)positionType
-{
-    NSString *t = [self.keyValueStore objectForKey:kPositionTypeKey];
-    if ([t isEqualToString:@"norm"]) {
-        return SEPositionTypeNormalized;
-    }else if ([t isEqualToString:@"px"]){
-        return SEPositionTypePX;
-    }
-    return SEPositionTypeNormalized;
-}
-
-- (SESizeType)sizeType
-{
-    NSString *t = [self.keyValueStore objectForKey:kSizeTypeKey];
-    if ([t isEqualToString:@"norm"]) {
-        return SESizeTypeNormalized;
-    }else if ([t isEqualToString:@"px"]){
-        return SESizeTypePX;
-    }
-    return SESizeTypePX;
 }
 
 @end
