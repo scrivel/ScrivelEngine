@@ -131,14 +131,14 @@
     XCTAssert(sel == @selector(get_key:),);
 }
 
-- (void)testConvert
-{
-    ScrivelEngine *engine = NEWENGINE;
-    engine.speed = 2.0f;
-    XCTAssert([engine convertDuration:4.0f] == 2.0f, );
-    engine.speed = ScrivelEngineSppedNoWait;
-    XCTAssert([engine convertDuration:1000.0f] == 0,  );
-}
+//- (void)testConvert
+//{
+//    ScrivelEngine *engine = NEWENGINE;
+//    engine.speed = 2.0f;
+//    XCTAssert([engine convertDuration:4.0f] == 2.0f, );
+//    engine.speed = ScrivelEngineSppedNoWait;
+//    XCTAssert([engine convertDuration:1000.0f] == 0,  );
+//}
 
 - (void)testScriptEvaluation
 {

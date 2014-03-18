@@ -292,7 +292,7 @@
 - (void)set_key:(NSString *)key value:(id)value
 {
     if (KEY_IS(@"padding")) {
-        [self setPadding:SEEdgeInsetsFromObject(value)];
+        [self setPadding:SEEdgeInsetsFromObject(VIEW_SIZE, value)];
     }else if (KEY_IS(@"fontName")){
         [self setFontName:value];
     }else if (KEY_IS(@"fontSize")){
@@ -320,11 +320,7 @@
 
 - (void)setPadding:(SEEdgeInsets)padding
 {
-    CGFloat _top = H(ROUND_CGFLOAT(padding.top));
-    CGFloat _left = W(ROUND_CGFLOAT(padding.left));
-    CGFloat _bottom = H(ROUND_CGFLOAT(padding.bottom));
-    CGFloat _right = W(ROUND_CGFLOAT(padding.right));
-    _padding = SEEdgeInsetsMake(_top, _left, _bottom, _right);
+    _padding = padding;
 }
 
 - (void)setFontName:(NSString *)fontName
