@@ -1,0 +1,7 @@
+@start = text;
+
+text        =   tag | html | string;
+string      =   /[^\[\]<>]+/;
+tag       =   '[' identifier ']';
+html        =   '<' identifier '>' text '<' '/' identifier '>';
+identifier  =   Words;
