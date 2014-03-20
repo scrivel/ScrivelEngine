@@ -159,36 +159,6 @@
 #pragma mark - Animation
 
 /**
- アニメーションを合成する
- // 1のレイヤーに、3秒で(0.1,0)移動、20度回転、拡大率200%のアニメーションを使用する
- layer.get(1)
-    .transact(3, {
-        translate : [0.1,0],
-        scale : 2.0,
-        rotate: 20
-    })
- 
- @method transact
- @param {Number} duration 秒数
- @param {Object} animations アニメーションの指定
- @param {Object} [options] アニメーションオプション
-    @param {Boolean} [options.autoreverses] アニメーションを逆実行するか
-    @param {Number} [options.repeatCount] アニメーションの繰り返し回数
-    @param {Number} [options.repeatDuration] アニメーションの繰り返しの間隔
-    @param {Number} [options.timeOffset] アニメーション開始までのオフセット時間
-    @param {Boolean} [options.removeOnCompletion] アニメーション終了時にもとに戻すかどうか
-    @param {String} [options.timing] アニメーションカーブ 
-        @keyword linear
-        @keyword ease-in
-        @keyword ease-out
-        @keyword ease-in-ease-out
-        @keyword default
-    @param {Array} [options.timingPoints] アニメーションカーブを構成するポイント。正規化された値。 例) 0.1, 0.1, 0.2, 0.2
-    @param {Number} [options.duration] アニメーションの時間。指定された場合こちらが優先される
- **/
-- (void)transact_duration:(NSTimeInterval)duration animations:(NSDictionary*)animations options:(NSDictionary*)options;
-
-/**
  アニメーションチェインを開始する。
  ~ commit()までに呼び出されたアニメーションメソッドは逐次実行される
  
@@ -266,25 +236,44 @@
 
 /**
  レイヤーをアニメーションさせる
- animatebleなkeyは以下
- @animatable position [x,y]
- @animatable zPosition z
- @animatable size [w,h]
- @animatable translate [x,y]
- @animatable translateZ z
- @animatable scale ratio
- @animatable rotate degree
- @animatable rotateX degree
- @animatable rotateY degree
- @animatable opacity ratio
+ 
+ // 1のレイヤーに、3秒で(0.1,0)移動、20度回転、拡大率200%のアニメーションを使用する
+ layer.get(1)
+ .transact(3, {
+ translate : [0.1,0],
+ scale : 2.0,
+ rotate: 20
+ })
  
  @method animate
- @param {String} key
- @param {Number|Object} value
- @param {Number} [duration]
- @param {Object} [options]
+ @param {Object} animations アニメーションの指定
+     @param {Point} [animatinos.position] [x,y]
+     @param {Unit} [animations.zPosition] z
+     @param {Size} [animations.size] [w,h]
+     @param {Point} [animations.translate] [x,y]
+     @param {Number} [animations.translateZ] z
+     @param {Number} [animations.scale] ratio
+     @param {Number} [animations.rotate] degree
+     @param {Number} [animations.rotateX] degree
+     @param {Number} [animations.rotateY] degree
+     @param {Number} [animations.opacity] ratio
+ @param {Object} [options] アニメーションオプション
+ @param {Boolean} [options.autoreverses] アニメーションを逆実行するか
+ @param {Number} [options.repeatCount] アニメーションの繰り返し回数
+ @param {Number} [options.repeatDuration] アニメーションの繰り返しの間隔
+ @param {Number} [options.timeOffset] アニメーション開始までのオフセット時間
+ @param {Boolean} [options.removeOnCompletion] アニメーション終了時にもとに戻すかどうか
+ @param {String} [options.timing] アニメーションカーブ
+     @keyword linear
+     @keyword ease-in
+     @keyword ease-out
+     @keyword ease-in-ease-out
+     @keyword default
+ @param {Array} [options.timingPoints] アニメーションカーブを構成するポイント。正規化された値。 例) 0.1, 0.1, 0.2, 0.2
+ @param {Number} [options.duration] アニメーションの時間。指定された場合こちらが優先される
  **/
-- (void)animate_key:(NSString*)key value:(id)value duration:(CFTimeInterval)duration options:(NSDictionary*)options;
+- (void)animate_animations:(NSDictionary*)animations options:(NSDictionary*)options;
+
 /**
  定義済みのアニメーションを実行する
  

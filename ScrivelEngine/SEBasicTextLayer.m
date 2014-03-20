@@ -279,7 +279,7 @@
 - (void)clear
 {
 	_text = nil;
-    [self setText_text:nil noanimate:NO];
+    [self setText_text:nil noanimate:YES];
     [self finishAnimation];
 }
 

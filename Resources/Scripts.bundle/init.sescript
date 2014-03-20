@@ -10,7 +10,7 @@ layer.new({
 	index: 1,
 	anchorPoint: [0.5,1]
 	})
-	.animate("position",["50%","100%"])
+	.animate({"position":["50%","100%"]})
 	.loadImage("Demo.bundle/bg1.png")
 	.hide();
 
@@ -21,7 +21,7 @@ layer.new({
     anchorPoint : [0.5,0]
 })
 .loadImage("Demo.bundle/frame.jpg")
-.animate("position",["50%",0]).hide();
+.animate({"position":["50%",0]}).hide();
 
 // text
 text.new({
@@ -31,8 +31,10 @@ text.new({
     fontName : "Rounded M+ 1m",
     fontSize : 16.0
 	})
-    .animate("size", ["300px","200px"])
-	.animate("position", ["10px","20px"]);
+    .animate({
+    "size" : ["300px","200px"],
+	"position" : ["10px","20px"]
+    });
 
 text.set("primary","text");
 
@@ -43,8 +45,10 @@ text.new({
     fontName : "Rounded M+ 1m",
     fontSize : 16.0
 })
-    .animate("size",["100px","44px"])
-    .animate("position", ["10px","250px"]);
+    .animate({
+        "size":["100px","44px"],
+        "position" : ["10px","250px"]
+    });
 
 text.set("nameLabel","name");
 
@@ -55,7 +59,7 @@ chara.new({
 	anchorPoint:[0.5,0]
 	})
 	.loadImage("Demo.bundle/tsumugi.png")
-	.animate("position",["20%","10%"])
+	.animate({"position":["20%","10%"]})
 	.hide();
 // ななみ
 chara.new({
@@ -64,7 +68,7 @@ chara.new({
 	anchorPoint: [0.5,0]
 	})
 	.loadImage("Demo.bundle/nanami.png")
-	.animate("position",["75%","10%"])
+	.animate({"position":["75%","10%"]})
 	.hide();
 
 // はずませる

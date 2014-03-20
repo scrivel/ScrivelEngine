@@ -1,6 +1,6 @@
 // define a set of animations
 layer.defineAnimation("jump",{
-    translate: [0,0.1]
+    translate: [0,"10%"]
 },{
 	autoreverses: true,
 	timing: "ease"
@@ -9,7 +9,7 @@ layer.defineAnimation("jump",{
 layer.new({
 	key : 1	
 })
-.animate("size",[100,100])
+.animate({"size":[100,100]})
 .loadImage("keroxp.jpg");
 // do animation
 layer.get(1).do("jump",0.1);

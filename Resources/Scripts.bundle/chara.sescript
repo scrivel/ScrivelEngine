@@ -5,7 +5,7 @@ chara.new({
 	anchorPoint:[0.5,0],
 	image : "Demo.bundle/tsumugi.png"
 	})
-	.animate("position",[-999,-999]);
+	.animate({"position":[-999,-999]});
 
 // ななみ
 chara.new({
@@ -14,10 +14,10 @@ chara.new({
 	anchorPoint: [0.5,0],
 	image : "Demo.bundle/nanami.png"
 	})
-	.animate("position",[-999,-999]);
+	.animate({"position":[-999,-999]});
 
-chara.mark("left",0.2,0.1);
-chara.mark("right",0.75,0.1);
+chara.mark("left",["20%","10%"]);
+chara.mark("right",["75%","10%"]);
 
 {"つむぎ"}.appear({
     at : "left",

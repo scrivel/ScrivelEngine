@@ -297,7 +297,7 @@
         SESize s = self.layer.bounds.size;
         if (CGSizeEqualToSize(s, CGSizeZero)) {
             SESize is = image.size;
-            [self animate_key:@"size" value:[NSValue se_ValueWithSize:is] duration:0 options:nil];
+            [self animate_animations:@{@"size": [NSValue se_ValueWithSize:is]} options:nil];
         }
         self.layer.contents = val;
     }
@@ -331,46 +331,18 @@
 {
     self.layer.opacity = 0;
     [self show];
-    [self animate_key:@"opacity" value:@1 duration:duration options:nil];
+    [self animate_animations:@{@"opacity": @1} options:@{@"duration": @(duration)}];
 }
 
 - (void)fadeOut_duration:(NSTimeInterval)duration
 {
-    [self _animate_key:@"opacity" value:@0 duration:duration options:nil completion:^{
-        [self hide];
+    __weak typeof(self) __self = self;
+    [self _animate_animations:@{@"opacity": @0} options:@{@"duration": @(duration)} completion:^{
+        [__self hide];
     }];
 }
 
 #pragma mark - Animations
-
-- (void)transact_duration:(NSTimeInterval)duration animations:(NSDictionary *)animations options:(NSDictionary *)options
-{
-    // 複数のアニメーションを合成する
-    CAAnimationGroup *g  = [CAAnimationGroup animation];
-    addOptions(g, options);
-    duration = ACTUAL_DURATION(duration);
-    if (duration == 0) {
-        [animations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            [CATransaction begin];
-            [CATransaction setAnimationDuration:0];
-            [self.layer setValue:[self toValueForKey:key value:obj] forKeyPath:[self keyPathForKey:key]];
-            [CATransaction commit];
-        }];
-    }else if(duration > 0){
-        NSMutableArray *ma = [NSMutableArray arrayWithCapacity:animations.allKeys.count];
-        [animations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            CABasicAnimation *a = [self animationWithKey:key value:obj duration:duration options:nil];
-            [ma addObject:a];
-        }];
-        g.duration = duration;
-        g.animations = ma;
-        g.fillMode = kCAFillModeForwards;
-        if (g.repeatCount == HUGE_VALF) {
-            _isRepeatingForever = YES;
-        }
-        [self addAnimation:g forKey:kGroupedAnimationKey completion:NULL];
-    }
-}
 
 - (void)chain
 {
@@ -404,31 +376,44 @@
     self.layer.beginTime = timeSincePause;
 }
 
-- (void)animate_key:(NSString *)key value:(id)value duration:(CFTimeInterval)duration options:(NSDictionary *)options
+- (void)animate_animations:(NSDictionary *)animations options:(NSDictionary *)options
 {
-    [self _animate_key:key value:value duration:duration options:options completion:NULL];
+    [self _animate_animations:animations options:options completion:NULL];
 }
 
 - (void)do_animationName:(NSString *)animationName duration:(CFTimeInterval)duration
 {
     NSDictionary *definition = [(SEBasicLayerClass*)self.holder definedAnimations][animationName];
     NSDictionary *animations = definition[@"animations"];
-    NSDictionary *options = definition[@"options"];
-    [self transact_duration:duration animations:animations options:options];
+    NSMutableDictionary *options = [definition[@"options"] mutableCopy];
+    options[@"duration"] = @(duration);
+    [self animate_animations:animations options:options];
 }
 
-- (void)_animate_key:(NSString *)key value:(id)value duration:(CFTimeInterval)duration options:(NSDictionary *)options completion:(void(^)())completion
+- (void)_animate_animations:(NSDictionary *)animations options:(NSDictionary *)options completion:(void(^)())completion
 {
-    CABasicAnimation *animation = [self animationWithKey:key value:value duration:duration options:options];
-    duration = ACTUAL_DURATION(duration);
+    // 複数のアニメーションを合成する
+    CAAnimationGroup *g  = [CAAnimationGroup animation];
+    addOptions(g, options);
+    CFTimeInterval duration = [options[@"duration"] doubleValue];
     if (duration == 0) {
-        [CATransaction begin];
-        [CATransaction setAnimationDuration:0];
-        [CATransaction setCompletionBlock:completion];
-        [self.layer setValue:[self toValueForKey:key value:value] forKeyPath:[self keyPathForKey:key]];
-        [CATransaction commit];
-    }else{
-        [self addAnimation:animation forKey:key completion:completion];
+        [animations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            [CATransaction begin];
+            [CATransaction setAnimationDuration:0];
+            [self.layer setValue:[self toValueForKey:key value:obj] forKeyPath:[self keyPathForKey:key]];
+            [CATransaction commit];
+        }];
+    }else if(duration > 0){
+        NSMutableArray *ma = [NSMutableArray arrayWithCapacity:animations.allKeys.count];
+        [animations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            CABasicAnimation *a = [self animationWithKey:key value:obj duration:duration options:nil];
+            [ma addObject:a];
+        }];
+        g.animations = ma;
+        if (g.repeatCount == HUGE_VALF) {
+            _isRepeatingForever = YES;
+        }
+        [self addAnimation:g forKey:kGroupedAnimationKey completion:completion];
     }
 }
 

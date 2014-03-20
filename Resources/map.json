@@ -28,7 +28,6 @@
       "defineAnimation": "defineAnimation_name:animations:options:",
       "loadImage": "loadImage_path:",
       "clearImage": "clearImage_duration:",
-      "transact": "transact_duration:animations:options:",
       "chain": "chain",
       "commit": "commit",
       "stop": "stop",
@@ -39,7 +38,7 @@
       "toggle": "toggle",
       "fadeIn": "fadeIn_duration:",
       "fadeOut": "fadeOut_duration:",
-      "animate": "animate_key:value:duration:options:",
+      "animate": "animate_animations:options:",
       "do": "do_animationName:duration:"
     },
     "extends": "abstract"

@@ -2,39 +2,45 @@
 layer.new({
 	key : 1	
 	})
-	.animate("size",["100px","100px"])
-	.animate("position",["50%","50%"])
+	.animate({"size" : ["100px","100px"]})
+	.animate({"position" : ["50%","50%"]})
 	.loadImage("keroxp.jpg");
 // animate layer
 layer.get(1) // of index 1
-	.animate("translate",["20%",0],1)
+	.animate({"translate":["20%",0]},{duration : 1})
 	.waitAnimation() // wait completion of previous animation
-	.animate("scale",2.0) // make scale be twice, without animation
+	.animate({"scale":2.0}) // make scale be twice, without animation
 	.wait(1) // wait a second
-	.animate("translate",[0,"20%"],1) // ...
+	.animate({"translate":[0,"20%"]},{duration : 1}) // ...
 	.waitAnimation() // ...
 	.chain()
-	.transact(1,{
+	.animate({
 		translate : ["-20%","-20%"],
 		rotate : 45,
 		scale : 2.0
-		})
-	.animate("rotateY",360,2)
-	.transact(1, {
+		},{
+		duration : 1
+	})
+	.animate({"rotateY":360},{duration : 2})
+	.animate({
 		scale : 1.0,
 		rotate : -45		
+		},{
+		duration : 1
 		})
 	.commit()
 	.chain()
-	.animate("opacity",0.5,3)
-	.animate("translate",["20%",0],3)
+	.animate({"opacity":0.5},{duration : 2})
+	.animate({"translate":["20%",0]},{duration : 3})
 	.commit()
-	.transact(1,{
+	.animate({
 		rotate : 1440,
 		scale : 2.0
+		},{
+		duration : 1
 		})	
 	.waitAnimation()	
-	.animate("scale",1.0,1)
-	.animate("opacity",1)
-	.animate("rotateX",360,2)
+	.animate({"scale":1.0},{duration : 1})
+	.animate({"opacity":1},{duration : 1})
+	.animate({"rotateX":360},{duration : 2})
 	.waitAnimation();

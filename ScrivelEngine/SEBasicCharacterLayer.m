@@ -78,7 +78,7 @@
     }
 
     NSArray *value = @[SEUnitFloatMake(@(top.x)),SEUnitFloatMake(@(top.y))];
-    [self animate_key:@"position" value:value duration:duration options:nil];
+    [self animate_animations:@{@"position": value} options:@{@"duration": @(duration)}];
 }
 
 - (void)appear_info:(NSDictionary *)info
@@ -105,7 +105,7 @@
         fromp.y = - CGRectGetHeight(self.layer.bounds)*(1-self.layer.anchorPoint.y);
     }
     self.layer.position = fromp;
-    [self animate_key:@"position" value:[NSValue se_valueWithPoint:marked] duration:duration options:nil];
+    [self animate_animations:@{@"position": [NSValue se_valueWithPoint:marked]} options:@{@"duration": @(duration)}];
     [self waitAnimation];
 }
 

@@ -80,7 +80,6 @@
 		SEL_FOR_METHOD(@"defineAnimation",defineAnimation_name:animations:options:);
 		SEL_FOR_METHOD(@"loadImage",loadImage_path:);
 		SEL_FOR_METHOD(@"clearImage",clearImage_duration:);
-		SEL_FOR_METHOD(@"transact",transact_duration:animations:options:);
 		SEL_FOR_METHOD(@"chain",chain);
 		SEL_FOR_METHOD(@"commit",commit);
 		SEL_FOR_METHOD(@"stop",stop);
@@ -91,7 +90,7 @@
 		SEL_FOR_METHOD(@"toggle",toggle);
 		SEL_FOR_METHOD(@"fadeIn",fadeIn_duration:);
 		SEL_FOR_METHOD(@"fadeOut",fadeOut_duration:);
-		SEL_FOR_METHOD(@"animate",animate_key:value:duration:options:);
+		SEL_FOR_METHOD(@"animate",animate_animations:options:);
 		SEL_FOR_METHOD(@"do",do_animationName:duration:);
 		// inherited from abstract
 		SEL_FOR_METHOD(@"callMethod",callMethod_method:);
@@ -121,7 +120,6 @@
 		SEL_FOR_METHOD(@"defineAnimation",defineAnimation_name:animations:options:);
 		SEL_FOR_METHOD(@"loadImage",loadImage_path:);
 		SEL_FOR_METHOD(@"clearImage",clearImage_duration:);
-		SEL_FOR_METHOD(@"transact",transact_duration:animations:options:);
 		SEL_FOR_METHOD(@"chain",chain);
 		SEL_FOR_METHOD(@"commit",commit);
 		SEL_FOR_METHOD(@"stop",stop);
@@ -132,7 +130,7 @@
 		SEL_FOR_METHOD(@"toggle",toggle);
 		SEL_FOR_METHOD(@"fadeIn",fadeIn_duration:);
 		SEL_FOR_METHOD(@"fadeOut",fadeOut_duration:);
-		SEL_FOR_METHOD(@"animate",animate_key:value:duration:options:);
+		SEL_FOR_METHOD(@"animate",animate_animations:options:);
 		SEL_FOR_METHOD(@"do",do_animationName:duration:);
 		// inherited from abstract
 		SEL_FOR_METHOD(@"callMethod",callMethod_method:);
@@ -165,7 +163,6 @@
 		SEL_FOR_METHOD(@"defineAnimation",defineAnimation_name:animations:options:);
 		SEL_FOR_METHOD(@"loadImage",loadImage_path:);
 		SEL_FOR_METHOD(@"clearImage",clearImage_duration:);
-		SEL_FOR_METHOD(@"transact",transact_duration:animations:options:);
 		SEL_FOR_METHOD(@"chain",chain);
 		SEL_FOR_METHOD(@"commit",commit);
 		SEL_FOR_METHOD(@"stop",stop);
@@ -176,7 +173,7 @@
 		SEL_FOR_METHOD(@"toggle",toggle);
 		SEL_FOR_METHOD(@"fadeIn",fadeIn_duration:);
 		SEL_FOR_METHOD(@"fadeOut",fadeOut_duration:);
-		SEL_FOR_METHOD(@"animate",animate_key:value:duration:options:);
+		SEL_FOR_METHOD(@"animate",animate_animations:options:);
 		SEL_FOR_METHOD(@"do",do_animationName:duration:);
 		// inherited from abstract
 		SEL_FOR_METHOD(@"callMethod",callMethod_method:);
