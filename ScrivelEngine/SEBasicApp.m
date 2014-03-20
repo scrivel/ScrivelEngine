@@ -63,32 +63,40 @@
 - (void)wait_duration:(NSTimeInterval)duration
 {
     [self kx_emit:SEWaitBeganEvent];
-    [self performSelector:@selector(completeWait:) withObject:self afterDelay:duration];
+    if (self.engine.speed != ScrivelEngineSppedNoWait) {
+        [self performSelector:@selector(completeWait:) withObject:self afterDelay:duration];
+    }else{
+        [self kx_emit:SEWaitCompletionEvent];
+    }
 }
 
 - (void)waitTap
 {
+    if (self.engine.speed != ScrivelEngineSppedNoWait) {
 #if TARGET_OS_IPHONE
-    UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(completeWait:)];
-    [self.engine.rootView addGestureRecognizer:tgr];
+        UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(completeWait:)];
+        [self.engine.rootView addGestureRecognizer:tgr];
 #else
-    if (!_responderProxy) {
-        _responderProxy = [[SEResponderProxy alloc] initWithDelegate:nil selector:@selector(completeWait:)];
-        NSResponder *r = self.engine.rootView.nextResponder;
-        [self.engine.rootView setNextResponder:_responderProxy];
-        [_responderProxy setNextResponder:r];
-    }
-    _responderProxy.delegate = self;
+        if (!_responderProxy) {
+            _responderProxy = [[SEResponderProxy alloc] initWithDelegate:nil selector:@selector(completeWait:)];
+            NSResponder *r = self.engine.rootView.nextResponder;
+            [self.engine.rootView setNextResponder:_responderProxy];
+            [_responderProxy setNextResponder:r];
+        }
+        _responderProxy.delegate = self;
 #endif
-    [self kx_emit:SEWaitBeganEvent];
+        [self kx_emit:SEWaitBeganEvent];
+    }
 }
 
 - (void)waitAnimation
 {
-    [self kx_emit:SEWaitBeganEvent];
-    [self kx_once:SEAnimationCompletionEvent handler:^(NSNotification *n) {
-        [self kx_emit:SEWaitCompletionEvent];
-    }];
+//    if (self.engine.speed != ScrivelEngineSppedNoWait) {
+        [self kx_emit:SEWaitBeganEvent];
+        [self kx_once:SEAnimationCompletionEvent handler:^(NSNotification *n) {
+            [self kx_emit:SEWaitCompletionEvent];
+        }];
+//    }
 }
 
 - (void)waitText

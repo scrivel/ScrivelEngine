@@ -395,35 +395,35 @@
     // 複数のアニメーションを合成する
     CAAnimationGroup *g  = [CAAnimationGroup animation];
     addOptions(g, options);
+    // エンジンの実行スピードに合わせる
     CFTimeInterval duration = [options[@"duration"] doubleValue];
-    if (duration == 0) {
-        [animations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            [CATransaction begin];
-            [CATransaction setAnimationDuration:0];
-            [self.layer setValue:[self toValueForKey:key value:obj] forKeyPath:[self keyPathForKey:key]];
-            [CATransaction commit];
-        }];
-    }else if(duration > 0){
+    duration = [self.holder.engine convertDuration:ROUND_CGFLOAT(duration)];
+//    if (duration == 0) {
+//        [animations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+//            [CATransaction begin];
+//            [CATransaction setAnimationDuration:0];
+//            [self.layer setValue:[self toValueForKey:key value:obj] forKeyPath:[self keyPathForKey:key]];
+//            [CATransaction commit];
+//        }];
+//    }else if(duration > 0){
         NSMutableArray *ma = [NSMutableArray arrayWithCapacity:animations.allKeys.count];
         [animations enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
             CABasicAnimation *a = [self animationWithKey:key value:obj duration:duration options:nil];
             [ma addObject:a];
         }];
         g.animations = ma;
+    g.duration = duration;
         if (g.repeatCount == HUGE_VALF) {
             _isRepeatingForever = YES;
         }
         [self addAnimation:g forKey:kGroupedAnimationKey completion:completion];
-    }
+//    }
 }
 
 - (void)addAnimation:(CAAnimation*)animation forKey:(NSString *)key completion:(void(^)())completion
 {
     // レイヤーへのアニメーションが被らないようにUUIDを付ける
-    CFUUIDRef uuidRef = CFUUIDCreate(NULL);
-    NSString *uuid = (__bridge_transfer NSString *)CFUUIDCreateString(NULL, uuidRef);
-    CFRelease(uuidRef);
-    NSString *animationKey = [NSString stringWithFormat:@"%@-%@",key,uuid]; // translate-xxxxx
+    NSString *animationKey = [NSString stringWithFormat:@"%@-%@",key,[[NSUUID UUID] UUIDString]]; // translate-xxxxx
     [CATransaction begin];
     // サイクルアニメーションでない場合のみ、現在実行中のアニメーションの把握するためにholderに数を追加
     if (!_isRepeatingForever) {
@@ -445,8 +445,6 @@
             [self.layer setValue:val forKeyPath:key];
         }
     }
-    // エンジンの実行スピードに合わせる
-    animation.duration = ACTUAL_DURATION(animation.duration);
     [self.layer addAnimation:animation forKey:animationKey];
     [CATransaction commit];
     // チェイン状態だったらアニメーションごとにwaitAnimation()する

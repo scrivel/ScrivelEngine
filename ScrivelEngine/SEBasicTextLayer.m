@@ -248,22 +248,26 @@
 - (void)start
 {
     // waitさせる
-    [self kx_emit:SEWaitBeganEvent];
-    __weak typeof (self) __self = self;
-    [self kx_once:SETextDisplayCompletionEvent handler:^(NSNotification *n) {
-        [__self kx_emit:SEWaitCompletionEvent];
-    }];
-    _isAnimating = YES;
-    // 表示している文字を消す
-    // 最初のセットで一度消す
-    [CATransaction begin];
-    [CATransaction setAnimationDuration:0];
-    self.textLayer.string = nil;
-    [CATransaction commit];
     // 加速or減速
     CFTimeInterval duration = [self.holder.engine convertDuration:self.interval];
-    _timer = [NSTimer timerWithTimeInterval:duration target:self selector:@selector(addCharacter) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSDefaultRunLoopMode];
+    if (self.holder.engine.speed != ScrivelEngineSppedNoWait) {
+        self.textLayer.string = self.text;
+    }else{
+        [self kx_emit:SEWaitBeganEvent];
+        __weak typeof (self) __self = self;
+        [self kx_once:SETextDisplayCompletionEvent handler:^(NSNotification *n) {
+            [__self kx_emit:SEWaitCompletionEvent];
+        }];
+        _isAnimating = YES;
+        // 表示している文字を消す
+        // 最初のセットで一度消す
+        [CATransaction begin];
+        [CATransaction setAnimationDuration:0];
+        self.textLayer.string = nil;
+        [CATransaction commit];
+        _timer = [NSTimer timerWithTimeInterval:duration target:self selector:@selector(addCharacter) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSDefaultRunLoopMode];
+    }
 }
 
 - (void)pause

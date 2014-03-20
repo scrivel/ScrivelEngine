@@ -152,12 +152,14 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
                 [__text.primaryTextLayer setText_text:words.text noanimate:NO];
             }
             // タップを待つ処理をキューイングする
-            [self kx_once:SEWaitCompletionEvent handler:^(NSNotification *n) {
-                [__self.app waitTap];
-                [__self kx_once:SEWaitCompletionEvent handler:^(NSNotification *n) {
-                    [__self enqueueScript:nil prior:NO];
+            if (self.speed != ScrivelEngineSppedNoWait) {
+                [self kx_once:SEWaitCompletionEvent handler:^(NSNotification *n) {
+                    [__self.app waitTap];
+                    [__self kx_once:SEWaitCompletionEvent handler:^(NSNotification *n) {
+                        [__self enqueueScript:nil prior:NO];
+                    }];
                 }];
-            }];
+            }
         }else{
             // value
             return element;
@@ -232,12 +234,13 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
 
 - (CFTimeInterval)convertDuration:(CFTimeInterval)duration
 {
-#warning #22のための仮対応
-    return duration;
+//#warning #22のための仮対応
+//    return duration;
     if (self.speed == ScrivelEngineSppedNoWait) {
         return 0;
     }else if(self.speed > 0){
-        return duration/self.speed;
+        CFTimeInterval d = duration/self.speed;
+        return d;
     }
     return 0;
 }

@@ -12,7 +12,6 @@
 #import "SELayer.h"
 #import "SEGeometory.h"
 
-#define ACTUAL_DURATION(d) [self.holder.engine convertDuration:ROUND_CGFLOAT(d)]
 #define VIEW_SIZE self.holder.engine.rootView.bounds.size
 
 @interface SEBasicLayerClass : SEBasicObjectClass <SELayerClass>
