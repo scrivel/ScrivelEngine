@@ -20,8 +20,12 @@ task :setup do
     system "pod"
 end
 
-task :assembler do
-    system "ruby scripts/assembller.rb"
+task :assembler => ["assembller:script","assembller:text"]
+task "assembler:script" do
+    system "ruby scripts/assembller.rb SEScriptParser.m"
+end
+task "assembler:text" do
+    system "ruby scripts/assembller.rb SETextParser.m"
 end
 
 task :doc do

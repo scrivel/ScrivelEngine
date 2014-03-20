@@ -1,7 +1,10 @@
-@start = text;
-
+@start
+@before {
+    // whitespace
+    self.assembly.preservesWhitespaceTokens = YES;
+}
+            = text*;
 text        =   tag | html | string;
-string      =   /[^\[\]<>]+/;
+string      =   Any;
 tag       =   '[' identifier ']';
-html        =   '<' identifier '>' text '<' '/' identifier '>';
-identifier  =   Words;
+identifier  =   Word;

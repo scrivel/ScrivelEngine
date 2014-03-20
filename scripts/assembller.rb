@@ -1,8 +1,4 @@
-
-dir = File.expand_path(File.dirname(__FILE__))
-
-Dir.chdir("ScrivelEngine")
-Dir.glob("*Parser.m"){|parser|
+def generate(parser)
   head = <<"HEAD"
 
 @class PKParser, PKAssembly;
@@ -36,4 +32,14 @@ TAIL
   a.write head + methods.join("\n") + tail
   a.close
   p parser
-}
+end
+dir = File.expand_path(File.dirname(__FILE__))
+target = ARGV.shift
+Dir.chdir("ScrivelEngine")
+if target
+  generate target
+else
+  Dir.glob("*Parser.m"){|parser|
+    generate parser
+  }
+end

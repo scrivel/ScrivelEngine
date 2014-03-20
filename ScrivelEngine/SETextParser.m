@@ -47,6 +47,7 @@
 @property (nonatomic, retain) NSMutableDictionary *string_memo;
 @property (nonatomic, retain) NSMutableDictionary *tag_memo;
 @property (nonatomic, retain) NSMutableDictionary *html_memo;
+@property (nonatomic, retain) NSMutableDictionary *attr_memo;
 @property (nonatomic, retain) NSMutableDictionary *identifier_memo;
 @end
 
@@ -58,12 +59,14 @@
         self._tokenKindTab[@"]"] = @(SETEXTPARSER_TOKEN_KIND_CLOSE_BRACKET);
         self._tokenKindTab[@"["] = @(SETEXTPARSER_TOKEN_KIND_OPEN_BRACKET);
         self._tokenKindTab[@"/"] = @(SETEXTPARSER_TOKEN_KIND_FORWARD_SLASH);
+        self._tokenKindTab[@"="] = @(SETEXTPARSER_TOKEN_KIND_EQUALS);
         self._tokenKindTab[@">"] = @(SETEXTPARSER_TOKEN_KIND_GT);
         self._tokenKindTab[@"<"] = @(SETEXTPARSER_TOKEN_KIND_LT);
 
         self._tokenKindNameTab[SETEXTPARSER_TOKEN_KIND_CLOSE_BRACKET] = @"]";
         self._tokenKindNameTab[SETEXTPARSER_TOKEN_KIND_OPEN_BRACKET] = @"[";
         self._tokenKindNameTab[SETEXTPARSER_TOKEN_KIND_FORWARD_SLASH] = @"/";
+        self._tokenKindNameTab[SETEXTPARSER_TOKEN_KIND_EQUALS] = @"=";
         self._tokenKindNameTab[SETEXTPARSER_TOKEN_KIND_GT] = @">";
         self._tokenKindNameTab[SETEXTPARSER_TOKEN_KIND_LT] = @"<";
 
@@ -71,6 +74,7 @@
         self.string_memo = [NSMutableDictionary dictionary];
         self.tag_memo = [NSMutableDictionary dictionary];
         self.html_memo = [NSMutableDictionary dictionary];
+        self.attr_memo = [NSMutableDictionary dictionary];
         self.identifier_memo = [NSMutableDictionary dictionary];
     }
     return self;
@@ -81,12 +85,25 @@
     [_string_memo removeAllObjects];
     [_tag_memo removeAllObjects];
     [_html_memo removeAllObjects];
+    [_attr_memo removeAllObjects];
     [_identifier_memo removeAllObjects];
 }
 
 - (void)_start {
     
-    [self text]; 
+    [self execute:(id)^{
+    
+    // whitespace
+    self.assembly.preservesWhitespaceTokens = YES;
+
+    }];
+    while ([self predicts:SETEXTPARSER_TOKEN_KIND_LT, SETEXTPARSER_TOKEN_KIND_OPEN_BRACKET, TOKEN_KIND_BUILTIN_ANY, 0]) {
+        if ([self speculate:^{ [self text]; }]) {
+            [self text]; 
+        } else {
+            break;
+        }
+    }
     [self matchEOF:YES]; 
 
 }
@@ -97,7 +114,7 @@
         [self tag]; 
     } else if ([self predicts:SETEXTPARSER_TOKEN_KIND_LT, 0]) {
         [self html]; 
-    } else if ([self predicts:) {
+    } else if ([self predicts:TOKEN_KIND_BUILTIN_ANY, 0]) {
         [self string]; 
     } else {
         [self raise:@"No viable alternative found in rule 'text'."];
@@ -112,22 +129,7 @@
 
 - (void)__string {
     
-    static NSRegularExpression *regex = nil;
-    if (!regex) {
-        NSError *err = nil;
-        regex = [[NSRegularExpression regularExpressionWithPattern:@"\[\^\\\[\\]<>]\+" options:NSRegularExpressionCaseInsensitive error:&err] retain];
-        if (!regex) {
-            if (err) NSLog(@"%@", err);
-        }
-    }
-    
-    NSString *str = LS(1);
-    
-    if ([regex numberOfMatchesInString:str options:0 range:NSMakeRange(0, [str length])]) {
-        [self match:TOKEN_KIND_BUILTIN_ANY discard:NO];
-    } else {
-        [self raise:@"pattern test failed in string"];
-    }
+    [self matchAny:NO]; 
 
     [self fireAssemblerSelector:@selector(parser:didMatchString:)];
 }
@@ -153,6 +155,13 @@
     
     [self match:SETEXTPARSER_TOKEN_KIND_LT discard:NO]; 
     [self identifier]; 
+    while ([self predicts:TOKEN_KIND_BUILTIN_WORD, 0]) {
+        if ([self speculate:^{ [self attr]; }]) {
+            [self attr]; 
+        } else {
+            break;
+        }
+    }
     [self match:SETEXTPARSER_TOKEN_KIND_GT discard:NO]; 
     [self text]; 
     [self match:SETEXTPARSER_TOKEN_KIND_LT discard:NO]; 
@@ -165,6 +174,19 @@
 
 - (void)html {
     [self parseRule:@selector(__html) withMemo:_html_memo];
+}
+
+- (void)__attr {
+    
+    [self identifier]; 
+    [self match:SETEXTPARSER_TOKEN_KIND_EQUALS discard:NO]; 
+    [self matchQuotedString:NO]; 
+
+    [self fireAssemblerSelector:@selector(parser:didMatchAttr:)];
+}
+
+- (void)attr {
+    [self parseRule:@selector(__attr) withMemo:_attr_memo];
 }
 
 - (void)__identifier {

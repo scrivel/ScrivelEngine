@@ -13,26 +13,7 @@
 #import "SEScript.h"
 #import "Stack.h"
 #import "NSArray+Where.h"
-
-@interface NSString(Dequote)
-
-- (NSString*)dequotedString;
-
-@end
-
-@implementation NSString(Dequote)
-
-- (NSString*)dequotedString
-{
-    char f = [self characterAtIndex:0];
-    char l = [self characterAtIndex:self.length-1];
-    if ((f == '"' && l == '"') || (f == '\'' && l == '\'')){
-        return [self substringWithRange:NSMakeRange(1, self.length-2)];
-    }
-    return self;
-}
-
-@end
+#import "NSString+Dequoted.h"
 
 @interface SEScriptAssembler ()
 @end
