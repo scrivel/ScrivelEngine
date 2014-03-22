@@ -13,10 +13,12 @@
 
 + (instancetype)se_valueWithPoint:(SEPoint)point;
 + (instancetype)se_valueWithRect:(SERect)rect;
-+ (instancetype)se_ValueWithSize:(SESize)size;
++ (instancetype)se_valueWithSize:(SESize)size;
++ (instancetype)se_valueWithVector:(SEVector)vector;
 + (instancetype)se_valueWithEdgeInsets:(SEEdgeInsets)insets;
 - (SESize)se_sizeValue;
 - (SEPoint)se_pointValue;
+- (SEVector)se_vectorValue;
 - (SERect)se_rectValue;
 - (SEEdgeInsets)se_edgeInsetsValue;
 

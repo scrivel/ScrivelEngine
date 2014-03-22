@@ -31,5 +31,7 @@
 @property (nonatomic, readonly) BOOL isChaining;
 @property (nonatomic, readonly) BOOL isRepeatingForever;
 
+- (void)didMoveToSuperLayer:(CALayer*)layer;
+
 @end
 

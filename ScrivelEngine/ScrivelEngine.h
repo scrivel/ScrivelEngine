@@ -9,13 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "SETypeDefinition.h"
 #import "SEGeometory.h"
+#import "Queue.h"
 
 extern NSString *const SEWaitBeganEvent;
 extern NSString *const SEWaitCompletionEvent;
 extern NSString *const SEAnimationCompletionEvent;
 extern NSString *const SETextDisplayCompletionEvent;
 
-@class SEScript, SEMethod, SEBasicApp, Queue;
+@class SEScript, SEMethod, SEBasicApp;
 @protocol SEClassProxy, SEApp, SELayerClass, SETextLayerClass, SETextLayerDelegate, SECharacterLayerClass;
 
 @interface ScrivelEngine : NSObject

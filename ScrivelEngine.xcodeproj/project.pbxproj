@@ -99,6 +99,7 @@
 		A63F88C118B111BF007FBE57 /* libScrivelEngineMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECC2A18AC8BE1000F7A40 /* libScrivelEngineMac.a */; };
 		A63F899118B23A51007FBE57 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63F899018B23A51007FBE57 /* QuartzCore.framework */; };
 		A63F899418B23D07007FBE57 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6AC928518AC960300D43025 /* UIKit.framework */; };
+		A6565B5D18DD69DF00DDEF95 /* SEDScriptsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6565B5C18DD69DF00DDEF95 /* SEDScriptsTableViewController.m */; };
 		A66D847318D6E56E0010EB66 /* SEUnitFloat.h in Headers */ = {isa = PBXBuildFile; fileRef = A66D847118D6E56E0010EB66 /* SEUnitFloat.h */; };
 		A66D847418D6E56E0010EB66 /* SEUnitFloat.h in Headers */ = {isa = PBXBuildFile; fileRef = A66D847118D6E56E0010EB66 /* SEUnitFloat.h */; };
 		A66D847518D6E56E0010EB66 /* SEUnitFloat.m in Sources */ = {isa = PBXBuildFile; fileRef = A66D847218D6E56E0010EB66 /* SEUnitFloat.m */; };
@@ -279,6 +280,8 @@
 		A63F88AF18B0F496007FBE57 /* ScrivelEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrivelEngine.h; sourceTree = "<group>"; };
 		A63F88B018B0F496007FBE57 /* ScrivelEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrivelEngine.m; sourceTree = "<group>"; };
 		A63F899018B23A51007FBE57 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A6565B5B18DD69DF00DDEF95 /* SEDScriptsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEDScriptsTableViewController.h; sourceTree = "<group>"; };
+		A6565B5C18DD69DF00DDEF95 /* SEDScriptsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEDScriptsTableViewController.m; sourceTree = "<group>"; };
 		A66D847118D6E56E0010EB66 /* SEUnitFloat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEUnitFloat.h; sourceTree = "<group>"; };
 		A66D847218D6E56E0010EB66 /* SEUnitFloat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEUnitFloat.m; sourceTree = "<group>"; };
 		A66D847718D6F6350010EB66 /* SEUnitFloatTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEUnitFloatTests.m; sourceTree = "<group>"; };
@@ -434,6 +437,8 @@
 				A60ECBC518AC8523000F7A40 /* SEDAppDelegate.h */,
 				A60ECBC618AC8523000F7A40 /* SEDAppDelegate.m */,
 				A60ECBC818AC8523000F7A40 /* Main.storyboard */,
+				A6565B5B18DD69DF00DDEF95 /* SEDScriptsTableViewController.h */,
+				A6565B5C18DD69DF00DDEF95 /* SEDScriptsTableViewController.m */,
 				A60ECBCB18AC8523000F7A40 /* SEDViewController.h */,
 				A60ECBCC18AC8523000F7A40 /* SEDViewController.m */,
 				A60ECBCE18AC8523000F7A40 /* Images.xcassets */,
@@ -1018,6 +1023,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A60ECBCD18AC8523000F7A40 /* SEDViewController.m in Sources */,
+				A6565B5D18DD69DF00DDEF95 /* SEDScriptsTableViewController.m in Sources */,
 				A60ECBC318AC8523000F7A40 /* main.m in Sources */,
 				A60ECBC718AC8523000F7A40 /* SEDAppDelegate.m in Sources */,
 			);

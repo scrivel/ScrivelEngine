@@ -74,6 +74,19 @@ static inline SERect SERectMake(SESize constraintSize, id x, id y, id w, id h)
                       [_h CGFloatValueWithConstraint:constraintSize.height]);
 }
 
+static inline SEVector SEVectorMake(SESize constraintSize, id dx, id dy)
+{
+    SEUnitFloat *_x = SEUnitFloatMake(dx);
+    SEUnitFloat *_y = SEUnitFloatMake(dy);
+#if TARGET_OS_IPHONE
+    _y = [SEUnitFloat unitNumberWithCGFloat:-_y.numberValue.CGFloatValue unitType:_y.unitType];
+#endif
+    SEVector v;
+    v.dx = [_x CGFloatValueWithConstraint:constraintSize.width];
+    v.dy = [_y CGFloatValueWithConstraint:constraintSize.height];
+    return v;
+}
+
 static inline SESize SESizeFromArray(SESize constraintSize, NSArray *array)
 {
     SEUnitFloat *x = SEUnitFloatMake(array[0]);
@@ -124,6 +137,35 @@ static inline SEPoint SEPointFromObject(SESize constraintSize, id obj)
         return [obj se_pointValue];
     }
     return CGPointZero;
+}
+
+static inline SEVector SEVectorFromArray(SESize constraintSize, NSArray *array)
+{
+    SEUnitFloat *x = SEUnitFloatMake(array[0]);
+    SEUnitFloat *y = SEUnitFloatMake(array[1]);
+    return SEVectorMake(constraintSize, x, y);
+}
+
+static inline SEVector SEVectorFromDictionary(SESize constraintSize, NSDictionary *dictionary)
+{
+    SEUnitFloat *dx = SEUnitFloatMake(dictionary[@"dx"]);
+    SEUnitFloat *dy = SEUnitFloatMake(dictionary[@"dy"]);
+    return SEVectorMake(constraintSize, dx, dy);
+}
+
+static inline SEVector SEVectorFromObject(SESize constraintSize, id obj)
+{
+    if ([obj isKindOfClass:[NSArray class]]){
+        return SEVectorFromArray(constraintSize, obj);
+    }else if ([obj isKindOfClass:[NSDictionary class]]){
+        return SEVectorFromDictionary(constraintSize, obj);
+    }else if ([obj isKindOfClass:[NSValue class]]){
+        return [obj se_vectorValue];
+    }
+    SEVector v;
+    v.dx = 0;
+    v.dy = 0;
+    return v;
 }
 
 static inline SERect SERectFromArray(SESize constraintSize, NSArray *array)

@@ -86,9 +86,4 @@
 #endif
 }
 
-- (void)testRectMake
-{
-    
-}
-
 @end

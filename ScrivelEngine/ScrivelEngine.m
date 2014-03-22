@@ -115,6 +115,7 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
     // 溜まっているエレメントを順番に処理していく
     SEElement *element;
     while (!self.isWaiting && (element = [_elementQueue dequeue]) != nil) {
+        NSLog(@"evaluating : %@",element);
         if ([element isKindOfClass:[SEMethodChain class]]) {
             SEMethodChain *chain = (SEMethodChain*)element;
             id<SEObjectInstance> instance;

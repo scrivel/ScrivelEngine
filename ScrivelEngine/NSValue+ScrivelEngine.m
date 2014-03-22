@@ -28,13 +28,18 @@
 #endif
 }
 
-+ (instancetype)se_ValueWithSize:(SESize)size
++ (instancetype)se_valueWithSize:(SESize)size
 {
 #if TARGET_OS_IPHONE
     return [NSValue valueWithCGSize:size];
 #elif TARGET_OS_MAC
     return [NSValue valueWithSize:size];
 #endif
+}
+
++ (instancetype)se_valueWithVector:(SEVector)vector
+{
+    return [NSValue valueWithBytes:&vector objCType:@encode(SEVector)];
 }
 
 + (instancetype)se_valueWithEdgeInsets:(SEEdgeInsets)insets
@@ -62,6 +67,13 @@
 #elif TARGET_OS_MAC
     return [self sizeValue];
 #endif
+}
+
+- (SEVector)se_vectorValue
+{
+    SEVector v;
+    [self getValue:&v];
+    return v;
 }
 
 - (SERect)se_rectValue

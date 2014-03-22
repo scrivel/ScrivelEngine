@@ -9,6 +9,11 @@
 #ifndef ScrivelEngine_SETypeDefinition_h
 #define ScrivelEngine_SETypeDefinition_h
 
+struct SEVector {
+    CGFloat dx;
+    CGFloat dy;
+};
+typedef struct SEVector SEVector;
 #if TARGET_OS_IPHONE
 #define SEView UIView
 #define SEImage UIImage

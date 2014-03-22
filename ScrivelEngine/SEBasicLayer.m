@@ -72,6 +72,7 @@
     }else{
         [self.engine.rootView.layer addSublayer:layer.layer];
     }
+    [layer didMoveToSuperLayer:self.engine.rootView.layer];
     return layer;
 }
 
@@ -102,7 +103,6 @@
 }
 
 @end
-
 
 @implementation SEBasicLayer
 {
@@ -136,7 +136,6 @@
     self = [super initWithOpts:options holder:holder];
     // 実体はレイヤー
     _layer = [CALayer layer];
-    _layer.position = SEPointFromArray(VIEW_SIZE, @[@"50%",@"50%"]);
     // parse options
     [CATransaction begin];
     [CATransaction setAnimationDuration:0];
@@ -147,6 +146,11 @@
     }];
     [CATransaction commit];
     return self ?: nil;
+}
+
+- (void)didMoveToSuperLayer:(CALayer *)layer
+{
+    _layer.position = SEPointFromArray(VIEW_SIZE, @[@"50%",@"50%"]);
 }
 
 #pragma mark - Property
@@ -297,7 +301,7 @@
         SESize s = self.layer.bounds.size;
         if (CGSizeEqualToSize(s, CGSizeZero)) {
             SESize is = image.size;
-            [self animate_animations:@{@"size": [NSValue se_ValueWithSize:is]} options:nil];
+            [self animate_animations:@{@"size": [NSValue se_valueWithSize:is]} options:nil];
         }
         self.layer.contents = val;
     }
@@ -472,10 +476,10 @@
         bounds.size.height = size.height;
         return [NSValue se_valueWithRect:bounds];
     }else if (KEY_IS(@"translate")){
-        SEPoint translation = SEPointFromObject(VIEW_SIZE, value);
+        SEVector translation = SEVectorFromObject(VIEW_SIZE, value);
         SEPoint position = self.layer.position;
-        position.x += translation.x;
-        position.y += translation.y;
+        position.x += translation.dx;
+        position.y += translation.dy;
         return [NSValue se_valueWithPoint:position];
     }else if (KEY_IS(@"translateZ")){
         CGFloat z = [[SEUnitFloatMake(value) numberValue] CGFloatValue];
