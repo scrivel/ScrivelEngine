@@ -125,15 +125,12 @@
     CATextLayer *tl = [CATextLayer layer];
     self.layer = tl;
     self.textLayer = tl;
-//    [self.layer addSublayer:tl];
-    // TextLayerを親のレイヤーに追随させる
-//    self.textLayer.anchorPoint = self.layer.anchorPoint;
-//    [self.layer addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:NULL];
-//    [self.layer addObserver:self forKeyPath:@"anchorPoint" options:NSKeyValueObservingOptionNew context:NULL];
-//    [self.layer addObserver:self forKeyPath:@"position" options:NSKeyValueObservingOptionNew context:NULL];
+#if TARGET_OS_IPHONE
+    // retina上でフォントがぼやけるのを防ぐ    
+    self.textLayer.contentsScale = [[UIScreen mainScreen] scale];
+#endif
     
     self.textLayer = tl;
-//    self.textLayer.backgroundColor = [[SEColor redColor] CGColor];
     self.textLayer.wrapped = YES;
     self.textLayer.fontSize = 14.0f;
     self.textLayer.foregroundColor = [[SEColor blackColor] CGColor];
