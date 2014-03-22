@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SEDScriptsTableViewController.h"
 
 @interface SEDViewController : UIViewController
+<SEDScriptsTableViewControllerDelegate>
 
 @end
