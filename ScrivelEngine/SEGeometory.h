@@ -47,6 +47,18 @@ static inline CGFloat SEMakeY(CGFloat constraint, SEUnitFloat *f)
 #endif
 }
 
+static inline CGPoint CGPointFromObject(id obj)
+{
+    if ([obj isKindOfClass:[NSArray class]]) {
+        return CGPointMake([obj[0] CGFloatValue], [obj[1] CGFloatValue]);
+    }else if ([obj isKindOfClass:[NSDictionary class]]){
+        return CGPointMake([obj[@"x"] CGFloatValue], [obj[@"y"] CGFloatValue]);
+    }else if ([obj isKindOfClass:[NSValue class]]){
+        return [obj se_pointValue];
+    }
+    return CGPointZero;
+}
+
 static inline SESize SESizeMake(SESize constraintSize, id w , id h)
 {
     SEUnitFloat *_w = SEUnitFloatMake(w);

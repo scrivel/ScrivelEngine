@@ -76,9 +76,7 @@
         top.x = self.layer.position.x;
         top.y = - CGRectGetHeight(self.layer.bounds)*(1-self.layer.anchorPoint.y);
     }
-
-    NSArray *value = @[SEUnitFloatMake(@(top.x)),SEUnitFloatMake(@(top.y))];
-    [self animate_animations:@{@"position": value} options:@{@"duration": @(duration)}];
+    [self animate_animations:@{@"position": [NSValue se_valueWithPoint:top]} options:@{@"duration": @(duration)}];
 }
 
 - (void)appear_info:(NSDictionary *)info

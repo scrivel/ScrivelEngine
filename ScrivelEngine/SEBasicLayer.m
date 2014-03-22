@@ -160,7 +160,7 @@
     if (KEY_IS(@"index")){
         [self setIndex:[value unsignedIntValue]];
     }else if (KEY_IS(@"anchorPoint")) {
-        [self setAnchorPoint:SEPointFromObject(VIEW_SIZE, value)];
+        [self setAnchorPoint:CGPointFromObject(value)];
     }else if (KEY_IS(@"gravity")){
         [self setGravity:value];
     }else if (KEY_IS(@"bgColor")){
@@ -189,15 +189,14 @@
     [self.holder.engine.rootView.layer insertSublayer:self.layer atIndex:index];
     _index = index;
 }
-
 - (void)setAnchorPoint:(CGPoint)anchorPoint
 {
 #if TARGET_OS_IPHONE
-    CGFloat _y = 1 - anchorPoint.y;
+    anchorPoint.y = 1 - anchorPoint.y;
+    self.layer.anchorPoint = anchorPoint;
 #else
-    CGFloat _y = anchorPoint.y;
+    self.layer.anchorPoint = anchorPoint;
 #endif
-	self.layer.anchorPoint = CGPointMake(anchorPoint.x, _y);
     _anchorPoint = anchorPoint;
 }
 
