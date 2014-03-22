@@ -23,6 +23,7 @@ extern NSString *const SETextDisplayCompletionEvent;
 + (instancetype)engineWithRootView:(SEView*)rootView;
 
 // レイヤーを管理するrootのview
+@property (nonatomic, readonly) NSString *identifier;
 @property (nonatomic, weak) SEView *rootView;
 @property (nonatomic) id<SEClassProxy> classProxy;
 @property (nonatomic, readonly) BOOL isWaiting;

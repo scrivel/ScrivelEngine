@@ -61,6 +61,7 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
     [self setClassProxy:[SEBasicClassProxy new]];
     _methodQueue = [Queue new];
     _elementQueue = [Queue new];
+    _identifier = [[NSUUID UUID] UUIDString];
     _speed = 1.0f;
     return self ?: nil;
 }
@@ -70,6 +71,11 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
     self = [self init];
     _rootView = rootView;
     return self ?: nil;
+}
+
+- (void)dealloc
+{
+    [self kx_off];
 }
 
 - (id)evaluateScript:(NSString *)script error:(NSError *__autoreleasing *)error

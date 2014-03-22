@@ -93,7 +93,7 @@ id se_callMethod(id target, NSString *class, SEMethod *method, ScrivelEngine *en
 }
 
 @synthesize keyValueStore = __keyValueStore;
-@synthesize enabledStore = _enabledStore;
+@synthesize enabledStore = __enabledStore;
 @synthesize aliasStore = __aliasStore;
 
 - (id)init
@@ -157,7 +157,7 @@ id se_callMethod(id target, NSString *class, SEMethod *method, ScrivelEngine *en
 - (instancetype)initWithEngine:(ScrivelEngine *)engine classIdentifier:(NSString *)classIdentifier
 {
     self = [self init];
-    _engine = engine;
+    self.engine = engine;
     _classIdentifier = classIdentifier;
     __instances = [NSHashTable weakObjectsHashTable];
     _instanceClass = [SEBasicObjectClass class];
@@ -172,6 +172,7 @@ id se_callMethod(id target, NSString *class, SEMethod *method, ScrivelEngine *en
 - (id)new_args:(id)args
 {
     SEBasicObject *new = [[self.instanceClass alloc] initWithOpts:args holder:self];
+    new.engine = self.engine;
     // インスタンスを弱参照で保持する（必要かな？）
     [__instances addObject:new];
     //

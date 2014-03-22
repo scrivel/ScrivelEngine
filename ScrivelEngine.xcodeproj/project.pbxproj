@@ -612,8 +612,8 @@
 		A6AB55DB18C235D60083760F /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				A6AB55D618C225C50083760F /* NSObject+KXEventEmitter.m */,
 				A6AB55D518C225C50083760F /* NSObject+KXEventEmitter.h */,
+				A6AB55D618C225C50083760F /* NSObject+KXEventEmitter.m */,
 			);
 			name = lib;
 			sourceTree = "<group>";
