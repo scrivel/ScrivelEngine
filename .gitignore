@@ -29,3 +29,4 @@ output/
 Pods/
 docs/out
 docs/*.js
+bin/

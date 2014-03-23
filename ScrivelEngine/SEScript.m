@@ -9,6 +9,7 @@
 #import "SEScript.h"
 #import "SEScriptParser.h"
 #import "SEScriptAssembler.h"
+#import "Stack.h"
 
 static NSString *const kSEScriptErrorDomain = @"org.scrivel.ScrivelEngine:SEScriptErrorDomain";
 
@@ -31,6 +32,17 @@ static NSString *const kSEScriptErrorDomain = @"org.scrivel.ScrivelEngine:SEScri
     _elements = [NSMutableArray new];
     return self ?: nil;
 }
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey
+{
+    return @{@"elements": @"elements"};
+}
+
++ (NSValueTransformer*)elementsJSONTransformer
+{
+    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:[SEElement class]];
+}
+
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(__unsafe_unretained id [])buffer count:(NSUInteger)len
 {

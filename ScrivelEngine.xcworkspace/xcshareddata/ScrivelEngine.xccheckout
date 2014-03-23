@@ -12,6 +12,8 @@
 	<dict>
 		<key>0995EBE4-4B6D-4722-B876-9DC982283B1D</key>
 		<string>ssh://github.com/scrivel/ScrivelEngine.git</string>
+		<key>80DABCE2-C17D-485D-AC65-F95A998354C5</key>
+		<string>https://github.com/MantleFramework/Mantle</string>
 		<key>CE83F3E4-CF4A-4AA6-BC20-F5CBF720D71E</key>
 		<string>ssh://github.com/scrivel/parsekit.git</string>
 	</dict>
@@ -21,6 +23,8 @@
 	<dict>
 		<key>0995EBE4-4B6D-4722-B876-9DC982283B1D</key>
 		<string>..</string>
+		<key>80DABCE2-C17D-485D-AC65-F95A998354C5</key>
+		<string>../External/Mantle</string>
 		<key>CE83F3E4-CF4A-4AA6-BC20-F5CBF720D71E</key>
 		<string>../External/ParseKit</string>
 	</dict>
@@ -32,6 +36,14 @@
 	<string>0995EBE4-4B6D-4722-B876-9DC982283B1D</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>80DABCE2-C17D-485D-AC65-F95A998354C5</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Mantle</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

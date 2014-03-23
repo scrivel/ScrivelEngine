@@ -26,6 +26,8 @@ static inline BOOL VALID(id val){
     return self;
 }
 
+#pragma mark - JSON
+
 #pragma mark - Args
 
 - (id)argAtIndex:(NSUInteger)index
@@ -76,6 +78,20 @@ static inline BOOL VALID(id val){
 - (id)callWithTarget:(id<SEObject>)target
 {
     return [target callMethod_method:self];
+}
+
+#pragma mark - Script Component
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey
+{
+    return @{@"name": @"name",
+             @"lineNumber" : @"line_number",
+             @"arguments" : @"arguments"};
+}
+
+- (NSString *)componentName
+{
+    return @"method";
 }
 
 @end

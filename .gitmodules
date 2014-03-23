@@ -10,3 +10,6 @@
 [submodule "External/KXEventEmitter"]
 	path = External/KXEventEmitter
 	url = https://github.com/keroxp/KXEventEmitter
+[submodule "External/Mantle"]
+	path = External/Mantle
+	url = https://github.com/MantleFramework/Mantle

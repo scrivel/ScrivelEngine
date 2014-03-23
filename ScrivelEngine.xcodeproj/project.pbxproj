@@ -100,6 +100,13 @@
 		A63F899118B23A51007FBE57 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A63F899018B23A51007FBE57 /* QuartzCore.framework */; };
 		A63F899418B23D07007FBE57 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6AC928518AC960300D43025 /* UIKit.framework */; };
 		A6565B5D18DD69DF00DDEF95 /* SEDScriptsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6565B5C18DD69DF00DDEF95 /* SEDScriptsTableViewController.m */; };
+		A6565B7A18DEB78400DDEF95 /* libMantle-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6565B7918DEB78400DDEF95 /* libMantle-iOS.a */; };
+		A6565B7C18DEB78A00DDEF95 /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6565B7B18DEB78A00DDEF95 /* Mantle.framework */; };
+		A6565B7E18DEB79600DDEF95 /* libMantle-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6565B7D18DEB79600DDEF95 /* libMantle-iOS.a */; };
+		A6565B8018DEB79E00DDEF95 /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6565B7F18DEB79D00DDEF95 /* Mantle.framework */; };
+		A6565B8918DEC45300DDEF95 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6565B8818DEC45300DDEF95 /* Foundation.framework */; };
+		A6565B8C18DEC45300DDEF95 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6565B8B18DEC45300DDEF95 /* main.m */; };
+		A6565B9018DEC45300DDEF95 /* ScrivelScript.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = A6565B8F18DEC45300DDEF95 /* ScrivelScript.1 */; };
 		A66D847318D6E56E0010EB66 /* SEUnitFloat.h in Headers */ = {isa = PBXBuildFile; fileRef = A66D847118D6E56E0010EB66 /* SEUnitFloat.h */; };
 		A66D847418D6E56E0010EB66 /* SEUnitFloat.h in Headers */ = {isa = PBXBuildFile; fileRef = A66D847118D6E56E0010EB66 /* SEUnitFloat.h */; };
 		A66D847518D6E56E0010EB66 /* SEUnitFloat.m in Sources */ = {isa = PBXBuildFile; fileRef = A66D847218D6E56E0010EB66 /* SEUnitFloat.m */; };
@@ -132,6 +139,10 @@
 		A6AC928418AC95FC00D43025 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6AC927E18AC95DB00D43025 /* Cocoa.framework */; };
 		A6AC928618AC960300D43025 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6AC928518AC960300D43025 /* UIKit.framework */; };
 		A6AC92C018ACF44400D43025 /* libScrivelEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECBF318AC86A7000F7A40 /* libScrivelEngine.a */; };
+		A6AFECAC18DECACB009E30D4 /* libMantle-Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6AFECAB18DECACB009E30D4 /* libMantle-Mac.a */; };
+		A6AFECAE18DECAD0009E30D4 /* libParseKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6AFECAD18DECAD0009E30D4 /* libParseKit.a */; };
+		A6AFECB118DECD59009E30D4 /* SSComandLineTool.m in Sources */ = {isa = PBXBuildFile; fileRef = A6AFECB018DECD59009E30D4 /* SSComandLineTool.m */; };
+		A6AFECB418DECE51009E30D4 /* libScrivelEngineMac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECC2A18AC8BE1000F7A40 /* libScrivelEngineMac.a */; };
 		A6D04D3818B4DFA600977B7A /* ScrivelEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F88AF18B0F496007FBE57 /* ScrivelEngine.h */; };
 		A6D04D3A18B4F76D00977B7A /* ScrivelEngineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D04D3918B4F76D00977B7A /* ScrivelEngineTests.m */; };
 		A6D04D3B18B4F77000977B7A /* ScrivelEngineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D04D3918B4F76D00977B7A /* ScrivelEngineTests.m */; };
@@ -212,7 +223,27 @@
 			remoteGlobalIDString = A60ECC2918AC8BE1000F7A40;
 			remoteInfo = ScrivelEngineMac;
 		};
+		A6AFECB218DECE4D009E30D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A6A6126918A7B0DA00CBD988 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A60ECC2918AC8BE1000F7A40;
+			remoteInfo = ScrivelEngineMac;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A6565B8518DEC45300DDEF95 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				A6565B9018DEC45300DDEF95 /* ScrivelScript.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4CE535954D37458B9E35A0D4 /* libPods-ScrivelEngineDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ScrivelEngineDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -282,6 +313,16 @@
 		A63F899018B23A51007FBE57 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A6565B5B18DD69DF00DDEF95 /* SEDScriptsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEDScriptsTableViewController.h; sourceTree = "<group>"; };
 		A6565B5C18DD69DF00DDEF95 /* SEDScriptsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEDScriptsTableViewController.m; sourceTree = "<group>"; };
+		A6565B7918DEB78400DDEF95 /* libMantle-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libMantle-iOS.a"; path = "External/Mantle/build/Debug-iphoneos/libMantle-iOS.a"; sourceTree = "<group>"; };
+		A6565B7B18DEB78A00DDEF95 /* Mantle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mantle.framework; path = External/Mantle/build/Debug/Mantle.framework; sourceTree = "<group>"; };
+		A6565B7D18DEB79600DDEF95 /* libMantle-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libMantle-iOS.a"; path = "External/Mantle/build/Debug-iphoneos/libMantle-iOS.a"; sourceTree = "<group>"; };
+		A6565B7F18DEB79D00DDEF95 /* Mantle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mantle.framework; path = External/Mantle/build/Debug/Mantle.framework; sourceTree = "<group>"; };
+		A6565B8718DEC45300DDEF95 /* ScrivelScript */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ScrivelScript; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6565B8818DEC45300DDEF95 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A6565B8B18DEC45300DDEF95 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A6565B8E18DEC45300DDEF95 /* ScrivelScript-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ScrivelScript-Prefix.pch"; sourceTree = "<group>"; };
+		A6565B8F18DEC45300DDEF95 /* ScrivelScript.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ScrivelScript.1; sourceTree = "<group>"; };
+		A6565B9518DEC47500DDEF95 /* Mantle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mantle.framework; path = "../../../Library/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug/Mantle.framework"; sourceTree = "<group>"; };
 		A66D847118D6E56E0010EB66 /* SEUnitFloat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEUnitFloat.h; sourceTree = "<group>"; };
 		A66D847218D6E56E0010EB66 /* SEUnitFloat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEUnitFloat.m; sourceTree = "<group>"; };
 		A66D847718D6F6350010EB66 /* SEUnitFloatTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEUnitFloatTests.m; sourceTree = "<group>"; };
@@ -302,6 +343,10 @@
 		A6AC928018AC95F200D43025 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
 		A6AC928218AC95F700D43025 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		A6AC928518AC960300D43025 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A6AFECAB18DECACB009E30D4 /* libMantle-Mac.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libMantle-Mac.a"; path = "External/Mantle/build/Debug/libMantle-Mac.a"; sourceTree = "<group>"; };
+		A6AFECAD18DECAD0009E30D4 /* libParseKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libParseKit.a; path = "../../../Library/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug/libParseKit.a"; sourceTree = "<group>"; };
+		A6AFECAF18DECD59009E30D4 /* SSComandLineTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSComandLineTool.h; sourceTree = "<group>"; };
+		A6AFECB018DECD59009E30D4 /* SSComandLineTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSComandLineTool.m; sourceTree = "<group>"; };
 		A6D04D3918B4F76D00977B7A /* ScrivelEngineTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrivelEngineTests.m; sourceTree = "<group>"; };
 		A6D04D4218B74D4D00977B7A /* NSArray+Where.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Where.h"; sourceTree = "<group>"; };
 		A6D04D4318B74D4D00977B7A /* NSArray+Where.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Where.m"; sourceTree = "<group>"; };
@@ -335,6 +380,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6565B7E18DEB79600DDEF95 /* libMantle-iOS.a in Frameworks */,
 				A6AC928618AC960300D43025 /* UIKit.framework in Frameworks */,
 				A60ECBBA18AC8523000F7A40 /* CoreGraphics.framework in Frameworks */,
 				793C1D19390A4FBEB4072956 /* libPods-ScrivelEngineDemo.a in Frameworks */,
@@ -354,6 +400,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6565B7A18DEB78400DDEF95 /* libMantle-iOS.a in Frameworks */,
 				A6F499EA18CDE55F00B46770 /* libParseKitMobile.a in Frameworks */,
 				A639F0A118BB932100CF4148 /* CoreGraphics.framework in Frameworks */,
 				A604524518B3C6A700B85928 /* UIKit.framework in Frameworks */,
@@ -375,6 +422,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6565B7C18DEB78A00DDEF95 /* Mantle.framework in Frameworks */,
 				A6F499EB18CDE56800B46770 /* ParseKit.framework in Frameworks */,
 				A604524618B3C6AF00B85928 /* Cocoa.framework in Frameworks */,
 				A63F88C118B111BF007FBE57 /* libScrivelEngineMac.a in Frameworks */,
@@ -383,10 +431,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A6565B8418DEC45300DDEF95 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6AFECB418DECE51009E30D4 /* libScrivelEngineMac.a in Frameworks */,
+				A6AFECAE18DECAD0009E30D4 /* libParseKit.a in Frameworks */,
+				A6AFECAC18DECACB009E30D4 /* libMantle-Mac.a in Frameworks */,
+				A6565B8918DEC45300DDEF95 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A6AC921618AC921C00D43025 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6565B8018DEB79E00DDEF95 /* Mantle.framework in Frameworks */,
 				A6F499E418CDE50400B46770 /* MGSFragaria.framework in Frameworks */,
 				A6D0517518B856A300977B7A /* ParseKit.framework in Frameworks */,
 				A63BB5F518AD33D70051FA9F /* libScrivelEngineMac.a in Frameworks */,
@@ -575,6 +635,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A6565B8A18DEC45300DDEF95 /* ScrivelScript */ = {
+			isa = PBXGroup;
+			children = (
+				A6565B8B18DEC45300DDEF95 /* main.m */,
+				A6565B8F18DEC45300DDEF95 /* ScrivelScript.1 */,
+				A6565B8D18DEC45300DDEF95 /* Supporting Files */,
+				A6AFECAF18DECD59009E30D4 /* SSComandLineTool.h */,
+				A6AFECB018DECD59009E30D4 /* SSComandLineTool.m */,
+			);
+			path = ScrivelScript;
+			sourceTree = "<group>";
+		};
+		A6565B8D18DEC45300DDEF95 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A6565B8E18DEC45300DDEF95 /* ScrivelScript-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		A6A6126818A7B0DA00CBD988 = {
 			isa = PBXGroup;
 			children = (
@@ -583,6 +663,7 @@
 				A60ECC0718AC86A7000F7A40 /* ScrivelEngineTests */,
 				A60ECBBC18AC8523000F7A40 /* ScrivelEngineDemo */,
 				A6AC921B18AC921C00D43025 /* ScrivelEngineMacDemo */,
+				A6565B8A18DEC45300DDEF95 /* ScrivelScript */,
 				A6A6127318A7B0DA00CBD988 /* Frameworks */,
 				A6A6127218A7B0DA00CBD988 /* Products */,
 				A6AB55DB18C235D60083760F /* lib */,
@@ -599,6 +680,7 @@
 				A60ECC2A18AC8BE1000F7A40 /* libScrivelEngineMac.a */,
 				A6AC921918AC921C00D43025 /* ScrivelEngineMacDemo.app */,
 				A63BB5E318AD30D30051FA9F /* ScrivelEngineMacTests.xctest */,
+				A6565B8718DEC45300DDEF95 /* ScrivelScript */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -606,10 +688,18 @@
 		A6A6127318A7B0DA00CBD988 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A6AFECAD18DECAD0009E30D4 /* libParseKit.a */,
+				A6AFECAB18DECACB009E30D4 /* libMantle-Mac.a */,
+				A6565B9518DEC47500DDEF95 /* Mantle.framework */,
+				A6565B7F18DEB79D00DDEF95 /* Mantle.framework */,
+				A6565B7D18DEB79600DDEF95 /* libMantle-iOS.a */,
+				A6565B7B18DEB78A00DDEF95 /* Mantle.framework */,
+				A6565B7918DEB78400DDEF95 /* libMantle-iOS.a */,
 				A60B508F18D8834C00204565 /* libParseKitMobile.a */,
 				A6F499E618CDE51B00B46770 /* External */,
 				A6F499E518CDE50D00B46770 /* Pods */,
 				A612D8D918CDE4A200D72A11 /* OS */,
+				A6565B8818DEC45300DDEF95 /* Foundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -861,6 +951,25 @@
 			productReference = A63BB5E318AD30D30051FA9F /* ScrivelEngineMacTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		A6565B8618DEC45300DDEF95 /* ScrivelScript */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A6565B9118DEC45300DDEF95 /* Build configuration list for PBXNativeTarget "ScrivelScript" */;
+			buildPhases = (
+				A6565B8318DEC45300DDEF95 /* Sources */,
+				A6565B8418DEC45300DDEF95 /* Frameworks */,
+				A6565B8518DEC45300DDEF95 /* CopyFiles */,
+				A6565B9718DEC50500DDEF95 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A6AFECB318DECE4D009E30D4 /* PBXTargetDependency */,
+			);
+			name = ScrivelScript;
+			productName = ScrivelScript;
+			productReference = A6565B8718DEC45300DDEF95 /* ScrivelScript */;
+			productType = "com.apple.product-type.tool";
+		};
 		A6AC921818AC921C00D43025 /* ScrivelEngineMacDemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A6AC924018AC921C00D43025 /* Build configuration list for PBXNativeTarget "ScrivelEngineMacDemo" */;
@@ -889,10 +998,10 @@
 				ORGANIZATIONNAME = scrivel;
 				TargetAttributes = {
 					A60ECBFF18AC86A7000F7A40 = {
-						TestTargetID = A60ECBF218AC86A7000F7A40;
+						TestTargetID = A60ECBB618AC8523000F7A40;
 					};
 					A63BB5E218AD30D30051FA9F = {
-						TestTargetID = A60ECC2918AC8BE1000F7A40;
+						TestTargetID = A60ECBB618AC8523000F7A40;
 					};
 				};
 			};
@@ -916,6 +1025,7 @@
 				A63BB5E218AD30D30051FA9F /* ScrivelEngineMacTests */,
 				A60ECBB618AC8523000F7A40 /* ScrivelEngineDemo */,
 				A6AC921818AC921C00D43025 /* ScrivelEngineMacDemo */,
+				A6565B8618DEC45300DDEF95 /* ScrivelScript */,
 			);
 		};
 /* End PBXProject section */
@@ -1014,6 +1124,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-ScrivelEngineDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		A6565B9718DEC50500DDEF95 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "if [ !  -d \"${SRCROOT}/bin/\" ]; then\n    mkdir \"${SRCROOT}/bin\"\nfi\nrm \"${SRCROOT}/bin/ss\"\nln -s \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}\" \"${SRCROOT}/bin/ss\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1118,6 +1241,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A6565B8318DEC45300DDEF95 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6565B8C18DEC45300DDEF95 /* main.m in Sources */,
+				A6AFECB118DECD59009E30D4 /* SSComandLineTool.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A6AC921518AC921C00D43025 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1144,6 +1276,11 @@
 			isa = PBXTargetDependency;
 			target = A60ECC2918AC8BE1000F7A40 /* ScrivelEngineMac */;
 			targetProxy = A6AC927B18AC937500D43025 /* PBXContainerItemProxy */;
+		};
+		A6AFECB318DECE4D009E30D4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A60ECC2918AC8BE1000F7A40 /* ScrivelEngineMac */;
+			targetProxy = A6AFECB218DECE4D009E30D4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1219,6 +1356,10 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "ScrivelEngineDemo/ScrivelEngineDemo-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/External/Mantle/build/Debug-iphoneos",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1249,6 +1390,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ScrivelEngineDemo/ScrivelEngineDemo-Prefix.pch";
 				INFOPLIST_FILE = "ScrivelEngineDemo/ScrivelEngineDemo-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/External/Mantle/build/Debug-iphoneos",
+				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1315,6 +1460,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ScrivelEngineDemo.app/ScrivelEngineDemo";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1329,7 +1475,10 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "ScrivelEngineTests/ScrivelEngineTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/External/Mantle/build/Debug-iphoneos",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1339,6 +1488,7 @@
 					"-licucore",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1348,6 +1498,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ScrivelEngineDemo.app/ScrivelEngineDemo";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1358,7 +1509,10 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "ScrivelEngineTests/ScrivelEngineTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/External/Mantle/build/Debug-iphoneos",
+				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1368,6 +1522,7 @@
 					"-licucore",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1435,11 +1590,13 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ScrivelEngineDemo.app/ScrivelEngineDemo";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug",
+					"$(PROJECT_DIR)/External/Mantle/build/Debug",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1467,6 +1624,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1477,12 +1635,14 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ScrivelEngineDemo.app/ScrivelEngineDemo";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug",
+					"$(PROJECT_DIR)/External/Mantle/build/Debug",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1506,8 +1666,60 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+		A6565B9218DEC45300DDEF95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ScrivelScript/ScrivelScript-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/External/Mantle/build/Debug",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		A6565B9318DEC45300DDEF95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ScrivelScript/ScrivelScript-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/External/Mantle/build/Debug",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -1546,6 +1758,7 @@
 				HEADER_SEARCH_PATHS = (
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"${SRCROOT}/External/ParseKit/include",
+					"${SRCROOT}/External/Mantle",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -1588,6 +1801,7 @@
 				HEADER_SEARCH_PATHS = (
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"${SRCROOT}/External/ParseKit/include",
+					"${SRCROOT}/External/Mantle",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -1610,6 +1824,7 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug",
+					"$(PROJECT_DIR)/External/Mantle/build/Debug",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1643,6 +1858,7 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug",
+					"$(PROJECT_DIR)/External/Mantle/build/Debug",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1706,6 +1922,15 @@
 			buildConfigurations = (
 				A63BB5F118AD30D30051FA9F /* Debug */,
 				A63BB5F218AD30D30051FA9F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A6565B9118DEC45300DDEF95 /* Build configuration list for PBXNativeTarget "ScrivelScript" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6565B9218DEC45300DDEF95 /* Debug */,
+				A6565B9318DEC45300DDEF95 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

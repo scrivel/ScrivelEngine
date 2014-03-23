@@ -12,7 +12,9 @@
 #import "SEWords.h"
 
 @interface SEScriptTests : XCTestCase
-
+{
+    NSArray *_testScriptPaths;
+}
 @end
 
 @implementation SEScriptTests
@@ -21,6 +23,7 @@
 {
     [super setUp];
     // Put setup code here; it will be run once, before the first test case.
+    _testScriptPaths = [[NSBundle bundleForClass:[self class]] pathsForResourcesOfType:@"sescript" inDirectory:@"Scripts.bundle"];
 }
 
 - (void)tearDown
@@ -79,18 +82,34 @@
 
 - (void)testScriptString
 {
-    NSArray *scriptPaths = [[NSBundle bundleForClass:[self class]] pathsForResourcesOfType:@"sescript" inDirectory:@"Scripts.bundle"];
-    for (NSString *path in scriptPaths) {
+    for (NSString *path in _testScriptPaths) {
         NSError *e = nil;
         NSString *script = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&e];
-        XCTAssertNil(e, );
         SEScript *s = [SEScript scriptWithString:script error:&e];
         XCTAssertNil(e, );
-        if (e) {
-            
-        }
         XCTAssert(s, );
     }
+}
+
+- (void)testScriptJSONSerialization
+{
+    for (NSString *path in _testScriptPaths) {
+        NSError *e = nil;
+        NSString *script = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&e];
+        SEScript *s = [SEScript scriptWithString:script error:&e];
+        NSDictionary *json;
+        XCTAssertNoThrow(json = [MTLJSONAdapter JSONDictionaryFromModel:s],);
+        XCTAssert(json, );
+        NSLog(@"%@",json);
+        NSData *data = [NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted error:&e];
+        XCTAssert(data, );
+        NSString *jsonstr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        XCTAssert(jsonstr, );
+        id recovered = [NSJSONSerialization JSONObjectWithData:[jsonstr dataUsingEncoding:NSUTF8StringEncoding]
+                                                       options:0
+                                                         error:&e];
+        XCTAssert([json isEqualToDictionary:recovered], );
+    }   
 }
 
 @end

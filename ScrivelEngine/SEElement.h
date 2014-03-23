@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Mantle/Mantle.h>
 
-@interface SEElement : NSObject
+@interface SEElement : MTLModel <MTLJSONSerializing>
 
 @property (nonatomic) NSRange rangeOfLines;
+
+- (NSString*)elementName;
 
 @end

@@ -1,1 +1,19 @@
-<?xml version='1.0' encoding='UTF-8'?><Workspace version='1.0'><FileRef location='group:ScrivelEngine.xcodeproj'/><FileRef location='group:External/ParseKit/ParseKit.xcodeproj'/><FileRef location='group:External/Fragaria/Fragaria.xcodeproj'/><FileRef location='group:Pods/Pods.xcodeproj'/></Workspace>
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:ScrivelEngine.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:External/Mantle/Mantle.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:External/ParseKit/ParseKit.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:External/Fragaria/Fragaria.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+</Workspace>

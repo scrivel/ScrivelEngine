@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <ParseKit/ParseKit.h>
+#import <Mantle/Mantle.h>
 #import "SEMethodChain.h"
 #import "SEMethod.h"
 #import "Queue.h"
 
-@interface SEScript : NSObject <NSFastEnumeration>
+@interface SEScript : MTLModel <NSFastEnumeration, MTLJSONSerializing>
 
 + (instancetype)scriptWithString:(NSString*)string error:(NSError**)error;
 

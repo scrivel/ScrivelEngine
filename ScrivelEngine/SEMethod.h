@@ -6,12 +6,12 @@
 //  Copyright (c) 2014年 scrivel. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "SEObject.h"
+#import <Mantle/Mantle.h>
 
 @class SEObject;
 
-@interface SEMethod : NSObject
+@interface SEMethod : MTLModel<MTLJSONSerializing>
 
 - (instancetype)initWithName:(NSString*)name lineNumer:(NSUInteger)lineNumber;
 

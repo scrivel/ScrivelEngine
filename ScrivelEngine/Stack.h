@@ -12,6 +12,7 @@
 
 - (id)pop;
 - (void)push:(id)obj;
+- (void)pushObjects:(NSArray*)objects;
 
 - (NSUInteger)count;
 

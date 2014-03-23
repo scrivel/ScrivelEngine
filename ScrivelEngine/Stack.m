@@ -33,6 +33,11 @@
     [ma addObject:obj];
 }
 
+- (void)pushObjects:(NSArray *)objects
+{
+    [ma addObjectsFromArray:objects];
+}
+
 - (NSUInteger)count
 {
     return ma.count;

@@ -28,4 +28,17 @@
     return [_arguments objectAtIndex:1];
 }
 
+#pragma mark - 
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey
+{
+    return [[super JSONKeyPathsByPropertyKey] mtl_dictionaryByAddingEntriesFromDictionary:@{@"character" : @"character",
+                                                                                            @"arguments" : @"arguments"}];
+}
+
+- (NSString *)elementName
+{
+    return @"words";
+}
+
 @end

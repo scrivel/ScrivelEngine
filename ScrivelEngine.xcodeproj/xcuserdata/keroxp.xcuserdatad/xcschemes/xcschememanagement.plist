@@ -24,6 +24,11 @@
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
+		<key>ScrivelScript.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>26</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -73,6 +78,11 @@
 			<true/>
 		</dict>
 		<key>A63BB5E218AD30D30051FA9F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A6565B8618DEC45300DDEF95</key>
 		<dict>
 			<key>primary</key>
 			<true/>
