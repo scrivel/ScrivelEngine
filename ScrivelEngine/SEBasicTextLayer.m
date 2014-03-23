@@ -149,26 +149,6 @@
     return self ?: nil;
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if (object == self.layer){
-        if([keyPath isEqualToString:@"bounds"]) {
-            SERect bounds = [[change objectForKey:NSKeyValueChangeNewKey] se_rectValue];
-            bounds.size.width -= self.padding.left + self.padding.right;
-            bounds.size.height -= self.padding.top + self.padding.bottom;
-            bounds.origin.y += self.padding.bottom;
-            self.textLayer.bounds = bounds;
-        }else if ([keyPath isEqualToString:@"anchorPoint"]){
-            self.textLayer.anchorPoint = [[change objectForKey:NSKeyValueChangeNewKey] se_pointValue];
-        }else if ([keyPath isEqualToString:@"position"]){
-            CGPoint p = [[change objectForKey:NSKeyValueChangeNewKey] se_pointValue];
-            p.y += self.padding.bottom;
-            self.textLayer.position = p;
-        }
-    }
-
-}
-
 #if TARGET_OS_IPHONE
 - (void)handleTap:(UIPanGestureRecognizer*)sender
 {
