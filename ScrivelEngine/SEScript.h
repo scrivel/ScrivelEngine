@@ -21,4 +21,6 @@
 // 実体はSEMethodChain
 @property (nonatomic, readonly) NSMutableArray *elements;
 
+- (NSString*)JSONString;
+
 @end
