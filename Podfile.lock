@@ -1,7 +1,11 @@
 PODS:
   - KXEventEmitter (0.0.2)
+  - Mantle (1.4.1):
+    - Mantle/extobjc
+  - Mantle/extobjc (1.4.1)
   - ParseKit (0.7)
   - ScrivelEngine (0.0.1):
+    - Mantle (~> 1.4.1)
     - ParseKit (~> 0.7)
 
 DEPENDENCIES:
@@ -16,7 +20,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   KXEventEmitter: 96b693b79fba28f1ea0edb4e9d244c3e2d024053
+  Mantle: 0714cdb2b8559d9e6c2410d6a8529e3307bff189
   ParseKit: 3e29375d37e10b468fa2298ad7304a10f553bcef
-  ScrivelEngine: 7cec8e5fc36227444f2f00448cb447fc54f25254
+  ScrivelEngine: 3f537b4214f38a5fcb4da265b852fa21aea3a9ca
 
 COCOAPODS: 0.29.0
