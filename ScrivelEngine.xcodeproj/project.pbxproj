@@ -102,7 +102,6 @@
 		A6565B5D18DD69DF00DDEF95 /* SEDScriptsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6565B5C18DD69DF00DDEF95 /* SEDScriptsTableViewController.m */; };
 		A6565B7A18DEB78400DDEF95 /* libMantle-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6565B7918DEB78400DDEF95 /* libMantle-iOS.a */; };
 		A6565B7C18DEB78A00DDEF95 /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6565B7B18DEB78A00DDEF95 /* Mantle.framework */; };
-		A6565B7E18DEB79600DDEF95 /* libMantle-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6565B7D18DEB79600DDEF95 /* libMantle-iOS.a */; };
 		A6565B8018DEB79E00DDEF95 /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6565B7F18DEB79D00DDEF95 /* Mantle.framework */; };
 		A6565B8918DEC45300DDEF95 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6565B8818DEC45300DDEF95 /* Foundation.framework */; };
 		A6565B8C18DEC45300DDEF95 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A6565B8B18DEC45300DDEF95 /* main.m */; };
@@ -381,7 +380,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6565B7E18DEB79600DDEF95 /* libMantle-iOS.a in Frameworks */,
 				A6AC928618AC960300D43025 /* UIKit.framework in Frameworks */,
 				A60ECBBA18AC8523000F7A40 /* CoreGraphics.framework in Frameworks */,
 				793C1D19390A4FBEB4072956 /* libPods-ScrivelEngineDemo.a in Frameworks */,
@@ -1698,9 +1696,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = (
 					"-ObjC",
-					libScrivelEngineMac,
-					libParseKit,
-					"libMantle-Mac",
+					"-licucore",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -1728,9 +1724,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = (
 					"-ObjC",
-					libScrivelEngineMac,
-					libParseKit,
-					"libMantle-Mac",
+					"-licucore",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
