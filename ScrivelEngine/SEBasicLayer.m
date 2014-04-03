@@ -50,7 +50,7 @@
     _activeAnimationCount = activeAnimationCount;
     // 実行中のアニメーションがすべて終了したら通知を出す
     if (activeAnimationCount == 0) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:SEAnimationCompletionEvent object:self];
+        [self kx_emit:SEAnimationCompletionEvent userInfo:nil center:self.engine.notificationCenter];
     }
 }
 

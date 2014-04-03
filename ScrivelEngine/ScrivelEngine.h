@@ -31,6 +31,7 @@ extern NSString *const SETextDisplayCompletionEvent;
 @property (nonatomic) CGFloat speed;
 @property (nonatomic, readonly) Queue *elementQueue;
 @property (nonatomic, readonly) Queue *methodQueue;
+@property (nonatomic, readonly) NSNotificationCenter *notificationCenter;
 // アプリケーション本体
 @property (nonatomic, readonly) id<SEApp> app;
 @property (nonatomic, readonly) id<SELayerClass> layer;

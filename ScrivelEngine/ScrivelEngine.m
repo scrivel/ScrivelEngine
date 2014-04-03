@@ -63,6 +63,7 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
     _elementQueue = [Queue new];
     _identifier = [[NSUUID UUID] UUIDString];
     _speed = 1.0f;
+    _notificationCenter = [NSNotificationCenter new];
     return self ?: nil;
 }
 
@@ -75,7 +76,7 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
 
 - (void)dealloc
 {
-    [self kx_off];
+    [self kx_offCenter:self.notificationCenter];
 }
 
 - (id)evaluateScript:(NSString *)script error:(NSError *__autoreleasing *)error
@@ -96,8 +97,8 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
         [__self setValue:@YES forKey:@"_isWaiting"];
         [__self kx_once:SEWaitCompletionEvent handler:^(NSNotification *n) {
             [__self enqueueScript:nil prior:NO];
-        }];
-    }];
+        } from:nil center:__self.notificationCenter];
+    } from:nil center:self.notificationCenter];
     if ([sender isKindOfClass:[SEScript class]]){
         // priorの場合は割り込みさせる
         if (prior) {
@@ -163,8 +164,8 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
                 [__self.app waitTap];
                 [__self kx_once:SEWaitCompletionEvent handler:^(NSNotification *n) {
                     [__self enqueueScript:nil prior:NO];
-                }];
-            }];
+                } from:nil center:__self.notificationCenter];
+            } from:nil center:self.notificationCenter];
         }else{
             // value
             return element;

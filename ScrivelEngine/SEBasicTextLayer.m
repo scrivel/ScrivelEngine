@@ -198,7 +198,7 @@
     _timer = nil;
     _isAnimating = NO;
     _currentCharacterIndex = 0;
-    [self kx_emit:SETextDisplayCompletionEvent];
+    [self kx_emit:SETextDisplayCompletionEvent userInfo:nil center:self.engine.notificationCenter];
 }
 
 #pragma mark - CALayer
@@ -225,11 +225,11 @@
 - (void)start
 {
     // waitさせる
-    [self kx_emit:SEWaitBeganEvent];
+    [self kx_emit:SEWaitBeganEvent userInfo:nil center:self.engine.notificationCenter];
     __weak typeof (self) __self = self;
     [self kx_once:SETextDisplayCompletionEvent handler:^(NSNotification *n) {
-        [__self kx_emit:SEWaitCompletionEvent];
-    }];
+        [__self kx_emit:SEWaitCompletionEvent userInfo:nil center:__self.engine.notificationCenter];
+    } from:nil center:self.engine.notificationCenter];
     _isAnimating = YES;
     // 表示している文字を消す
     // 最初のセットで一度消す

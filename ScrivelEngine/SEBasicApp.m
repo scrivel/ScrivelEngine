@@ -57,12 +57,12 @@
         _responderProxy.delegate = nil;
     }
 #endif
-    [self kx_emit:SEWaitCompletionEvent];
+    [self kx_emit:SEWaitCompletionEvent userInfo:nil center:self.engine.notificationCenter];
 }
 
 - (void)wait_duration:(NSTimeInterval)duration
 {
-    [self kx_emit:SEWaitBeganEvent];
+    [self kx_emit:SEWaitBeganEvent userInfo:nil center:self.engine.notificationCenter];
     [self performSelector:@selector(completeWait:) withObject:self afterDelay:duration];
 }
 
@@ -80,15 +80,15 @@
     }
     _responderProxy.delegate = self;
 #endif
-    [self kx_emit:SEWaitBeganEvent];
+    [self kx_emit:SEWaitBeganEvent userInfo:nil center:self.engine.notificationCenter];
 }
 
 - (void)waitAnimation
 {
-    [self kx_emit:SEWaitBeganEvent];
+    [self kx_emit:SEWaitBeganEvent userInfo:nil center:self.engine.notificationCenter];
     [self kx_once:SEAnimationCompletionEvent handler:^(NSNotification *n) {
-        [self kx_emit:SEWaitCompletionEvent];
-    }];
+        [self kx_emit:SEWaitCompletionEvent userInfo:nil center:self.engine.notificationCenter];
+    } from:nil center:self.engine.notificationCenter];
 }
 
 - (void)waitText
