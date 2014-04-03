@@ -15,9 +15,8 @@ task :testall do
 end
 
 task :setup do
-    system "git submodule init"
-    system "git submodule update"
-    system "pod"
+    system "git submodule update --init --recursive"
+    system "pod install"
 end
 
 task :assembler do

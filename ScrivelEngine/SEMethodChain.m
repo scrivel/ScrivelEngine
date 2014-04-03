@@ -18,7 +18,7 @@
     self = [self init];
     _target = target;
     _type = type;    
-    _methods = [NSMutableArray new];    
+    _methods = [NSMutableArray new];
     return self ?: nil;
 }
 

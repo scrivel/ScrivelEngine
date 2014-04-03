@@ -998,10 +998,10 @@
 				ORGANIZATIONNAME = scrivel;
 				TargetAttributes = {
 					A60ECBFF18AC86A7000F7A40 = {
-						TestTargetID = A60ECBB618AC8523000F7A40;
+						TestTargetID = A60ECBF218AC86A7000F7A40;
 					};
 					A63BB5E218AD30D30051FA9F = {
-						TestTargetID = A60ECBB618AC8523000F7A40;
+						TestTargetID = A60ECBF218AC86A7000F7A40;
 					};
 				};
 			};
@@ -1460,7 +1460,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ScrivelEngineDemo.app/ScrivelEngineDemo";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1488,7 +1487,6 @@
 					"-licucore",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1498,7 +1496,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ScrivelEngineDemo.app/ScrivelEngineDemo";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1522,7 +1519,6 @@
 					"-licucore",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1590,7 +1586,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ScrivelEngineDemo.app/ScrivelEngineDemo";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -1624,7 +1619,6 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1635,7 +1629,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/ScrivelEngineDemo.app/ScrivelEngineDemo";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1666,7 +1659,6 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALID_ARCHS = x86_64;
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1767,6 +1759,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"${SRCROOT}/External/ParseKit/include",
 					"${SRCROOT}/External/Mantle",
+					"${SRCROOT}/ScrivelEngine",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -1810,6 +1803,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"${SRCROOT}/External/ParseKit/include",
 					"${SRCROOT}/External/Mantle",
+					"${SRCROOT}/ScrivelEngine",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (

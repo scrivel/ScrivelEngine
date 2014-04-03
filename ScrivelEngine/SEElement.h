@@ -12,7 +12,6 @@
 @interface SEElement : MTLModel <MTLJSONSerializing>
 
 @property (nonatomic) NSRange rangeOfLines;
-
-- (NSString*)elementName;
+@property (nonatomic, readonly) NSString *elementName;
 
 @end

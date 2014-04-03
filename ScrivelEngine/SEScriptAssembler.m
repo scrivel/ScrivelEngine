@@ -135,6 +135,7 @@ static PKToken *openCurlyToken;
     NSString *character = [_characterStack pop];
     NSArray *arguments = [_argumentsStack pop];
     SEWords *words = [[SEWords alloc] initWithCharacter:character arguments:arguments];
+    words.rangeOfLines = NSMakeRange(parser.tokenizer.lineNumber, 1);
     [_wordsStack push:words];
 }
 
