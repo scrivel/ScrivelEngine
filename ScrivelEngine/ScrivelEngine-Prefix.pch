@@ -15,5 +15,6 @@
     #import <Cocoa/Cocoa.h>
 #endif
     #import <QuartzCore/QuartzCore.h>
+    #import "SETypeDefinition.h"
+    #import "SEGeometory.h"
 #endif
-

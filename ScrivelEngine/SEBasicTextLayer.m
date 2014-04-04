@@ -13,6 +13,7 @@
 #import "SEMethod.h"
 #import "SEColorUtil.h"
 #import "NSObject+KXEventEmitter.h"
+#import "NSNumber+CGFloat.h"
 
 @implementation SEBasicTextLayerClass
 {

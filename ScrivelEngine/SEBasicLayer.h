@@ -10,7 +10,6 @@
 #import <Foundation/Foundation.h>
 #import "SEBasicObject.h"
 #import "SELayer.h"
-#import "SEGeometory.h"
 
 #define ACTUAL_DURATION(d) [self.holder.engine convertDuration:ROUND_CGFLOAT(d)]
 #define VIEW_SIZE self.engine.rootView.bounds.size

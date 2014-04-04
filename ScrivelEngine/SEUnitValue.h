@@ -15,7 +15,7 @@ typedef NS_ENUM(NSUInteger, SEUnitType){
     SEUnitTypeVirtualPixels
 };
 
-@interface SEUnitFloat : NSObject
+@interface SEUnitValue : NSObject
 
 /**
  "10"   -> 10.0, SEUnitTypeDefault

@@ -7,14 +7,14 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "SEUnitFloat.h"
+#import "SEUnitValue.h"
 #import "NSNumber+CGFloat.h"
 
-@interface SEUnitFloatTests : XCTestCase
+@interface SEUnitValueTests : XCTestCase
 
 @end
 
-@implementation SEUnitFloatTests
+@implementation SEUnitValueTests
 
 - (void)setUp
 {
@@ -30,25 +30,25 @@
 
 - (void)testBasics
 {
-    SEUnitFloat *px = [SEUnitFloat unitNumberWithValueDescription:@"10px"];
+    SEUnitValue *px = [SEUnitValue unitNumberWithValueDescription:@"10px"];
     XCTAssert([px.numberValue isEqual:@10], );
     XCTAssert(px.unitType == SEUnitTypePixels, );
-    SEUnitFloat *percent = [SEUnitFloat unitNumberWithValueDescription:@"10%"];
+    SEUnitValue *percent = [SEUnitValue unitNumberWithValueDescription:@"10%"];
     XCTAssert(percent.unitType == SEUnitTypePercentage, );
     XCTAssert([percent.numberValue isEqual:@10], );
-    SEUnitFloat *vpx = [SEUnitFloat unitNumberWithValueDescription:@"10vpx"];
+    SEUnitValue *vpx = [SEUnitValue unitNumberWithValueDescription:@"10vpx"];
     XCTAssert([vpx.numberValue isEqual:@10], );
     XCTAssert(vpx.unitType == SEUnitTypeVirtualPixels, );
-    SEUnitFloat *normal = [SEUnitFloat unitNumberWithValueDescription:@"10"];
+    SEUnitValue *normal = [SEUnitValue unitNumberWithValueDescription:@"10"];
     XCTAssert([normal.numberValue isEqual:@10], );
     XCTAssert(normal.unitType == SEUnitTypeDefault, );
-    SEUnitFloat *minus = [SEUnitFloat unitNumberWithValueDescription:@"-100px"];
+    SEUnitValue *minus = [SEUnitValue unitNumberWithValueDescription:@"-100px"];
     XCTAssert([minus.numberValue isEqual:@(-100)], );
 }
 
 - (void)testFloat
 {
-    SEUnitFloat *float_ = [SEUnitFloat unitNumberWithValueDescription:@"10.05px"];
+    SEUnitValue *float_ = [SEUnitValue unitNumberWithValueDescription:@"10.05px"];
     XCTAssert([[float_ numberValue] CGFloatValue] == 10.05f,);
     XCTAssert(float_.unitType == SEUnitTypePixels, );
 }

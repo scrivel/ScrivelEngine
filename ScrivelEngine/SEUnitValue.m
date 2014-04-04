@@ -6,10 +6,10 @@
 //  Copyright (c) 2014年 scrivel. All rights reserved.
 //
 
-#import "SEUnitFloat.h"
+#import "SEUnitValue.h"
 #import "NSNumber+CGFloat.h"
 
-@implementation SEUnitFloat
+@implementation SEUnitValue
 
 static inline NSString * getUnitString(SEUnitType type)
 {

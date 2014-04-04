@@ -466,7 +466,7 @@
         return [NSValue se_valueWithPoint:point];
     }else if (KEY_IS(@"zPosition")){
         // z値だけは正規化できないので常にpx値
-        CGFloat z = [[SEUnitFloatMake(value) numberValue] CGFloatValue];
+        CGFloat z = [[SEUnitValueMake(value) numberValue] CGFloatValue];
         return @(z);
     }else if (KEY_IS(@"size")){
         CGRect bounds = self.layer.bounds;
@@ -481,7 +481,7 @@
         position.y += translation.dy;
         return [NSValue se_valueWithPoint:position];
     }else if (KEY_IS(@"translateZ")){
-        CGFloat z = [[SEUnitFloatMake(value) numberValue] CGFloatValue];
+        CGFloat z = [[SEUnitValueMake(value) numberValue] CGFloatValue];
         CGFloat zp = self.layer.zPosition;
         zp += z;
         // 同じくzPositionのアニメーションにする
