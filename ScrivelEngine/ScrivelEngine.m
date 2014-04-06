@@ -89,9 +89,9 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
 - (void)setRootView:(SEView *)rootView
 {
     if (_rootView != rootView) {
-        _backgroundView.frame = rootView.frame;
-        _contentView.frame = rootView.frame;
-        _foregroundView.frame = rootView.frame;
+        _backgroundView.frame = rootView.bounds;
+        _contentView.frame = rootView.bounds;
+        _foregroundView.frame = rootView.bounds;
         [_backgroundView removeFromSuperview];
         [_contentView removeFromSuperview];
         [_foregroundView removeFromSuperview];
