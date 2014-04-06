@@ -16,7 +16,6 @@ end
 
 task :setup do
     system "git submodule update --init --recursive"
-    system "bundle install"
 end
 
 task :assembler do
