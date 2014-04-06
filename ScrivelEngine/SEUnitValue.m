@@ -74,4 +74,14 @@ static inline NSString * getUnitString(SEUnitType type)
     return 0;
 }
 
+- (CGFloat)CGFloatValueWithConstraint:(CGFloat)constraint virtualConstraint:(CGFloat)virtualConstraint
+{
+    if (self.unitType != SEUnitTypeVirtualPixels) {
+        return [self CGFloatValueWithConstraint:constraint];
+    }else{
+        // 10vpx , 200px, 100px ~> 10*200/100 = 20px
+        return self.numberValue.CGFloatValue*virtualConstraint/constraint;
+    }
+}
+
 @end

@@ -14,7 +14,10 @@ struct SEVector {
     CGFloat dy;
 };
 typedef struct SEVector SEVector;
-#if TARGET_OS_IPHONE
+#define SE_TARGET_OS_IPHONE TARGET_OS_IPHONE
+#define SE_TARGET_OS_MAC (TARGET_OS_MAC && !TARGET_OS_IPHONE)
+#if SE_TARGET_OS_IPHONE
+#define SEWindow UIWindow
 #define SEView UIView
 #define SEImage UIImage
 #define SEFont UIFont
@@ -25,7 +28,8 @@ typedef UIEdgeInsets SEEdgeInsets;
 typedef CGPoint SEPoint;
 typedef CGRect SERect;
 typedef CGSize SESize;
-#elif TARGET_OS_MAC
+#elif SE_TARGET_OS_MAC
+#define SEWindow NSWindow
 #define SEView NSView
 #define SEImage NSImage
 #define SEFont NSFont

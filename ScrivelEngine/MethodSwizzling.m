@@ -7,11 +7,12 @@
 //
 
 #import "MethodSwizzling.h"
+#import <objc/message.h>
 
-static void _se_SwizzleMethod(Class target, SEL from, SEL to, BOOL class)
+void _se_SwizzleMethod(Class target, SEL from, SEL to, BOOL forClass)
 {
-    Method from_m = class ? class_getClassMethod(target, from) : class_getInstanceMethod(target, from);
-    Method to_m = class ? class_getClassMethod(target, to) : class_getInstanceMethod(target, to);
+    Method from_m = forClass ? class_getClassMethod(target, from) : class_getInstanceMethod(target, from);
+    Method to_m = forClass ? class_getClassMethod(target, to) : class_getInstanceMethod(target, to);
     if (from_m) {
         // exchange two methods if the reciever has an impl of method1
         method_exchangeImplementations(from_m, to_m);
@@ -22,13 +23,13 @@ static void _se_SwizzleMethod(Class target, SEL from, SEL to, BOOL class)
         imp = imp_implementationWithBlock(block);
         const char *type = method_getTypeEncoding(to_m);
         class_addMethod(target, from, imp, type);
-        _se_SwizzleMethod(target,from,to,class);
+        _se_SwizzleMethod(target,from,to,forClass);
     }
 }
 
-static void se_SwizzleClassMethod(Class cls, SEL from, SEL to){
+void se_SwizzleClassMethod(Class cls, SEL from, SEL to){
     _se_SwizzleMethod(cls, from, to, YES);
 }
-static void se_SwizzleInstanceMethod(Class cls, SEL from, SEL to){
+void se_SwizzleInstanceMethod(Class cls, SEL from, SEL to){
     _se_SwizzleMethod(cls, from, to, NO);
 }

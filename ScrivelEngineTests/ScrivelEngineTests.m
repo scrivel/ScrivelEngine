@@ -145,7 +145,7 @@
     NSArray *scriptPaths = [[NSBundle bundleForClass:[self class]] pathsForResourcesOfType:@"sescript" inDirectory:@"Scripts.bundle"];
     for (NSString *path in scriptPaths) {
         NSString *script = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-        ScrivelEngine *engine = [ScrivelEngine engineWithRootView:[SEView new]];
+        ScrivelEngine *engine = [ScrivelEngine engineWithWindow:nil rootView:[SEView new]];
         engine.speed = ScrivelEngineSppedNoWait;
         NSError *e = nil;
         XCTAssertNoThrow([engine evaluateScript:script error:&e], );

@@ -156,6 +156,14 @@
  **/
 @property (nonatomic) CGFloat shadowRadius;
 
+/**
+ 所属するレイヤー
+ @property layerType
+ @settable background
+ @settable content
+ @settable foreground
+ **/
+@property (nonatomic) NSString *layerType;
 #pragma mark - Animation
 
 /**

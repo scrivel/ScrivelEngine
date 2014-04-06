@@ -8,29 +8,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SEObject.h"
+#import "_SEObject.h"
 
 #define KEY_IS(k) [key isEqualToString:k]
 
 OBJC_EXPORT id se_callMethod(id , NSString *, SEMethod *, ScrivelEngine *);
 
-@interface _SEObject : NSObject <SEObject>
-
-@property (weak, nonatomic) ScrivelEngine *engine;
-@property (nonatomic, readonly) NSDictionary *keyValueStore;
-@property (nonatomic, readonly) NSDictionary *enabledStore;
-@property (nonatomic, readonly) NSDictionary *aliasStore;
-
-- (BOOL)respondsToKey:(NSString*)key;
-- (BOOL)canEnableForKey:(NSString*)key;
-- (BOOL)canAliasizeForKey:(NSString*)key;
-
-@end
-
 @interface SEBasicObjectClass : _SEObject <SEObjectClass>
 
 @property (nonatomic, readonly) NSSet *instances;
-@property (nonatomic, weak) Class instanceClass;
 @property (nonatomic, readonly) NSString *classIdentifier;
 
 - (instancetype)initWithEngine:(ScrivelEngine*)engine classIdentifier:(NSString*)classIdentifier;;

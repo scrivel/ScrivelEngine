@@ -95,6 +95,13 @@
 
 @protocol SEObjectClass <SEObject>
 
+@required
+/**
+ @metho instanceClasses;
+ @static
+ **/
+- (Class)instanceClass;
+@optional
 /**
  オブジェクトをインスタンス化する
 

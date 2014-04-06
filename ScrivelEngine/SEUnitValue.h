@@ -31,5 +31,6 @@ typedef NS_ENUM(NSUInteger, SEUnitType){
 
 - (instancetype)initWithValueDescription:(NSString*)valueDescription;
 - (CGFloat)CGFloatValueWithConstraint:(CGFloat)constraint;
+- (CGFloat)CGFloatValueWithConstraint:(CGFloat)constraint virtualConstraint:(CGFloat)virtualConstraint;
 
 @end

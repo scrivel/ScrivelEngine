@@ -28,11 +28,15 @@
     self = [super initWithEngine:engine classIdentifier:classIdentifier];
     __definedMotions = [NSMutableDictionary new];
     __markedPoints = [NSMutableDictionary new];
-    self.instanceClass = [SEBasicCharacterLayer class];
     return self ?: nil;
 }
 
--(void)mark_key:(id<NSCopying>)key point:(id)point
+- (Class)instanceClass
+{
+    return [SEBasicCharacterLayer class];
+}
+
+- (void)mark_key:(id<NSCopying>)key point:(id)point
 {
     SEPoint _point = SEPointFromObject(self.engine.rootView.bounds.size, point);
     [__markedPoints setObject:[NSValue se_valueWithPoint:_point] forKey:[key copyWithZone:NULL]];

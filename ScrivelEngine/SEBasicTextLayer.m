@@ -24,11 +24,9 @@
 #endif
 }
 
-- (instancetype)initWithEngine:(ScrivelEngine *)engine classIdentifier:(NSString *)classIdentifier
+- (Class)instanceClass
 {
-    self = [super initWithEngine:engine classIdentifier:classIdentifier];
-    self.instanceClass = [SEBasicTextLayer class];
-    return self ?: nil;
+    return [SEBasicTextLayer class];
 }
 
 - (id<SEObjectInstance>)new_args:(id)args
@@ -74,10 +72,10 @@
     // プライマリレイヤのindexによってdelegate先を変えるようにする
     // mousedownイベントをハンドリングするためにrootviewのレスポンダチェーンをproxyする
     if (!_responderProxy) {
-        _responderProxy = [[SEResponderProxy alloc] initWithDelegate:nil selector:@selector(handleNSEvent:)];
-        NSResponder *r = self.engine.rootView.nextResponder;
-        [self.engine.rootView setNextResponder:_responderProxy];
-        [_responderProxy setNextResponder:r];
+//        _responderProxy = [[SEResponderProxy alloc] initWithDelegate:nil selector:@selector(handleNSEvent:)];
+//        NSResponder *r = self.engine.rootView.nextResponder;
+//        [self.engine.rootView setNextResponder:_responderProxy];
+//        [_responderProxy setNextResponder:r];
     }
     _responderProxy.delegate = primaryTextLayer;
 #endif
@@ -150,30 +148,30 @@
     return self ?: nil;
 }
 
-#if TARGET_OS_IPHONE
-- (void)handleTap:(UIPanGestureRecognizer*)sender
-{
-    [self handleClickOrTapInPoint:[sender locationInView:self.holder.engine.rootView]];
-}
-
-#elif TARGET_OS_MAC
-- (void)handleNSEvent:(NSEvent*)event
-{
-    [self handleClickOrTapInPoint:[event locationInWindow]];
-}
-#endif
-
-- (void)handleClickOrTapInPoint:(SEPoint)point
-{
-    CGRect r = self.layer.bounds;
-    r = [self.layer convertRect:r toLayer:self.holder.engine.rootView.layer];
-    if (CGRectContainsPoint(r, point)) {
-        if (self.isAnimating) {
-            // 一度目のタップでアニメーションをスキップ
-            [self skip];                
-        }
-    }
-}
+//#if TARGET_OS_IPHONE
+//- (void)handleTap:(UIPanGestureRecognizer*)sender
+//{
+//    [self handleClickOrTapInPoint:[sender locationInView:self.holder.engine.rootView]];
+//}
+//
+//#elif TARGET_OS_MAC
+//- (void)handleNSEvent:(NSEvent*)event
+//{
+//    [self handleClickOrTapInPoint:[event locationInWindow]];
+//}
+//#endif
+//
+//- (void)handleClickOrTapInPoint:(SEPoint)point
+//{
+//    CGRect r = self.layer.bounds;
+//    r = [self.layer convertRect:r toLayer:self.holder.engine.rootView.layer];
+//    if (CGRectContainsPoint(r, point)) {
+//        if (self.isAnimating) {
+//            // 一度目のタップでアニメーションをスキップ
+//            [self skip];                
+//        }
+//    }
+//}
 
 - (void)addCharacter
 {

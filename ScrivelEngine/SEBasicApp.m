@@ -8,7 +8,7 @@
 
 #import "SEBasicApp.h"
 #import "ScrivelEngine.h"
-#if !TARGET_OS_IPHONE
+#if SE_TARGET_OS_MAC
 #import "SEResponderProxy.h"
 #endif
 #import <objc/runtime.h>
@@ -16,6 +16,16 @@
 #import "SEBasicClassProxy.h"
 #import "NSBundle+ScrivelEngine.h"
 #import "SEScript.h"
+#import "NSObject+PerformBlock.h"
+
+NSString *const SEWaitStateKey = @"org.scrivel.ScrivelEngine:SEWaitBeganEventStateKey";
+NSString *const SETapCompletionEventLocationKey = @"org.scrivel.ScrivelEngine:SETapCompletionEventLocationKey";
+
+@interface SEBasicApp()
+
+@property (nonatomic, readwrite) SEWaitingState waitingState;
+
+@end
 
 @implementation SEBasicApp
 {
@@ -31,7 +41,64 @@
 - (id)init
 {
     self = [super init];
+    _waitingState = SEWaitingStateNone;
+    [self setupTapRecognizer];
+    [self.engine addObserver:self forKeyPath:@"rootView" options:NSKeyValueObservingOptionNew context:NULL];
     return self ?: nil;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (object == self.engine) {
+        if ([keyPath isEqualToString:@"rootView"]) {
+            [self setupTapRecognizer];
+        }
+    }
+}
+
+- (void)setupTapRecognizer
+{
+#if TARGET_OS_IPHONE
+    _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    [self.engine.rootView addGestureRecognizer:_tapGestureRecognizer];
+#else
+    _responderProxy = [[SEResponderProxy alloc] initWithDelegate:self selector:@selector(handleTap:)];
+    NSResponder *r = self.engine.rootView.nextResponder;
+    [self.engine.rootView setNextResponder:_responderProxy];
+    [_responderProxy setNextResponder:r];
+#endif
+}
+
+- (void)setWaitingState:(SEWaitingState)waitingState
+{
+    if (_waitingState != waitingState) {
+        if (waitingState != SEWaitingStateNone) {
+            NSString *event = nil;
+            switch (waitingState) {
+                case SEWaitingStateTimeout:
+                    event = SETimeoutCompletionEvent; break;
+                case SEWaitingStateTap:
+                    event = SETapCompletionEvent; break;
+                case SEWaitingStateAnimation:
+                    event = SEAnimationCompletionEvent; break;
+                case SEWaitingStateText:
+                    event = SETextDisplayCompletionEvent; break;
+                default: break;
+            }
+            if (event) {
+                [self kx_once:event handler:^(NSNotification *n) {
+                    self.waitingState = SEWaitingStateNone;
+                    [self kx_emit:SEWaitCompletionEvent
+                         userInfo:@{SEWaitStateKey: @(self.waitingState)}
+                           center:self.engine.notificationCenter];
+                } from:nil center:self.engine.notificationCenter];
+            }
+            [self kx_emit:SEWaitBeganEvent
+                 userInfo:@{SEWaitStateKey: @(waitingState)}
+                   center:self.engine.notificationCenter];
+        }
+        _waitingState = waitingState;
+    }
 }
 
 - (void)set_key:(NSString *)key value:(id)value
@@ -46,54 +113,43 @@
 
 #pragma mark - wait
 
-- (void)completeWait:(id)sender
-{
-#if TARGET_OS_IPHONE
-    if ([sender isKindOfClass:[UITapGestureRecognizer class]]) {
-        [self.engine.rootView removeGestureRecognizer:sender];
-    }
-#else
-    if ([sender isKindOfClass:[NSEvent class]]) {
-        _responderProxy.delegate = nil;
-    }
-#endif
-    [self kx_emit:SEWaitCompletionEvent userInfo:nil center:self.engine.notificationCenter];
-}
-
 - (void)wait_duration:(NSTimeInterval)duration
 {
-    [self kx_emit:SEWaitBeganEvent userInfo:nil center:self.engine.notificationCenter];
-    [self performSelector:@selector(completeWait:) withObject:self afterDelay:duration];
+    self.waitingState = SEWaitingStateTimeout;
+    [self performBlock:^{
+        [self kx_emit:SETimeoutCompletionEvent userInfo:nil center:self.engine.notificationCenter];
+    } afterDelay:duration];
 }
 
 - (void)waitTap
 {
-#if TARGET_OS_IPHONE
-    UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(completeWait:)];
-    [self.engine.rootView addGestureRecognizer:tgr];
-#else
-    if (!_responderProxy) {
-        _responderProxy = [[SEResponderProxy alloc] initWithDelegate:nil selector:@selector(completeWait:)];
-        NSResponder *r = self.engine.rootView.nextResponder;
-        [self.engine.rootView setNextResponder:_responderProxy];
-        [_responderProxy setNextResponder:r];
-    }
-    _responderProxy.delegate = self;
-#endif
-    [self kx_emit:SEWaitBeganEvent userInfo:nil center:self.engine.notificationCenter];
+    self.waitingState = SEWaitingStateTap;
 }
 
 - (void)waitAnimation
 {
-    [self kx_emit:SEWaitBeganEvent userInfo:nil center:self.engine.notificationCenter];
-    [self kx_once:SEAnimationCompletionEvent handler:^(NSNotification *n) {
-        [self kx_emit:SEWaitCompletionEvent userInfo:nil center:self.engine.notificationCenter];
-    } from:nil center:self.engine.notificationCenter];
+    self.waitingState = SEWaitingStateAnimation;
 }
 
 - (void)waitText
 {
+    self.waitingState = SEWaitingStateText;
+}
 
+#if TARGET_OS_IPHONE
+- (void)handleTap:(UITapGestureRecognizer*)sender
+{
+    SEPoint p = [sender locationInView:self.engine.rootView];
+    NSLog(@"tapped : %@",NSStringFromCGPoint(p));
+#elif TARGET_OS_MAC
+- (void)handleTap:(NSEvent*)sender
+{
+    SEPoint p = [sender locationInWindow];
+    NSLog(@"tapped : %@",NSStringFromPoint(p));
+#endif
+    [self kx_emit:SETapCompletionEvent
+         userInfo:@{SETapCompletionEventLocationKey: [NSValue se_valueWithPoint:p]}
+           center:self.engine.notificationCenter];
 }
 
 - (void)load_scriptPath:(NSString *)scriptPath

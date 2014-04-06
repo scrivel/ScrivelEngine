@@ -13,6 +13,8 @@
 
 extern NSString *const SEWaitBeganEvent;
 extern NSString *const SEWaitCompletionEvent;
+extern NSString *const SETimeoutCompletionEvent;
+extern NSString *const SETapCompletionEvent;
 extern NSString *const SEAnimationCompletionEvent;
 extern NSString *const SETextDisplayCompletionEvent;
 
@@ -21,11 +23,15 @@ extern NSString *const SETextDisplayCompletionEvent;
 
 @interface ScrivelEngine : NSObject
 
-+ (instancetype)engineWithRootView:(SEView*)rootView;
++ (instancetype)engineWithWindow:(SEWindow*)window rootView:(SEView*)rootView;
 
 // レイヤーを管理するrootのview
 @property (nonatomic, readonly) NSString *identifier;
+@property (nonatomic, weak) SEWindow *window;
 @property (nonatomic, weak) SEView *rootView;
+@property (nonatomic, readonly) SEView *backgroundView;
+@property (nonatomic, readonly) SEView *contentView;
+@property (nonatomic, readonly) SEView *foregroundView;
 @property (nonatomic) id<SEClassProxy> classProxy;
 @property (nonatomic, readonly) BOOL isWaiting;
 @property (nonatomic) CGFloat speed;

@@ -20,10 +20,13 @@
 #import "SEWords.h"
 #import "SEClassProxy.h"
 #import "NSObject+KXEventEmitter.h"
+#import "MethodSwizzling.h"
 
 static NSArray *engineClassses;
 NSString *const SEWaitBeganEvent = @"org.scrivel.ScrivelEngine:SEWaitBeganEvent";
 NSString *const SEWaitCompletionEvent = @"org.scrivel.ScrivelEngine:SEWaitCompleteEvent";
+NSString *const SETimeoutCompletionEvent = @"org.scrivel.ScrivelEngine:SETimeoutCompletionEvent";
+NSString *const SETapCompletionEvent = @"org.scrivel.ScrivelEngine:SETapCompleteEvent";
 NSString *const SEAnimationCompletionEvent = @"org.scrivel.ScrivelEngine:SEAnimationCompleteEvent";
 NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETextDisplayCompletionEvent";
 
@@ -50,28 +53,53 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
     });
 }
 
-+ (instancetype)engineWithRootView:(SEView*)rootView
++ (instancetype)engineWithWindow:(SEWindow *)window rootView:(SEView *)rootView
 {
-    return [[self alloc] initWithRootView:rootView];
+    return [[self alloc] initWithWindow:window rootView:rootView];
 }
 
 - (id)init
 {
     self = [super init];
-    [self setClassProxy:[SEBasicClassProxy new]];
+    self.classProxy = [SEBasicClassProxy new];
     _methodQueue = [Queue new];
     _elementQueue = [Queue new];
     _identifier = [[NSUUID UUID] UUIDString];
     _speed = 1.0f;
     _notificationCenter = [NSNotificationCenter new];
+    _backgroundView = [SEView new];
+    _contentView = [SEView new];
+    _foregroundView = [SEView new];
+#if SE_TARGET_OS_MAC
+    _backgroundView.wantsLayer = YES;
+    _contentView.wantsLayer = YES;
+    _foregroundView.wantsLayer = YES;
+#endif
     return self ?: nil;
 }
 
-- (id)initWithRootView:(SEView*)rootView
+- (id)initWithWindow:(SEWindow*)window rootView:(SEView*)rootView
 {
     self = [self init];
-    _rootView = rootView;
+    self.window = window;
+    self.rootView = rootView;
     return self ?: nil;
+}
+
+- (void)setRootView:(SEView *)rootView
+{
+    if (_rootView != rootView) {
+        _backgroundView.frame = rootView.frame;
+        _contentView.frame = rootView.frame;
+        _foregroundView.frame = rootView.frame;
+        [_backgroundView removeFromSuperview];
+        [_contentView removeFromSuperview];
+        [_foregroundView removeFromSuperview];
+        [rootView addSubview:_backgroundView];
+        [rootView addSubview:_contentView];
+        [rootView addSubview:_foregroundView];
+        _rootView = rootView;
+    }
 }
 
 - (void)dealloc
@@ -116,7 +144,6 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
     // 溜まっているエレメントを順番に処理していく
     SEElement *element;
     while (!self.isWaiting && (element = [_elementQueue dequeue]) != nil) {
-        NSLog(@"evaluating : %@",element);
         if ([element isKindOfClass:[SEMethodChain class]]) {
             SEMethodChain *chain = (SEMethodChain*)element;
             id<SEObjectInstance> instance;
@@ -190,7 +217,7 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
     for (SEElement *element in s.elements) {
         if ([element isKindOfClass:[SEMethodChain class]]) {
             SEMethodChain *chain = (SEMethodChain*)element;
-            if (chain.type == SEMethodChainTypeNormal && ![_classProxy classForClassIdentifier:chain.target]) {
+            if (chain.type == SEMethodChainTypeNormal && ![self.classProxy classForClassIdentifier:chain.target]) {
                 NSMutableString *ms = [NSMutableString stringWithString:@"!!存在しないクラスです!!\n"];
                 [ms appendFormat:@"line\t\t:\t%@\n",NSStringFromRange(chain.rangeOfLines)];
                 [ms appendFormat:@"class\t:\t%@\n",chain.target];
@@ -203,7 +230,7 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
                 if (chain.type == SEMethodChainTypeCharacterSpecified) {
                     cid = @"chara";
                 }
-                if (![_classProxy selectorForMethodIdentifier:method.name classIdentifier:cid]
+                if (![self.classProxy selectorForMethodIdentifier:method.name classIdentifier:cid]
                     && ![[(SEBasicApp*)self.app aliasStore] objectForKey:method.name]) {
                     NSString *type = (method == [chain.methods firstObject]) ? @"static" : @"instance";
                     NSMutableString *ms = [NSMutableString stringWithString:@"!!存在しないメソッドの呼び出しです!!\n"];

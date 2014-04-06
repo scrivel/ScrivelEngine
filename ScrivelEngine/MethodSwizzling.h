@@ -9,7 +9,5 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 
-static void se_SwizzleClassMethod(Class cls, SEL from, SEL to);
-static void se_SwizzleInstanceMethod(Class cls, SEL from, SEL to);
-static void se_SwizzleClassMethod_(Method from, Method to);
-static void se_SwizzleInstanceMethod_(Method from, Method to);
+extern void se_SwizzleClassMethod(Class cls, SEL from, SEL to);
+extern void se_SwizzleInstanceMethod(Class cls, SEL from, SEL to);

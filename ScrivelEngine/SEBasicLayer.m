@@ -22,6 +22,10 @@
 #define kMaxLayer 1000
 #define kGroupedAnimationKey @"GroupedAnimation"
 
+#define kLayerTypeBackground @"background"
+#define kLayerTypeContent @"content"
+#define kLayerTypeForeGround @"foreground"
+
 @interface SEBasicLayerClass ()
 
 @end
@@ -41,8 +45,12 @@
     self = [super initWithEngine:engine classIdentifier:classIdentifier];
     __layers = [NSMutableDictionary new];
     __definedAnimations = [NSMutableDictionary new];
-    self.instanceClass = [SEBasicLayer class];
     return self ?: nil;
+}
+
+- (Class)instanceClass
+{
+    return [SEBasicLayer class];
 }
 
 - (void)setActiveAnimationCount:(NSUInteger)activeAnimationCount
@@ -67,11 +75,6 @@
     // 登録
     [__layers setObject:layer forKey:layer.key];
     // レイヤーを追加
-    if ([args[@"index"] isKindOfClass:[NSNumber class]]) {
-        [self.engine.rootView.layer insertSublayer:layer.layer atIndex:[args[@"index"] unsignedIntValue]];
-    }else{
-        [self.engine.rootView.layer addSublayer:layer.layer];
-    }
     [layer didMoveToSuperLayer:self.engine.rootView.layer];
     return layer;
 }
@@ -115,6 +118,7 @@
     CGFloat _shadowOpacity;
     CGFloat _shadowRadius;
     SESize _shadowOffset;
+    NSString *_layerType;
 }
 
 @synthesize gravity = _gravity;
@@ -126,6 +130,8 @@
 @synthesize shadowOpacity = _shadowOpacity;
 @synthesize shadowRadius = _shadowRadius;
 @synthesize shadowOffset = _shadowOffset;
+@synthesize layerType = _layerType;
+@synthesize parentView = _parentView;
 
 #pragma mark - Private
 
@@ -133,24 +139,35 @@
 
 - (instancetype)initWithOpts:(NSDictionary *)options holder:(SEBasicObjectClass *)holder
 {
-    self = [super initWithOpts:options holder:holder];
-    // 実体はレイヤー
+    _isChaining = NO;
+    _isRepeatingForever = NO;
     _layer = [CALayer layer];
-    // parse options
-    [CATransaction begin];
-    [CATransaction setAnimationDuration:0];
-    [options enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        if (KEY_IS(@"key")){
-            _key = options[@"key"];
-        }
-    }];
-    [CATransaction commit];
+    self = [super initWithOpts:options holder:holder];
+    if (!self.added) {
+        self.index = (unsigned int)self.parentView.layer.sublayers.count;
+    }
     return self ?: nil;
 }
 
 - (void)didMoveToSuperLayer:(CALayer *)layer
 {
     _layer.position = SEPointFromArray(VIEW_SIZE, @[@"50%",@"50%"]);
+}
+
+- (SEView *)parentView
+{
+    if (!_parentView) {
+        _parentView = self.engine.contentView;
+    }
+    return _parentView;
+}
+
+- (void)setParentView:(SEView *)parentView
+{
+    if (_parentView != parentView) {
+        self.index = (unsigned int)parentView.layer.sublayers.count;
+        _parentView = parentView;
+    }
 }
 
 #pragma mark - Property
@@ -177,8 +194,12 @@
         [self setShadowRadius:[value CGFloatValue]];
     }else if (KEY_IS(@"shadowOffset")){
         [self setShadowOffset:SESizeFromObject(VIEW_SIZE, value)];
+    }else if (KEY_IS(@"layerType")){
+        [self setLayerType:value];
     }else if (KEY_IS(@"image")){
         [self loadImage_path:value];
+    }else if (KEY_IS(@"key")){
+        [self setKey:value];
     }else{
         [super set_key:key value:value];
     }
@@ -186,9 +207,16 @@
 
 - (void)setIndex:(unsigned int)index
 {
-    [self.holder.engine.rootView.layer insertSublayer:self.layer atIndex:index];
+    [self.layer removeFromSuperlayer];
+    [self.parentView.layer insertSublayer:self.layer atIndex:index];
     _index = index;
 }
+
+- (BOOL)added
+{
+    return self.layer.superlayer ? YES : NO;
+}
+
 - (void)setAnchorPoint:(CGPoint)anchorPoint
 {
 #if TARGET_OS_IPHONE
@@ -279,6 +307,18 @@
     ROUND_CGFLOAT(shadowRadius);
     self.layer.shadowRadius = shadowRadius;
     _shadowRadius = shadowRadius;
+}
+
+- (void)setLayerType:(NSString *)layerType
+{
+    if ([layerType isEqualToString:kLayerTypeBackground]) {
+        self.parentView = self.engine.backgroundView;
+    }else if ([layerType isEqualToString:kLayerTypeContent]){
+        self.parentView = self.engine.contentView;
+    }else if ([layerType isEqualToString:kLayerTypeForeGround]){
+        self.parentView = self.engine.foregroundView;
+    }
+    _layerType = layerType;
 }
 
 #pragma mark - Image
