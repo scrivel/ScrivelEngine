@@ -18,6 +18,7 @@
 #import "SEClassProxy.h"
 #import "SEColorUtil.h"
 #import "NSObject+KXEventEmitter.h"
+#import "SELayerView.h"
 
 #define kMaxLayer 1000
 #define kGroupedAnimationKey @"GroupedAnimation"
@@ -88,7 +89,8 @@
 
 - (void)clear_key:(id<NSCopying>)key
 {
-    [[[__layers objectForKey:key] layer] removeFromSuperlayer];
+    SEBasicLayer *layer = [__layers objectForKey:key];
+    [layer removeFromParentLayerView];
     [__layers removeObjectForKey:key];
 }
 
@@ -154,7 +156,7 @@
     _layer.position = SEPointFromArray(VIEW_SIZE, @[@"50%",@"50%"]);
 }
 
-- (SEView *)parentView
+- (SELayerView *)parentView
 {
     if (!_parentView) {
         _parentView = self.engine.contentView;
@@ -162,12 +164,17 @@
     return _parentView;
 }
 
-- (void)setParentView:(SEView *)parentView
+- (void)setParentView:(SELayerView *)parentView
 {
     if (_parentView != parentView) {
         self.index = (unsigned int)parentView.layer.sublayers.count;
         _parentView = parentView;
     }
+}
+
+- (void)removeFromParentLayerView
+{
+    [self.parentView removeChildLayer:self];
 }
 
 #pragma mark - Property
@@ -207,8 +214,7 @@
 
 - (void)setIndex:(unsigned int)index
 {
-    [self.layer removeFromSuperlayer];
-    [self.parentView.layer insertSublayer:self.layer atIndex:index];
+    [self.parentView insertChildLayer:self atIndex:index];
     _index = index;
 }
 

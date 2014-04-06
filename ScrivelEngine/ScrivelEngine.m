@@ -20,7 +20,7 @@
 #import "SEWords.h"
 #import "SEClassProxy.h"
 #import "NSObject+KXEventEmitter.h"
-#import "MethodSwizzling.h"
+#import "SELayerView.h"
 
 static NSArray *engineClassses;
 NSString *const SEWaitBeganEvent = @"org.scrivel.ScrivelEngine:SEWaitBeganEvent";
@@ -67,9 +67,9 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
     _identifier = [[NSUUID UUID] UUIDString];
     _speed = 1.0f;
     _notificationCenter = [NSNotificationCenter new];
-    _backgroundView = [SEView new];
-    _contentView = [SEView new];
-    _foregroundView = [SEView new];
+    _backgroundView = [SELayerView new];
+    _contentView = [SELayerView new];
+    _foregroundView = [SELayerView new];
 #if SE_TARGET_OS_MAC
     _backgroundView.wantsLayer = YES;
     _contentView.wantsLayer = YES;
@@ -187,7 +187,12 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
                 [__text.primaryTextLayer setText_text:words.text noanimate:NO];
             }
             // タップを待つ処理をキューイングする
+            [self.app waitText];
+            [self kx_once:SETapCompletionEvent handler:^(NSNotification *n) {
+                if (__text.primaryTextLayer.isAnimating) [__text.primaryTextLayer skip];
+            } from:nil center:self.notificationCenter];
             [self kx_once:SEWaitCompletionEvent handler:^(NSNotification *n) {
+                [__self kx_off:SETapCompletionEvent center:__self.notificationCenter];
                 [__self.app waitTap];
                 [__self kx_once:SEWaitCompletionEvent handler:^(NSNotification *n) {
                     [__self enqueueScript:nil prior:NO];

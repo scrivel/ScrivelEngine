@@ -18,7 +18,7 @@ extern NSString *const SETapCompletionEvent;
 extern NSString *const SEAnimationCompletionEvent;
 extern NSString *const SETextDisplayCompletionEvent;
 
-@class SEScript, SEMethod, SEBasicApp;
+@class SEScript, SEMethod, SEBasicApp, SELayerView;
 @protocol SEClassProxy, SEApp, SELayerClass, SETextLayerClass, SETextLayerDelegate, SECharacterLayerClass;
 
 @interface ScrivelEngine : NSObject
@@ -29,9 +29,9 @@ extern NSString *const SETextDisplayCompletionEvent;
 @property (nonatomic, readonly) NSString *identifier;
 @property (nonatomic, weak) SEWindow *window;
 @property (nonatomic, weak) SEView *rootView;
-@property (nonatomic, readonly) SEView *backgroundView;
-@property (nonatomic, readonly) SEView *contentView;
-@property (nonatomic, readonly) SEView *foregroundView;
+@property (nonatomic, readonly) SELayerView *backgroundView;
+@property (nonatomic, readonly) SELayerView *contentView;
+@property (nonatomic, readonly) SELayerView *foregroundView;
 @property (nonatomic) id<SEClassProxy> classProxy;
 @property (nonatomic, readonly) BOOL isWaiting;
 @property (nonatomic) CGFloat speed;

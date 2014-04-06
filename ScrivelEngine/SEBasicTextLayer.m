@@ -15,6 +15,12 @@
 #import "NSObject+KXEventEmitter.h"
 #import "NSNumber+CGFloat.h"
 
+@interface SEBasicTextLayerClass ()
+
+@property (nonatomic, readwrite) SEBasicTextLayer *primaryTextLayer;
+@property (nonatomic, readwrite) SEBasicTextLayer *primaryNameLayer;
+
+@end
 @implementation SEBasicTextLayerClass
 {
 #if TARGET_OS_IPHONE
@@ -58,33 +64,6 @@
     }else{
         [super set_key:key value:value];
     }
-}
-
-- (void)setPrimaryTextLayer:(SEBasicTextLayer *)primaryTextLayer
-{
-#if TARGET_OS_IPHONE
-    [self.engine.rootView removeGestureRecognizer:_tapGestureRecognizer];
-    _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:primaryTextLayer action:@selector(handleTap:)];
-    [self.engine.rootView addGestureRecognizer:_tapGestureRecognizer];
-#elif TARGET_OS_MAC
-    // プライマリテキストレイヤだけはタップイベントをキャプチャ出来るようにする
-    // LayerInstanceがResponderProxyをもつとなぜかクラッシュすることがあるので
-    // プライマリレイヤのindexによってdelegate先を変えるようにする
-    // mousedownイベントをハンドリングするためにrootviewのレスポンダチェーンをproxyする
-    if (!_responderProxy) {
-//        _responderProxy = [[SEResponderProxy alloc] initWithDelegate:nil selector:@selector(handleNSEvent:)];
-//        NSResponder *r = self.engine.rootView.nextResponder;
-//        [self.engine.rootView setNextResponder:_responderProxy];
-//        [_responderProxy setNextResponder:r];
-    }
-    _responderProxy.delegate = primaryTextLayer;
-#endif
-    _primaryTextLayer = primaryTextLayer;
-}
-
-- (void)setPrimaryNameLayer:(SEBasicTextLayer *)primaryNameLayer
-{
-    _primaryNameLayer = primaryNameLayer;
 }
 
 - (void)setName_name:(NSString *)name
@@ -148,31 +127,6 @@
     return self ?: nil;
 }
 
-//#if TARGET_OS_IPHONE
-//- (void)handleTap:(UIPanGestureRecognizer*)sender
-//{
-//    [self handleClickOrTapInPoint:[sender locationInView:self.holder.engine.rootView]];
-//}
-//
-//#elif TARGET_OS_MAC
-//- (void)handleNSEvent:(NSEvent*)event
-//{
-//    [self handleClickOrTapInPoint:[event locationInWindow]];
-//}
-//#endif
-//
-//- (void)handleClickOrTapInPoint:(SEPoint)point
-//{
-//    CGRect r = self.layer.bounds;
-//    r = [self.layer convertRect:r toLayer:self.holder.engine.rootView.layer];
-//    if (CGRectContainsPoint(r, point)) {
-//        if (self.isAnimating) {
-//            // 一度目のタップでアニメーションをスキップ
-//            [self skip];                
-//        }
-//    }
-//}
-
 - (void)addCharacter
 {
     _currentCharacterIndex++;
@@ -224,11 +178,6 @@
 - (void)start
 {
     // waitさせる
-    [self kx_emit:SEWaitBeganEvent userInfo:nil center:self.engine.notificationCenter];
-    __weak typeof (self) __self = self;
-    [self kx_once:SETextDisplayCompletionEvent handler:^(NSNotification *n) {
-        [__self kx_emit:SEWaitCompletionEvent userInfo:nil center:__self.engine.notificationCenter];
-    } from:nil center:self.engine.notificationCenter];
     _isAnimating = YES;
     // 表示している文字を消す
     // 最初のセットで一度消す
