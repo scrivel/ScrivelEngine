@@ -1,9 +1,7 @@
 language: objective-c
 
 before_install:
-  - gem install cocoapods xcodeproj
   - rake setup
 script:
-  - rake build:ScrivelEngine
-  - rake build:ScrivelEngineMac
+  - rake build:all
   - rake testall 

@@ -16,7 +16,7 @@ end
 
 task :setup do
     system "git submodule update --init --recursive"
-    system "pod install"
+    system "bundle install"
 end
 
 task :assembler do
