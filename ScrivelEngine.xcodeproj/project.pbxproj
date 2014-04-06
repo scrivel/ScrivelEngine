@@ -133,6 +133,8 @@
 		A66F814818F12E1A00330137 /* SELayerView.h in Headers */ = {isa = PBXBuildFile; fileRef = A66F814518F12E1A00330137 /* SELayerView.h */; };
 		A66F814918F12E1A00330137 /* SELayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A66F814618F12E1A00330137 /* SELayerView.m */; };
 		A66F814A18F12E1A00330137 /* SELayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = A66F814618F12E1A00330137 /* SELayerView.m */; };
+		A66F814C18F1351200330137 /* libMantle-Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A66F814B18F1351200330137 /* libMantle-Mac.a */; };
+		A66F814E18F1351700330137 /* libParseKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A66F814D18F1351700330137 /* libParseKit.a */; };
 		A6A1691118B25A390041BBBA /* SEScriptParser.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D1760C18AE628200AB11AF /* SEScriptParser.h */; };
 		A6A1691218B25A3D0041BBBA /* SEScriptAssembler.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F889018AFBBBA007FBE57 /* SEScriptAssembler.h */; };
 		A6A1691318B25A3E0041BBBA /* SEScriptAssembler.h in Headers */ = {isa = PBXBuildFile; fileRef = A63F889018AFBBBA007FBE57 /* SEScriptAssembler.h */; };
@@ -355,6 +357,8 @@
 		A66F813D18F1172100330137 /* libParseKitMobile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libParseKitMobile.a; path = "External/ParseKit/build/Debug-iphoneos/libParseKitMobile.a"; sourceTree = "<group>"; };
 		A66F814518F12E1A00330137 /* SELayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SELayerView.h; sourceTree = "<group>"; };
 		A66F814618F12E1A00330137 /* SELayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SELayerView.m; sourceTree = "<group>"; };
+		A66F814B18F1351200330137 /* libMantle-Mac.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libMantle-Mac.a"; path = "../../../Library/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug/libMantle-Mac.a"; sourceTree = "<group>"; };
+		A66F814D18F1351700330137 /* libParseKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libParseKit.a; path = "../../../Library/Developer/Xcode/DerivedData/ScrivelEngine-cktlybcmurhtpmavsdtgrdzequle/Build/Products/Debug/libParseKit.a"; sourceTree = "<group>"; };
 		A6A6128218A7B0DA00CBD988 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A6AB55D518C225C50083760F /* NSObject+KXEventEmitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+KXEventEmitter.h"; path = "External/KXEventEmitter/Classes/NSObject+KXEventEmitter.h"; sourceTree = "<group>"; };
 		A6AB55D618C225C50083760F /* NSObject+KXEventEmitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+KXEventEmitter.m"; path = "External/KXEventEmitter/Classes/NSObject+KXEventEmitter.m"; sourceTree = "<group>"; };
@@ -461,6 +465,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A66F814E18F1351700330137 /* libParseKit.a in Frameworks */,
+				A66F814C18F1351200330137 /* libMantle-Mac.a in Frameworks */,
 				A6ACBC2418DEDBD0007CE8DA /* libScrivelEngineMac.a in Frameworks */,
 				A6565B8918DEC45300DDEF95 /* Foundation.framework in Frameworks */,
 			);
@@ -773,6 +779,8 @@
 			children = (
 				A66F813D18F1172100330137 /* libParseKitMobile.a */,
 				A66F813B18F1171300330137 /* libMantle-iOS.a */,
+				A66F814D18F1351700330137 /* libParseKit.a */,
+				A66F814B18F1351200330137 /* libMantle-Mac.a */,
 				A6565B9518DEC47500DDEF95 /* Mantle.framework */,
 				A6F499E318CDE50400B46770 /* MGSFragaria.framework */,
 				A638D30018AD20150008635E /* ParseKit.framework */,
