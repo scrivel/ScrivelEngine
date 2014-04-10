@@ -23,12 +23,11 @@
 @synthesize definedMotions = __definedMotions;
 @synthesize markedPoints = __markedPoints;
 
-- (instancetype)initWithEngine:(ScrivelEngine *)engine classIdentifier:(NSString *)classIdentifier
+- (id)init
 {
-    self = [super initWithEngine:engine classIdentifier:classIdentifier];
     __definedMotions = [NSMutableDictionary new];
     __markedPoints = [NSMutableDictionary new];
-    return self ?: nil;
+    return [super init];
 }
 
 - (Class)instanceClass

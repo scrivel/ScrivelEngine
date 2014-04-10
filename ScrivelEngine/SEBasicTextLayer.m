@@ -97,33 +97,30 @@
 
 #pragma mark -
 
-- (instancetype)initWithOpts:(NSDictionary *)options holder:(SEBasicObjectClass *)holder
+- (instancetype)init
 {
-    self = [super initWithOpts:options holder:holder];
-    CATextLayer *tl = [CATextLayer layer];
-    self.layer = tl;
-    self.textLayer = tl;
+    _textLayer = [CATextLayer layer];
+    _textLayer.wrapped = YES;
+    _textLayer.fontSize = 14.0f;
+    _textLayer.foregroundColor = [[SEColor blackColor] CGColor];
 #if TARGET_OS_IPHONE
-    // retina上でフォントがぼやけるのを防ぐ    
-    self.textLayer.contentsScale = [[UIScreen mainScreen] scale];
+    // retina上でフォントがぼやけるのを防ぐ
+    _textLayer.contentsScale = [[UIScreen mainScreen] scale];
 #endif
-    
-    self.textLayer = tl;
-    self.textLayer.wrapped = YES;
-    self.textLayer.fontSize = 14.0f;
-    self.textLayer.foregroundColor = [[SEColor blackColor] CGColor];
     
     _font = [SEFont systemFontOfSize:14.0f];
     _currentCharacterIndex = 0;
     
-    self.interval = 0.1f;
-    self.fontSize = 14.0f;
-    self.fontName = [_font fontName];
-    self.textAlign = SETextAlignmentDefault;
-    self.padding = SEEdgeInsetsMake(0, 0, 0, 0);
-    self.lineSpacing = 0;
-    self.color = [SEColor blackColor];
-    
+    _interval = 0.1f;
+    _fontSize = 14.0f;
+    _fontName = [_font fontName];
+    _textAlign = SETextAlignmentDefault;
+    _padding = SEEdgeInsetsMake(0, 0, 0, 0);
+    _lineSpacing = 0;
+    _color = [SEColor blackColor];
+
+    self = [super init];
+    self.layer = _textLayer;
     return self ?: nil;
 }
 

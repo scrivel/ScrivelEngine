@@ -20,7 +20,6 @@
 #import "SEWords.h"
 #import "SEClassProxy.h"
 #import "NSObject+KXEventEmitter.h"
-#import "SELayerView.h"
 
 static NSArray *engineClassses;
 NSString *const SEWaitBeganEvent = @"org.scrivel.ScrivelEngine:SEWaitBeganEvent";
@@ -67,14 +66,6 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
     _identifier = [[NSUUID UUID] UUIDString];
     _speed = 1.0f;
     _notificationCenter = [NSNotificationCenter new];
-    _backgroundView = [SELayerView new];
-    _contentView = [SELayerView new];
-    _foregroundView = [SELayerView new];
-#if SE_TARGET_OS_MAC
-    _backgroundView.wantsLayer = YES;
-    _contentView.wantsLayer = YES;
-    _foregroundView.wantsLayer = YES;
-#endif
     return self ?: nil;
 }
 
@@ -84,22 +75,6 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
     self.window = window;
     self.rootView = rootView;
     return self ?: nil;
-}
-
-- (void)setRootView:(SEView *)rootView
-{
-    if (_rootView != rootView) {
-        _backgroundView.frame = rootView.bounds;
-        _contentView.frame = rootView.bounds;
-        _foregroundView.frame = rootView.bounds;
-        [_backgroundView removeFromSuperview];
-        [_contentView removeFromSuperview];
-        [_foregroundView removeFromSuperview];
-        [rootView addSubview:_backgroundView];
-        [rootView addSubview:_contentView];
-        [rootView addSubview:_foregroundView];
-        _rootView = rootView;
-    }
 }
 
 - (void)dealloc

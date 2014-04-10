@@ -10,10 +10,9 @@
 #import <Foundation/Foundation.h>
 #import "SEBasicObject.h"
 #import "SELayer.h"
-#import "SELayerView.h"
 
 #define ACTUAL_DURATION(d) [self.holder.engine convertDuration:ROUND_CGFLOAT(d)]
-#define VIEW_SIZE self.parentView.bounds.size
+#define VIEW_SIZE self.engine.rootView.bounds.size
 
 @interface SEBasicLayerClass : SEBasicObjectClass <SELayerClass>
 
@@ -27,13 +26,11 @@
 
 @property (nonatomic) id<NSCopying> key;
 @property (nonatomic) unsigned int index;
-@property (nonatomic, weak) SELayerView *parentView;
 @property (nonatomic) CALayer *layer;
 @property (nonatomic, readonly) BOOL added;
 @property (nonatomic, readonly) BOOL isChaining;
 @property (nonatomic, readonly) BOOL isRepeatingForever;
 
-- (void)removeFromParentLayerView;
 - (void)didMoveToSuperLayer:(CALayer*)layer;
 - (void)didTap:(SEPoint)point;
 

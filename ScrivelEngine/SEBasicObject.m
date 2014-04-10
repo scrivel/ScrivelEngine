@@ -17,10 +17,9 @@
 
 - (instancetype)initWithEngine:(ScrivelEngine *)engine classIdentifier:(NSString *)classIdentifier
 {
-    self = [super initWithEngine:engine];
     _classIdentifier = classIdentifier;
     __instances = [NSHashTable weakObjectsHashTable];
-    return self ?: nil;
+    return [super initWithEngine:engine];
 }
 
 - (Class)instanceClass
@@ -36,12 +35,7 @@
 - (id)new_args:(id)args
 {
     SEBasicObject *new = [[self.instanceClass alloc] initWithOpts:args holder:self];
-    // インスタンスを弱参照で保持する（必要かな？）
     [__instances addObject:new];
-    //
-    [args enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        [new set_key:key value:obj];
-    }];
     return new;
 }
 
@@ -51,8 +45,11 @@
 
 - (instancetype)initWithOpts:(NSDictionary *)options holder:(SEBasicObjectClass *)holder
 {
-    self = [self init];
     _holder = holder;
+    self = [self initWithEngine:holder.engine];
+    [options enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        [self set_key:key value:obj];
+    }];
     return self ?: nil;
 }
 

@@ -18,7 +18,6 @@
 #import "SEClassProxy.h"
 #import "SEColorUtil.h"
 #import "NSObject+KXEventEmitter.h"
-#import "SELayerView.h"
 
 #define kMaxLayer 1000
 #define kGroupedAnimationKey @"GroupedAnimation"
@@ -41,12 +40,11 @@
 
 #pragma makr - SEObjectClass
 
-- (instancetype)initWithEngine:(ScrivelEngine *)engine classIdentifier:(NSString *)classIdentifier
+- (id)init
 {
-    self = [super initWithEngine:engine classIdentifier:classIdentifier];
     __layers = [NSMutableDictionary new];
     __definedAnimations = [NSMutableDictionary new];
-    return self ?: nil;
+    return [super init];
 }
 
 - (Class)instanceClass
@@ -76,7 +74,9 @@
     // 登録
     [__layers setObject:layer forKey:layer.key];
     // レイヤーを追加
-    [layer didMoveToSuperLayer:self.engine.rootView.layer];
+    if (!layer.added) {
+        layer.index = (unsigned int)self.engine.rootView.layer.sublayers.count;
+    }
     return layer;
 }
 
@@ -90,7 +90,7 @@
 - (void)clear_key:(id<NSCopying>)key
 {
     SEBasicLayer *layer = [__layers objectForKey:key];
-    [layer removeFromParentLayerView];
+    [layer.layer removeFromSuperlayer];
     [__layers removeObjectForKey:key];
 }
 
@@ -133,48 +133,22 @@
 @synthesize shadowRadius = _shadowRadius;
 @synthesize shadowOffset = _shadowOffset;
 @synthesize layerType = _layerType;
-@synthesize parentView = _parentView;
 
 #pragma mark - Private
 
 #define KEY_IS(k) [key isEqualToString:k]
 
-- (instancetype)initWithOpts:(NSDictionary *)options holder:(SEBasicObjectClass *)holder
+- (instancetype)init
 {
     _isChaining = NO;
     _isRepeatingForever = NO;
     _layer = [CALayer layer];
-    self = [super initWithOpts:options holder:holder];
-    if (!self.added) {
-        self.index = (unsigned int)self.parentView.layer.sublayers.count;
-    }
-    return self ?: nil;
+    return [super init];
 }
 
-- (void)didMoveToSuperLayer:(CALayer *)layer
+- (void)didMoveToSuperLayer:(CALayer*)layer
 {
-    _layer.position = SEPointFromArray(VIEW_SIZE, @[@"50%",@"50%"]);
-}
-
-- (SELayerView *)parentView
-{
-    if (!_parentView) {
-        _parentView = self.engine.contentView;
-    }
-    return _parentView;
-}
-
-- (void)setParentView:(SELayerView *)parentView
-{
-    if (_parentView != parentView) {
-        self.index = (unsigned int)parentView.layer.sublayers.count;
-        _parentView = parentView;
-    }
-}
-
-- (void)removeFromParentLayerView
-{
-    [self.parentView removeChildLayer:self];
+    self.layer.position = SEPointFromArray(VIEW_SIZE, @[@"50%",@"50%"]);
 }
 
 #pragma mark - Property
@@ -214,7 +188,8 @@
 
 - (void)setIndex:(unsigned int)index
 {
-    [self.parentView insertChildLayer:self atIndex:index];
+    [self.layer removeFromSuperlayer];
+    [self.engine.rootView.layer insertSublayer:self.layer atIndex:index];
     _index = index;
 }
 
@@ -313,18 +288,6 @@
     ROUND_CGFLOAT(shadowRadius);
     self.layer.shadowRadius = shadowRadius;
     _shadowRadius = shadowRadius;
-}
-
-- (void)setLayerType:(NSString *)layerType
-{
-    if ([layerType isEqualToString:kLayerTypeBackground]) {
-        self.parentView = self.engine.backgroundView;
-    }else if ([layerType isEqualToString:kLayerTypeContent]){
-        self.parentView = self.engine.contentView;
-    }else if ([layerType isEqualToString:kLayerTypeForeGround]){
-        self.parentView = self.engine.foregroundView;
-    }
-    _layerType = layerType;
 }
 
 #pragma mark - Image

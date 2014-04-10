@@ -35,6 +35,7 @@ Pod::Spec.new do |s|
 
   s.dependency 'ParseKit', '~> 0.7'
   s.dependency 'Mantle', '~> 1.4.1'
+  s.dependency 'KXEventEmitter', '~> 0.0.4'
 
   s.frameworks = 'QuartzCore'
 
