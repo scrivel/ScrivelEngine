@@ -20,7 +20,10 @@ id se_callMethod(id target, NSString *class, SEMethod *method, ScrivelEngine *en
     // SEMethodを動的に呼び出す
     // aliasを探す
     __unsafe_unretained id retval = nil;
+    // デバッグ中はクラッシュさせる
+#if !DEBUG
     @try {
+#endif
         NSString *name = [[(SEBasicObjectClass*)target aliasStore] objectForKey:method.name] ?: method.name;
         SEL sel = [engine.classProxy selectorForMethodIdentifier:name classIdentifier:class];
         if ([method.name hasPrefix:@"wait"]) {
@@ -74,12 +77,15 @@ id se_callMethod(id target, NSString *class, SEMethod *method, ScrivelEngine *en
         }else{
             [iv getReturnValue:&retval];
         }
+#if !DEBUG
     }
     @catch (NSException *exception) {
         NSLog(@"could not call method '%@' for class '%@' : %@",method.name, class, exception);
+        @throw exception;
     }
     @finally {
     }
+#endif
     return retval ?: nil;
 }
 
