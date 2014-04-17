@@ -16,7 +16,7 @@
 
 id se_callMethod(id target, NSString *class, SEMethod *method, ScrivelEngine *engine)
 {
-    NSLog(@"evaluating : %@",method);
+    NSLog(@"evaluating : %@.%@",class,method.name);
     // SEMethodを動的に呼び出す
     // aliasを探す
     __unsafe_unretained id retval = nil;
