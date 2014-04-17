@@ -9,13 +9,14 @@ task :clean do
 end
 
 task :build do
-    exit 2 unless system base + "-scheme ScrivelEngine build"
-    exit 2 unless system base + "-scheme ScrivelEngineMac build"
+    exit 2 unless system base + "-scheme ScrivelEngine -sdk iphoneos build"
+    exit 2 unless system base + "-scheme ScrivelEngine -sdk iphonesimulator build"
+    exit 2 unless system base + "-scheme ScrivelEngineMac -sdk macosx build"
 end
 
 task :test do
-    exit 2 unless system base + "-scheme ScrivelEngine -sdk iphonesimulator test  -test-sdk iphonesimulator -parallelize"
-    exit 2 unless system base + "-scheme ScrivelEngineMac test"
+    exit 2 unless system base + "-scheme ScrivelEngine -sdk iphonesimulator test -test-sdk iphonesimulator -parallelize"
+    exit 2 unless system base + "-scheme ScrivelEngineMac -sdk macosx test -parallelize"
 end
 
 task :setup do
