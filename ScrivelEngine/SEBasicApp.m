@@ -143,15 +143,17 @@ NSString *const SETapCompletionEventLocationKey = @"org.scrivel.ScrivelEngine:SE
 
 - (void)load_scriptPath:(NSString *)scriptPath
 {
-    NSString *path = [[NSBundle mainBundle] se_pathForResource:scriptPath];
+    NSString *path = [self.engine pathForResource:scriptPath];
     if (path) {
         NSError *e = nil;
         NSString *script = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&e];
-        if ([self.engine validateScript:script error:&e]) {
+        if (script && [self.engine validateScript:script error:&e]) {
             SEScript *s = [SEScript scriptWithString:script error:&e];
             if (!e) {
                 [self.engine enqueueScript:s prior:YES];
             }
+        }else{
+            NSLog(@"script not found at %@",scriptPath);
         }
     }
 }

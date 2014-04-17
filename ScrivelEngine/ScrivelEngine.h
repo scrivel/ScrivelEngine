@@ -92,5 +92,7 @@ typedef NS_ENUM(NSUInteger, ScrivelEngineState){
 - (BOOL)validateScript:(NSString*)script error:(NSError**)error;
 /** 秒数をエンジンの実行時間にコンバートする **/
 - (CFTimeInterval)convertDuration:(CFTimeInterval)duration;
+/** エンジン内のリソースへのパスを取得する **/
+- (NSString*)pathForResource:(NSString*)path;
 
 @end
