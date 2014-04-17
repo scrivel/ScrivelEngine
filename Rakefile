@@ -1,17 +1,21 @@
-import "./scripts/tasks.rake"
-
 # デフォルトのタスクを記述
 task :default => ["clean","build","test"]
 
-task :testall do
-    $SCHEMES.each do |s|
-        task = "xctool -workspace ScrivelEngine.xcworkspace -scheme #{s}"
-        unless  s.match /Mac/
-            system task + " -sdk iphonesimulator test -test-sdk iphonesimulator"
-        else
-            system task + " test"
-        end
-    end
+base = "xctool -workspace ScrivelEngine.xcworkspace "
+
+task :clean do
+    exit 2 unless base + "-scheme ScrivelEngine clean"
+    exit 2 unless base + "-scheme ScrivelEngineMac clean"
+end
+
+task :build do
+    exit 2 unless system base + "-scheme ScrivelEngine build"
+    exit 2 unless system base + "-scheme ScrivelEngineMac build"
+end
+
+task :test do
+    exit 2 unless system base + "-scheme ScrivelEngine -sdk iphonesimulator test  -test-sdk iphonesimulator -parallelize"
+    exit 2 unless system base + "-scheme ScrivelEngineMac test"
 end
 
 task :setup do
@@ -35,9 +39,3 @@ end
 task :map do
     system "ruby ./scripts/methodmap.rb"
 end
-# 必要があればプロジェクトとワークスペースのパス
-# $PROJECT = "Hoge.xcodeproj"
-# $WORKSPACE = "Hoge.workspace"
-
-# デフォルトのビルドスキーム
-$PRIMARY_SCHEME = "ScrivelEngine"

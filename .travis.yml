@@ -4,5 +4,4 @@ before_install:
   - bundle install
   - rake setup
 script:
-  - rake build:all
-  - rake testall
+  - rake
