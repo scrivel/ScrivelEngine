@@ -74,11 +74,7 @@
 }
 
 - (IBAction)clear:(id)sender {
-    [(SEBasicLayerClass*)_engine.layer clearAll];
-    [(SEBasicLayerClass*)_engine.text clearAll];
-    [(SEBasicLayerClass*)_engine.chara clearAll];
-    [_engine.elementQueue clear];
-    [_engine.methodQueue clear];
+    [_engine clear];
 }
 - (IBAction)input:(id)sender {
     [_engine setSpeed:self.textField.floatValue];

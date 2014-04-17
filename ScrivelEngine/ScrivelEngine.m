@@ -61,8 +61,7 @@ NSString *const SEStateChangedEventStateKey = @"org.scrivel.SEStateChangedEventS
 {
     self = [super init];
     self.classProxy = [SEBasicClassProxy new];
-    _methodQueue = [Queue new];
-    _elementQueue = [Queue new];
+    _taskQueue = [Queue new];
     _identifier = [[NSUUID UUID] UUIDString];
     _state = ScrivelEngineStateIdle;
     _speed = 1.0f;
@@ -100,8 +99,7 @@ NSString *const SEStateChangedEventStateKey = @"org.scrivel.SEStateChangedEventS
     [self.layer clearAll];
     [self.chara clearAll];
     [self.text clearAll];
-    [_elementQueue clear];
-    [_methodQueue clear];
+    [_taskQueue clear];
     self.state = ScrivelEngineStateIdle;
 }
 
@@ -119,37 +117,37 @@ NSString *const SEStateChangedEventStateKey = @"org.scrivel.SEStateChangedEventS
     return [self enqueueScript:s prior:NO];
 }
 
-- (id)enqueueScript:(id)sender prior:(BOOL)prior
+- (id)enqueueScript:(SEScript*)sender prior:(BOOL)prior
 {
     self.isWaiting = NO;
     self.state = ScrivelEngineStateRunning;
     id returnValue = nil;
+    // waitが発生した場合のコールバック
     __weak typeof(self) __self = self;
     [self kx_once:SEWaitBeganEvent handler:^(NSNotification *n) {
         __self.isWaiting = YES;
+        // waitの終了を待ってリトライする
         [__self kx_once:SEWaitCompletionEvent handler:^(NSNotification *n) {
             [__self enqueueScript:nil prior:NO];
         } from:nil center:__self.notificationCenter];
     } from:nil center:self.notificationCenter];
+    // senderがSEScriptの場合 => 通常のキューイング
     if ([sender isKindOfClass:[SEScript class]]){
         // priorの場合は割り込みさせる
         if (prior) {
-            [_elementQueue enqueueObjects:[(SEScript*)sender elements] prior:YES];
+            [_taskQueue enqueueObjects:[(SEScript*)sender elements] prior:YES];
         }else{
             // エレメントをキューイング
-            [_elementQueue enqueueObjects:[(SEScript*)sender elements]];
+            [_taskQueue enqueueObjects:[(SEScript*)sender elements]];
         }
     }
-    // 前回のイベントループで途中だったメソッドを実行する
-    SEMethod *method;
-    while ([self shouldRunScript] && (method = [_methodQueue dequeue]) != nil) {
-        returnValue = [method call];
-    }
-    // 溜まっているエレメントを順番に処理していく
-    SEElement *element;
-    while ([self shouldRunScript] && (element = [_elementQueue dequeue]) != nil) {
-        if ([element isKindOfClass:[SEMethodChain class]]) {
-            SEMethodChain *chain = (SEMethodChain*)element;
+    // 溜まっているタスクを順番に処理していく
+    id task;
+    while ([self shouldRunScript] && (task = [_taskQueue dequeue]) != nil) {
+        if ([task isKindOfClass:[SEMethod class]]) {
+            returnValue = [(SEMethod*)task call];
+        }else if ([task isKindOfClass:[SEMethodChain class]]) {
+            SEMethodChain *chain = (SEMethodChain*)task;
             id<SEObjectInstance> instance;
             SEMethod *m;
             // staticメソッドを実行
@@ -179,11 +177,11 @@ NSString *const SEStateChangedEventStateKey = @"org.scrivel.SEStateChangedEventS
                 }else{
                     // 次回のイベントループにキューイングする
                     m.target = instance;
-                    [_methodQueue enqueue:m];
-                } 
+                    [_taskQueue enqueue:m];
+                }
             }
-        }else if([element isKindOfClass:[SEWords class]]){
-            SEWords *words = (SEWords*)element;
+        }else if([task isKindOfClass:[SEWords class]]){
+            SEWords *words = (SEWords*)task;
             if (words.character) {
                 [__text.primaryNameLayer setText_text:words.character noanimate:YES];
             }
@@ -204,11 +202,11 @@ NSString *const SEStateChangedEventStateKey = @"org.scrivel.SEStateChangedEventS
             } from:nil center:self.notificationCenter];
         }else{
             // value
-            return element;
+            return task;
         }
     }
     // キューを消化し終わったらアイドルに戻す
-    if (_elementQueue.count == 0 && _methodQueue.count == 0) {
+    if (_taskQueue.count == 0) {
         self.state = ScrivelEngineStateIdle;
     }
     return returnValue;

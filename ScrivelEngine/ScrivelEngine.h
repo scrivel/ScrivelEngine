@@ -66,9 +66,8 @@ typedef NS_ENUM(NSUInteger, ScrivelEngineState){
 @property (nonatomic, copy) NSURL *baseURL;
 /** エンジンの実行スピード **/
 @property (nonatomic) CGFloat speed;
-/** **/
-@property (nonatomic, readonly) Queue *elementQueue;
-@property (nonatomic, readonly) Queue *methodQueue;
+/** 現在キューイングされているスクリプトのタスク **/
+@property (nonatomic, readonly) Queue *taskQueue;
 /** エンジンが内部的に使用するNSNotificationCenterオブジェクト **/
 @property (nonatomic, readonly) NSNotificationCenter *notificationCenter;
 /** アプリケーションクラスオブジェクト **/
