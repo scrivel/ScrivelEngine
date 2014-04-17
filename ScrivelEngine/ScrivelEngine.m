@@ -66,7 +66,7 @@ NSString *const SEStateChangedEventStateKey = @"org.scrivel.SEStateChangedEventS
     _state = ScrivelEngineStateIdle;
     _speed = 1.0f;
     _notificationCenter = [NSNotificationCenter new];
-    _baseURL = [[NSBundle mainBundle] bundleURL];
+    _baseURL = nil;
     return self ?: nil;
 }
 
@@ -306,7 +306,10 @@ NSString *const SEStateChangedEventStateKey = @"org.scrivel.SEStateChangedEventS
 
 - (NSString *)pathForResource:(NSString *)path
 {
-    return (NSString*)[[NSURL URLWithString:path relativeToURL:self.baseURL] path];
+    if (_baseURL) {
+        return [[NSURL URLWithString:path relativeToURL:self.baseURL] path];
+    }
+    return [[NSBundle mainBundle] pathForResource:path ofType:nil];
 }
 
 @end
