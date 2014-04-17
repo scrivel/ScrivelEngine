@@ -294,7 +294,7 @@
 
 - (void)loadImage_path:(NSString *)path
 {
-    NSString *_path = [[NSBundle mainBundle] se_pathForResource:path];
+    NSString *_path = [self.engine pathForResource:path];
 //    NSAssert(_path, @"パスに画像がありません");
     SEImage *image = [[SEImage alloc] initWithContentsOfFile:_path];
 //    NSAssert(image, @"画像がありません");

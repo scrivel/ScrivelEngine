@@ -152,4 +152,20 @@
     }
 }
 
+- (void)testResourcePath
+{
+    /** 
+     Users
+        keroxp
+            hoge
+                aaa.jpg
+            fuga
+                bbb.jpg
+     **/
+    ScrivelEngine *e = NEWENGINE;
+    e.baseURL = [NSURL URLWithString:@"/Users/keroxp/hoge/"];
+    XCTAssert([[e pathForResource:@"aaa.jpg"] isEqualToString:@"/Users/keroxp/hoge/aaa.jpg"], );
+    XCTAssert([[e pathForResource:@"../fuga/bbb.jpg"] isEqualToString:@"/Users/keroxp/fuga/bbb.jpg"],);
+}
+
 @end
