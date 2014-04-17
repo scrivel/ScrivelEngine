@@ -32,7 +32,6 @@
 @property (nonatomic, readonly) BOOL isRepeatingForever;
 
 - (void)didMoveToSuperLayer:(CALayer*)layer;
-- (void)didTap:(SEPoint)point;
 
 @end
 
