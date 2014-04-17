@@ -17,6 +17,8 @@ extern NSString *const SETimeoutCompletionEvent;
 extern NSString *const SETapCompletionEvent;
 extern NSString *const SEAnimationCompletionEvent;
 extern NSString *const SETextDisplayCompletionEvent;
+extern NSString *const SEStateChangedEvent;
+extern NSString *const SEStateChangedEventStateKey;
 
 @class SEScript, SEMethod, SEBasicApp;
 @protocol SEClassProxy, SEApp, SELayerClass, SETextLayerClass, SETextLayerDelegate, SECharacterLayerClass;
@@ -27,6 +29,15 @@ extern NSString *const SETextDisplayCompletionEvent;
  
  `ScrivelEngine *engine = [ScrivelEngine engineWithWindow:self.window rootView:self.view];`
  **/
+
+/**
+ エンジンの状態
+ **/
+typedef NS_ENUM(NSUInteger, ScrivelEngineState){
+    ScrivelEngineStateIdle = 0,
+    ScrivelEngineStateRunning,
+    ScrivelEngineStatePaused
+};
 
 @interface ScrivelEngine : NSObject
 
@@ -49,6 +60,10 @@ extern NSString *const SETextDisplayCompletionEvent;
 @property (nonatomic) id<SEClassProxy> classProxy;
 /** エンジンが現在wait状態にあるかどうか **/
 @property (nonatomic, readonly) BOOL isWaiting;
+/** エンジンの状態 **/
+@property (nonatomic, readonly) ScrivelEngineState state;
+/** リソースのベースURL **/
+@property (nonatomic, copy) NSURL *baseURL;
 /** エンジンの実行スピード **/
 @property (nonatomic) CGFloat speed;
 /** **/
@@ -64,6 +79,12 @@ extern NSString *const SETextDisplayCompletionEvent;
 @property (nonatomic, readonly) id<SETextLayerClass> text;
 /** キャラクタークラスオブジェクト **/
 @property (nonatomic, readonly) id<SECharacterLayerClass> chara;
+/** エンジンの実行を一時的に止めます **/
+- (void)pause;
+/** エンジンの実行を再生します **/
+- (void)resume;
+/** エンジンの内部のオブジェクトをすべて削除します **/
+- (void)clear;
 /** SEScriptを実行 **/
 - (id)evaluateScript:(NSString*)script error:(NSError**)error;
 /** スクリプトをキューイング **/

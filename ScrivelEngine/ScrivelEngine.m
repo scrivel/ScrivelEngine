@@ -28,6 +28,17 @@ NSString *const SETimeoutCompletionEvent = @"org.scrivel.ScrivelEngine:SETimeout
 NSString *const SETapCompletionEvent = @"org.scrivel.ScrivelEngine:SETapCompleteEvent";
 NSString *const SEAnimationCompletionEvent = @"org.scrivel.ScrivelEngine:SEAnimationCompleteEvent";
 NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETextDisplayCompletionEvent";
+NSString *const SEStateChangedEvent = @"org.scrivel.SEStateChangedEvent";
+NSString *const SEStateChangedEventStateKey = @"org.scrivel.SEStateChangedEventStateKey";
+
+@interface ScrivelEngine ()
+
+@property (nonatomic, readwrite) ScrivelEngineState state;
+@property (nonatomic, readwrite) BOOL isWaiting;
+
+- (BOOL)shouldRunScript;
+
+@end
 
 @implementation ScrivelEngine
 {
@@ -64,6 +75,7 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
     _methodQueue = [Queue new];
     _elementQueue = [Queue new];
     _identifier = [[NSUUID UUID] UUIDString];
+    _state = ScrivelEngineStateIdle;
     _speed = 1.0f;
     _notificationCenter = [NSNotificationCenter new];
     return self ?: nil;
@@ -82,6 +94,33 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
     [self kx_offCenter:self.notificationCenter];
 }
 
+#pragma mark - Interface
+
+- (void)pause
+{
+    self.state = ScrivelEngineStatePaused;
+}
+
+- (void)resume
+{
+    self.state = ScrivelEngineStateRunning;
+}
+
+- (void)clear
+{
+    [self.layer clearAll];
+    [self.chara clearAll];
+    [self.text clearAll];
+    [_elementQueue clear];
+    [_methodQueue clear];
+    self.state = ScrivelEngineStateIdle;
+}
+
+- (BOOL)shouldRunScript
+{
+    return !self.isWaiting && self.state == ScrivelEngineStateRunning;
+}
+
 - (id)evaluateScript:(NSString *)script error:(NSError *__autoreleasing *)error
 {
     SEScript *s = [SEScript scriptWithString:script error:error];
@@ -93,11 +132,12 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
 
 - (id)enqueueScript:(id)sender prior:(BOOL)prior
 {
-    _isWaiting = NO;
+    self.isWaiting = NO;
+    self.state = ScrivelEngineStateRunning;
     id returnValue = nil;
     __weak typeof(self) __self = self;
     [self kx_once:SEWaitBeganEvent handler:^(NSNotification *n) {
-        [__self setValue:@YES forKey:@"_isWaiting"];
+        __self.isWaiting = YES;
         [__self kx_once:SEWaitCompletionEvent handler:^(NSNotification *n) {
             [__self enqueueScript:nil prior:NO];
         } from:nil center:__self.notificationCenter];
@@ -113,12 +153,12 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
     }
     // 前回のイベントループで途中だったメソッドを実行する
     SEMethod *method;
-    while (!self.isWaiting && (method = [_methodQueue dequeue]) != nil) {
+    while ([self shouldRunScript] && (method = [_methodQueue dequeue]) != nil) {
         returnValue = [method call];
     }
     // 溜まっているエレメントを順番に処理していく
     SEElement *element;
-    while (!self.isWaiting && (element = [_elementQueue dequeue]) != nil) {
+    while ([self shouldRunScript] && (element = [_elementQueue dequeue]) != nil) {
         if ([element isKindOfClass:[SEMethodChain class]]) {
             SEMethodChain *chain = (SEMethodChain*)element;
             id<SEObjectInstance> instance;
@@ -145,7 +185,7 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
             for (; i < chain.methods.count; i++) {
                 m = [chain.methods objectAtIndex:i];
                 // wait中でなければ実行
-                if (!self.isWaiting) {
+                if ([self shouldRunScript]) {
                     returnValue = [instance callMethod_method:m];
                 }else{
                     // 次回のイベントループにキューイングする
@@ -177,6 +217,10 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
             // value
             return element;
         }
+    }
+    // キューを消化し終わったらアイドルに戻す
+    if (_elementQueue.count == 0 && _methodQueue.count == 0) {
+        self.state = ScrivelEngineStateIdle;
     }
     return returnValue;
 }
@@ -229,6 +273,14 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
     return YES;
 }
 
+- (void)setRootView:(SEView *)rootView
+{
+#if SE_TARGET_OS_MAC
+    rootView.wantsLayer = YES;
+#endif
+    _rootView = rootView;
+}
+
 - (void)setClassProxy:(id<SEClassProxy>)classProxy
 {
     if (_classProxy != classProxy) {
@@ -242,6 +294,16 @@ NSString *const SETextDisplayCompletionEvent = @"org.scrivel.ScrivelEngine:SETex
                 [self setValue:c forKey:[NSString stringWithFormat:@"__%@",className]];
             }
         }
+    }
+}
+
+- (void)setState:(ScrivelEngineState)state
+{
+    if (_state != state) {
+        [self kx_emit:SEStateChangedEvent
+             userInfo:@{SEStateChangedEventStateKey: @(state)}
+               center:self.notificationCenter];
+        _state = state;
     }
 }
 
