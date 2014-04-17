@@ -100,7 +100,6 @@
         NSDictionary *json;
         XCTAssertNoThrow(json = [MTLJSONAdapter JSONDictionaryFromModel:s],);
         XCTAssert(json, );
-        NSLog(@"%@",json);
         NSData *data = [NSJSONSerialization dataWithJSONObject:json options:NSJSONWritingPrettyPrinted error:&e];
         XCTAssert(data, );
         NSString *jsonstr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];

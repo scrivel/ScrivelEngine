@@ -25,7 +25,7 @@ OBJC_EXPORT id se_callMethod(id , NSString *, SEMethod *, ScrivelEngine *);
 
 @interface SEBasicObject : _SEObject <SEObjectInstance>
 
-@property (nonatomic, weak) SEBasicObjectClass *holder;
+@property (weak, nonatomic) SEBasicObjectClass *holder;
 
 - (instancetype)initWithOpts:(NSDictionary*)options holder:(SEBasicObjectClass*)holder;
 

@@ -176,6 +176,8 @@
 		A6D1760E18AE628200AB11AF /* SEScriptParser.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D1760C18AE628200AB11AF /* SEScriptParser.h */; };
 		A6D1760F18AE628200AB11AF /* SEScriptParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D1760D18AE628200AB11AF /* SEScriptParser.m */; };
 		A6D1761018AE628200AB11AF /* SEScriptParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D1760D18AE628200AB11AF /* SEScriptParser.m */; };
+		A6D23EAF190005AC00D77F35 /* SEObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D23EAE190005AC00D77F35 /* SEObjectTests.m */; };
+		A6D23EB0190005AC00D77F35 /* SEObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D23EAE190005AC00D77F35 /* SEObjectTests.m */; };
 		A6D925D518B8E24600902230 /* NSBundle+ScrivelEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D925D318B8E24600902230 /* NSBundle+ScrivelEngine.h */; };
 		A6D925D618B8E24600902230 /* NSBundle+ScrivelEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D925D318B8E24600902230 /* NSBundle+ScrivelEngine.h */; };
 		A6D925D718B8E24600902230 /* NSBundle+ScrivelEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D925D418B8E24600902230 /* NSBundle+ScrivelEngine.m */; };
@@ -380,6 +382,7 @@
 		A6D0516818B840CB00977B7A /* ObjcTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjcTests.m; sourceTree = "<group>"; };
 		A6D1760C18AE628200AB11AF /* SEScriptParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEScriptParser.h; sourceTree = "<group>"; };
 		A6D1760D18AE628200AB11AF /* SEScriptParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEScriptParser.m; sourceTree = "<group>"; };
+		A6D23EAE190005AC00D77F35 /* SEObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEObjectTests.m; sourceTree = "<group>"; };
 		A6D925D318B8E24600902230 /* NSBundle+ScrivelEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+ScrivelEngine.h"; sourceTree = "<group>"; };
 		A6D925D418B8E24600902230 /* NSBundle+ScrivelEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+ScrivelEngine.m"; sourceTree = "<group>"; };
 		A6F1145918C776B9002CBAB6 /* SECharacterLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SECharacterLayer.h; sourceTree = "<group>"; };
@@ -569,6 +572,7 @@
 				A6D0516818B840CB00977B7A /* ObjcTests.m */,
 				A612D7A418CB02C000D72A11 /* UtilTests.m */,
 				A60ECC2418AC8A5D000F7A40 /* SEScriptTests.m */,
+				A6D23EAE190005AC00D77F35 /* SEObjectTests.m */,
 				A6D04D3918B4F76D00977B7A /* ScrivelEngineTests.m */,
 				A66D847718D6F6350010EB66 /* SEUnitFloatTests.m */,
 				A634A05818D86FCF00DEFA51 /* SEGeometoryTests.m */,
@@ -1193,6 +1197,7 @@
 			files = (
 				A6D04D3A18B4F76D00977B7A /* ScrivelEngineTests.m in Sources */,
 				A6D0516918B840CC00977B7A /* ObjcTests.m in Sources */,
+				A6D23EAF190005AC00D77F35 /* SEObjectTests.m in Sources */,
 				A60ECC2518AC8A5D000F7A40 /* SEScriptTests.m in Sources */,
 				A634A05918D86FCF00DEFA51 /* SEGeometoryTests.m in Sources */,
 				A66D847818D6F6350010EB66 /* SEUnitFloatTests.m in Sources */,
@@ -1242,6 +1247,7 @@
 			files = (
 				A6D04D3B18B4F77000977B7A /* ScrivelEngineTests.m in Sources */,
 				A6D0516A18B840CC00977B7A /* ObjcTests.m in Sources */,
+				A6D23EB0190005AC00D77F35 /* SEObjectTests.m in Sources */,
 				A63BB5F318AD30EA0051FA9F /* SEScriptTests.m in Sources */,
 				A634A05A18D86FCF00DEFA51 /* SEGeometoryTests.m in Sources */,
 				A66D847918D6F6350010EB66 /* SEUnitFloatTests.m in Sources */,

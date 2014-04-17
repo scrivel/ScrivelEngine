@@ -109,6 +109,11 @@ id se_callMethod(id target, NSString *class, SEMethod *method, ScrivelEngine *en
     return self ?: nil;
 }
 
+- (void)dealloc
+{
+    
+}
+
 - (instancetype)initWithEngine:(ScrivelEngine *)engine
 {
     _engine = engine;

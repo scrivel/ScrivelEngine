@@ -21,7 +21,6 @@
 #import "SEClassProxy.h"
 #import "NSObject+KXEventEmitter.h"
 
-static NSArray *engineClassses;
 NSString *const SEWaitBeganEvent = @"org.scrivel.ScrivelEngine:SEWaitBeganEvent";
 NSString *const SEWaitCompletionEvent = @"org.scrivel.ScrivelEngine:SEWaitCompleteEvent";
 NSString *const SETimeoutCompletionEvent = @"org.scrivel.ScrivelEngine:SETimeoutCompletionEvent";
@@ -48,20 +47,10 @@ NSString *const SEStateChangedEventStateKey = @"org.scrivel.SEStateChangedEventS
     SEBasicCharacterLayerClass *__chara;
 }
 
-@synthesize classProxy = _classProxy;
-@synthesize isWaiting = _isWaiting;
 @synthesize app = __app;
 @synthesize layer = __layer;
 @synthesize text = __text;
 @synthesize chara = __chara;
-
-+ (void)load
-{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        engineClassses = @[@"app",@"layer",@"text",@"chara"];//,@"bgm",@"se",@"ui",@"chara"];
-    });
-}
 
 + (instancetype)engineWithWindow:(SEWindow *)window rootView:(SEView *)rootView
 {
@@ -278,6 +267,7 @@ NSString *const SEStateChangedEventStateKey = @"org.scrivel.SEStateChangedEventS
 #if SE_TARGET_OS_MAC
     rootView.wantsLayer = YES;
 #endif
+    [__app setUpTapRecognizerWithView:rootView];
     _rootView = rootView;
 }
 
@@ -286,14 +276,10 @@ NSString *const SEStateChangedEventStateKey = @"org.scrivel.SEStateChangedEventS
     if (_classProxy != classProxy) {
         _classProxy = classProxy;
         // classProxyに対して内部のクラスオブジェクトを作成
-        for (NSString *className in engineClassses) {
-            Class<NSObject,SEObjectClass> class = [classProxy classForClassIdentifier:className];
-            id<SEObjectClass> c = [objc_msgSend(class, @selector(alloc)) initWithEngine:self classIdentifier:className];
-            // layer -> _layer
-            if (c) {
-                [self setValue:c forKey:[NSString stringWithFormat:@"__%@",className]];
-            }
-        }
+        __app = [[[classProxy classForClassIdentifier:@"app"] alloc] initWithEngine:self classIdentifier:@"app"];
+        __layer = [[[classProxy classForClassIdentifier:@"layer"] alloc] initWithEngine:self classIdentifier:@"layer"];
+        __chara = [[[classProxy classForClassIdentifier:@"chara"] alloc] initWithEngine:self classIdentifier:@"chara"];
+        __text = [[[classProxy classForClassIdentifier:@"text"] alloc] initWithEngine:self classIdentifier:@"text"];
     }
 }
 

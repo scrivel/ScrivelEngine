@@ -42,29 +42,18 @@ NSString *const SETapCompletionEventLocationKey = @"org.scrivel.ScrivelEngine:SE
 {
     self = [super init];
     _waitingState = SEWaitingStateNone;
-    [self setupTapRecognizer];
-    [self.engine addObserver:self forKeyPath:@"rootView" options:NSKeyValueObservingOptionNew context:NULL];
     return self ?: nil;
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if (object == self.engine) {
-        if ([keyPath isEqualToString:@"rootView"]) {
-            [self setupTapRecognizer];
-        }
-    }
-}
-
-- (void)setupTapRecognizer
+- (void)setUpTapRecognizerWithView:(SEView *)view
 {
 #if TARGET_OS_IPHONE
     _tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-    [self.engine.rootView addGestureRecognizer:_tapGestureRecognizer];
+    [view addGestureRecognizer:_tapGestureRecognizer];
 #else
     _responderProxy = [[SEResponderProxy alloc] initWithDelegate:self selector:@selector(handleTap:)];
-    NSResponder *r = self.engine.rootView.nextResponder;
-    [self.engine.rootView setNextResponder:_responderProxy];
+    NSResponder *r = view.nextResponder;
+    [view setNextResponder:_responderProxy];
     [_responderProxy setNextResponder:r];
 #endif
 }

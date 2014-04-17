@@ -23,4 +23,6 @@ typedef NS_ENUM(NSUInteger, SEWaitingState){
 
 @property (nonatomic, readonly) SEWaitingState waitingState;
 
+- (void)setUpTapRecognizerWithView:(SEView*)view;
+
 @end
