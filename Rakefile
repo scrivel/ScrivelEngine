@@ -1,7 +1,7 @@
 # デフォルトのタスクを記述
 task :default => ["clean","build","test"]
 
-base = "xctool -workspace ScrivelEngine.xcworkspace "
+base = "xcodebuild -workspace ScrivelEngine.xcworkspace "
 
 task :clean do
     exit 2 unless base + "-scheme ScrivelEngine clean"
@@ -9,14 +9,14 @@ task :clean do
 end
 
 task :build do
-    exit 2 unless system base + "-scheme ScrivelEngine -sdk iphoneos build"
-    exit 2 unless system base + "-scheme ScrivelEngine -sdk iphonesimulator build"
-    exit 2 unless system base + "-scheme ScrivelEngineMac -sdk macosx build"
+    exit 2 unless system base + "-scheme ScrivelEngine -sdk iphoneos7.1 build"
+    exit 2 unless system base + "-scheme ScrivelEngine -sdk iphonesimulator7.1 build"
+    exit 2 unless system base + "-scheme ScrivelEngineMac -sdk macosx10.9 build"
 end
 
 task :test do
-    exit 2 unless system base + "-scheme ScrivelEngine -sdk iphonesimulator test -test-sdk iphonesimulator -parallelize"
-    exit 2 unless system base + "-scheme ScrivelEngineMac -sdk macosx test -parallelize"
+    exit 2 unless system base + "-scheme ScrivelEngine -sdk iphonesimulator7.1 -destination \"platform=iOS Simulator,name=iPhone Retina (4-inch)\" test"
+    exit 2 unless system base + "-scheme ScrivelEngineMac -sdk macosx10.9 test"
 end
 
 task :setup do
