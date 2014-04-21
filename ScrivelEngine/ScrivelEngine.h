@@ -53,9 +53,11 @@ typedef NS_ENUM(NSUInteger, ScrivelEngineState){
 /** レイヤーを管理するrootのview **/
 @property (nonatomic, readonly) NSString *identifier;
 /** エンジンが実行されるウィンドウ **/
-@property (nonatomic, weak) SEWindow *window;
+@property (weak, nonatomic) SEWindow *window;
 /** アニメーションが実行されるNS/UIView **/
-@property (nonatomic, weak) SEView *rootView;
+@property (weak, nonatomic) SEView *rootView;
+/** 画面のレイアウト上の仮想サイズ。デフォルトはrootViewのサイズ **/
+@property (nonatomic) SESize virtualSize;
 /** SEScriptを実行するためのマッピングオブジェクト **/
 @property (nonatomic) id<SEClassProxy> classProxy;
 /** エンジンが現在wait状態にあるかどうか **/

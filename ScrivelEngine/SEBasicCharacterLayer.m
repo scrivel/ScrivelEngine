@@ -37,7 +37,7 @@
 
 - (void)mark_key:(id<NSCopying>)key point:(id)point
 {
-    SEPoint _point = SEPointFromObject(self.engine.rootView.bounds.size, point);
+    SEPoint _point = SEPointFromObject(point, VIEW_SIZE, VIRTUAL_SIZE);
     [__markedPoints setObject:[NSValue se_valueWithPoint:_point] forKey:[key copyWithZone:NULL]];
 }
 

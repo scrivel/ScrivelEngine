@@ -214,7 +214,7 @@
 - (void)set_key:(NSString *)key value:(id)value
 {
     if (KEY_IS(@"padding")) {
-        [self setPadding:SEEdgeInsetsFromObject(VIEW_SIZE, value)];
+        [self setPadding:SEEdgeInsetsFromObject(value, VIEW_SIZE, VIRTUAL_SIZE)];
     }else if (KEY_IS(@"fontName")){
         [self setFontName:value];
     }else if (KEY_IS(@"fontSize")){

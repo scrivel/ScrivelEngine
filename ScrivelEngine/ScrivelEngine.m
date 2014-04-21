@@ -51,6 +51,7 @@ NSString *const SEStateChangedEventStateKey = @"org.scrivel.SEStateChangedEventS
 @synthesize layer = __layer;
 @synthesize text = __text;
 @synthesize chara = __chara;
+@synthesize virtualSize = _virtualSize;
 
 + (instancetype)engineWithWindow:(SEWindow *)window rootView:(SEView *)rootView
 {
@@ -65,6 +66,7 @@ NSString *const SEStateChangedEventStateKey = @"org.scrivel.SEStateChangedEventS
     _identifier = [[NSUUID UUID] UUIDString];
     _state = ScrivelEngineStateIdle;
     _speed = 1.0f;
+    _virtualSize = CGSizeZero;
     _notificationCenter = [NSNotificationCenter new];
     _baseURL = nil;
     return self ?: nil;
@@ -81,6 +83,50 @@ NSString *const SEStateChangedEventStateKey = @"org.scrivel.SEStateChangedEventS
 - (void)dealloc
 {
     [self kx_offCenter:self.notificationCenter];
+}
+
+#pragma mark - Setter
+
+- (void)setRootView:(SEView *)rootView
+{
+    if (rootView != _rootView) {
+#if SE_TARGET_OS_MAC
+        rootView.wantsLayer = YES;
+#endif
+        [__app setUpTapRecognizerWithView:rootView];
+        _rootView = rootView;
+    }
+}
+
+- (void)setClassProxy:(id<SEClassProxy>)classProxy
+{
+    if (_classProxy != classProxy) {
+        _classProxy = classProxy;
+        // classProxyに対して内部のクラスオブジェクトを作成
+        __app = [[[classProxy classForClassIdentifier:@"app"] alloc] initWithEngine:self classIdentifier:@"app"];
+        __layer = [[[classProxy classForClassIdentifier:@"layer"] alloc] initWithEngine:self classIdentifier:@"layer"];
+        __chara = [[[classProxy classForClassIdentifier:@"chara"] alloc] initWithEngine:self classIdentifier:@"chara"];
+        __text = [[[classProxy classForClassIdentifier:@"text"] alloc] initWithEngine:self classIdentifier:@"text"];
+    }
+}
+
+- (void)setState:(ScrivelEngineState)state
+{
+    if (_state != state) {
+        [self kx_emit:SEStateChangedEvent
+             userInfo:@{SEStateChangedEventStateKey: @(state)}
+               center:self.notificationCenter];
+        _state = state;
+    }
+}
+
+- (SESize)virtualSize
+{
+    if (CGSizeEqualToSize(_virtualSize, CGSizeZero)) {
+        return self.rootView.bounds.size;
+    }else{
+        return _virtualSize;
+    }
 }
 
 #pragma mark - Interface
@@ -259,37 +305,6 @@ NSString *const SEStateChangedEventStateKey = @"org.scrivel.SEStateChangedEventS
         }
     }
     return YES;
-}
-
-- (void)setRootView:(SEView *)rootView
-{
-#if SE_TARGET_OS_MAC
-    rootView.wantsLayer = YES;
-#endif
-    [__app setUpTapRecognizerWithView:rootView];
-    _rootView = rootView;
-}
-
-- (void)setClassProxy:(id<SEClassProxy>)classProxy
-{
-    if (_classProxy != classProxy) {
-        _classProxy = classProxy;
-        // classProxyに対して内部のクラスオブジェクトを作成
-        __app = [[[classProxy classForClassIdentifier:@"app"] alloc] initWithEngine:self classIdentifier:@"app"];
-        __layer = [[[classProxy classForClassIdentifier:@"layer"] alloc] initWithEngine:self classIdentifier:@"layer"];
-        __chara = [[[classProxy classForClassIdentifier:@"chara"] alloc] initWithEngine:self classIdentifier:@"chara"];
-        __text = [[[classProxy classForClassIdentifier:@"text"] alloc] initWithEngine:self classIdentifier:@"text"];
-    }
-}
-
-- (void)setState:(ScrivelEngineState)state
-{
-    if (_state != state) {
-        [self kx_emit:SEStateChangedEvent
-             userInfo:@{SEStateChangedEventStateKey: @(state)}
-               center:self.notificationCenter];
-        _state = state;
-    }
 }
 
 - (CFTimeInterval)convertDuration:(CFTimeInterval)duration

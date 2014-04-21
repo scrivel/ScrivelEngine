@@ -20,14 +20,14 @@ inline SEUnitValue * SEUnitValueMake(id obj)
     return nil;
 }
 
-inline CGFloat SEMakeX(CGFloat constraint, SEUnitValue *f)
+inline CGFloat SEMakeX(SEUnitValue *f, CGFloat constraint, CGFloat virtualConstraint)
 {
-    return [f CGFloatValueWithConstraint:constraint];
+    return [f CGFloatValueWithConstraint:constraint virtualConstraint:virtualConstraint];
 }
 
-inline CGFloat SEMakeY(CGFloat constraint, SEUnitValue *f)
+inline CGFloat SEMakeY(SEUnitValue *f, CGFloat constraint, CGFloat virtualConstraint)
 {
-    CGFloat y = [f CGFloatValueWithConstraint:constraint];
+    CGFloat y = [f CGFloatValueWithConstraint:constraint virtualConstraint:virtualConstraint];
 #if TARGET_OS_IPHONE
     return constraint - y;
 #else
@@ -47,34 +47,35 @@ inline CGPoint CGPointFromObject(id obj)
     return CGPointZero;
 }
 
-inline SESize SESizeMake(SESize constraintSize, id w , id h)
+inline SESize SESizeMake(id w , id h, SESize constraintSize, SESize virtualConstraintSize)
 {
     SEUnitValue *_w = SEUnitValueMake(w);
     SEUnitValue *_h = SEUnitValueMake(h);
-    return CGSizeMake([_w CGFloatValueWithConstraint:constraintSize.width],
-                      [_h CGFloatValueWithConstraint:constraintSize.height]);
+    return CGSizeMake([_w CGFloatValueWithConstraint:constraintSize.width virtualConstraint:virtualConstraintSize.width],
+                      [_h CGFloatValueWithConstraint:constraintSize.height virtualConstraint:virtualConstraintSize.height]);
 }
 
-inline SEPoint SEPointMake(SESize constraintSize, id x, id y)
+inline SEPoint SEPointMake(id x, id y, SESize constraintSize, SESize virtualConstraintSize)
 {
     SEUnitValue *_x = SEUnitValueMake(x);
     SEUnitValue *_y = SEUnitValueMake(y);
-    return CGPointMake(SEMakeX(constraintSize.width, _x), SEMakeY(constraintSize.height, _y));
+    return CGPointMake(SEMakeX(_x,constraintSize.width,virtualConstraintSize.width),
+                       SEMakeY(_y,constraintSize.height,virtualConstraintSize.height));
 }
 
-inline SERect SERectMake(SESize constraintSize, id x, id y, id w, id h)
+inline SERect SERectMake(id x, id y, id w, id h, SESize constraintSize, SESize virtualConstraintSize)
 {
     SEUnitValue *_x = SEUnitValueMake(x);
     SEUnitValue *_y = SEUnitValueMake(y);
     SEUnitValue *_w = SEUnitValueMake(w);
     SEUnitValue *_h = SEUnitValueMake(h);
-    return CGRectMake(SEMakeX(constraintSize.width, _x),
-                      SEMakeY(constraintSize.height, _y),
-                      [_w CGFloatValueWithConstraint:constraintSize.width],
-                      [_h CGFloatValueWithConstraint:constraintSize.height]);
+    return CGRectMake(SEMakeX(_x,constraintSize.width,virtualConstraintSize.width),
+                      SEMakeY(_y,constraintSize.height,virtualConstraintSize.height),
+                      [_w CGFloatValueWithConstraint:constraintSize.width virtualConstraint:virtualConstraintSize.width],
+                      [_h CGFloatValueWithConstraint:constraintSize.height virtualConstraint:virtualConstraintSize.height]);
 }
 
-inline SEVector SEVectorMake(SESize constraintSize, id dx, id dy)
+inline SEVector SEVectorMake(id dx, id dy, SESize constraintSize, SESize virtualConstraintSize)
 {
     SEUnitValue *_x = SEUnitValueMake(dx);
     SEUnitValue *_y = SEUnitValueMake(dy);
@@ -82,83 +83,83 @@ inline SEVector SEVectorMake(SESize constraintSize, id dx, id dy)
     _y = [SEUnitValue unitNumberWithCGFloat:-_y.numberValue.CGFloatValue unitType:_y.unitType];
 #endif
     SEVector v;
-    v.dx = [_x CGFloatValueWithConstraint:constraintSize.width];
-    v.dy = [_y CGFloatValueWithConstraint:constraintSize.height];
+    v.dx = [_x CGFloatValueWithConstraint:constraintSize.width virtualConstraint:virtualConstraintSize.width];
+    v.dy = [_y CGFloatValueWithConstraint:constraintSize.height virtualConstraint:virtualConstraintSize.height];
     return v;
 }
 
-inline SESize SESizeFromArray(SESize constraintSize, NSArray *array)
+inline SESize SESizeFromArray(NSArray *array, SESize constraintSize, SESize virtualConstraintSize)
 {
     SEUnitValue *x = SEUnitValueMake(array[0]);
     SEUnitValue *y = SEUnitValueMake(array[1]);
-    return SESizeMake(constraintSize, x, y);
+    return SESizeMake(x, y, constraintSize, virtualConstraintSize);
 }
 
-inline SESize SESizeFromDictionary(SESize constraintSize, NSDictionary *dictionary)
+inline SESize SESizeFromDictionary(NSDictionary *dictionary, SESize constraintSize, SESize virtualConstraintSize)
 {
     SEUnitValue *w = SEUnitValueMake(dictionary[@"width"]);
     SEUnitValue *h = SEUnitValueMake(dictionary[@"height"]);
-    return SESizeMake(constraintSize, w, h);
+    return SESizeMake(w, h, constraintSize, virtualConstraintSize);
 }
 
-inline SESize SESizeFromObject(SESize constraintSize, id obj)
+inline SESize SESizeFromObject(id obj, SESize constraintSize, SESize virtualConstraintSize)
 {
     if ([obj isKindOfClass:[NSArray class]]){
-        return SESizeFromArray(constraintSize, obj);
+        return SESizeFromArray(obj, constraintSize, virtualConstraintSize);
     }else if ([obj isKindOfClass:[NSDictionary class]]){
-        return SESizeFromDictionary(constraintSize, obj);
+        return SESizeFromDictionary(obj, constraintSize, virtualConstraintSize);
     }else if ([obj isKindOfClass:[NSValue class]]){
         return [obj se_sizeValue];
     }
     return CGSizeZero;
 }
 
-inline SEPoint SEPointFromArray(SESize constraintSize, NSArray *array)
+inline SEPoint SEPointFromArray(NSArray *array, SESize constraintSize, SESize virtualConstraintSize)
 {
     SEUnitValue *x = SEUnitValueMake(array[0]);
     SEUnitValue *y = SEUnitValueMake(array[1]);
-    return SEPointMake(constraintSize, x, y);
+    return SEPointMake(x, y, constraintSize, virtualConstraintSize);
 }
 
-inline SEPoint SEPointFromDictionary(SESize constraintSize, NSDictionary *dictionary)
+inline SEPoint SEPointFromDictionary(NSDictionary *dictionary, SESize constraintSize, SESize virtualConstraintSize)
 {
     SEUnitValue *x = SEUnitValueMake(dictionary[@"x"]);
     SEUnitValue *y = SEUnitValueMake(dictionary[@"y"]);
-    return SEPointMake(constraintSize, x, y);
+    return SEPointMake(x, y, constraintSize, virtualConstraintSize);
 }
 
-inline SEPoint SEPointFromObject(SESize constraintSize, id obj)
+inline SEPoint SEPointFromObject(id obj, SESize constraintSize, SESize virtualConstraintSize)
 {
     if ([obj isKindOfClass:[NSArray class]]){
-        return SEPointFromArray(constraintSize, obj);
+        return SEPointFromArray(obj, constraintSize, virtualConstraintSize);
     }else if ([obj isKindOfClass:[NSDictionary class]]){
-        return SEPointFromDictionary(constraintSize, obj);
+        return SEPointFromDictionary(obj, constraintSize, virtualConstraintSize);
     }else if ([obj isKindOfClass:[NSValue class]]){
         return [obj se_pointValue];
     }
     return CGPointZero;
 }
 
-inline SEVector SEVectorFromArray(SESize constraintSize, NSArray *array)
+inline SEVector SEVectorFromArray(NSArray *array, SESize constraintSize, SESize virtualConstraintSize)
 {
     SEUnitValue *x = SEUnitValueMake(array[0]);
     SEUnitValue *y = SEUnitValueMake(array[1]);
-    return SEVectorMake(constraintSize, x, y);
+    return SEVectorMake(x, y, constraintSize, virtualConstraintSize);
 }
 
-inline SEVector SEVectorFromDictionary(SESize constraintSize, NSDictionary *dictionary)
+inline SEVector SEVectorFromDictionary(NSDictionary *dictionary, SESize constraintSize, SESize virtualConstraintSize)
 {
     SEUnitValue *dx = SEUnitValueMake(dictionary[@"dx"]);
     SEUnitValue *dy = SEUnitValueMake(dictionary[@"dy"]);
-    return SEVectorMake(constraintSize, dx, dy);
+    return SEVectorMake(dx, dy, constraintSize, virtualConstraintSize);
 }
 
-inline SEVector SEVectorFromObject(SESize constraintSize, id obj)
+inline SEVector SEVectorFromObject(id obj, SESize constraintSize, SESize virtualConstraintSize)
 {
     if ([obj isKindOfClass:[NSArray class]]){
-        return SEVectorFromArray(constraintSize, obj);
+        return SEVectorFromArray(obj, constraintSize, virtualConstraintSize);
     }else if ([obj isKindOfClass:[NSDictionary class]]){
-        return SEVectorFromDictionary(constraintSize, obj);
+        return SEVectorFromDictionary(obj, constraintSize, virtualConstraintSize);
     }else if ([obj isKindOfClass:[NSValue class]]){
         return [obj se_vectorValue];
     }
@@ -168,30 +169,30 @@ inline SEVector SEVectorFromObject(SESize constraintSize, id obj)
     return v;
 }
 
-inline SERect SERectFromArray(SESize constraintSize, NSArray *array)
+inline SERect SERectFromArray(NSArray *array, SESize constraintSize, SESize virtualConstraintSize)
 {
     SEUnitValue *x = SEUnitValueMake(array[0]);
     SEUnitValue *y = SEUnitValueMake(array[1]);
     SEUnitValue *w = SEUnitValueMake(array[2]);
     SEUnitValue *h = SEUnitValueMake(array[3]);
-    return SERectMake(constraintSize, x, y, w, h);
+    return SERectMake(x, y, w, h, constraintSize, virtualConstraintSize);
 }
 
-inline SERect SERectFromDictionary(SESize constraintSize, NSDictionary *dictionary)
+inline SERect SERectFromDictionary(NSDictionary *dictionary, SESize constraintSize, SESize virtualConstraintSize)
 {
     SEUnitValue *x = SEUnitValueMake(dictionary[@"x"]);
     SEUnitValue *y = SEUnitValueMake(dictionary[@"y"]);
     SEUnitValue *w = SEUnitValueMake(dictionary[@"width"]);
     SEUnitValue *h = SEUnitValueMake(dictionary[@"height"]);
-    return SERectMake(constraintSize, x, y, w, h);
+    return SERectMake(x, y, w, h, constraintSize, virtualConstraintSize);
 }
 
-inline SERect SERectFromObject(SESize constraintSize, id obj)
+inline SERect SERectFromObject(id obj, SESize constraintSize, SESize virtualConstraintSize)
 {
     if ([obj isKindOfClass:[NSArray class]]){
-        return SERectFromArray(constraintSize, obj);
+        return SERectFromArray(obj, constraintSize, virtualConstraintSize);
     }else if ([obj isKindOfClass:[NSDictionary class]]){
-        return SERectFromDictionary(constraintSize, obj);
+        return SERectFromDictionary(obj, constraintSize, virtualConstraintSize);
     }else if ([obj isKindOfClass:[NSValue class]]){
         return [obj se_rectValue];
     }
@@ -199,7 +200,7 @@ inline SERect SERectFromObject(SESize constraintSize, id obj)
 }
 
 
-inline SEEdgeInsets SEEdgeInsetsFromArray(SESize constraintSize, NSArray *array)
+inline SEEdgeInsets SEEdgeInsetsFromArray(NSArray *array, SESize constraintSize, SESize virtualConstraintSize)
 {
     CGFloat top = [[SEUnitValueMake(array[0]) numberValue] CGFloatValue];
     CGFloat left = [[SEUnitValueMake(array[1]) numberValue] CGFloatValue];
@@ -208,7 +209,7 @@ inline SEEdgeInsets SEEdgeInsetsFromArray(SESize constraintSize, NSArray *array)
     return SEEdgeInsetsMake(top, left, bottom, right);
 }
 
-inline SEEdgeInsets SEEdgeInsetsFromDictionary(SESize constraintSize, NSDictionary *dictionary)
+inline SEEdgeInsets SEEdgeInsetsFromDictionary(NSDictionary *dictionary, SESize constraintSize, SESize virtualConstraintSize)
 {
     CGFloat top = [[SEUnitValueMake(dictionary[@"top"]) numberValue] CGFloatValue];
     CGFloat left = [[SEUnitValueMake(dictionary[@"left"]) numberValue] CGFloatValue];
@@ -217,12 +218,12 @@ inline SEEdgeInsets SEEdgeInsetsFromDictionary(SESize constraintSize, NSDictiona
     return SEEdgeInsetsMake(top, left, bottom, right);
 }
 
-inline SEEdgeInsets SEEdgeInsetsFromObject(SESize constraintSize, id obj)
+inline SEEdgeInsets SEEdgeInsetsFromObject(id obj, SESize constraintSize, SESize virtualConstraintSize)
 {
     if ([obj isKindOfClass:[NSArray class]]) {
-        return SEEdgeInsetsFromArray(constraintSize, obj);
+        return SEEdgeInsetsFromArray(obj, constraintSize, virtualConstraintSize);
     }else if ([obj isKindOfClass:[NSDictionary class]]){
-        return SEEdgeInsetsFromDictionary(constraintSize, obj);
+        return SEEdgeInsetsFromDictionary(obj, constraintSize, virtualConstraintSize);
     }else if ([obj isKindOfClass:[NSValue class]]){
         return [obj se_edgeInsetsValue];
     }

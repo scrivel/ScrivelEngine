@@ -1,0 +1,2 @@
+layer.new({"key" : "vpx"}).loadImage("keroxp.jpg").animate({"size":["100vpx","100vpx"], position : ["20%","50%"]});
+layer.new({"key" : "px"}).loadImage("keroxp.jpg").animate({"size":["100px","100px"], position : ["80%","50%"]});

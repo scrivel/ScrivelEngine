@@ -13,6 +13,7 @@
 
 #define ACTUAL_DURATION(d) [self.holder.engine convertDuration:ROUND_CGFLOAT(d)]
 #define VIEW_SIZE self.engine.rootView.bounds.size
+#define VIRTUAL_SIZE self.engine.virtualSize
 
 @interface SEBasicLayerClass : SEBasicObjectClass <SELayerClass>
 

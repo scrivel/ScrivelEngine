@@ -148,7 +148,7 @@
 
 - (void)didMoveToSuperLayer:(CALayer*)layer
 {
-    self.layer.position = SEPointFromArray(VIEW_SIZE, @[@"50%",@"50%"]);
+    self.layer.position = SEPointFromArray(@[@"50%",@"50%"], VIEW_SIZE, VIRTUAL_SIZE);
 }
 
 #pragma mark - Property
@@ -174,7 +174,7 @@
     }else if (KEY_IS(@"shadowRadius")){
         [self setShadowRadius:[value CGFloatValue]];
     }else if (KEY_IS(@"shadowOffset")){
-        [self setShadowOffset:SESizeFromObject(VIEW_SIZE, value)];
+        [self setShadowOffset:SESizeFromObject(value, VIEW_SIZE, VIRTUAL_SIZE)];
     }else if (KEY_IS(@"layerType")){
         [self setLayerType:value];
     }else if (KEY_IS(@"image")){
@@ -471,7 +471,7 @@
 {
     // create animation
     if (KEY_IS(@"position")) {
-        SEPoint point = SEPointFromObject(VIEW_SIZE, value);
+        SEPoint point = SEPointFromObject(value, VIEW_SIZE, VIRTUAL_SIZE);
         return [NSValue se_valueWithPoint:point];
     }else if (KEY_IS(@"zPosition")){
         // z値だけは正規化できないので常にpx値
@@ -479,12 +479,12 @@
         return @(z);
     }else if (KEY_IS(@"size")){
         CGRect bounds = self.layer.bounds;
-        SESize size = SESizeFromObject(VIEW_SIZE, value);
+        SESize size = SESizeFromObject(value, VIEW_SIZE, VIRTUAL_SIZE);
         bounds.size.width = size.width;
         bounds.size.height = size.height;
         return [NSValue se_valueWithRect:bounds];
     }else if (KEY_IS(@"translate")){
-        SEVector translation = SEVectorFromObject(VIEW_SIZE, value);
+        SEVector translation = SEVectorFromObject(value, VIEW_SIZE, VIRTUAL_SIZE);
         SEPoint position = self.layer.position;
         position.x += translation.dx;
         position.y += translation.dy;
