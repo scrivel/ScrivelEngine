@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <ParseKit/ParseKit.h>
 #import "SEScriptParser.h"
 
 @protocol SEScriptParserDelegate;

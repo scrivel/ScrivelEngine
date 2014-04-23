@@ -10,6 +10,7 @@
 #import "SEScriptParser.h"
 #import "SEScriptAssembler.h"
 #import "Stack.h"
+#import "Queue.h"
 
 static NSString *const kSEScriptErrorDomain = @"org.scrivel.ScrivelEngine:SEScriptErrorDomain";
 

@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/ParseKit.h>
+#import "SEElement.h"
 #import "SEMethodChain.h"
 #import "SEMethod.h"
-#import "Queue.h"
+#import "SEWords.h"
 
 @interface SEScript : NSObject <NSFastEnumeration>
 
