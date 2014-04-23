@@ -8,19 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import <ParseKit/ParseKit.h>
-#import <Mantle/Mantle.h>
 #import "SEMethodChain.h"
 #import "SEMethod.h"
 #import "Queue.h"
 
-@interface SEScript : MTLModel <NSFastEnumeration, MTLJSONSerializing>
+@interface SEScript : NSObject <NSFastEnumeration>
 
 + (instancetype)scriptWithString:(NSString*)string error:(NSError**)error;
 
 // スクリプトを構成するエレメント
 // 実体はSEMethodChain
 @property (nonatomic, readonly) NSMutableArray *elements;
-
-- (NSString*)JSONString;
 
 @end

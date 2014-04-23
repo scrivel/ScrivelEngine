@@ -5,9 +5,6 @@
       location = "group:ScrivelEngine.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:External/Mantle/Mantle.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:External/ParseKit/ParseKit.xcodeproj">
    </FileRef>
    <FileRef

@@ -7,11 +7,10 @@
 //
 
 #import "SEObject.h"
-#import <Mantle/Mantle.h>
 
 @class SEObject;
 
-@interface SEMethod : MTLModel<MTLJSONSerializing>
+@interface SEMethod : NSObject
 
 - (instancetype)initWithName:(NSString*)name lineNumer:(NSUInteger)lineNumber;
 

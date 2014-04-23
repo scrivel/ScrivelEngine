@@ -123,11 +123,7 @@
 		A66F812518F0BB7D00330137 /* NSObject+PerformBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = A66F812218F0BB7D00330137 /* NSObject+PerformBlock.m */; };
 		A66F812618F0BB7D00330137 /* NSObject+PerformBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = A66F812218F0BB7D00330137 /* NSObject+PerformBlock.m */; };
 		A66F813A18F116F800330137 /* libScrivelEngine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A60ECBF318AC86A7000F7A40 /* libScrivelEngine.a */; };
-		A66F813C18F1171300330137 /* libMantle-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A66F813B18F1171300330137 /* libMantle-iOS.a */; };
 		A66F813E18F1172100330137 /* libParseKitMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A66F813D18F1172100330137 /* libParseKitMobile.a */; };
-		A66F813F18F118A700330137 /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6565B9518DEC47500DDEF95 /* Mantle.framework */; };
-		A66F814018F118BA00330137 /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6565B9518DEC47500DDEF95 /* Mantle.framework */; };
-		A66F814318F1190300330137 /* libMantle-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A66F813B18F1171300330137 /* libMantle-iOS.a */; };
 		A66F814418F1191200330137 /* libParseKitMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A66F813D18F1172100330137 /* libParseKitMobile.a */; };
 		A66F814C18F1351200330137 /* libMantle-Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A66F814B18F1351200330137 /* libMantle-Mac.a */; };
 		A66F814E18F1351700330137 /* libParseKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A66F814D18F1351700330137 /* libParseKit.a */; };
@@ -407,7 +403,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A66F813E18F1172100330137 /* libParseKitMobile.a in Frameworks */,
-				A66F813C18F1171300330137 /* libMantle-iOS.a in Frameworks */,
 				A66F813A18F116F800330137 /* libScrivelEngine.a in Frameworks */,
 				A6AC928618AC960300D43025 /* UIKit.framework in Frameworks */,
 				A60ECBBA18AC8523000F7A40 /* CoreGraphics.framework in Frameworks */,
@@ -428,7 +423,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A66F814418F1191200330137 /* libParseKitMobile.a in Frameworks */,
-				A66F814318F1190300330137 /* libMantle-iOS.a in Frameworks */,
 				A639F0A118BB932100CF4148 /* CoreGraphics.framework in Frameworks */,
 				A604524518B3C6A700B85928 /* UIKit.framework in Frameworks */,
 				A604524318B3C67B00B85928 /* QuartzCore.framework in Frameworks */,
@@ -449,7 +443,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A66F814018F118BA00330137 /* Mantle.framework in Frameworks */,
 				A6F499EB18CDE56800B46770 /* ParseKit.framework in Frameworks */,
 				A604524618B3C6AF00B85928 /* Cocoa.framework in Frameworks */,
 				A63F88C118B111BF007FBE57 /* libScrivelEngineMac.a in Frameworks */,
@@ -475,7 +468,6 @@
 			files = (
 				A6F499E418CDE50400B46770 /* MGSFragaria.framework in Frameworks */,
 				A6D0517518B856A300977B7A /* ParseKit.framework in Frameworks */,
-				A66F813F18F118A700330137 /* Mantle.framework in Frameworks */,
 				A63BB5F518AD33D70051FA9F /* libScrivelEngineMac.a in Frameworks */,
 				A6AC928418AC95FC00D43025 /* Cocoa.framework in Frameworks */,
 				A6AC928318AC95F700D43025 /* Foundation.framework in Frameworks */,

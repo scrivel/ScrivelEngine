@@ -29,24 +29,6 @@
 
 #pragma mark - Script Component
 
-+ (NSDictionary *)JSONKeyPathsByPropertyKey
-{
-    return [[super JSONKeyPathsByPropertyKey] mtl_dictionaryByAddingEntriesFromDictionary:@{@"target": @"target",
-                                                                                            @"methods" : @"methods",
-                                                                                            @"type": @"type"}];
-}
-
-+ (NSValueTransformer*)typeJSONTransformer
-{
-    return [NSValueTransformer mtl_valueMappingTransformerWithDictionary:@{@"normal": @(SEMethodChainTypeNormal),
-                                                                           @"character" : @(SEMethodChainTypeCharacterSpecified)}];
-}
-
-+ (NSValueTransformer*)methodsJSONTransformer
-{
-    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:[SEMethod class]];
-}
-
 - (NSString *)elementName
 {
     return @"methodChain";

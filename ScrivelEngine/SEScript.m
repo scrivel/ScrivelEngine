@@ -33,28 +33,6 @@ static NSString *const kSEScriptErrorDomain = @"org.scrivel.ScrivelEngine:SEScri
     return self ?: nil;
 }
 
-+ (NSDictionary *)JSONKeyPathsByPropertyKey
-{
-    return @{@"elements": @"elements"};
-}
-
-+ (NSValueTransformer*)elementsJSONTransformer
-{
-    return [NSValueTransformer mtl_JSONArrayTransformerWithModelClass:[SEElement class]];
-}
-
-- (NSString *)JSONString
-{
-    NSDictionary *d = [MTLJSONAdapter JSONDictionaryFromModel:self];
-    NSError *e = nil;
-    NSData *data = [NSJSONSerialization dataWithJSONObject:d options:NSJSONWritingPrettyPrinted error:&e];
-    if (e) {
-        return nil;
-    }
-    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    return str;
-}
-
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(__unsafe_unretained id [])buffer count:(NSUInteger)len
 {
     return [_elements countByEnumeratingWithState:state objects:buffer count:len];
