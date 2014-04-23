@@ -20,6 +20,7 @@
 #import "SEWords.h"
 #import "SEClassProxy.h"
 #import "NSObject+KXEventEmitter.h"
+#import "Queue.h"
 
 NSString *const SEWaitBeganEvent = @"org.scrivel.ScrivelEngine:SEWaitBeganEvent";
 NSString *const SEWaitCompletionEvent = @"org.scrivel.ScrivelEngine:SEWaitCompleteEvent";

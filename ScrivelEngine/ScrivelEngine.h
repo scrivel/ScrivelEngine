@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "SETypeDefinition.h"
 #import "SEGeometory.h"
-#import "Queue.h"
 
 extern NSString *const SEWaitBeganEvent;
 extern NSString *const SEWaitCompletionEvent;
@@ -20,7 +19,7 @@ extern NSString *const SETextDisplayCompletionEvent;
 extern NSString *const SEStateChangedEvent;
 extern NSString *const SEStateChangedEventStateKey;
 
-@class SEScript, SEMethod, SEBasicApp;
+@class Queue, SEScript, SEMethod, SEBasicApp;
 @protocol SEClassProxy, SEApp, SELayerClass, SETextLayerClass, SETextLayerDelegate, SECharacterLayerClass;
 
 /**
