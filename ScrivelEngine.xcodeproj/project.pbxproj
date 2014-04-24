@@ -180,7 +180,6 @@
 		A6D614341908FF210029AA3A /* SEScript2Assembler.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D614311908FF210029AA3A /* SEScript2Assembler.h */; };
 		A6D614351908FF210029AA3A /* SEScript2Assembler.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D614321908FF210029AA3A /* SEScript2Assembler.m */; };
 		A6D614361908FF210029AA3A /* SEScript2Assembler.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D614321908FF210029AA3A /* SEScript2Assembler.m */; };
-		A6D61438190901BA0029AA3A /* script2.grammer in Resources */ = {isa = PBXBuildFile; fileRef = A6D61437190901BA0029AA3A /* script2.grammer */; };
 		A6D6143B19090D4D0029AA3A /* SEElement2.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D6143919090D4D0029AA3A /* SEElement2.h */; };
 		A6D6143C19090D4D0029AA3A /* SEElement2.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D6143919090D4D0029AA3A /* SEElement2.h */; };
 		A6D6143D19090D4D0029AA3A /* SEElement2.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D6143A19090D4D0029AA3A /* SEElement2.m */; };
@@ -227,6 +226,15 @@
 		A6D614B119092D760029AA3A /* SEScript2.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D614AD19092D760029AA3A /* SEScript2.m */; };
 		A6D614B319092F7B0029AA3A /* SEScript2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D614B219092F7B0029AA3A /* SEScript2Tests.m */; };
 		A6D614B41909339E0029AA3A /* SEScript2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D614B219092F7B0029AA3A /* SEScript2Tests.m */; };
+		A6D614B819093BF80029AA3A /* SEUnitSize.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D614B619093BF80029AA3A /* SEUnitSize.h */; };
+		A6D614B919093BF80029AA3A /* SEUnitSize.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D614B619093BF80029AA3A /* SEUnitSize.h */; };
+		A6D614BA19093BF80029AA3A /* SEUnitSize.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D614B719093BF80029AA3A /* SEUnitSize.m */; };
+		A6D614BB19093BF80029AA3A /* SEUnitSize.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D614B719093BF80029AA3A /* SEUnitSize.m */; };
+		A6D614BE19093C000029AA3A /* SEUnitPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D614BC19093C000029AA3A /* SEUnitPoint.h */; };
+		A6D614BF19093C000029AA3A /* SEUnitPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D614BC19093C000029AA3A /* SEUnitPoint.h */; };
+		A6D614C019093C000029AA3A /* SEUnitPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D614BD19093C000029AA3A /* SEUnitPoint.m */; };
+		A6D614C119093C000029AA3A /* SEUnitPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D614BD19093C000029AA3A /* SEUnitPoint.m */; };
+		A6D614C219093E9A0029AA3A /* script2.grammer in Resources */ = {isa = PBXBuildFile; fileRef = A6D61437190901BA0029AA3A /* script2.grammer */; };
 		A6D925D518B8E24600902230 /* NSBundle+ScrivelEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D925D318B8E24600902230 /* NSBundle+ScrivelEngine.h */; };
 		A6D925D618B8E24600902230 /* NSBundle+ScrivelEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = A6D925D318B8E24600902230 /* NSBundle+ScrivelEngine.h */; };
 		A6D925D718B8E24600902230 /* NSBundle+ScrivelEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D925D418B8E24600902230 /* NSBundle+ScrivelEngine.m */; };
@@ -460,6 +468,10 @@
 		A6D614AC19092D760029AA3A /* SEScript2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEScript2.h; sourceTree = "<group>"; };
 		A6D614AD19092D760029AA3A /* SEScript2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEScript2.m; sourceTree = "<group>"; };
 		A6D614B219092F7B0029AA3A /* SEScript2Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEScript2Tests.m; sourceTree = "<group>"; };
+		A6D614B619093BF80029AA3A /* SEUnitSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEUnitSize.h; sourceTree = "<group>"; };
+		A6D614B719093BF80029AA3A /* SEUnitSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEUnitSize.m; sourceTree = "<group>"; };
+		A6D614BC19093C000029AA3A /* SEUnitPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEUnitPoint.h; sourceTree = "<group>"; };
+		A6D614BD19093C000029AA3A /* SEUnitPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEUnitPoint.m; sourceTree = "<group>"; };
 		A6D925D318B8E24600902230 /* NSBundle+ScrivelEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+ScrivelEngine.h"; sourceTree = "<group>"; };
 		A6D925D418B8E24600902230 /* NSBundle+ScrivelEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+ScrivelEngine.m"; sourceTree = "<group>"; };
 		A6F1145918C776B9002CBAB6 /* SECharacterLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SECharacterLayer.h; sourceTree = "<group>"; };
@@ -687,6 +699,10 @@
 				A66F80E718EF7ECE00330137 /* SEGeometory.m */,
 				A66D847118D6E56E0010EB66 /* SEUnitValue.h */,
 				A66D847218D6E56E0010EB66 /* SEUnitValue.m */,
+				A6D614B619093BF80029AA3A /* SEUnitSize.h */,
+				A6D614B719093BF80029AA3A /* SEUnitSize.m */,
+				A6D614BC19093C000029AA3A /* SEUnitPoint.h */,
+				A6D614BD19093C000029AA3A /* SEUnitPoint.m */,
 				A639F0A218BCEFFF00CF4148 /* NSNumber+CGFloat.h */,
 				A639F0A318BCEFFF00CF4148 /* NSNumber+CGFloat.m */,
 				A609F66018B47F58000A0EFB /* NSValue+ScrivelEngine.h */,
@@ -935,6 +951,7 @@
 				A66F810218EF833800330137 /* _SEObject.h in Headers */,
 				A612D8D318CCD30400D72A11 /* SEBasicCharacterLayer.h in Headers */,
 				A639F08C18BB82F800CF4148 /* SEBasicApp.h in Headers */,
+				A6D614BF19093C000029AA3A /* SEUnitPoint.h in Headers */,
 				A6D04D4518B74D4D00977B7A /* NSArray+Where.h in Headers */,
 				A6D1760E18AE628200AB11AF /* SEScriptParser.h in Headers */,
 				A6D614AF19092D760029AA3A /* SEScript2.h in Headers */,
@@ -968,6 +985,7 @@
 				A6FBB37618BE2B67008DDF22 /* SEResponderProxy.h in Headers */,
 				A6AB55D818C225C50083760F /* NSObject+KXEventEmitter.h in Headers */,
 				A6D04D4B18B7701C00977B7A /* SEBasicClassProxy.h in Headers */,
+				A6D614B919093BF80029AA3A /* SEUnitSize.h in Headers */,
 				A6D61491190912180029AA3A /* SECreateStep.h in Headers */,
 				A6D614A9190916610029AA3A /* SEDoStep.h in Headers */,
 				A6F1145B18C776BA002CBAB6 /* SECharacterLayer.h in Headers */,
@@ -1002,6 +1020,7 @@
 				A609F66E18B48F74000A0EFB /* Stack.h in Headers */,
 				A6D614A2190914590029AA3A /* SEObjectStep.h in Headers */,
 				A6D614AE19092D760029AA3A /* SEScript2.h in Headers */,
+				A6D614BE19093C000029AA3A /* SEUnitPoint.h in Headers */,
 				A60B508D18D880B800204565 /* SETypeDefinition.h in Headers */,
 				A6D04D3818B4DFA600977B7A /* ScrivelEngine.h in Headers */,
 				A6A1691B18B25A4C0041BBBA /* SEMethod.h in Headers */,
@@ -1024,6 +1043,7 @@
 				A604522818B3A30B00B85928 /* SELayer.h in Headers */,
 				A612D88518CC7C7C00D72A11 /* CAKeyframeAnimation+ScrivelEngine.h in Headers */,
 				A66D847318D6E56E0010EB66 /* SEUnitValue.h in Headers */,
+				A6D614B819093BF80029AA3A /* SEUnitSize.h in Headers */,
 				A6AB55D718C225C50083760F /* NSObject+KXEventEmitter.h in Headers */,
 				A6D614331908FF210029AA3A /* SEScript2Assembler.h in Headers */,
 				A6A1691A18B25A470041BBBA /* SEMethodChain.h in Headers */,
@@ -1224,7 +1244,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6D61438190901BA0029AA3A /* script2.grammer in Resources */,
+				A6D614C219093E9A0029AA3A /* script2.grammer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1318,12 +1338,14 @@
 				A6D614351908FF210029AA3A /* SEScript2Assembler.m in Sources */,
 				A60ECC1F18AC8A46000F7A40 /* SEMethod.m in Sources */,
 				A6D614B019092D760029AA3A /* SEScript2.m in Sources */,
+				A6D614BA19093BF80029AA3A /* SEUnitSize.m in Sources */,
 				A612D88718CC7C7C00D72A11 /* CAKeyframeAnimation+ScrivelEngine.m in Sources */,
 				A6FBB3D918BF4CFF008DDF22 /* SEColorUtil.m in Sources */,
 				A604523D18B3A58B00B85928 /* SEBasicObject.m in Sources */,
 				A6D6148C190912030029AA3A /* SEWaitStep.m in Sources */,
 				A609F66A18B48700000A0EFB /* Queue.m in Sources */,
 				A66F80E818EF7ECE00330137 /* SEGeometory.m in Sources */,
+				A6D614C019093C000029AA3A /* SEUnitPoint.m in Sources */,
 				A6D61492190912180029AA3A /* SECreateStep.m in Sources */,
 				A639F08D18BB82F800CF4148 /* SEBasicApp.m in Sources */,
 				A609F66418B47F58000A0EFB /* NSValue+ScrivelEngine.m in Sources */,
@@ -1372,6 +1394,7 @@
 				A63F88BC18B11089007FBE57 /* SEScriptAssembler.m in Sources */,
 				A609F67118B48F74000A0EFB /* Stack.m in Sources */,
 				A639F0A718BCEFFF00CF4148 /* NSNumber+CGFloat.m in Sources */,
+				A6D614C119093C000029AA3A /* SEUnitPoint.m in Sources */,
 				A66F810418EF833800330137 /* _SEObject.m in Sources */,
 				A63F88BE18B11089007FBE57 /* SEMethodChain.m in Sources */,
 				A612D8D518CCD30400D72A11 /* SEBasicCharacterLayer.m in Sources */,
@@ -1408,6 +1431,7 @@
 				A6D04D4718B74D4D00977B7A /* NSArray+Where.m in Sources */,
 				A6D1761018AE628200AB11AF /* SEScriptParser.m in Sources */,
 				A66F80E918EF7ECE00330137 /* SEGeometory.m in Sources */,
+				A6D614BB19093BF80029AA3A /* SEUnitSize.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

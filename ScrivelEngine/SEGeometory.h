@@ -7,6 +7,8 @@
 //
 
 #import "SEUnitValue.h"
+#import "SEUnitPoint.h"
+#import "SEUnitSize.h"
 #import "NSNumber+CGFloat.h"
 #import "NSValue+ScrivelEngine.h"
 

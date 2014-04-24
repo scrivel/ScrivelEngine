@@ -66,7 +66,7 @@ if ((push = [from pop]) != nil){ [to push:push]; return; }
     Stack *_BoolStack;
     Stack *_UnitValueStack;
     Stack *_PointStack;
-    Stack *_RectStack;
+    Stack *_SizeStack;
     Stack *_IdentifierStack;
 }
 
@@ -93,7 +93,7 @@ if ((push = [from pop]) != nil){ [to push:push]; return; }
     _BoolStack = [Stack new];
     _UnitValueStack = [Stack new];
     _PointStack = [Stack new];
-    _RectStack = [Stack new];
+    _SizeStack = [Stack new];
     _IdentifierStack = [Stack new];
     return self;
 }
@@ -234,7 +234,7 @@ if ((push = [from pop]) != nil){ [to push:push]; return; }
 - (void)parser:(PKParser*)parser didMatchValue:(PKAssembly*)assembly
 {
     PKToken *push;
-    PUSH_IF(_RectStack, _ValueStack);
+    PUSH_IF(_SizeStack, _ValueStack);
     PUSH_IF(_PointStack, _ValueStack);
     PUSH_IF(_UnitValueStack, _ValueStack);
     PUSH_IF(_BoolStack, _ValueStack);
@@ -274,20 +274,16 @@ if ((push = [from pop]) != nil){ [to push:push]; return; }
 {
     SEUnitValue *y = [_UnitValueStack pop];
     SEUnitValue *x = [_UnitValueStack pop];
-    SESize cs = self.engine.rootView.bounds.size;
-    SESize vs = self.engine.virtualSize;
-    CGFloat _x = SEMakeX(x, cs.width, vs.width);
-    CGFloat _y = SEMakeY(y, cs.height, vs.height);
-    SEPoint point = (SEPoint){_x,_y};
-    [_PointStack push:[NSValue se_valueWithPoint:point]];
+    SEUnitPoint *point = [SEUnitPoint pointWithX:x y:y];
+    [_PointStack push:point];
 }
 
-- (void)parser:(PKParser*)parser didMatchRect:(PKAssembly*)assembly
+- (void)parser:(PKParser*)parser didMatchSize:(PKAssembly *)assembly
 {
-    SEPoint size = [[_PointStack pop] se_pointValue];
-    SEPoint origin = [[_PointStack pop] se_pointValue];
-    SERect rect = (SERect){origin, (SESize){size.x,size.y}};
-    [_RectStack push:[NSValue se_valueWithRect:rect]];
+    SEUnitValue *h = [_UnitValueStack pop];
+    SEUnitValue *w = [_UnitValueStack pop];
+    SEUnitSize *size = [SEUnitSize sizeWithWidth:w height:h];
+    [_SizeStack push:size];
 }
 
 - (void)parser:(PKParser*)parser didMatchIdentifier:(PKAssembly*)assembly
