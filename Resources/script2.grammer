@@ -1,0 +1,57 @@
+@reportsCommentTokens = NO;
+@commentState       = '/';
+@singleLineComments = '//';
+@multiLineComments  = '/*' '*/';
+@symbols = ' ';
+ws	= ' ';
+
+// step types
+animateSym = 'animate';
+doSym = 'do';
+createSym = 'create';
+deleteSym = 'delete';
+setSym = 'set';
+waitSym = 'wait';
+// object types
+layerSym = 'layer';
+characterSym = 'character';
+textSym = 'text';
+// waitTypes
+animationSym = 'animation';
+tapSym = 'tap';
+wordsSym = 'words';
+// unitTypes
+pxSym = 'px';
+vpxSym = 'vpx';
+percentSym = '%';
+
+@start 
+@before {
+        PKTokenizer *t = self.tokenizer;
+        
+        // whitespace
+      self.silentlyConsumesWhitespace = NO;
+      self.assembly.preservesWhitespaceTokens = NO;
+}
+	      = script;
+script    = element+;
+element   = Comment | step | words;
+words   = Any+;
+step    = '[' (targetStep | anonymousStep) ']';
+targetStep  = identifier ws (animateStep | anonymousStep);
+animateStep = animateSym ws arguments;
+anonymousStep = objectStep | setStep | doStep | waitStep;
+objectStep  = (createSym | deleteSym) ws objectIdentifier ws arguments;
+objectIdentifier = layerSym | characterSym | textSym;
+setStep   = setSym ws arguments;
+doStep    = doSym ws identifier arguments;
+waitStep  = waitSym ws waitIdentifier;
+waitIdentifier  = Number | tapSym | animationSym | wordsSym;
+arguments = Empty | argument (ws argument)*;
+argument  = identifier ':' value;
+value   = QuotedString | Number | unitValue | point | rect;
+unitValue = Number unit;
+unit    = pxSym | vpxSym | percentSym;
+point   = '{' unitValue ',' unitValue '}';
+rect    = '{' point ',' point '}';
+identifier  = Word;
