@@ -54,15 +54,20 @@ NSString *const SEStateChangedEventStateKey = @"org.scrivel.SEStateChangedEventS
 @synthesize chara = __chara;
 @synthesize virtualSize = _virtualSize;
 
-+ (instancetype)engineWithWindow:(SEWindow *)window rootView:(SEView *)rootView
++ (instancetype)engineWithRootView:(SEView *)rootView virtualSize:(SESize)virtualSize
 {
-    return [[self alloc] initWithWindow:window rootView:rootView];
+    return [[self alloc] initWithRootView:rootView virtualSize:(SESize)virtualSize];
 }
 
 - (id)init
 {
+    @throw [NSException exceptionWithName:@"ScrivelEngine Invalid Instantiation Exception" reason:@"" userInfo:nil];
+    return nil;
+}
+
+- (id)initWithRootView:(SEView*)rootView virtualSize:(SESize)virtualSize
+{
     self = [super init];
-    self.classProxy = [SEBasicClassProxy new];
     _taskQueue = [Queue new];
     _identifier = [[NSUUID UUID] UUIDString];
     _state = ScrivelEngineStateIdle;
@@ -70,14 +75,13 @@ NSString *const SEStateChangedEventStateKey = @"org.scrivel.SEStateChangedEventS
     _virtualSize = CGSizeZero;
     _notificationCenter = [NSNotificationCenter new];
     _baseURL = nil;
-    return self ?: nil;
-}
-
-- (id)initWithWindow:(SEWindow*)window rootView:(SEView*)rootView
-{
-    self = [self init];
-    self.window = window;
-    self.rootView = rootView;
+    self.classProxy = [SEBasicClassProxy new];
+    _rootView = rootView;
+#if SE_TARGET_OS_MAC
+    rootView.wantsLayer = YES;
+#endif
+    [__app setUpTapRecognizerWithView:rootView];
+    _virtualSize = CGSizeEqualToSize(virtualSize, CGSizeZero) ? rootView.bounds.size : virtualSize;
     return self ?: nil;
 }
 
@@ -87,17 +91,6 @@ NSString *const SEStateChangedEventStateKey = @"org.scrivel.SEStateChangedEventS
 }
 
 #pragma mark - Setter
-
-- (void)setRootView:(SEView *)rootView
-{
-    if (rootView != _rootView) {
-#if SE_TARGET_OS_MAC
-        rootView.wantsLayer = YES;
-#endif
-        [__app setUpTapRecognizerWithView:rootView];
-        _rootView = rootView;
-    }
-}
 
 - (void)setClassProxy:(id<SEClassProxy>)classProxy
 {
@@ -118,15 +111,6 @@ NSString *const SEStateChangedEventStateKey = @"org.scrivel.SEStateChangedEventS
              userInfo:@{SEStateChangedEventStateKey: @(state)}
                center:self.notificationCenter];
         _state = state;
-    }
-}
-
-- (SESize)virtualSize
-{
-    if (CGSizeEqualToSize(_virtualSize, CGSizeZero)) {
-        return self.rootView.bounds.size;
-    }else{
-        return _virtualSize;
     }
 }
 

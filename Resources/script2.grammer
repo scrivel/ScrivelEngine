@@ -2,9 +2,8 @@
 @commentState       = '/';
 @singleLineComments = '//';
 @multiLineComments  = '/*' '*/';
-@symbols = ' ';
-ws	= ' ';
-
+@symbols = '<<';
+arrow = '<<';
 // step types
 animateSym = 'animate';
 doSym = 'do';
@@ -12,46 +11,32 @@ createSym = 'create';
 deleteSym = 'delete';
 setSym = 'set';
 waitSym = 'wait';
-// object types
-layerSym = 'layer';
-characterSym = 'character';
-textSym = 'text';
-// waitTypes
-animationSym = 'animation';
-tapSym = 'tap';
-wordsSym = 'words';
-// unitTypes
-pxSym = 'px';
-vpxSym = 'vpx';
-percentSym = '%';
 
-@start 
+@start
 @before {
         PKTokenizer *t = self.tokenizer;
         
         // whitespace
       self.silentlyConsumesWhitespace = NO;
-      self.assembly.preservesWhitespaceTokens = NO;
+      self.assembly.preservesWhitespaceTokens = YES;
 }
-	      = script;
-script    = element+;
-element   = Comment | step | words;
-words   = Any+;
-step    = '[' (targetStep | anonymousStep) ']';
-targetStep  = identifier ws (animateStep | anonymousStep);
-animateStep = animateSym ws arguments;
-anonymousStep = objectStep | setStep | doStep | waitStep;
-objectStep  = (createSym | deleteSym) ws objectIdentifier ws arguments;
-objectIdentifier = layerSym | characterSym | textSym;
-setStep   = setSym ws arguments;
-doStep    = doSym ws identifier arguments;
-waitStep  = waitSym ws waitIdentifier;
-waitIdentifier  = Number | tapSym | animationSym | wordsSym;
-arguments = Empty | argument (ws argument)*;
-argument  = identifier ':' value;
-value   = QuotedString | Number | unitValue | point | rect;
-unitValue = Number unit;
-unit    = pxSym | vpxSym | percentSym;
-point   = '{' unitValue ',' unitValue '}';
-rect    = '{' point ',' point '}';
-identifier  = Word;
+                = script;
+script          = element+;
+element         = Comment | step | words;
+words           = speaker? Any+;
+speaker         = identifier arrow;
+step            = '[' identifier? (setStep | animateStep | doStep | waitStep | createStep | deleteStep) ']';
+animateStep     = animateSym arguments;
+createStep      = createSym identifier arguments;
+deleteStep      = deleteSym identifier;
+setStep         = setSym arguments;
+doStep          = doSym identifier arguments;
+waitStep        = waitSym (Number | identifier);
+arguments       = Empty | argument+;
+argument        = identifier ':' value;
+value           = QuotedString | Number | unitValue | point | size | bool;
+bool            = 'yes' | 'no';
+unitValue       = Number identifier;
+point           = '(' unitValue ',' unitValue ')';
+size            = '{' unitValue ',' unitValue '}';
+identifier      = Word;

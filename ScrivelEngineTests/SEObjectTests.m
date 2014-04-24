@@ -10,6 +10,8 @@
 #import "_SEObject.h"
 #import "SEBasicObject.h"
 
+#define NEWENGINE [ScrivelEngine engineWithRootView:[[SEView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)] virtualSize:CGSizeMake(320,480)]
+
 @interface SEObjectTests : XCTestCase
 
 @end
@@ -31,12 +33,11 @@
 - (void)testSEObject
 {
     @autoreleasepool {
-        ScrivelEngine *e = [ScrivelEngine new];
-        _SEObject *new = [[_SEObject alloc] initWithEngine:e];
+        _SEObject *new = [[_SEObject alloc] initWithEngine:NEWENGINE];
         XCTAssert(new, );
     }
     @autoreleasepool {
-        ScrivelEngine *e = [ScrivelEngine new];
+        ScrivelEngine *e = NEWENGINE;
         XCTAssert(e, );
     }
 }

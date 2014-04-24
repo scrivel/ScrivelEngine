@@ -1,0 +1,17 @@
+[create character name:"ななみ"]
+[create character name:"つむぎ"]
+[ななみ do jump times:2]
+[つむぎ animate in:3 moveBy:{0px, 100px} rotateBy:100 scaleTo:2 repeatBy:2 repeatIn:1 reverse:yes]
+[つむぎ animate of:"jump"]
+[ななみ set size:{10px, 10px}]
+[create character name:"ななみ"]
+[create text name:"セリフ" primary:yes]
+[delete ななみ]
+[wait 1]
+[wait tap]
+[wait animation]
+[wait words]
+[name_label set text:"ななみ"]
+ななみ << こんにちは！！私の名前は平針ななみ！
+つむぎ << え、えっと、わたしのなまえは……
+[create text key:"name_label"]

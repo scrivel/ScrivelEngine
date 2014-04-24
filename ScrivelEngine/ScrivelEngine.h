@@ -41,22 +41,16 @@ typedef NS_ENUM(NSUInteger, ScrivelEngineState){
 @interface ScrivelEngine : NSObject
 
 /**
- エンジンのファクトリメソッド。
- これを使わなくてもあとでwindowとrootViewを設定することができます。
- 
- @param window rootView
- @param rootView rootWindow
+ エンジンのファクトリメソッド
  **/
-+ (instancetype)engineWithWindow:(SEWindow*)window rootView:(SEView*)rootView;
++ (instancetype)engineWithRootView:(SEView*)rootView virtualSize:(SESize)virtualSize;
 
 /** レイヤーを管理するrootのview **/
 @property (nonatomic, readonly) NSString *identifier;
-/** エンジンが実行されるウィンドウ **/
-@property (weak, nonatomic) SEWindow *window;
 /** アニメーションが実行されるNS/UIView **/
-@property (weak, nonatomic) SEView *rootView;
+@property (weak, nonatomic, readonly) SEView *rootView;
 /** 画面のレイアウト上の仮想サイズ。デフォルトはrootViewのサイズ **/
-@property (nonatomic) SESize virtualSize;
+@property (nonatomic, readonly) SESize virtualSize;
 /** SEScriptを実行するためのマッピングオブジェクト **/
 @property (nonatomic) id<SEClassProxy> classProxy;
 /** エンジンが現在wait状態にあるかどうか **/

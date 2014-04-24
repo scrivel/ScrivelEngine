@@ -12,7 +12,8 @@
 #import "SELayer.h"
 #import "SEBasicClassProxy.h"
 
-#define NEWENGINE [ScrivelEngine new]
+#define NEWENGINE [ScrivelEngine engineWithRootView:[[SEView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)] virtualSize:CGSizeMake(320,480)]
+
 @interface ScrivelEngineTests : XCTestCase
 
 @end
@@ -146,7 +147,7 @@
     for (NSString *path in scriptPaths) {
         @autoreleasepool {
             NSString *script = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-            ScrivelEngine *engine = [ScrivelEngine engineWithWindow:nil rootView:[SEView new]];
+            ScrivelEngine *engine = NEWENGINE;
             engine.speed = ScrivelEngineSppedNoWait;
             NSError *e = nil;
             XCTAssertNoThrow([engine evaluateScript:script error:&e], );
